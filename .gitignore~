@@ -12,7 +12,7 @@
 
 # Ignore hashed files.
 [#]*[#]
-\#*\#
+*~
 
 # Ignore all logfiles and tempfiles.
 /src/log/*.log
