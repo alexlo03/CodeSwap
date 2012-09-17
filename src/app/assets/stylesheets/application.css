@@ -11,3 +11,8 @@
  *= require_self
  *= require_tree .
  */
+
+.user_links {
+  float:right;
+  font-size:12px;
+}
