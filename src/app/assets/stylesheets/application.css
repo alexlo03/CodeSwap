@@ -14,5 +14,53 @@
 
 .user_links {
   float:right;
-  font-size:12px;
+  font-size:10px;
+  height:12px;
+}
+
+.header {
+  width:75%;
+  margin:auto;
+  height:12px;
+  background-color:#AAF;
+}
+
+#title {
+  float:left;
+  font-size:10px;
+  font-style:bold;
+}
+
+.clear {
+  clear:both;
+}
+
+.notice {
+  background-color:#CFC;
+  padding:5px 8px;
+  margin:10px auto;
+  width:70%;
+  border:solid 1px #AFA;
+}
+
+.error {
+  background-color:#FCC;
+  padding:5px 8px;
+  margin:auto;
+  width:70%;
+  border:solid 1px #FAA;
+}
+
+#error_explanation {
+  background-color:#FCC;
+  padding:5px 8px;
+  margin:10px 0;
+  width:70%;
+  border:solid 1px #FAA;
+}
+
+.body {
+  width: 75%;
+  margin:0 auto;
+  
 }
