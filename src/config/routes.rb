@@ -1,10 +1,14 @@
 CodeSwap::Application.routes.draw do
+  resources :authentications
+
   devise_for :users
 
   get "home/index"
 
+  root :to => "authentications#index"
 
-  root :to => "home#index"
+  match '/auth/:provider/callback' => 'authentications#create'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

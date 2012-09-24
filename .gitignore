@@ -7,8 +7,9 @@
 # Ignore bundler config
 /src/.bundle
 
-# Ignore the default SQLite database.
+# Ignore the SQLite database.
 /src/db/*.sqlite3
+*.sqlite3
 
 # Ignore hashed files.
 [#]*[#]
