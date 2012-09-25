@@ -18,6 +18,16 @@
   height:12px;
 }
 
+.sign_in_form {
+  float:left;
+  width:50%;
+}
+
+.oauth_links {
+  float:right;
+  width:50%;
+}
+
 .header {
   width:75%;
   margin:auto;

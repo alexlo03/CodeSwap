@@ -13,10 +13,10 @@ class AuthenticationsController < ApplicationController
       if current_user
         current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
         flash[:notice] = "Authentication successful."
-        redirect_to authentications_url
+        redirect_to root_path
       else
         flash[:error] = "This " + omniauth['provider'] + " account is not linked yet. Please log in and link the account."
-        redirect_to authentications_url
+        redirect_to user_session_path
       end
     end
   end
@@ -25,6 +25,6 @@ class AuthenticationsController < ApplicationController
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
     flash[:notice] = "Successfully destroyed authentication."
-    redirect_to authentications_url
+    redirect_to user_session_path
   end
 end

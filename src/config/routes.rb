@@ -5,7 +5,7 @@ CodeSwap::Application.routes.draw do
 
   get "home/index"
 
-  root :to => "authentications#index"
+  root :to => "home#index"
 
   match '/auth/:provider/callback' => 'authentications#create'
 
