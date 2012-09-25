@@ -4,10 +4,21 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
-    auth = request.env["omniauth.auth"]
-    current_user.authentications.find_or_create_by_provider_and_uid(auth['provider'], auth['uid'])
-    flash[:notice] = "Authentication successful."
-    redirect_to authentications_url
+    omniauth = request.env["omniauth.auth"]
+    authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
+    if authentication
+      flash[:notice] = "Signed in successfully."
+      sign_in_and_redirect(:user, authentication.user)
+    else
+      if current_user
+        current_user.authentications.create(:provider => omniauth['provider'], :uid => omniauth['uid'])
+        flash[:notice] = "Authentication successful."
+        redirect_to authentications_url
+      else
+        flash[:error] = "This " + omniauth['provider'] + " account is not linked yet. Please log in and link the account."
+        redirect_to authentications_url
+      end
+    end
   end
 
   def destroy
