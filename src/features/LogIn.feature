@@ -37,6 +37,13 @@ Scenario: Fail to create account
   Then I should see "error"
   And I should see "Password doesn't match confirmation"
 
+Scenario: Log in
+  Given I am not logged in
+  And I have an account
+  When I go to the sign in page
+  And I sign in
+  Then I should see "Signed in successfully"
+  
 Scenario: Log out
   Given I am not logged in
   When I go to the sign up page
