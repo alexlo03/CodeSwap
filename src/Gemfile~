@@ -7,13 +7,27 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 
-gem 'devise'
 
 gem 'cancan'
 
+
+#Testing gems
+gem 'nokogiri', '~> 1.5.1'
+gem 'cucumber'
+gem 'rspec'
+gem 'webrat'
+
+group :test do
+  gem 'cucumber-rails'
+  gem 'database-cleaner'
+end
+
+
+
+#Authentication 
+gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'omniauth-google'
 
 # Gems used only for assets and not required
 # in production environments by default.
