@@ -19,7 +19,7 @@ gem 'webrat'
 
 group :test do
   gem 'cucumber-rails'
-  gem 'database-cleaner'
+  gem 'database_cleaner'
 end
 
 
