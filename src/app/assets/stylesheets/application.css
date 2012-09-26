@@ -19,12 +19,12 @@
 }
 
 .sign_in_form {
-  float:left;
+  margin:auto;
   width:50%;
 }
 
 .oauth_links {
-  float:right;
+  float:left;
   width:50%;
 }
 
