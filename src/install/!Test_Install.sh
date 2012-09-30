@@ -1,4 +1,5 @@
 #!/bin/sh
+cd
 sudo apt-get update  # To get the latest package lists
 sudo apt-get install curl -y
 curl -L get.rvm.io | bash -s stable
@@ -30,8 +31,9 @@ make
 sudo make install
 cd
 
+##REMOVED FOR INITIAL TESTING
 #Download, install and launch the application
-git clone https://github.com/alexlo03/CodeSwap.git
+#git clone https://github.com/alexlo03/CodeSwap.git
 
 #Move into CodeSwap Directory
 cd CodeSwap
