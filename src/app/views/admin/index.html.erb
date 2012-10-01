@@ -102,24 +102,40 @@
 
 
 <script type='text/javascript' runat='server'>
+
+var addFaculty = function(){
+    var email = $('#faculty_email').attr('value');
+    $.post('/admin/confirm_faculty',
+      { 'facultyemail': email },
+      function(faculty){
+        if ( faculty.id === null ) {
+          alert('Invalid email.');  
+        }
+        else {
+          $('#faculty_table').append('<tr id="faculty-'+faculty.id + '" style="display:none"><td>'+faculty.id+'</td><td>'+faculty.email+'</td><td></td></tr>');
+          $('#faculty-'+faculty.id).show('slow');
+        }
+          $('#faculty_email').attr('value','');
+        });
+};
+
 $(document).ready(function(){
-  
   $('#add_faculty').toggle();
   $('#add_faculty_button').click(function(){
       $('#add_faculty').toggle('slow');
   });
 
-  $('#submit_faculty').click(function(){
-    var email = $('#faculty_email').attr('value');
-    $.post('admin/confirm_faculty',
-      { 'facultyemail': email },
-        function(faculty){
-            $('#faculty_table').append('<tr id=\'faculty-'+faculty.id + '\' style=\'display:none\'><td>'+faculty.id+'</td><td>'+faculty.email+'</td><td></td></tr>');
-            $('#faculty-'+faculty.id).show('slow');
-            $('#faculty_email').attr('value','');
-          });
-  });
+  $('#submit_faculty').click(function(){addFaculty()});
+  $('#faculty_email').keypress(function(event){
+                                if(event.which == 13)
+                                {
+                                  addFaculty();
+                                  return false;
+                                }                            
+                              });
 });
+
+
 </script>
 
 
