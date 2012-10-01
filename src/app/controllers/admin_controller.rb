@@ -18,6 +18,7 @@ class AdminController < ApplicationController
     u.save(:validate => false)
     @new_faculty = User.find_by_email(u.email)
     flash[:notice] = "Faculty Created successfully!"
+    render :json => u.to_json
   end
 
 end

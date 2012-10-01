@@ -111,10 +111,12 @@ $(document).ready(function(){
 
   $('#submit_faculty').click(function(){
     var email = $('#faculty_email').attr('value');
-    $.post('/admin/confirm_faculty',
+    $.post('admin/confirm_faculty',
       { 'facultyemail': email },
-        function(){
-            location.reload();
+        function(faculty){
+            $('#faculty_table').append('<tr id=\'faculty-'+faculty.id + '\' style=\'display:none\'><td>'+faculty.id+'</td><td>'+faculty.email+'</td><td></td></tr>');
+            $('#faculty-'+faculty.id).show('slow');
+            $('#faculty_email').attr('value','');
           });
   });
 });
