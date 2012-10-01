@@ -2,8 +2,10 @@
 
 <% if !current_user %>
 <p><strong>Sign in through one of these services:</strong></p>
-<% else %>
+<% elsif !current_user.authentications.empty? %>
    <p><strong>Add another service to sign in with:</strong></p>
+<% else %>
+   <p><strong>Add a service to sign in with:</strong></p>
 <% end %>
 
 
