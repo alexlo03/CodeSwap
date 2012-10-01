@@ -1,6 +1,8 @@
 CodeSwap::Application.routes.draw do
-  resources :authentications
+  get "admin/index"
 
+  resources :authentications
+  resources :user
   devise_for :users
 
   get "home/index"
@@ -9,6 +11,11 @@ CodeSwap::Application.routes.draw do
 
   match '/auth/:provider/callback' => 'authentications#create'
 
+  match '/users/sign_up' => 'home#index'
+
+  match "admin/create_faculty", :controller => 'admin', :action => 'create_faculty'
+  match 'admin' => 'admin#index'
+  match 'admin/confirm_faculty', :controller => 'admin', :action => 'confirm_faculty'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

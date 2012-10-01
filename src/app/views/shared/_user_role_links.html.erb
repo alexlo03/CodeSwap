@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<% if current_user.admin? %>
+  <li><%= link_to "Admin" %></li>
+<% elsif current_user.faculty? %>
+  <li><%= link_to "Faculty" %></li>
+  <li><%= link_to "Courses" %></li>
+<% elsif current_user.ta? %>
+  <li><%= link_to "Teaching Assistant" %></li>
+<% elsif current_user.student? %>
+  <li><%= link_to "Student" %></li>
+  <li><%= link_to "Assignments" %></li>
+<% end %>

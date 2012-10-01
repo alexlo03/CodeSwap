@@ -1,11 +1,13 @@
 <% if current_user.nil? %>
   You should log in.
-<% elsif current_user.admin? %>
-  You are logged in as an administrator!
-<% elsif current_user.faculty? %>
-  You are logged in as faculty!
-<% elsif current_user.ta? %>
-  You're logged in as a TA!!!!!!!!!!!!!!!!
-<% elsif current_user.student? %>
-  You are a student.
+<% else %>
+  <% if current_user.admin? %>
+    You are logged in as an administrator!
+  <% elsif current_user.faculty? %>
+    You are logged in as faculty!
+  <% elsif current_user.ta? %>
+    You're logged in as a TA!!!!!!!!!!!!!!!!
+  <% elsif current_user.student? %>
+    You are a student.
+  <% end %>
 <% end %>

@@ -29,6 +29,9 @@
           </ul>
           <ul class="nav">
             <li><%= link_to "Wiki", "https://github.com/alexlo03/CodeSwap/wiki" %></li>
+            <% if current_user %>
+              <%= render 'shared/user_role_links' %>
+            <% end %>
           </ul>
         </div>
       </div>
