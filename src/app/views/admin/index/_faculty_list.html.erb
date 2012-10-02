@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<h3>Faculty</h3>
+  <table class='table table-hover'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Last online</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id='faculty_table'>
+      <% @faculty.each do |user| %>
+        <tr id="faculty-<%= user.id %>">
+          <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td><%= user.last_sign_in_at %></td>
+          <td>
+            <p class='btn'>View</p>
+            <p class='btn btn-danger' id="faculty-<%= user.id %>-remove" onclick="deleteFaculty('<%= user.email %>');">Delete</p>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<a class='btn' id='add_faculty_button'>Add faculty</a>
+<form class="form-search" id='add_faculty'>
+  <strong>Faculty e-mail:</strong>  
+  <input type="text" class="input-medium search-query" id='faculty_email'>
+  <p class="btn" id='submit_faculty'>Add</p>
+</form>
+
+
+
+
+
+
+
+
+<script type='text/javascript' runat='server'>
+
+var viewFaculty = function(id) {
+
+};
+
+var addFaculty = function(){
+    var email = $('#faculty_email').attr('value');
+    $.post('/admin/confirm_faculty',
+      { 'facultyemail': email },
+      function(faculty){
+        if ( faculty.errormessage ) { //Didn't fail to create the user
+          $("#add_faculty").append($("<div id='alert' class='alert alert-error fade in' data-alert>"+
+           "<button type='button' class='close' data-dismiss='alert'>×</button><strong> " + faculty.errormessage + " </strong></div>"));
+          $('#alert').delay(1500).fadeOut('slow', function(){ $('#alert').remove() });
+        }
+        else {
+          var table = $('#faculty_table');
+          table.append(
+            '<tr id="faculty-'+faculty.id + '" style="display:none">' 
+          + '<td>'+faculty.id+'</td>'
+          + '<td>'+faculty.email+'</td>'
+          + '<td></td>'
+          + '<td>'
+          + '<p class=\'btn\'>View</p>' + ' '
+          + '<p class=\'btn btn-danger\' id="faculty-'+ faculty.id +'-remove" onclick="deleteFaculty(\''+ faculty.email +'\');">Delete</p>'
+          + '</td>'
+          + '</tr>');
+          $('#faculty-'+faculty.id).show('slow');
+        }
+          $('#faculty_email').attr('value','');
+        });
+};
+
+var deleteFaculty = function(email){
+    $.post('/admin/delete_faculty',
+      { 'facultyemail' : email },
+      function(faculty){
+        var row = $("#faculty-"+faculty.id);
+        row.toggle('fast', function(){ row.remove()});
+      });
+};
+
+$(document).ready(function(){
+  $('#add_faculty').toggle();
+  $('#add_faculty_button').click(function(){
+      $('#add_faculty').toggle('fast');
+  });
+
+  $('#submit_faculty').click(function(){addFaculty()});
+  $('#faculty_email').keypress(function(event){
+                                if(event.which == 13)
+                                {
+                                  addFaculty();
+                                  return false;
+                                }                            
+                              });
+
+});
+</script>
+
+
