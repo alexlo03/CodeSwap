@@ -21,6 +21,12 @@ When /^I sign in$/ do
   click_button 'Sign in'
 end
 
+When /^I sign in incorrectly$/ do
+  fill_in "Email", :with => 'test@test.com'
+  fill_in 'Password', :with => 'wrong_password'
+  click_button 'Sign in'
+end
+
 When /^enter "([a-zA-Z]*)" information$/ do |role|
   fill_in "Email", :with => 'test@test.com'
   fill_in 'Password', :with => 'password'
@@ -34,7 +40,7 @@ Then /^I should see "(.*)"$/ do |text|
 end
 
 When /^I log out$/ do
-  click_link "Get me out of here!"
+  click_link "Log out"
 end
 
 When /^enter bad passwords$/ do

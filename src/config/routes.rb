@@ -19,6 +19,10 @@ CodeSwap::Application.routes.draw do
   match 'admin/view_faculty', :controller => 'admin', :action => 'view_faculty', :as => 'view_faculty'
   match 'admin/delete_faculty', :controller => 'admin', :action => 'delete_faculty'
   match 'admin/search_faculty', :controller => 'admin', :action => 'search_faculty', :as => 'search_faculty'
+  match 'faculty/add_course', :controller => 'faculty', :action => 'add_course', :as => 'add_course'
+  get "faculty/index"
+  get "faculty/new_course" 
+  get "faculty/add_course" 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+
+<div id = 'form1'>
+<h1>Add Students</h1>
+<p>Add the basic class information here</p></br>
+<form class="form-search" id='add_students'>
+ <h4><strong>Course Number:</strong></h4>
+  <input type="text" class="input-medium search-query" placeholder="ex CSSE120" id='course_number'></br>
+  <h4><strong>Course Name:</strong>  </h4>
+  <input type="text" class="input-medium search-query" id='course_name'></br>
+  <h4><strong>Course Section:</strong></h4> 
+  <input type="number" class="input-medium search-query" id='course_section'></br>
+  <h4><strong>Course Term:</strong></h4>
+  <input type="text" class="input-medium search-query" id='course_term'></br></br></br>
+  <p class="btn" id='next1'>Next</p></br>
+</form>
+</p>
+</div>
+
+<div id='form2'>
+<h1>Add Students</h1>
+<p>Upload a .csv file with student emails here.
+New student accounts will be created automatically if the student is not already registered</p>
+
+<p> Coming Soon to a server near you! </p>
+
+
+
+<p class="btn" id='back1'>Back</p>
+<p class="btn" id='next2'>Next</p></br>
+</div>
+
+
+<div id="form3">
+<h1>Add TA's</h1>
+<p>Input the emails of any TA's for the class, seperated by a comma.
+New TA accounts will be created automatically if the student is not already registered</p>
+
+<p> Coming Soon to a server near you! </p>
+
+<p class="btn" id='back2'>Back</p>
+<p class="btn" id='doneButton'>Finished</p></br>
+</div>
+
+<script type='text/javascript' runat='server'>
+var addError = function(message) {
+  $("#form1").append($("<div id='alert' class='alert alert-error fade in' data-alert>"+
+           "<button type='button' class='close' data-dismiss='alert'>×</button><strong> " + message + " </strong></div>"));
+          $('#alert').delay(1500).fadeOut('slow', function(){ $('#alert').remove() });
+};
+var next1Change = function(){
+  
+  var cName = $('#course_name').attr('value');
+  var cTerm = $('#course_term').attr('value');
+  var cNumber = $('#course_number').attr('value');
+  var cSection = $('#course_section').attr('value');
+  if(cSection == '' | cName == "" | cTerm == ""| cSection == ""){
+    addError("All fields required")
+    } 
+  else{
+  $("#form1").toggle('fast');
+  $("#form2").toggle('fast');}
+};
+var next2Change = function(){
+  
+  $("#form2").toggle('fast');
+  $("#form3").toggle('fast');
+};
+
+var addCourse = function(){
+  var cName = $('#course_name').attr('value');
+  var cTerm = $('#course_term').attr('value');
+  var cNumber = $('#course_number').attr('value');
+  var cSection = $('#course_section').attr('value');
+    
+  if(cSection == '' | cName == "" | cTerm == ""| cSection == ""){
+    $("#form1").toggle();
+    $("#form3").toggle();
+    addError("All fields required");
+  } else {
+    
+    $.post('/faculty/add_course',{
+      'cname' : cName, 'cterm':cTerm, 'cnumber': cNumber, 'csection': cSection}
+    ,function(course){
+      if(course.error){
+        $("#form1").toggle();
+        $("#form3").toggle();
+        addError(course.error);
+        }
+      else{
+        window.location.href="/faculty/index";
+      }
+    });
+   }
+    
+};
+
+$(document).ready(function(){
+  $("#form2").toggle();
+  
+  $("#form3").toggle();
+  
+  $("#next1").click(function() {
+    next1Change();
+  });
+  $("#back1").click(function() {
+    next1Change();
+  });
+  $("#next2").click(function() {
+    next2Change();
+  });
+  $("#back2").click(function() {
+    next2Change();
+  });
+  
+  $("#doneButton").click(function() {
+    addCourse();
+  });
+  
+
+  
+});
+
+
+</script>

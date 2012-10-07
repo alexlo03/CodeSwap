@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<h3>Courses</h3>
+  <table class='table table-hover'>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Term</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @classes.each do |course| %>
+      <tr>
+        <td><%= course.course_number + ' - ' + course.section.to_s%></td>
+        <td><%= course.name %></td>
+        <td><%= course.term %></td>   
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+</br>
+<p class="btn" id='add_course' onclick='window.location.href="/faculty/new_course"'>Add Course</p>
+
+
+
+
