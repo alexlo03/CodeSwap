@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :first_name, :last_name
 
   def admin?
     role.eql? "admin"
@@ -24,6 +24,23 @@ class User < ActiveRecord::Base
 
   def student?
     role.eql? "student"
+  end
+
+  def full_name
+    last_name + ", " + first_name
+  end
+
+  def friendly_full_name
+    first_name + " " + last_name
+  end
+
+
+  def self.search(search)
+    if search
+      where('email LIKE ?', "%#{search}%")
+    else
+      scoped
+    end
   end
 
 end

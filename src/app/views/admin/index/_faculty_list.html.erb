@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 
 <h3>Faculty</h3>
+  <% unless current_page?(:controller => :admin, :action => 'index') %>
+    <form class="form-search" id='search_faculty'>
+      <h2>Search</h2>
+      <strong>First name:</strong>
+      <input type="text" class="input-small search-query" id='search_first_name'>
+      <strong>Last name:</strong>
+      <input type="text" class="input-medium search-query" id='search_last_name'><br/><br/>
+      <strong>E-mail:</strong>  
+      <input type="text" class="input-medium search-query" id='search_faculty_email'>
+    </form>
+  <% end %>
   <table class='table table-hover'>
     <thead>
       <tr>
         <th>ID</th>
         <th>Email</th>
+        <th>Name</th>
         <th>Last online</th>
         <th></th>
       </tr>
@@ -15,6 +27,7 @@
         <tr id="faculty-<%= user.id %>">
           <td><%= user.id %></td>
           <td><%= user.email %></td>
+          <td><%= user.friendly_full_name %></td>
           <td><%= user.last_sign_in_at %></td>
           <td>
             <p class='btn'>View</p>
@@ -22,14 +35,26 @@
           </td>
         </tr>
       <% end %>
+      <% if faculty_count > @faculty.count %>
+        <tr id='view_more_faculty_row'>
+          <td colspan='5'>
+            Currently displaying <strong><%= @faculty.count %></strong> of <strong><%= faculty_count %></strong> faculty. Click here to view the rest.
+          </td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
+
 <a class='btn' id='add_faculty_button'>Add faculty</a>
 <form class="form-search" id='add_faculty'>
+  <strong>Faculty name:</strong>
+  <input type="text" class="input-medium search-query" placeholder="[First Last]" id='faculty_name'>
   <strong>Faculty e-mail:</strong>  
   <input type="text" class="input-medium search-query" id='faculty_email'>
   <p class="btn" id='submit_faculty'>Add</p>
 </form>
+
+
 
 
 
@@ -44,32 +69,71 @@ var viewFaculty = function(id) {
 
 };
 
+var addError = function(message) {
+  $("#add_faculty").append($("<div id='alert' class='alert alert-error fade in' data-alert>"+
+           "<button type='button' class='close' data-dismiss='alert'>×</button><strong> " + message + " </strong></div>"));
+          $('#alert').delay(1500).fadeOut('slow', function(){ $('#alert').remove() });
+};
+
+var searchFaculty = function() {
+  var email = $('#search_faculty_email').attr('value');
+  var first_name = $('#search_first_name').attr('value');
+  var last_name = $('#search_last_name').attr('value');
+    
+  $.post('/admin/search_faculty',
+    { 'facultyemail' : email,
+      'first_name' : first_name,
+      'last_name' : last_name
+    },
+    function(result){
+      clearTable();
+      $.each(result, function(index, ele){ updateTableWithFaculty(ele); });
+    });
+};
+
+var clearTable = function() { $('#faculty_table').empty(); };
+
+var updateTableWithFaculty = function(faculty) {
+  var table = $('#faculty_table');
+  table.append(
+    '<tr id="faculty-'+faculty.id + '" style="display:none">' 
+  + '<td>'+faculty.id+'</td>'
+  + '<td>'+faculty.email+'</td>'
+  + '<td>'+faculty.first_name+' '+faculty.last_name+'</td>'
+  + '<td></td>'
+  + '<td>'
+  + '<p class=\'btn\'>View</p>' + ' '
+  + '<p class=\'btn btn-danger\' id="faculty-'+ faculty.id +'-remove" onclick="deleteFaculty(\''+ faculty.email +'\');">Delete</p>'
+  + '</td>'
+  + '</tr>');
+  $('#faculty-'+faculty.id).show();
+};
+
+
 var addFaculty = function(){
     var email = $('#faculty_email').attr('value');
+    var name = $('#faculty_name').attr('value');
+
+    if(name.split(' ').length < 2) {
+      alert(name.split(' ').length);
+      addError('Please enter a valid [First Last] name.');
+    }
+    else {
     $.post('/admin/confirm_faculty',
-      { 'facultyemail': email },
+      { 'facultyemail': email,
+        'facultyname' : name      
+      },
       function(faculty){
-        if ( faculty.errormessage ) { //Didn't fail to create the user
-          $("#add_faculty").append($("<div id='alert' class='alert alert-error fade in' data-alert>"+
-           "<button type='button' class='close' data-dismiss='alert'>×</button><strong> " + faculty.errormessage + " </strong></div>"));
-          $('#alert').delay(1500).fadeOut('slow', function(){ $('#alert').remove() });
+        if ( faculty.errormessage ) {
+          addError(faculty.errormessage);
         }
         else {
-          var table = $('#faculty_table');
-          table.append(
-            '<tr id="faculty-'+faculty.id + '" style="display:none">' 
-          + '<td>'+faculty.id+'</td>'
-          + '<td>'+faculty.email+'</td>'
-          + '<td></td>'
-          + '<td>'
-          + '<p class=\'btn\'>View</p>' + ' '
-          + '<p class=\'btn btn-danger\' id="faculty-'+ faculty.id +'-remove" onclick="deleteFaculty(\''+ faculty.email +'\');">Delete</p>'
-          + '</td>'
-          + '</tr>');
-          $('#faculty-'+faculty.id).show('slow');
+          updateTableWithFaculty(faculty);
         }
           $('#faculty_email').attr('value','');
+          $('#faculty_name').attr('value','');
         });
+    }
 };
 
 var deleteFaculty = function(email){
@@ -86,6 +150,14 @@ $(document).ready(function(){
   $('#add_faculty_button').click(function(){
       $('#add_faculty').toggle('fast');
   });
+
+  $('#view_more_faculty_row').click(function(){
+    window.location.href = "<%= view_faculty_path %>";
+  });
+
+  $('#search_faculty_email').keyup(function() { searchFaculty(); });
+  $('#search_first_name').keyup(function () { searchFaculty(); });
+  $('#search_last_name').keyup(function () { searchFaculty(); });
 
   $('#submit_faculty').click(function(){addFaculty()});
   $('#faculty_email').keypress(function(event){

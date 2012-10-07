@@ -9,7 +9,8 @@ gem 'sqlite3'
 
 
 gem 'cancan'
-
+# gem 'ransack'
+gem 'squeel'
 
 #Testing gems
 gem 'nokogiri', '~> 1.5.1'
@@ -28,7 +29,6 @@ end
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
-gem 'omniauth-google'
 
 # Gems used only for assets and not required
 # in production environments by default.
