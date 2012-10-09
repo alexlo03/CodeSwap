@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   ROLES = %w[admin faculty ta student]
 
   has_many :authentications
+  has_and_belongs_to_many :courses
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

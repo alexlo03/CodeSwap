@@ -21,12 +21,10 @@
 <div id='form2'>
 <h1>Add Students</h1>
 <p>Upload a .csv file with student emails here.
-New student accounts will be created automatically if the student is not already registered</p>
+New student accounts will be created automatically if the student is not already registered. Format is First Name, Last Name, Email</p>
 
-<p> Coming Soon to a server near you! </p>
-
-
-
+<input type="file" id="fileinput" />
+</br>
 <p class="btn" id='back1'>Back</p>
 <p class="btn" id='next2'>Next</p></br>
 </div>
@@ -44,6 +42,23 @@ New TA accounts will be created automatically if the student is not already regi
 </div>
 
 <script type='text/javascript' runat='server'>
+var students = ""
+
+var readSingleFile = function(evt) {
+    //Retrieve the first (and only!) File from the FileList object
+    var f = evt.target.files[0]; 
+    students = ""
+    if (f) {
+      var r = new FileReader();
+      r.onload = function(e) { 
+	      var contents = e.target.result;
+        students = contents;
+      }
+      r.readAsText(f);
+    } else { 
+      alert("Failed to load file");
+    }
+  };
 var addError = function(message) {
   $("#form1").append($("<div id='alert' class='alert alert-error fade in' data-alert>"+
            "<button type='button' class='close' data-dismiss='alert'>×</button><strong> " + message + " </strong></div>"));
@@ -73,15 +88,13 @@ var addCourse = function(){
   var cTerm = $('#course_term').attr('value');
   var cNumber = $('#course_number').attr('value');
   var cSection = $('#course_section').attr('value');
-    
   if(cSection == '' | cName == "" | cTerm == ""| cSection == ""){
     $("#form1").toggle();
     $("#form3").toggle();
     addError("All fields required");
   } else {
-    
     $.post('/faculty/add_course',{
-      'cname' : cName, 'cterm':cTerm, 'cnumber': cNumber, 'csection': cSection}
+      'cname' : cName, 'cterm':cTerm, 'cnumber': cNumber, 'csection': cSection, 'students': students}
     ,function(course){
       if(course.error){
         $("#form1").toggle();
@@ -97,6 +110,7 @@ var addCourse = function(){
 };
 
 $(document).ready(function(){
+  document.getElementById('fileinput').addEventListener('change', function(e){readSingleFile(e);}, false);
   $("#form2").toggle();
   
   $("#form3").toggle();
