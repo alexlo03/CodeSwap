@@ -25,6 +25,7 @@ class AdminController < ApplicationController
         :role => :faculty,
         :id =>  User.last.id + 1)
     if(u.save)
+      Emailer.signup_confirmation(u).deliver      
     elsif(User.find_by_email(params[:facultyemail]))
       u["errormessage"] = "Email already in use"
     else
