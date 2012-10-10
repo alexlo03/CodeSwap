@@ -1,0 +1,11 @@
+<h2>Hey <%= @user.first_name %>,</h2>
+
+You've been invited to join CodeSwap!
+
+<p>If you weren't expecting an email, please ignore this email.</p>
+
+<p><%= link_to 'Click here to set your password', edit_password_url(@user, :reset_password_token => @user.reset_password_token) %></p>
+	
+<p>This link will expire within 48 hours. If you need another password reset link, <%= link_to 'please click here', new_password_path(:user) %> </p>
+
+

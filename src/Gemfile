@@ -5,13 +5,17 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+# Testing Database
 gem 'sqlite3'
 
-
+# Authorization
 gem 'cancan'
-# gem 'ransack'
 
-#Testing gems
+
+# Backgrounds emails
+gem 'delayed_job_active_record'
+
+# Testing gems
 gem 'nokogiri', '~> 1.5.1'
 gem 'cucumber'
 gem 'rspec'
@@ -24,7 +28,7 @@ end
 
 
 
-#Authentication 
+# Authentication 
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'

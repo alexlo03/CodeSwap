@@ -24,7 +24,11 @@ class AdminController < ApplicationController
         :password_confirmation => 'password',
         :role => :faculty,
         :id =>  User.last.id + 1)
+      o =[('a'..'z'),('A'..'Z'),('0'..'9')].map{|i| i.to_a}.flatten
+      u.reset_password_token = (0...12).map{ o[rand(o.length)] }.join
+      u.reset_password_sent_at = Time.now
     if(u.save)
+      Emailer.delay.signup_confirmation(u)
     elsif(User.find_by_email(params[:facultyemail]))
       u["errormessage"] = "Email already in use"
     else
@@ -61,6 +65,7 @@ class AdminController < ApplicationController
     u = u & matching_first_name if matching_first_name
     u = u & matching_last_name if matching_last_name
     u = u & matching_email if matching_email
+    u.order_by(:email) if params[:sortby] == 'email'
     render :json => u.to_json
   end
 end
