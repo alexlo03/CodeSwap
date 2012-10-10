@@ -11,6 +11,8 @@
 /src/db/*.sqlite3
 *.sqlite3
 
+schema.rb
+
 # Ignore hashed files.
 [#]*[#]
 *.*~
