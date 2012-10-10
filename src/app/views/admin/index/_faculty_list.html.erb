@@ -19,7 +19,7 @@
         <th>Email</th>
         <th>Name</th>
         <th>Last online</th>
-        <th></th>
+        <th/>
       </tr>
     </thead>
     <tbody id='faculty_table'>
@@ -35,6 +35,8 @@
           </td>
         </tr>
       <% end %>
+    </tbody>
+    <tbody>
       <% if faculty_count > @faculty.count %>
         <tr id='view_more_faculty_row'>
           <td colspan='5'>
@@ -115,7 +117,6 @@ var addFaculty = function(){
     var name = $('#faculty_name').attr('value');
 
     if(name.split(' ').length < 2) {
-      alert(name.split(' ').length);
       addError('Please enter a valid [First Last] name.');
     }
     else {

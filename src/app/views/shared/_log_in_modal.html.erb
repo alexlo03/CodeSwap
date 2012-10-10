@@ -16,7 +16,7 @@
       <% if devise_mapping.rememberable? -%>
         <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
       <% end -%>
-
+      Forgot password? <%= link_to 'Click here.', new_password_path(:user) %>
       <p><%= f.submit "Sign in" %></p>
     <% end %>
   </div>

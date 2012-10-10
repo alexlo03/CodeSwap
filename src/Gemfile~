@@ -10,9 +10,9 @@ gem 'sqlite3'
 
 gem 'cancan'
 # gem 'ransack'
-gem 'squeel'
-
-#Testing gems
+# Backgrounds emails
+gem 'delayed_job_active_record'
+# Testing gems
 gem 'nokogiri', '~> 1.5.1'
 gem 'cucumber'
 gem 'rspec'
@@ -25,7 +25,7 @@ end
 
 
 
-#Authentication 
+# Authentication 
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
