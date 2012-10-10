@@ -1,4 +1,6 @@
 class Course < ActiveRecord::Base
-  has_and_belongs_to_many :users
+  belongs_to :user
+  has_one :studentgroup
+  has_one :tagroup
   attr_accessible :course_number, :name, :section, :term
 end

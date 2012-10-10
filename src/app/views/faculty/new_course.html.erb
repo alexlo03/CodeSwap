@@ -23,7 +23,7 @@
 <p>Upload a .csv file with student emails here.
 New student accounts will be created automatically if the student is not already registered. Format is First Name, Last Name, Email</p>
 
-<input type="file" id="fileinput" />
+<input type="file" id="studentinput" />
 </br>
 <p class="btn" id='back1'>Back</p>
 <p class="btn" id='next2'>Next</p></br>
@@ -37,15 +37,15 @@ New TA accounts will be created automatically if the student is not already regi
 
 <p> Coming Soon to a server near you! </p>
 
+<input type="file" id="tainput" />
 <p class="btn" id='back2'>Back</p>
 <p class="btn" id='doneButton'>Finished</p></br>
 </div>
 
 <script type='text/javascript' runat='server'>
 var students = ""
-
-var readSingleFile = function(evt) {
-    //Retrieve the first (and only!) File from the FileList object
+var tas = ""
+var readStudentFile = function(evt) {
     var f = evt.target.files[0]; 
     students = ""
     if (f) {
@@ -59,6 +59,23 @@ var readSingleFile = function(evt) {
       alert("Failed to load file");
     }
   };
+
+var readTaFile = function(evt) {
+    var f = evt.target.files[0]; 
+    ta = ""
+    if (f) {
+      var r = new FileReader();
+      r.onload = function(e) { 
+	      var contents = e.target.result;
+        ta = contents;
+      }
+      r.readAsText(f);
+    } else { 
+      alert("Failed to load file");
+    }
+  };
+
+
 var addError = function(message) {
   $("#form1").append($("<div id='alert' class='alert alert-error fade in' data-alert>"+
            "<button type='button' class='close' data-dismiss='alert'>×</button><strong> " + message + " </strong></div>"));
@@ -94,7 +111,7 @@ var addCourse = function(){
     addError("All fields required");
   } else {
     $.post('/faculty/add_course',{
-      'cname' : cName, 'cterm':cTerm, 'cnumber': cNumber, 'csection': cSection, 'students': students}
+      'cname' : cName, 'cterm':cTerm, 'cnumber': cNumber, 'csection': cSection, 'students': students, 'tas':ta}
     ,function(course){
       if(course.error){
         $("#form1").toggle();
@@ -110,7 +127,8 @@ var addCourse = function(){
 };
 
 $(document).ready(function(){
-  document.getElementById('fileinput').addEventListener('change', function(e){readSingleFile(e);}, false);
+  document.getElementById('studentinput').addEventListener('change', function(e){readStudentFile(e);}, false);
+  document.getElementById('tainput').addEventListener('change', function(e){readTaFile(e);}, false);
   $("#form2").toggle();
   
   $("#form3").toggle();

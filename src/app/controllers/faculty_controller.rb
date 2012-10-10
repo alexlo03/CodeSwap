@@ -17,19 +17,40 @@ class FacultyController < ApplicationController
     cNumber = params[:cnumber]
     cSection = params[:csection] && params[:csection].to_i
     students = params[:students]
+    tas = params[:tas]
     count = Course.where(:name => cName, :term => cTerm, :course_number => cNumber, :section => cSection).count    
     c = Course.new(:name => cName, :term => cTerm, :course_number => cNumber, :section => cSection)
     students = students.gsub(/\s+/, "").split(",")
+    tas = tas.gsub(/\s+/, "").split(",")
     studentCount = ((students.count)/3) - 1
+    taCount = ((tas.count)/3) - 1
     if(count == 0 && c.save)
       for i in (0..studentCount)
+        studentGroup = Studentgroup.new
+        studentGroup.course_id = c.id
         first = students[3*i]
         last = students[3*i + 1]
         email = students[3*i + 2]
-        unless User.where(:email => email).count != 0
+        u = User.where(:email => email)[0]
+        if u.nil?
           u = User.create(:email => email, :first_name => first, :last_name => last, :password => 'student_password',:password_confirmation => 'student_password', :role => 'student')
-          c.users << u
         end
+        studentGroup.user_id = u.id
+        studentGroup.save  
+      end
+      
+      for i in (0..taCount)
+        taGroup = Tagroup.new
+        taGroup.course_id = c.id
+        first = tas[3*i]
+        last = tas[3*i + 1]
+        email = tas[3*i + 2]
+        u = User.where(:email => email)[0]
+        if u.nil?
+          u = User.create(:email => email, :first_name => first, :last_name => last, :password => 'ta_password',:password_confirmation => 'ta_password', :role => 'student')
+        end
+        taGroup.user_id = u.id
+        taGroup.save  
       end
       c.save
     else

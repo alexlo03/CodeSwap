@@ -5,7 +5,6 @@ class CreateCourses < ActiveRecord::Migration
       t.string :course_number
       t.integer :section
       t.string :term
-
       t.timestamps
     end
   end
