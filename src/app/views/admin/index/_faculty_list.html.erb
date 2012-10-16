@@ -2,15 +2,7 @@
 
 <h3>Faculty</h3>
   <% unless current_page?(:controller => :admin, :action => 'index') %>
-    <form class="form-search" id='search_faculty'>
-      <h2>Search</h2>
-      <strong>First name:</strong>
-      <input type="text" class="input-small search-query" id='search_first_name'>
-      <strong>Last name:</strong>
-      <input type="text" class="input-medium search-query" id='search_last_name'><br/><br/>
-      <strong>E-mail:</strong>  
-      <input type="text" class="input-medium search-query" id='search_faculty_email'>
-    </form>
+    <%= render '/shared/user_search_form' %>
   <% end %>
   <table class='table table-hover'>
     <thead>
@@ -24,14 +16,14 @@
     </thead>
     <tbody id='faculty_table'>
       <% @faculty.each do |user| %>
-        <tr id="faculty-<%= user.id %>">
+        <tr id="user-<%= user.id %>">
           <td><%= user.id %></td>
           <td><%= user.email %></td>
           <td><%= user.friendly_full_name %></td>
           <td><%= user.last_sign_in_at %></td>
           <td>
             <p class='btn'>View</p>
-            <p class='btn btn-danger' id="faculty-<%= user.id %>-remove" onclick="deleteFaculty('<%= user.email %>');">Delete</p>
+            <p class='btn btn-danger' id="user-<%= user.id %>-remove" onclick="deleteUser('<%= user.email %>');">Delete</p>
           </td>
         </tr>
       <% end %>
@@ -57,19 +49,8 @@
 </form>
 
 
-
-
-
-
-
-
-
-
 <script type='text/javascript' runat='server'>
 
-var viewFaculty = function(id) {
-
-};
 
 var addError = function(message) {
   $("#add_faculty").append($("<div id='alert' class='alert alert-error fade in' data-alert>"+
@@ -78,58 +59,60 @@ var addError = function(message) {
 };
 
 var searchFaculty = function() {
-  var email = $('#search_faculty_email').attr('value');
+  var email = $('#search_email').attr('value');
   var first_name = $('#search_first_name').attr('value');
   var last_name = $('#search_last_name').attr('value');
     
-  $.post('/admin/search_faculty',
-    { 'facultyemail' : email,
+  $.post('/admin/search_users',
+    { 'email' : email,
       'first_name' : first_name,
-      'last_name' : last_name
+      'last_name' : last_name,
+      'role' : 'faculty'
     },
     function(result){
-      clearTable();
-      $.each(result, function(index, ele){ updateTableWithFaculty(ele); });
+      clearTable('faculty');
+      $.each(result, function(index, ele){ updateTableWithUser('faculty', ele); });
     });
 };
 
-var clearTable = function() { $('#faculty_table').empty(); };
+var clearTable = function(table) { $('#' + table + '_table').empty(); };
 
-var updateTableWithFaculty = function(faculty) {
-  var table = $('#faculty_table');
+var updateTableWithUser = function(table, user) {
+  var table = $('#' + table + '_table');
   table.append(
-    '<tr id="faculty-'+faculty.id + '" style="display:none">' 
-  + '<td>'+faculty.id+'</td>'
-  + '<td>'+faculty.email+'</td>'
-  + '<td>'+faculty.first_name+' '+faculty.last_name+'</td>'
+    '<tr id="user-'+user.id + '" style="display:none">' 
+  + '<td>'+user.id+'</td>'
+  + '<td>'+user.email+'</td>'
+  + '<td>'+user.first_name + ' ' + user.last_name+'</td>'
   + '<td></td>'
   + '<td>'
   + '<p class=\'btn\'>View</p>' + ' '
-  + '<p class=\'btn btn-danger\' id="faculty-'+ faculty.id +'-remove" onclick="deleteFaculty(\''+ faculty.email +'\');">Delete</p>'
+  + '<p class=\'btn btn-danger\' id="user-'+ user.id +'-remove" onclick="deleteUser(\''+ user.email +'\');">Delete</p>'
   + '</td>'
   + '</tr>');
-  $('#faculty-'+faculty.id).show();
+  $('#user-'+user.id).show('fast');
 };
 
 
 var addFaculty = function(){
     var email = $('#faculty_email').attr('value');
     var name = $('#faculty_name').attr('value');
-
+    var role = 'faculty';
     if(name.split(' ').length < 2) {
       addError('Please enter a valid [First Last] name.');
     }
     else {
-    $.post('/admin/confirm_faculty',
-      { 'facultyemail': email,
-        'facultyname' : name      
+    $.post('/admin/add_user',
+      { 'email': email,
+        'name' : name,
+        'role' : role
       },
-      function(faculty){
-        if ( faculty.errormessage ) {
-          addError(faculty.errormessage);
+      function(user){
+        if ( user.errormessage ) {
+          addError(user.errormessage);
         }
         else {
-          updateTableWithFaculty(faculty);
+          updateTableWithUser('faculty', user);
         }
           $('#faculty_email').attr('value','');
           $('#faculty_name').attr('value','');
@@ -137,11 +120,11 @@ var addFaculty = function(){
     }
 };
 
-var deleteFaculty = function(email){
-    $.post('/admin/delete_faculty',
-      { 'facultyemail' : email },
+var deleteUser = function(email){
+    $.post('/admin/delete_user',
+      { 'email' : email },
       function(faculty){
-        var row = $("#faculty-"+faculty.id);
+        var row = $("#user-"+faculty.id);
         row.toggle('fast', function(){ row.remove()});
       });
 };
@@ -156,7 +139,7 @@ $(document).ready(function(){
     window.location.href = "<%= view_faculty_path %>";
   });
 
-  $('#search_faculty_email').keyup(function() { searchFaculty(); });
+  $('#search_email').keyup(function() { searchFaculty(); });
   $('#search_first_name').keyup(function () { searchFaculty(); });
   $('#search_last_name').keyup(function () { searchFaculty(); });
 
@@ -168,7 +151,6 @@ $(document).ready(function(){
                                   return false;
                                 }                            
                               });
-
 });
 </script>
 

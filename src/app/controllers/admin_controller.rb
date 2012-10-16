@@ -2,10 +2,10 @@ class AdminController < ApplicationController
   
   def index
     requires ['admin']
-    @students = User.find_all_by_role(:student)
-    @admins = User.find_all_by_role(:admin)
+    @students = User.find_all_by_role(:student).take(5)
+    @admins = User.find_all_by_role(:admin).take(5)
     @faculty = User.find_all_by_role(:faculty).take(5)
-    @tas = User.find_all_by_role(:ta)
+    @tas = User.find_all_by_role(:ta).take(5)
   end
 
   def create_faculty
@@ -13,16 +13,16 @@ class AdminController < ApplicationController
     @faculty = User.new
   end
 
-  def confirm_faculty
+  def add_user
     requires ['admin']
-    name = params[:facultyname].chomp.split
+    name = params[:name].chomp.split
     u = User.new(
-        :email => params[:facultyemail],
+        :email => params[:email],
         :first_name => name[0],
         :last_name => name[1],
         :password => 'password',
         :password_confirmation => 'password',
-        :role => :faculty,
+        :role => params[:role],
         :id =>  User.last.id + 1)
       o =[('a'..'z'),('A'..'Z'),('0'..'9')].map{|i| i.to_a}.flatten
       u.reset_password_token = (0...12).map{ o[rand(o.length)] }.join
@@ -37,9 +37,9 @@ class AdminController < ApplicationController
     render :json => u.to_json
   end
 
-  def delete_faculty
+  def delete_user
     requires ['admin']
-    u = User.find_by_email(params[:facultyemail])
+    u = User.find_by_email(params[:email])
     u.destroy
     render :json => u.to_json
   end
@@ -50,15 +50,20 @@ class AdminController < ApplicationController
     @faculty = User.find_all_by_role('faculty')
   end
 
-  def search_faculty
+  def view_admin
+    requires ['admin']
+    @admins = User.find_all_by_role('admin')
+  end
+
+  def search_users
     requires ['admin']
     email = '%'
     firstname = '%'
     lastname = '%'
-    email = '%' + params[:facultyemail] + '%' if params[:facultyemail] != ''
+    email = '%' + params[:email] + '%' if params[:email] != ''
     firstname = '%' + params[:first_name] + '%' if params[:first_name] != ''
     lastname = '%' + params[:last_name] + '%' if params[:last_name] != ''
-    u = User.where('role = "faculty"')
+    u = User.where('role = ?', params[:role])
     matching_first_name = User.where('lower(first_name) like ?', firstname.downcase)
     matching_last_name = User.where('lower(last_name) like ?', lastname.downcase)
     matching_email = User.where('lower(email) like ?', email.downcase)

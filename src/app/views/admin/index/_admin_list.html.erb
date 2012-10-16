@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 
 <h3>Administrators</h3>
+
+  <% unless current_page?(:controller => :admin, :action => 'index') %>
+    <%= render '/shared/user_search_form' %>
+  <% end %>
+
 <table class='table table-hover'>
   <thead>
     <tr>
@@ -10,14 +15,141 @@
       <th>Last online</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody id='admin_table'>
     <% @admins.each do |user| %>
-      <tr>
+      <tr id="user-<%= user.id %>">
         <td><%= user.id %></td>
         <td><%= user.email %></td>
         <td><%= user.friendly_full_name %></td>
-        <td><%= user.last_sign_in_at %></td>      
+        <td><%= user.last_sign_in_at %></td>
+        <td>
+          <p class='btn'>View</p>
+          <p class='btn btn-danger' id="user-<%= user.id %>-remove" onclick="deleteUser('<%= user.email %>');">Delete</p>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tbody>
+    <% if admin_count > @admins.count %>
+      <tr id='view_more_admin_row'>
+        <td colspan='5'>
+          Currently displaying <strong><%= @admins.count %></strong> of <strong><%= admin_count %></strong> admin. Click here to view the rest.
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<a class='btn' id='add_admin_button'>Add faculty</a>
+<form class="form-search" id='add_admin'>
+  <strong>Administrator name:</strong>
+  <input type="text" class="input-medium search-query" placeholder="[First Last]" id='admin_name'>
+  <strong>Administrator e-mail:</strong>  
+  <input type="text" class="input-medium search-query" id='admin_email'>
+  <p class="btn" id='submit_admin'>Add</p>
+</form>
+
+
+<script runat='server' type='text/javascript'>
+
+
+var addAdmin = function(){
+
+    var email = $('#admin_email').attr('value');
+    var name = $('#admin_name').attr('value');
+    var role = 'admin';
+    if(name.split(' ').length < 2) {
+      addError('Please enter a valid [First Last] name.');
+    }
+    else {
+    $.post('/admin/add_user',
+      { 'email': email,
+        'name' : name,
+        'role' : role
+      },
+      function(user){
+        if ( user.errormessage ) {
+          addError(user.errormessage);
+        }
+        else {
+          updateTableWithUser('admin', user);
+        }
+          $('#admin_email').attr('value','');
+          $('#admin_name').attr('value','');
+        });
+    }
+};
+
+var clearTable = function(table) { $('#' + table + '_table').empty(); };
+
+var searchAdmin = function() {
+  var email = $('#search_email').attr('value');
+  var first_name = $('#search_first_name').attr('value');
+  var last_name = $('#search_last_name').attr('value');
+    
+  $.post('/admin/search_users',
+    { 'email' : email,
+      'first_name' : first_name,
+      'last_name' : last_name,
+      'role' : 'admin'
+    },
+    function(result){
+      clearTable('admin');
+      $.each(result, function(index, ele){ updateTableWithUser('admin', ele); });
+    });
+};
+
+var deleteUser = function(email){
+    $.post('/admin/delete_user',
+      { 'email' : email },
+      function(faculty){
+        var row = $("#user-"+faculty.id);
+        row.toggle('fast', function(){ row.remove()});
+      });
+};
+
+var updateTableWithUser = function(table, user) {
+  var table = $('#' + table + '_table');
+  table.append(
+    '<tr id="user-'+user.id + '" style="display:none">' 
+  + '<td>'+user.id+'</td>'
+  + '<td>'+user.email+'</td>'
+  + '<td>'+user.first_name + ' ' + user.last_name+'</td>'
+  + '<td></td>'
+  + '<td>'
+  + '<p class=\'btn\'>View</p>' + ' '
+  + '<p class=\'btn btn-danger\' id="user-'+ user.id +'-remove" onclick="deleteUser(\''+ user.email +'\');">Delete</p>'
+  + '</td>'
+  + '</tr>');
+  $('#user-'+user.id).show('fast');
+};
+
+var addError = function(message) {
+  $("#add_admin").append($("<div id='alert' class='alert alert-error fade in' data-alert>"+
+           "<button type='button' class='close' data-dismiss='alert'>×</button><strong> " + message + " </strong></div>"));
+          $('#alert').delay(1500).fadeOut('slow', function(){ $('#alert').remove() });
+};
+
+
+$(document).ready(function(){ 
+  $('#add_admin').toggle();
+
+  $('#view_more_admin_row').click(function(){
+    window.location.href = "<%= view_admin_path %>";
+  });
+
+  $('#add_admin_button').click(function(){
+    $('#add_admin').toggle('fast');
+  });
+
+  $('#submit_admin').click(function(){
+    addAdmin();
+  });
+
+
+  $('#search_email').keyup(function() { searchAdmin(); });
+  $('#search_first_name').keyup(function () { searchAdmin(); });
+  $('#search_last_name').keyup(function () { searchAdmin(); });
+});
+
+</script>
