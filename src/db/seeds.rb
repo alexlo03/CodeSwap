@@ -28,7 +28,7 @@ User.create(:email => 'nk@tesla.cr', :first_name => 'Nikolai', :last_name => 'Te
 User.create(:email => 'galileo@galileo.gr', :first_name => 'Galileo', :last_name => 'Galilei', :password => 'password', :password_confirmation => 'password', :role => :faculty)
 User.create(:email => 'leonard@euler.com', :first_name => 'Leonard', :last_name => 'Euler', :password => 'password', :password_confirmation => 'password', :role => :faculty)
 User.create(:email => 'therealdeal@foundingfathers.com', :first_name => 'Benjamin', :last_name => 'Franklin', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-User.create(:email => 'faculty.15@test.com', :first_name => 'George', :last_name => 'Bush', :password => 'password', :password_confirmation => 'password', :role => :faculty)
+User.create(:email => 'gwbush@whitehouse.com', :first_name => 'George', :last_name => 'Bush', :password => 'password', :password_confirmation => 'password', :role => :faculty)
 User.create(:email => 'obama@whitehouse.gov', :first_name => 'Barack', :last_name => 'Obama', :password => 'password', :password_confirmation => 'password', :role => :faculty)
 User.create(:email => 'fig@newtons.com', :first_name => 'Isaac', :last_name => 'Newton', :password => 'password', :password_confirmation => 'password', :role => :faculty)
 User.create(:email => 'eatmychicken@generaltso.ch', :first_name => 'General', :last_name => 'Tso', :password => 'password', :password_confirmation => 'password', :role => :faculty)
