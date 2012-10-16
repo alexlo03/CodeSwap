@@ -10,7 +10,18 @@
   <h4><strong>Course Name:</strong>  </h4>
   <input type="text" class="input-medium search-query" id='course_name'></br>
   <h4><strong>Course Section:</strong></h4> 
-  <input type="number" class="input-medium search-query" id='course_section'></br>
+  <table cellpadding="0" cellspacing="0" border="0">
+  <tr>
+  <td rowspan="2"><input type="text" class="input-medium search-query" name="number" onKeyPress = "validate(event)"/></td>
+<!--Arrows for HTML5 Deficient Browsers-->
+  <td><input type="button" value=" /\ " onclick="this.form.number.value++;" style="font-size:12px;margin:0;padding:0;width:20px;height:18px;" ></td>
+  </tr>
+  <tr>
+  <td><input type=button value=" \/ " onclick="(this.form.number.value > 0) ? this.form.number.value-- : this.form.number.value=0;" style="font-size:12px;margin:0;padding:0;width:20px;height:18px;" ></td>
+  </tr>
+  </table>
+
+<!--  <input type="number" class="input-medium search-query" onKeyPress = "validate(event)" min = "0" step = "1" id='course_section'></br> -->
   <h4><strong>Course Term:</strong></h4>
   <input type="text" class="input-medium search-query" id='course_term'></br></br></br>
   <p class="btn" id='next1'>Next</p></br>
@@ -125,6 +136,23 @@ var addCourse = function(){
    }
     
 };
+
+// Prevents user from inserting anything but nonnegative integers into the chosen field
+var validate = function(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  keyChar = String.fromCharCode(key);
+  
+  var regex = /[0-9\t]/;
+  if (!(key == 8  ||  key == 27  || key == 46  || key == 37 || key == 39 ) ) // backspace delete  escape arrows
+  {
+
+    if( !regex.test(keyChar) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
+  }
+}
 
 $(document).ready(function(){
   document.getElementById('studentinput').addEventListener('change', function(e){readStudentFile(e);}, false);
