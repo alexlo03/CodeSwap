@@ -24,8 +24,8 @@ CodeSwap::Application.configure do
     domain:  "rose-hulman.edu",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["GMAIL_USERNAME"],
-    password: ENV["GMAIL_PASSWORD"]
+    user_name: "rosehulman.codeswap",
+    password: "hackmenot"
   }
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
