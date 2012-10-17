@@ -137,5 +137,8 @@
   margin-bottom: 10px;
 }
 
-
+#loading {
+  width: 200px;
+  text-align: center;
+}
 
