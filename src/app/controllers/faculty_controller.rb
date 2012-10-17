@@ -30,10 +30,14 @@ class FacultyController < ApplicationController
         studentGroup.course_id = c.id
         first = students[3*i]
         last = students[3*i + 1]
-        email = students[3*i + 2]
-        u = User.where(:email => email)[0]
+        email = students[3*i + 2].downcase
+        u = User.where(:email => email).first
         if u.nil?
-          u = User.create(:email => email, :first_name => first, :last_name => last, :password => 'student_password',:password_confirmation => 'student_password', :role => 'student')
+          u = User.new(:email=>email, :first_name => first, :last_name => last)
+          u.role = "student"
+          u.password ||= "password"
+          u.password_confirmation ||="password"
+          bool = u.save
         end
         studentGroup.user_id = u.id
         studentGroup.save  
@@ -42,16 +46,21 @@ class FacultyController < ApplicationController
       for i in (0..taCount)
         taGroup = Tagroup.new
         taGroup.course_id = c.id
-        first = tas[3*i]
-        last = tas[3*i + 1]
-        email = tas[3*i + 2]
-        u = User.where(:email => email)[0]
+        first = students[3*i]
+        last = students[3*i + 1]
+        email = students[3*i + 2].downcase
+        u = User.where(:email => email).first
         if u.nil?
-          u = User.create(:email => email, :first_name => first, :last_name => last, :password => 'ta_password',:password_confirmation => 'ta_password', :role => 'student')
+          u = User.new(:email=>email, :first_name => first, :last_name => last)
+          u.role = "student"
+          u.password ||= "password"
+          u.password_confirmation ||="password"
+          bool = u.save
         end
         taGroup.user_id = u.id
-        taGroup.save  
+        taGroup.save 
       end
+      c.user_id = current_user.id
       c.save
     else
       c["error"] = "Course Already Exists"

@@ -21,6 +21,7 @@ CodeSwap::Application.routes.draw do
   match 'admin/delete_user', :controller => 'admin', :action => 'delete_user'
   match 'admin/search_users', :controller => 'admin', :action => 'search_users', :as => 'search_users'
   match 'faculty/add_course', :controller => 'faculty', :action => 'add_course', :as => 'add_course'
+  match 'course/show/:id', :controller => 'course', :action=>'show'
   get "faculty/index"
   get "faculty/new_course" 
   get "faculty/add_course" 

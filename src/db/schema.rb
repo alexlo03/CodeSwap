@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121010045514) do
+ActiveRecord::Schema.define(:version => 20121017050957) do
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -30,25 +30,12 @@ ActiveRecord::Schema.define(:version => 20121010045514) do
     t.datetime "updated_at",      :null => false
     t.integer  "studentgroup_id"
     t.integer  "tagroup_id"
+    t.integer  "user_id"
   end
 
   create_table "courses_users", :id => false, :force => true do |t|
     t.integer "course_id"
     t.integer "user_id"
-  end
-
-  create_table "studentgroups", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
-    t.integer  "course_id"
-  end
-
-  create_table "tagroups", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "user_id"
-    t.integer  "course_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -66,6 +53,20 @@ ActiveRecord::Schema.define(:version => 20121010045514) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "studentgroups", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "course_id"
+  end
+
+  create_table "tagroups", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+    t.integer  "course_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

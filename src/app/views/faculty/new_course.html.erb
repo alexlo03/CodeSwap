@@ -132,7 +132,7 @@ var addCourse = function(){
       if(course.error){
         $("#form1").toggle();
         $("#loading_div").toggle();
-        addError(course.error);
+        alert(course.error);
         }
       else{
         window.location.href="/faculty/index";
