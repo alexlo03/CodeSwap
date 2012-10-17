@@ -23,7 +23,7 @@
         <td><%= user.friendly_full_name %></td>
         <td><%= user.last_sign_in_at %></td>
         <td>
-          <p class='btn'>View</p>
+          <p class='btn' onclick="viewUser('<%= user.id %>')">View</p>
           <p class='btn btn-danger' id="user-<%= user.id %>-remove" onclick="deleteUser('<%= user.email %>');">Delete</p>
         </td>
       </tr>
@@ -52,6 +52,16 @@
 
 <script runat='server' type='text/javascript'>
 
+var viewUser = function(id) {
+  $.post('/admin/view_user_info',
+    { 'id' : id },
+    function(user) {
+      $('#viewUserName').html(user.name);
+      $('#viewUserEmail').html(user.email);
+      $('#viewUserCourses').html(user.courses);
+      $('#viewUserModal').modal('show');
+  });
+};
 
 var addAdmin = function(){
 

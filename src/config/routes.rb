@@ -14,12 +14,15 @@ CodeSwap::Application.routes.draw do
   match '/users/sign_up' => 'home#index'
 
   match "admin/create_faculty", :controller => 'admin', :action => 'create_faculty'
-  match 'admin' => 'admin#index', :as => 'admin_path'
+  match 'admin', :controller => 'admin', :action => 'index', :as => 'admin_path'
   match 'admin/add_user', :controller => 'admin', :action => 'add_user'
   match 'admin/view_faculty', :controller => 'admin', :action => 'view_faculty', :as => 'view_faculty'
   match 'admin/view_admin', :controller => 'admin', :action => 'view_admin', :as => 'view_admin'
+  match 'admin/view_students', :controller => 'admin', :action => 'view_students', :as => 'view_students'
+  match 'admin/view_tas', :controller => 'admin', :action => 'view_tas', :as => 'view_tas'
   match 'admin/delete_user', :controller => 'admin', :action => 'delete_user'
   match 'admin/search_users', :controller => 'admin', :action => 'search_users', :as => 'search_users'
+  match 'admin/view_user_info', :controller => 'admin', :action => 'view_user_info', :as => 'view_user_info'
   match 'faculty/add_course', :controller => 'faculty', :action => 'add_course', :as => 'add_course'
   get "faculty/index"
   get "faculty/new_course" 

@@ -55,6 +55,24 @@ class AdminController < ApplicationController
     @admins = User.find_all_by_role('admin')
   end
 
+  def view_students
+    requires ['admin']
+    @students = User.find_all_by_role('student')
+  end
+
+  def view_tas
+    requires ['admin']
+    @tas = User.find_all_by_role('ta')
+  end
+
+  def view_user_info
+    requires ['admin']
+    u = User.find_by_id(params[:id])
+    u['courses'] = "test"
+    u['name'] = u.friendly_full_name
+    render :json => u.to_json
+  end
+
   def search_users
     requires ['admin']
     email = '%'
