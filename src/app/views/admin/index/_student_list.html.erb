@@ -23,7 +23,7 @@
           <td><%= user.friendly_full_name %></td>
           <td><%= user.last_sign_in_at %></td>
           <td>
-            <p class='btn'>View</p>
+            <p class='btn' onclick="viewUser('<%= user.id %>')">View</p>
             <p class='btn btn-danger' id="user-<%= user.id %>-remove" onclick="deleteUser('<%= user.email %>');">Delete</p>
           </td>
         </tr>
@@ -44,6 +44,7 @@
 <% end %>
 
 <script type='text/javascript' runat='server'>
+
 
 var searchStudents = function() {
   var email = $('#search_email').attr('value');

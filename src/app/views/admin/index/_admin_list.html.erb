@@ -52,17 +52,6 @@
 
 <script runat='server' type='text/javascript'>
 
-var viewUser = function(id) {
-  $.post('/admin/view_user_info',
-    { 'id' : id },
-    function(user) {
-      $('#viewUserName').html(user.name);
-      $('#viewUserEmail').html(user.email);
-      $('#viewUserCourses').html(user.courses);
-      $('#viewUserModal').modal('show');
-  });
-};
-
 var addAdmin = function(){
 
     var email = $('#admin_email').attr('value');

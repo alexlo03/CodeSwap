@@ -64,5 +64,3 @@ User.create(:email => '300@spartans.gr', :first_name => 'The 300', :last_name =>
 
 
 
-
-

@@ -37,6 +37,9 @@ class User < ActiveRecord::Base
     first_name + " " + last_name
   end
 
+  def courses
+    "None!"
+  end 
 
   def self.search(search)
     if search

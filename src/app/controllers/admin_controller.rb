@@ -68,7 +68,7 @@ class AdminController < ApplicationController
   def view_user_info
     requires ['admin']
     u = User.find_by_id(params[:id])
-    u['courses'] = "test"
+    u['courses'] = u.courses
     u['name'] = u.friendly_full_name
     render :json => u.to_json
   end
