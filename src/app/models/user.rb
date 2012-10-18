@@ -37,9 +37,13 @@ class User < ActiveRecord::Base
     first_name + " " + last_name
   end
 
-  def courses
-    "None!"
+  def student_in
+    Course.find_all_by_id(Studentgroup.find_all_by_user_id(id).map(&:course_id))
   end 
+  
+  def ta_in
+    Course.find_all_by_id(Tagroup.find_all_by_user_id(id).map(&:course_id))
+  end
 
   def self.search(search)
     if search

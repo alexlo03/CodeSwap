@@ -6,7 +6,7 @@
   </div>
   <div class="modal-body">
     <h3><u>Email</u>: <tag id='viewUserEmail'></tag></h3> </br>
-    <h3><u>Courses</u>: <tag id='viewUserCourses'></tag></h3> </br>
+    <h3><tag id='viewUserCourses'></tag></h3> </br>
   </div>
 </div>
 
@@ -17,10 +17,25 @@ var viewUser = function(id) {
   $.post('/admin/view_user_info',
     { 'id' : id },
     function(user) {
-      alert(user.courses);
+      var courses = '';
+      if(user.student_in) { 
+        courses = 'Enrolled in: </br><h4>';
+        $.each(user.student_in, function(index, course) {
+          courses += '<a href="/course/show/'+ course.id + '">' + course.name + '</a></br>';       
+        });
+        courses += '</h4>';
+      }
+      
+      if(user.ta_in) {
+        courses += 'Teaching Assistant in: </br><h4>';
+        $.each(user.ta_in, function(index, course) {
+          courses += '<a href="/course/show/'+ course.id + '">' + course.name + '</a></br>';       
+        });
+        courses += '</h4>'; 
+      }
       $('#viewUserName').html(user.name);
       $('#viewUserEmail').html(user.email);
-      $('#viewUserCourses').html(user.courses);
+      $('#viewUserCourses').html(courses);
       $('#viewUserModal').modal('show');
   });
 };

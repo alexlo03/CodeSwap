@@ -2,10 +2,9 @@ class AdminController < ApplicationController
   
   def index
     requires ['admin']
-    @students = User.find_all_by_role(:student).take(5)
+    @students = User.find_all_by_role([:student, :ta]).take(5)
     @admins = User.find_all_by_role(:admin).take(5)
     @faculty = User.find_all_by_role(:faculty).take(5)
-    @tas = User.find_all_by_role(:ta).take(5)
   end
 
   def create_faculty
@@ -68,7 +67,8 @@ class AdminController < ApplicationController
   def view_user_info
     requires ['admin']
     u = User.find_by_id(params[:id])
-    u['courses'] = u.courses
+    u['student_in'] = u.student_in
+    u['ta_in'] = u.ta_in
     u['name'] = u.friendly_full_name
     render :json => u.to_json
   end
