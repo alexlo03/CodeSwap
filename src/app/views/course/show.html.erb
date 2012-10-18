@@ -23,6 +23,7 @@
         <th>Email</th>
         <th>Name</th>
         <th>Last online</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -33,7 +34,9 @@
           <td><%= user.email %></td>
           <td><%= user.friendly_full_name %></td>
           <td><%= user.last_sign_in_at %></td>
-          <td></td>  
+          <td>
+            <p class='btn' onclick="viewUser('<%= user.id %>')">View</p>
+          </td>  
         </tr>
       <% end %>
     </tbody>
@@ -50,6 +53,7 @@
         <th>Email</th>
         <th>Name</th>
         <th>Last online</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -61,7 +65,9 @@
           <td><%= user.email %></td>
           <td><%= user.friendly_full_name %></td>
           <td><%= user.last_sign_in_at %></td>
-          <td></td>  
+          <td>
+            <p class='btn' onclick="viewUser('<%= user.id %>')">View</p>
+          </td>  
         </tr>
       <% else %>
         <tr>

@@ -57,94 +57,109 @@ User.create(:email => 'knight@ni.co.uk', :first_name => 'Monty', :last_name => '
 # Students [Count: 8]
 
 # 25
-User.create(:email => 'thequeen@uk.co.uk', :first_name => 'Queen', :last_name => 'Elizabeth', :password => 'password', :password_confirmation => 'password', :role => :student)
-User.create(:email => 'prisoner@southafrica.za', :first_name => 'Nelson', :last_name => 'Mandela', :password => 'password', :password_confirmation => 'password', :role => :student)
-User.create(:email => 'jackson@neverland.com', :first_name => 'Michael', :last_name => 'Jackson', :password => 'password', :password_confirmation => 'password', :role => :student)
+
+queen = User.create(:email => 'thequeen@uk.co.uk', :first_name => 'Queen', :last_name => 'Elizabeth', :password => 'password', :password_confirmation => 'password', :role => :student).id
+mandella = User.create(:email => 'prisoner@southafrica.za', :first_name => 'Nelson', :last_name => 'Mandela', :password => 'password', :password_confirmation => 'password', :role => :student).id
+jackson = User.create(:email => 'jackson@neverland.com', :first_name => 'Michael', :last_name => 'Jackson', :password => 'password', :password_confirmation => 'password', :role => :student).id
 
 
-User.create(:email => 'poppinlock@poppins.co.uk', :first_name => 'Mary', :last_name => 'Poppins', :password => 'password', :password_confirmation => 'password', :role => :student)
-User.create(:email => 'martha@fedpenfoods.com', :first_name => 'Martha', :last_name => 'Stewart', :password => 'password', :password_confirmation => 'password', :role => :student)
-User.create(:email => 'fat@albert.com', :first_name => 'Fat', :last_name => 'Albert', :password => 'password', :password_confirmation => 'password', :role => :student)
+poppins = User.create(:email => 'poppinlock@poppins.co.uk', :first_name => 'Mary', :last_name => 'Poppins', :password => 'password', :password_confirmation => 'password', :role => :student).id
+stewart = User.create(:email => 'martha@fedpenfoods.com', :first_name => 'Martha', :last_name => 'Stewart', :password => 'password', :password_confirmation => 'password', :role => :student).id
+fatalbert = User.create(:email => 'fat@albert.com', :first_name => 'Fat', :last_name => 'Albert', :password => 'password', :password_confirmation => 'password', :role => :student).id
 
-
-User.create(:email => 'america@america.com', :first_name => 'Hulk', :last_name => 'Hogan', :password => 'password', :password_confirmation => 'password', :role => :student)
-User.create(:email => 'parker@thedailybugle.com', :first_name => 'Peter', :last_name => 'Parker', :password => 'password', :password_confirmation => 'password', :role => :student)
+hulk = User.create(:email => 'america@america.com', :first_name => 'Hulk', :last_name => 'Hogan', :password => 'password', :password_confirmation => 'password', :role => :student).id
+parker = User.create(:email => 'parker@thedailybugle.com', :first_name => 'Peter', :last_name => 'Parker', :password => 'password', :password_confirmation => 'password', :role => :student).id
 
 
 # TAs [Count: 6]
 
 # 33
-User.create(:email => 'mahatma@gandhi.in', :first_name => 'Mahatma', :last_name => 'Gandhi', :password => 'password', :password_confirmation => 'password', :role => :student)
-User.create(:email => 'theemperor@japan.jp', :first_name => 'Emperor', :last_name => 'Akihito', :password => 'password', :password_confirmation => 'password', :role => :student)
-User.create(:email => 'stark@starkindustries.com', :first_name => 'Tony', :last_name => 'Stark', :password => 'password', :password_confirmation => 'password', :role => :student)
+gandhi = User.create(:email => 'mahatma@gandhi.in', :first_name => 'Mahatma', :last_name => 'Gandhi', :password => 'password', :password_confirmation => 'password', :role => :student).id
+emperor = User.create(:email => 'theemperor@japan.jp', :first_name => 'Emperor', :last_name => 'Akihito', :password => 'password', :password_confirmation => 'password', :role => :student).id
+stark = User.create(:email => 'stark@starkindustries.com', :first_name => 'Tony', :last_name => 'Stark', :password => 'password', :password_confirmation => 'password', :role => :student).id
 
-User.create(:email => 'ckent@thedailyplanet.com', :first_name => 'Clark', :last_name => 'Kent', :password => 'password', :password_confirmation => 'password', :role => :student)
-User.create(:email => 'bruce@wayneindustries.com', :first_name => 'Bruce', :last_name => 'Wayne', :password => 'password', :password_confirmation => 'password', :role => :student)
-User.create(:email => '300@spartans.gr', :first_name => 'The 300', :last_name => 'Spartans', :password => 'password', :password_confirmation => 'password', :role => :student)
+superman = User.create(:email => 'ckent@thedailyplanet.com', :first_name => 'Clark', :last_name => 'Kent', :password => 'password', :password_confirmation => 'password', :role => :student).id
+batman = User.create(:email => 'bruce@wayneindustries.com', :first_name => 'Bruce', :last_name => 'Wayne', :password => 'password', :password_confirmation => 'password', :role => :student).id
+spartans = User.create(:email => '300@spartans.gr', :first_name => 'The 300', :last_name => 'Spartans', :password => 'password', :password_confirmation => 'password', :role => :student).id
 
 # # # # # # # # # # # # # # # # # # # # # # #
 
 # # # # # # # # COURSES # # # # # # # # # # #
 
-Course.create(:name => 'The art of Snorkeling', :course_number => 'Snork-104', :section => '1', :term => 'Winter')
-Course.create(:name => 'The art of Snorkeling', :course_number => 'Snork-104', :section => '2', :term => 'Winter') 
+snork1 = Course.create(:name => 'The art of Snorkeling', :course_number => 'Snork-104', :section => '1', :term => 'Winter').id
+snork2 = Course.create(:name => 'The sound of Snorkeling', :course_number => 'Snork-204', :section => '2', :term => 'Winter').id
+snork3 = Course.create(:name => 'The smell of Snorkeling', :course_number => 'Snork-304', :section => '1', :term => 'Winter').id
+snork4 = Course.create(:name => 'How to breathe underwater', :course_number => 'Snork-704', :section => '1', :term => 'Winter').id
 
-Course.create(:name => 'Introduction to Software Development', :course_number => 'CSSE-120', :section => '1', :term => 'Winter')
-Course.create(:name => 'Senior Project I', :course_number => 'CSSE-497', :section => '1', :term => 'Fall')
 
-Course.create(:name => 'Senior Project II', :course_number => 'CSSE-498', :section => '1', :term => 'Winter')
-Course.create(:name => 'How to tie a tie', :course_number => 'Tie-532', :section => '1', :term => 'Life')
-Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Summer')
+cs120 = Course.create(:name => 'Introduction to Software Development', :course_number => 'CSSE-120', :section => '1', :term => 'Winter').id
+sr1 = Course.create(:name => 'Senior Project I', :course_number => 'CSSE-497', :section => '1', :term => 'Fall').id
 
-Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Fall')
-Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Winter')
-Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Spring')
+sr2 = Course.create(:name => 'Senior Project II', :course_number => 'CSSE-498', :section => '1', :term => 'Winter').id
+tie = Course.create(:name => 'How to tie a tie', :course_number => 'Tie-532', :section => '1', :term => 'Life').id
 
-Course.create(:name => 'The smell of Snorkeling', :course_number => 'Snork-204', :section => '1', :term => 'Winter')
-Course.create(:name => 'How to breathe underwater', :course_number => 'Snork-704', :section => '1', :term => 'Winter')
+shop1 = Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Summer').id
+shop2 = Course.create(:name => 'More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Fall').id
+shop3 = Course.create(:name => 'Even More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Winter').id
+shop4 = Course.create(:name => 'Shopping and dropping', :course_number => 'Shop-208', :section => '1', :term => 'Spring').id
 
 # # # # # # # # # # # # # # # # # # # # # # #
 
 # # # # # # # # ENROLLEES # # # # # # # # # #
 
-Studentgroup.create(:course_id => '7', :user_id => '25')
-Studentgroup.create(:course_id => '7', :user_id => '26')
-Studentgroup.create(:course_id => '7', :user_id => '27')
 
-Studentgroup.create(:course_id => '7', :user_id => '28')
-Studentgroup.create(:course_id => '7', :user_id => '29')
-Studentgroup.create(:course_id => '7', :user_id => '30')
+# students:  Queen mandella jackson poppins stewart fatalbert hulk parker gandhi emperor stark superman batman spartans
 
-Studentgroup.create(:course_id => '7', :user_id => '31')
-Studentgroup.create(:course_id => '7', :user_id => '33')
+Studentgroup.create(:course_id => snork1, :user_id => queen)
+Studentgroup.create(:course_id => snork1, :user_id => mandella)
+Studentgroup.create(:course_id => snork1, :user_id => jackson)
+Tagroup.create(:course_id => snork1, :user_id => gandhi)
+Tagroup.create(:course_id => snork1, :user_id => stewart)
 
-Tagroup.create(:course_id => '7', :user_id => '33')
-Tagroup.create(:course_id => '7', :user_id => '34')
-Tagroup.create(:course_id => '7', :user_id => '35')
+Studentgroup.create(:course_id => snork2, :user_id => fatalbert)
+Studentgroup.create(:course_id => snork2, :user_id => hulk)
+Tagroup.create(:course_id => snork2, :user_id => poppins)
 
-Tagroup.create(:course_id => '7', :user_id => '36')
-Tagroup.create(:course_id => '7', :user_id => '37')
-Tagroup.create(:course_id => '7', :user_id => '38')
+Studentgroup.create(:course_id => snork3, :user_id => parker)
+Studentgroup.create(:course_id => snork3, :user_id => stewart)
+Studentgroup.create(:course_id => snork3, :user_id => gandhi)
+Tagroup.create(:course_id => snork3, :user_id => superman)
+Tagroup.create(:course_id => snork3, :user_id => spartans)
+Tagroup.create(:course_id => snork3, :user_id => stark)
 
-Studentgroup.create(:course_id => '2', :user_id => '25')
-Studentgroup.create(:course_id => '2', :user_id => '26')
-Studentgroup.create(:course_id => '2', :user_id => '27')
+Studentgroup.create(:course_id => snork4, :user_id => batman)
 
-Studentgroup.create(:course_id => '3', :user_id => '28')
-Studentgroup.create(:course_id => '3', :user_id => '29')
-Studentgroup.create(:course_id => '3', :user_id => '30')
+Studentgroup.create(:course_id => tie, :user_id => mandella)
+Studentgroup.create(:course_id => tie, :user_id => jackson)
+Studentgroup.create(:course_id => tie, :user_id => fatalbert)
+Studentgroup.create(:course_id => tie, :user_id => hulk)
+Studentgroup.create(:course_id => tie, :user_id => parker)
+Studentgroup.create(:course_id => tie, :user_id => gandhi)
+Studentgroup.create(:course_id => tie, :user_id => emperor)
+Studentgroup.create(:course_id => tie, :user_id => stark)
+Studentgroup.create(:course_id => tie, :user_id => superman)
+Studentgroup.create(:course_id => tie, :user_id => batman)
+Studentgroup.create(:course_id => tie, :user_id => spartans)
+Tagroup.create(:course_id => tie, :user_id => poppins)
 
-Studentgroup.create(:course_id => '3', :user_id => '31')
-Studentgroup.create(:course_id => '3', :user_id => '32')
+Studentgroup.create(:course_id => shop1, :user_id => poppins)
+Studentgroup.create(:course_id => shop1, :user_id => stewart)
+Studentgroup.create(:course_id => shop1, :user_id => fatalbert)
+Tagroup.create(:course_id => shop1, :user_id => batman)
 
-Studentgroup.create(:course_id => '4', :user_id => '25')
-Studentgroup.create(:course_id => '5', :user_id => '26')
+Studentgroup.create(:course_id => shop2, :user_id => poppins)
+Studentgroup.create(:course_id => shop2, :user_id => stewart)
+Studentgroup.create(:course_id => shop2, :user_id => fatalbert)
+Tagroup.create(:course_id => shop2, :user_id => batman)
 
-Tagroup.create(:course_id => '6', :user_id => '25')
-Tagroup.create(:course_id => '6', :user_id => '34')
-Tagroup.create(:course_id => '6', :user_id => '35')
+Studentgroup.create(:course_id => shop3, :user_id => poppins)
+Studentgroup.create(:course_id => shop3, :user_id => stewart)
+Studentgroup.create(:course_id => shop3, :user_id => fatalbert)
+Tagroup.create(:course_id => shop3, :user_id => batman)
 
-Tagroup.create(:course_id => '6', :user_id => '36')
-Tagroup.create(:course_id => '6', :user_id => '37')
-Tagroup.create(:course_id => '6', :user_id => '38')
+Studentgroup.create(:course_id => shop4, :user_id => poppins)
+Studentgroup.create(:course_id => shop4, :user_id => stewart)
+Studentgroup.create(:course_id => shop4, :user_id => fatalbert)
+Tagroup.create(:course_id => shop4, :user_id => batman)
+
 

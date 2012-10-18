@@ -21,7 +21,7 @@ var viewUser = function(id) {
       if(user.student_in) { 
         courses = 'Enrolled in: </br><h4>';
         $.each(user.student_in, function(index, course) {
-          courses += '<a href="/course/show/'+ course.id + '">' + course.name + '</a></br>';       
+          courses += course.name + '  <a class="btn" href="/course/show/'+ course.id +'">View</a></br>';       
         });
         courses += '</h4>';
       }
@@ -29,7 +29,7 @@ var viewUser = function(id) {
       if(user.ta_in) {
         courses += 'Teaching Assistant in: </br><h4>';
         $.each(user.ta_in, function(index, course) {
-          courses += '<a href="/course/show/'+ course.id + '">' + course.name + '</a></br>';       
+          courses += course.name + '  <a class="btn" href="/course/show/'+ course.id +'">View</a></br>';  
         });
         courses += '</h4>'; 
       }
