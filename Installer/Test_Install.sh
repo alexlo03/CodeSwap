@@ -1,8 +1,19 @@
-cd
 #!/bin/sh
 sudo apt-get update  # To get the latest package lists
-sudo apt-get install curl
-curl -L get.rvm.io | bash -s stable
+
+#Unpacks curl archive
+tar -xvzf curl_7.21.3.orig.tar.gz
+
+#Changes to new curl directory
+cd curl_7.21.3
+
+#Configure and check for errors
+./configure && make
+
+sudo make install
+#bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+
+#curl -L get.rvm.io | bash -s stable
 
 
 
@@ -10,7 +21,7 @@ curl -L get.rvm.io | bash -s stable
 sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
 
 #Install and run rvm
-source ~/.rvm/scripts/rvm
+bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
 
 #Use rvm to install ruby version 1.9.3
 rvm install 1.9.3
