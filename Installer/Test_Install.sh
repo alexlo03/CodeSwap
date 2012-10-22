@@ -1,41 +1,44 @@
-#!/bin/sh
-sudo apt-get update  # To get the latest package lists
+#!/bin/bash
+clear
+echo "\033[01;32mUpdating...\033[00m\n"
+sudo apt-get update -y # To get the latest package lists
 
 #Unpacks curl archive
-tar -xvzf curl_7.21.3.orig.tar.gz
 
-#Changes to new curl directory
-cd curl_7.21.3
 
-#Configure and check for errors
+
+echo "\033[01;32mChanging to new curl directory\033[00m\n"
+cd curl-7.21.3
+
+echo "\033[01;32mConfiguring and checking for errors\033[00m\n"
 ./configure && make
 
+echo "\033[01;32mMaking install\033[00m\n"
 sudo make install
 #bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
 
 #curl -L get.rvm.io | bash -s stable
 
 
-
-#Acquire dependencies for rvm
+echo "\033[01;32mAcquiring dependencies for rvm\033[00m\n"
 sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
 
-#Install and run rvm
+echo "\033[01;32mInstalling and Running rvm\033[00m\n"
 bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
 
-#Use rvm to install ruby version 1.9.3
+echo "\033mUsing rvm to install ruby version 1.9.3\033[00m\n"
 rvm install 1.9.3
 
-#Make rvm use 1.9.3 as the default version
+echo "\033[01;32mMaking rvm use 1.9.3 as the default version\033[00m\n"
 rvm use 1.9.3 --default
 
-#Update rubygems with rvm
+echo "\033[01;32mUpdating rubygems with rvm\033[00m\n"
 rvm rubygems current
 
-#Install ruby on rails
+echo "\033[01;32mInstalling rails\033[00m\n"
 gem install rails
 
-#Download node.js and install
+echo "\033[01;32mDownloading & Installing node.js\033[00m\n"
 git clone https://github.com/joyent/node.git
 cd node
 git checkout v0.6.18
@@ -48,17 +51,16 @@ cd
 #Download, install and launch the application
 #git clone https://github.com/alexlo03/CodeSwap.git
 
-#Move into CodeSwap Directory
-cd CodeSwap
+echo "\033[01;32mMoving into CodeSwap source code directory\033[00m(/CodeSwap/src)\n"
+cd CodeSwap/src
 
-#Move into src Directory
-cd src
-
-#installs/ updates bundle
+echo "\033[01;32mInstalling/Updating bundle\033[00m\n"
 bundle install
 
-#set up the database
+echo "\033[01;32mSetting-up the database\033[00m\n"
 rake db:migrate
 
-# Start the server!
+echo "\033[01;32mStarting the server\033[00m\n"
 rails server
+
+echo "\033[01;33mWOOHOO\x21  The system is set-up and ready to go\x21\033[00m\n"
