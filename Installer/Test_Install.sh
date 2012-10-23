@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 echo "\033[01;32mUpdating...\033[00m\n"
-sudo apt-get update -y # To get the latest package lists
+sudo apt-get update -y -qq # To get the latest package lists
 
 #Unpacks curl archive
 
@@ -14,20 +14,22 @@ echo "\033[01;32mConfiguring and checking for errors\033[00m\n"
 ./configure && make
 
 echo "\033[01;32mMaking install\033[00m\n"
-sudo make install
-#bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
-
+sudo make install -s
+#bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
 #curl -L get.rvm.io | bash -s stable
 
 
 echo "\033[01;32mAcquiring dependencies for rvm\033[00m\n"
-sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
+sudo apt-get install build-essential openssl libreadline6 libreadline6-dev libruby1.9.1 curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion -y -qq
 
 echo "\033[01;32mInstalling and Running rvm\033[00m\n"
-bash < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
-
+curl -L https://get.rvm.io | bash -s stable --ruby
+#curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash
 echo "\033mUsing rvm to install ruby version 1.9.3\033[00m\n"
-rvm install 1.9.3
+#rvm install 1.9.3
+
+echo "\033[01;32mReloading RVM\033[00m\n"
+rvm reload
 
 echo "\033[01;32mMaking rvm use 1.9.3 as the default version\033[00m\n"
 rvm use 1.9.3 --default
