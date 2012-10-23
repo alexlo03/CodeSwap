@@ -61,6 +61,7 @@ bundle install
 
 echo "\033[01;32mSetting-up the database\033[00m\n"
 rake db:migrate
+rake db:reset
 
 echo "\033[01;32mStarting the server\033[00m\n"
 rails server
