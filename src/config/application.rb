@@ -56,6 +56,9 @@ module CodeSwap
 
     # Enable the asset pipeline
     config.assets.enabled = true
+	
+	# Redirect http requests to the https page
+	config.force_ssl = true
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
