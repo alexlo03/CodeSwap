@@ -29,8 +29,6 @@ group :test do
   gem 'database_cleaner'
 end
 
-
-
 # Authentication 
 gem 'devise'
 gem 'omniauth'
