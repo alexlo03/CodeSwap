@@ -11,6 +11,9 @@ gem 'sqlite3'
 # Authorization
 gem 'cancan'
 
+group :development, :test do
+    gem 'railroady'
+end
 
 # Backgrounds emails
 gem 'delayed_job_active_record'

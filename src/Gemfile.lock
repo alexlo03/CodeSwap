@@ -119,6 +119,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    railroady (1.1.0)
     rails (3.2.8)
       actionmailer (= 3.2.8)
       actionpack (= 3.2.8)
@@ -201,6 +202,7 @@ DEPENDENCIES
   nokogiri (~> 1.5.1)
   omniauth
   omniauth-twitter
+  railroady
   rails (= 3.2.8)
   rspec
   sass-rails (~> 3.2.3)
