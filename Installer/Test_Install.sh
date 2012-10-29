@@ -23,14 +23,14 @@ echo "\033[01;32mAcquiring dependencies for rvm\033[00m\n"
 sudo apt-get install build-essential openssl libreadline6 libreadline6-dev libruby1.9.1 curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion -y -qq
 
 echo "\033[01;32mInstalling and Running rvm\033[00m\n"
-curl -L https://get.rvm.io # | bash -s stable --ruby
+command curl -L https://get.rvm.io  | bash -s stable --ruby
 #curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer | bash
 
 echo "\033[01;32mReloading RVM\033[00m\n"
 rvm reload
 
 echo "\033mUsing rvm to install ruby version 1.9.3\033[00m\n"
-command rvm install 1.9.3
+#command rvm install 1.9.3
 
 echo "\033[01;32mMaking rvm use 1.9.3 as the default version\033[00m\n"
 rvm use 1.9.3 --default
