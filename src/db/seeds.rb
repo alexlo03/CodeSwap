@@ -8,10 +8,9 @@
 
 # # # # # # # # USERS # # # # # # # # # # # #
 
-# Admins [Count: 6]
+# Admins 
 
-# 1
-User.create(:email => 'notadmin@codeswap.com', :first_name => 'Administrator', :last_name => 'Billy', :password => 'password', :password_confirmation => 'password', :role => :admin)
+User.create(:email => 'notadmin@codeswap.com', :first_name => 'Sneaky', :last_name => 'Admin', :password => 'password', :password_confirmation => 'password', :role => :admin)
 User.create(:email => 'admin@codeswap.com', :first_name => 'Administrator', :last_name => 'Joel', :password => 'password', :password_confirmation => 'password', :role => :admin)
 User.create(:email => 'admin@test.com', :first_name => 'Administrator', :last_name => 'Frodo', :password => 'password', :password_confirmation => 'password', :role => :admin)
 
@@ -21,9 +20,8 @@ User.create(:email => 'skeletor@lordofdestruction.com', :first_name => 'Administ
 User.create(:email => 'jiminy@thecricket.com', :first_name => 'Administrator', :last_name => 'Cricket', :password => 'password', :password_confirmation => 'password', :role => :admin)
 
 
-# Faculty [Count: 18]
+# Faculty 
 
-# 7
 User.create(:email => 'leonard.nimoy1@leonardnimoy.com', :first_name => 'Leonard', :last_name => 'Nimoy', :password => 'password', :password_confirmation => 'password', :role => :faculty)
 User.create(:email => 'thanks@thanksbanks.com', :first_name => 'Tom', :last_name => 'Hanks', :password => 'password', :password_confirmation => 'password', :role => :faculty)
 User.create(:email => 'leon.ardo.di@caprio.net', :first_name => 'Leonardo', :last_name => 'DiCaprio', :password => 'password', :password_confirmation => 'password', :role => :faculty)
@@ -54,9 +52,7 @@ User.create(:email => 'eatmychicken@generaltso.ch', :first_name => 'General', :l
 User.create(:email => 'knight@ni.co.uk', :first_name => 'Monty', :last_name => 'Python', :password => 'password', :password_confirmation => 'password', :role => :faculty)
 
 
-# Students [Count: 8]
-
-# 25
+# Students
 
 queen = User.create(:email => 'thequeen@uk.co.uk', :first_name => 'Queen', :last_name => 'Elizabeth', :password => 'password', :password_confirmation => 'password', :role => :student).id
 mandella = User.create(:email => 'prisoner@southafrica.za', :first_name => 'Nelson', :last_name => 'Mandela', :password => 'password', :password_confirmation => 'password', :role => :student).id
@@ -70,10 +66,6 @@ fatalbert = User.create(:email => 'fat@albert.com', :first_name => 'Fat', :last_
 hulk = User.create(:email => 'america@america.com', :first_name => 'Hulk', :last_name => 'Hogan', :password => 'password', :password_confirmation => 'password', :role => :student).id
 parker = User.create(:email => 'parker@thedailybugle.com', :first_name => 'Peter', :last_name => 'Parker', :password => 'password', :password_confirmation => 'password', :role => :student).id
 
-
-# TAs [Count: 6]
-
-# 33
 gandhi = User.create(:email => 'mahatma@gandhi.in', :first_name => 'Mahatma', :last_name => 'Gandhi', :password => 'password', :password_confirmation => 'password', :role => :student).id
 emperor = User.create(:email => 'theemperor@japan.jp', :first_name => 'Emperor', :last_name => 'Akihito', :password => 'password', :password_confirmation => 'password', :role => :student).id
 stark = User.create(:email => 'stark@starkindustries.com', :first_name => 'Tony', :last_name => 'Stark', :password => 'password', :password_confirmation => 'password', :role => :student).id
@@ -108,7 +100,7 @@ shop4 = Course.create(:name => 'Shopping and dropping', :course_number => 'Shop-
 # # # # # # # # ENROLLEES # # # # # # # # # #
 
 
-# students:  Queen mandella jackson poppins stewart fatalbert hulk parker gandhi emperor stark superman batman spartans
+# student usernames:  queen mandella jackson poppins stewart fatalbert hulk parker gandhi emperor stark superman batman spartans
 
 Studentgroup.create(:course_id => snork1, :user_id => queen)
 Studentgroup.create(:course_id => snork1, :user_id => mandella)
