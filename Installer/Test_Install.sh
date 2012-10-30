@@ -20,7 +20,7 @@ sudo make install -s
 
 
 echo "\033[01;32mAcquiring dependencies for rvm\033[00m\n"
-sudo apt-get install build-essential openssl libreadline6 libreadline6-dev libruby1.9.1 curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion -y
+sudo apt-get install build-essential openssl libreadline6 libreadline6-dev libruby1.9.1 curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion ruby-rvm -y
 
 echo "\033[01;32mInstalling and Running rvm\033[00m\n"
 command curl -L https://get.rvm.io  | bash -s stable --ruby
