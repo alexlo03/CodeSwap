@@ -1,5 +1,6 @@
 #!/bin/bash
 clear
+
 echo "\033[01;32mUpdating...\033[00m\n"
 sudo apt-get update -y # To get the latest package lists
 
@@ -20,7 +21,12 @@ sudo make install -s
 
 
 echo "\033[01;32mAcquiring dependencies for rvm\033[00m\n"
-sudo apt-get install build-essential openssl libreadline6 libreadline6-dev libruby1.9.1 curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion ruby-rvm -y
+sudo apt-get install build-essential openssl libreadline6 libreadline6-dev libruby1.9.1 curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion python-software-properties -y
+
+echo "\033[01;32mDownloading & Installing node.js\033[00m\n"
+sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs npm
 
 echo "\033[01;32mInstalling and Running rvm\033[00m\n"
 command curl -L https://get.rvm.io  | bash -s stable --ruby
@@ -41,13 +47,6 @@ command rvm rubygems current
 echo "\033[01;32mInstalling rails\033[00m\n"
 command gem install rails
 
-echo "\033[01;32mDownloading & Installing node.js\033[00m\n"
-git clone https://github.com/joyent/node.git
-cd node
-git checkout v0.6.18
-./configure
-make
-sudo make install
 cd
 
 ##REMOVED FOR INITIAL TESTING
