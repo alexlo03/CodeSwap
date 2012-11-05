@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<% favicon_id = Random.rand(3) %>
+
+<% if favicon_id == 0 %>
+  <link rel="shortcut icon" href="1.ico" />
+<% elsif favicon_id == 1 %>
+  <link rel="shortcut icon" href="2.ico" />
+<% else %>
+  <link rel="shortcut icon" href="3.ico" />
+<% end %>
