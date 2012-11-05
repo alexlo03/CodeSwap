@@ -78,12 +78,12 @@ var readStudentFile = function(evt) {
 
 var readTaFile = function(evt) {
     var f = evt.target.files[0]; 
-    ta = ""
+    tas = ""
     if (f) {
       var r = new FileReader();
       r.onload = function(e) { 
 	      var contents = e.target.result;
-        ta = contents;
+        tas = contents;
       }
       r.readAsText(f);
     } else { 
@@ -130,7 +130,7 @@ var addCourse = function(){
     addError("All fields required");
   } else {
     $.post('/faculty/add_course',{
-      'cname' : cName, 'cterm':cTerm, 'cnumber': cNumber, 'csection': cSection, 'students': students, 'tas':ta}
+      'cname' : cName, 'cterm':cTerm, 'cnumber': cNumber, 'csection': cSection, 'students': students, 'tas':tas}
     ,function(course){
       if(course.error){
         $("#form1").toggle();
