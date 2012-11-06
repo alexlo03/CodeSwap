@@ -46,6 +46,10 @@ cd src
 #installs/ updates bundle
 bundle install
 
+
+
+
+
 #set up the database
 rake db:migrate
 
