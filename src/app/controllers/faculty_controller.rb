@@ -42,26 +42,27 @@ class FacultyController < ApplicationController
         studentGroup.user_id = u.id
         studentGroup.save  
       end
-      
-      for i in (0..taCount)
-        taGroup = Tagroup.new
-        taGroup.course_id = c.id
-        first = students[3*i]
-        last = students[3*i + 1]
-        email = students[3*i + 2].downcase
-        u = User.where(:email => email).first
-        if u.nil?
-          u = User.new(:email=>email, :first_name => first, :last_name => last)
-          u.role = "student"
-          u.password ||= "password"
-          u.password_confirmation ||="password"
-          bool = u.save
+      unless (tas == "")
+        for i in (0..taCount)
+          taGroup = Tagroup.new
+          taGroup.course_id = c.id
+          first = students[3*i]
+          last = students[3*i + 1]
+          email = students[3*i + 2].downcase
+          u = User.where(:email => email).first
+          if u.nil?
+            u = User.new(:email=>email, :first_name => first, :last_name => last)
+            u.role = "student"
+            u.password ||= "password"
+            u.password_confirmation ||="password"
+            bool = u.save
+          end
+          taGroup.user_id = u.id
+          taGroup.save 
         end
-        taGroup.user_id = u.id
-        taGroup.save 
+        c.user_id = current_user.id
+        c.save
       end
-      c.user_id = current_user.id
-      c.save
     else
       c["error"] = "Course Already Exists"
     end

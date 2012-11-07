@@ -58,7 +58,7 @@ module CodeSwap
     config.assets.enabled = true
 	
 	# Redirect http requests to the https page
-	config.force_ssl = true
+	  config.force_ssl = false
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
