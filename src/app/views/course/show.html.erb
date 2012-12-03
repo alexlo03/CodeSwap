@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+
+<h1><%= @course.name %></h1>
+</br>
+<h3><%= @course.course_number.concat(" - ").concat(@course.section.to_s) %> <%= @course.term %></h3>
+</br>
+
+<h3>Taught by:</h3>
+<% if @teacher.nil? %>
+<h2>No teacher</h2>
+<% else %>
+<h2><%= @teacher.friendly_full_name %></h2>
+<% end %>
+</br>
+
+<% unless @tas.nil? %>
+<h3>TAs</h3>
+  <table class='table table-hover'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Last online</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tas.each do |ta| %>
+      <% user = User.where(:id => ta.user_id)[0] %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td><%= user.friendly_full_name %></td>
+          <td><%= user.last_sign_in_at %></td>
+          <td>
+            <p class='btn' onclick="viewUser('<%= user.id %>')">View</p>
+          </td>  
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+</br>
+
+<% unless @students.nil? %>
+<h3>Students</h3>
+  <table class='table table-hover'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Last online</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each do |student| %>
+      <% user = User.where(:id => student.user_id)[0] %>
+      <% if !user.nil? %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td><%= user.friendly_full_name %></td>
+          <td><%= user.last_sign_in_at %></td>
+          <td>
+            <p class='btn' onclick="viewUser('<%= user.id %>')">View</p>
+          </td>  
+        </tr>
+      <% else %>
+        <tr>
+          <td>ERROR</td>
+        </tr>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

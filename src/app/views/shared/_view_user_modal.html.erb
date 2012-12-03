@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<div class="modal hide fade" id="viewUserModal" tabindex="-1" role="dialog" aria-labelledby="viewUserLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h2 id="viewUserLabel">Viewing <tag id='viewUserName'></tag>'s Info</h2>
+  </div>
+  <div class="modal-body">
+    <h3><u>Email</u>: <tag id='viewUserEmail'></tag></h3> </br>
+    <h3><tag id='viewUserCourses'></tag></h3> </br>
+  </div>
+</div>
+
+
+<script type='text/javascript' runat='server'>
+
+var viewUser = function(id) {
+  $.post('/admin/view_user_info',
+    { 'id' : id },
+    function(user) {
+      var courses = '';
+      if(user.student_in) { 
+        courses = 'Enrolled in: </br><h4>';
+        $.each(user.student_in, function(index, course) {
+          courses += course.name + '  <a class="btn" href="/course/show/'+ course.id +'">View</a></br>';       
+        });
+        courses += '</h4>';
+      }
+      
+      if(user.ta_in) {
+        courses += 'Teaching Assistant in: </br><h4>';
+        $.each(user.ta_in, function(index, course) {
+          courses += course.name + '  <a class="btn" href="/course/show/'+ course.id +'">View</a></br>';  
+        });
+        courses += '</h4>'; 
+      }
+      $('#viewUserName').html(user.name);
+      $('#viewUserEmail').html(user.email);
+      $('#viewUserCourses').html(courses);
+      $('#viewUserModal').modal('show');
+  });
+};
+
+</script>

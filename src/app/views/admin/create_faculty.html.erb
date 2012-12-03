@@ -1,0 +1,6 @@
+<%= @faculty.to_s %>
+<h3>Email:</h3>
+<%= email_field_tag 'email' %>
+
+<%= button_to 'Create new Faculty', admin_confirm_faculty_path(), :class => 'btn' %>
+<%= button_to 'Cancel', admin_index_path, :class => 'btn' %>

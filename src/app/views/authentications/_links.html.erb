@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<% if !current_user %>
+<p><strong>Sign in through one of these services:</strong></p>
+<% elsif !current_user.authentications.empty? %>
+   <p><strong>Add another service to sign in with:</strong></p>
+<% else %>
+   <p><strong>Add a service to sign in with:</strong></p>
+<% end %>
+
+
+<% if (current_user and current_user.authentications.where(:provider => "twitter").empty?) or !current_user%>
+<a href="/auth/twitter" class="auth_provider">
+  <%= image_tag "icons/twitter_32.png", :size => "32x32", :alt => "Twitter" %>Twitter</a>
+<% end %>
+
+
+<% if (current_user and current_user.authentications.where(:provider => "facebook").empty?) or !current_user%>
+<a href="/auth/facebook" class="auth_provider">
+  <%= image_tag "icons/facebook_32.png", :size => "32x32", :alt => "Facebook" %>Facebook</a>
+<% end %>
+
+<% if (current_user and current_user.authentications.where(:provider => "google").empty?) or !current_user%>
+<a href="/auth/google_apps" class="auth_provider">
+  <%= image_tag "icons/google_32.png", :size => "32x32", :alt => "Google" %>Google</a>
+
+<% end %>
+<% if (current_user and current_user.authentications.where(:provider => "openid").empty?) or !current_user%>
+<a href="/auth/open_id" class="auth_provider">
+  <%= image_tag "icons/openid_32.png", :size => "32x32", :alt => "OpenID" %>OpenID</a>
+<div class="clear"></div>
+
+<% end %>

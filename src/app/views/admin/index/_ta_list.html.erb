@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+
+
+<h3>Teaching Assistants</h3>
+  <% unless current_page?(:controller => :admin, :action => 'index') %>
+    <%= render '/shared/user_search_form' %>
+  <% end %>
+
+<% unless @tas.empty? %>
+  <table class='table table-hover'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>Last online</th>
+        <th></td>
+      </tr>
+    </thead>
+    <tbody id='ta_table'>
+      <% @tas.each do |user| %>
+        <tr id="user-<%= user.id %>">
+          <td><%= user.id %></td>
+          <td><%= user.email %></td>
+          <td><%= user.friendly_full_name %></td>
+          <td><%= user.last_sign_in_at %></td>
+          <td>
+            <p class='btn' onclick="viewUser('<%= user.id %>')">View</p>
+            <p class='btn btn-danger' id="user-<%= user.id %>-remove" onclick="deleteUser('<%= user.email %>');">Delete</p>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tbody>
+      <% if ta_count > @tas.count %>
+        <tr id='view_more_tas_row'>
+          <td colspan='5'>
+            Currently displaying <strong><%= @tas.count %></strong> of <strong><%= ta_count %></strong> teaching assistants. Click here to view the rest.
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  There are no teaching assistants registered at this time.
+<% end %>
+
+<script type='text/javascript' runat='server'>
+
+
+var searchTAs = function() {
+  var email = $('#search_email').attr('value');
+  var first_name = $('#search_first_name').attr('value');
+  var last_name = $('#search_last_name').attr('value');
+  var role = 'ta';
+  $.post('/admin/search_users',
+    { 'email' : email,
+      'first_name' : first_name,
+      'last_name' : last_name,
+      'role' : role
+    },
+    function(result){
+      clearTable(role);
+      $.each(result, function(index, ele){ updateTableWithUser(role, ele); });
+    });
+};
+
+var updateTableWithUser = function(table, user) {
+  var table = $('#' + table + '_table');
+  table.append(
+    '<tr id="user-'+user.id + '" style="display:none">' 
+  + '<td>'+user.id+'</td>'
+  + '<td>'+user.email+'</td>'
+  + '<td>'+user.first_name + ' ' + user.last_name+'</td>'
+  + '<td></td>'
+  + '<td>'
+  + '<p class=\'btn\'>View</p>' + ' '
+  + '<p class=\'btn btn-danger\' id="user-'+ user.id +'-remove" onclick="deleteUser(\''+ user.email +'\');">Delete</p>'
+  + '</td>'
+  + '</tr>');
+  $('#user-'+user.id).show('fast');
+};
+
+var clearTable = function(table) { $('#' + table + '_table').empty(); };
+
+var deleteUser = function(email){
+    $.post('/admin/delete_user',
+      { 'email' : email },
+      function(faculty){
+        var row = $("#user-"+faculty.id);
+        row.toggle('fast', function(){ row.remove()});
+      });
+};
+
+$(document).ready(function(){
+
+  $('#view_more_tas_row').click(function(){
+    window.location.href = "<%= view_tas_path %>";
+  });
+
+  $('#search_email').keyup(function() { searchTAs(); });
+  $('#search_first_name').keyup(function () { searchTAs(); });
+  $('#search_last_name').keyup(function () { searchTAs(); });
+
+});
+</script>
+
