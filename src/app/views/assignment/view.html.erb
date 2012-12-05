@@ -10,3 +10,11 @@
 
 <h3>End Date</h3>
 <%= @assignment.end_date.to_date %>
+<br/>
+<br/>
+
+<%= form_tag("/assignment/upload", :method => "post",:multipart => true) do %>
+<p><label for="upload">Select File</label> 
+<%= file_field_tag 'datafile' %></p>
+<%= submit_tag "Upload" %>
+<% end %>
