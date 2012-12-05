@@ -9,5 +9,5 @@
   <li><%= link_to "Teaching Assistant" %></li>
 <% elsif current_user.student? %>
   <li><%= link_to "Student" %></li>
-  <li><%= link_to "Assignments" %></li>
+  <li><%= link_to "Assignments",assignment_index_path %></li>
 <% end %>

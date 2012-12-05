@@ -46,9 +46,9 @@ class FacultyController < ApplicationController
         for i in (0..taCount)
           taGroup = Tagroup.new
           taGroup.course_id = c.id
-          first = students[3*i]
-          last = students[3*i + 1]
-          email = students[3*i + 2].downcase
+          first = tas[3*i]
+          last = tas[3*i + 1]
+          email = tas[3*i + 2].downcase
           u = User.where(:email => email).first
           if u.nil?
             u = User.new(:email=>email, :first_name => first, :last_name => last)

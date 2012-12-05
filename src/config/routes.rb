@@ -32,8 +32,10 @@ CodeSwap::Application.routes.draw do
   match 'assignment', :controller => 'assignment', :action=> 'index'
   match 'assignments', :controller => 'assignment', :action=> 'index'
   match 'assignment/create/:course_id', :controller => 'assignment', :action => 'create' 
-
+	match 'assignment/view/:id',:controller => 'assignment', :action => 'view'
   match 'assignment/submit_new', :controller => 'assignment', :action => 'submit_new'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

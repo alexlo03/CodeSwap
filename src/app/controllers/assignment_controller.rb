@@ -1,7 +1,28 @@
 class AssignmentController < ApplicationController
 
   def index
-        
+		requires("student")
+		adtuList = AssignmentDefinitionToUser.where(:user_id => current_user.id)
+		pastAssignments = []
+		currentAssignments = []
+		futureAssignments = []
+		adtuList.each do |adtu|
+			defID = adtu.assignment_definition_id
+			assignmentDefinition = AssignmentDefinition.find(defID)
+			assignmentID = assignmentDefinition.assignment_id
+			assignment = Assignment.find(assignmentID)
+			if(assignment.start_date > Time.now)
+				futureAssignments.insert(0,assignment)
+			elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
+				currentAssignments.insert(0,assignment)
+			else
+				pastAssignments.insert(0,assignment)
+			end
+		end
+		@pastAssignments = pastAssignments
+		@futureAssignments = futureAssignments
+		@currentAssignments = currentAssignments
+		@adtuList = adtuList
   end
 
 
@@ -44,5 +65,19 @@ class AssignmentController < ApplicationController
 
     flash[:notice] = 'What a neat assignment.'
   end
+
+	def view
+		@id = params[:id]
+		@assignment = Assignment.find(@id)
+		adtuList = AssignmentDefinitionToUser.where(:user_id => current_user.id)
+		@assignmentDefinition = 'hello'
+		adtuList.each do |adtu|
+			definition = AssignmentDefinition.find(adtu.assignment_definition_id)
+			if(definition.assignment_id == @assignment.id)
+				@assignmentDefinition = definition
+			end
+		end
+		
+	end
 
 end
