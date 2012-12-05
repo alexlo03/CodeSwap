@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!-- Displays all of the courses in the system, contains button to add new course -->
 
 <h1><%= @course.name %></h1>
 </br>
@@ -90,6 +90,7 @@
             <p><%= assignment.name %></p>
           <% end %>
       <% end %>
+			<!-- only display to ta or faculty -->
       <% if @user_is_ta_or_faculty %>
         <%= button_to 'Create New', {:action => 'create', :controller => 'assignment', :course_id => @course.id} %>
       <% end %>
