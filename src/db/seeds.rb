@@ -44,7 +44,7 @@ User.create(:email => 'leonard@euler.com', :first_name => 'Leonard', :last_name 
 
 User.create(:email => 'therealdeal@foundingfathers.com', :first_name => 'Benjamin', :last_name => 'Franklin', :password => 'password', :password_confirmation => 'password', :role => :faculty)
 User.create(:email => 'gwbush@whitehouse.com', :first_name => 'George', :last_name => 'Bush', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-User.create(:email => 'obama@whitehouse.gov', :first_name => 'Barack', :last_name => 'Obama', :password => 'password', :password_confirmation => 'password', :role => :faculty)
+obama = User.create(:email => 'obama@whitehouse.gov', :first_name => 'Barack', :last_name => 'Obama', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
 
 
 User.create(:email => 'fig@newtons.com', :first_name => 'Isaac', :last_name => 'Newton', :password => 'password', :password_confirmation => 'password', :role => :faculty)
@@ -107,6 +107,7 @@ Studentgroup.create(:course_id => snork1, :user_id => mandella)
 Studentgroup.create(:course_id => snork1, :user_id => jackson)
 Tagroup.create(:course_id => snork1, :user_id => gandhi)
 Tagroup.create(:course_id => snork1, :user_id => stewart)
+Tagroup.create(:course_id => snork1, :user_id => obama)
 
 Studentgroup.create(:course_id => snork2, :user_id => fatalbert)
 Studentgroup.create(:course_id => snork2, :user_id => hulk)

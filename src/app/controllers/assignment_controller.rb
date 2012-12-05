@@ -81,13 +81,27 @@ class AssignmentController < ApplicationController
 	end
 
 	def upload
-		#upload = params['upload']
+		# upload = params['upload']
     name =  params['datafile'].original_filename
-    directory = "public/data"
+
+##### change directory to be task specific and stores into 'courseid/assignmentid/userid/'
+    directory = 'public/data'
     # create the file path
     path = File.join(directory, name)
     # write the file
-    File.open(path, "wb") { |f| f.write(params['datafile'].read) }
+    File.open(path, 'wb') { |f| f.write(params['datafile'].read) }
+    
+    # fetches assignment definition id from view
+    id = params['assignment_definition_id']
+    
+    # creates and saves a new file submission within the database
+    submission = FileSubmission.new
+      submission.assignment_definition_id = id
+      submission.name = name
+      submission.user_id = current_user.id
+    submission.save
+    flash[:notice] = "Cool file man...that's WICKED!...so raaaad..."
+    redirect_to '/assignment/index'
 
 	end
 

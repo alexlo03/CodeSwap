@@ -16,5 +16,13 @@
 <%= form_tag("/assignment/upload", :method => "post",:multipart => true) do %>
 <p><label for="upload">Select File</label> 
 <%= file_field_tag 'datafile' %></p>
+<%= hidden_field_tag 'assignment_definition_id', @assignmentDefinition.id %>
 <%= submit_tag "Upload" %>
 <% end %>
+
+<p class = 'btn' onClick = 'test();'>Test</p>
+<script type='text/javascript'>
+  var test = function(){
+  alert(document.getElementById('datafile').value);
+}
+</script>
