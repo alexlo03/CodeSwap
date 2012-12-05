@@ -1,6 +1,7 @@
 CodeSwap::Application.routes.draw do
   get "admin/index"
 
+  resources :file_submissions
   resources :authentications
   resources :user
   devise_for :users

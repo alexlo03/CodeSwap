@@ -87,7 +87,7 @@
       <% if @user_is_student || @user_is_ta_or_faculty %>
         <h3>Assignments: </h3>
           <% @assignments.each do |assignment| %>
-            <%= assignment.name %>
+            <p><%= assignment.name %></p>
           <% end %>
       <% end %>
       <% if @user_is_ta_or_faculty %>

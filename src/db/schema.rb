@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203232425) do
+ActiveRecord::Schema.define(:version => 20121205011939) do
 
   create_table "assignment_definition_to_users", :force => true do |t|
     t.integer  "user_id"
@@ -76,6 +76,14 @@ ActiveRecord::Schema.define(:version => 20121203232425) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "file_submissions", :force => true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.integer  "assignment_definition_id"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
 
   create_table "studentgroups", :force => true do |t|
     t.datetime "created_at", :null => false
