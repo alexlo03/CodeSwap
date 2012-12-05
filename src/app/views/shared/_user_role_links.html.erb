@@ -5,9 +5,11 @@
 <% elsif current_user.faculty? %>
   <li><%= link_to "Faculty" %></li>
   <li><%= link_to "Courses", faculty_index_path %></li>
+  <li><%= link_to "Assignments", assignment_index_path %></li>
 <% elsif current_user.ta? %>
   <li><%= link_to "Teaching Assistant" %></li>
+  <li><%= link_to "Assignments", assignment_index_path %></li>
 <% elsif current_user.student? %>
   <li><%= link_to "Student" %></li>
-  <li><%= link_to "Assignments",assignment_index_path %></li>
+  <li><%= link_to "Assignments", assignment_index_path %></li>
 <% end %>

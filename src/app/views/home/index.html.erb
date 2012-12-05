@@ -1,7 +1,7 @@
 <p>Home</p>
 
 
-<% if current_user.nil? %>
+<% unless current_user %>
   You should log in.
 <% else %>
   <% if current_user.admin? %>
@@ -14,5 +14,3 @@
     You are a student.
   <% end %>
 <% end %>
-
-<%= ENV["GMAIL_USERNAME"] %>

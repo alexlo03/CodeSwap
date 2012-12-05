@@ -1,28 +1,55 @@
 class AssignmentController < ApplicationController
 
   def index
-		requires("student")
-		adtuList = AssignmentDefinitionToUser.where(:user_id => current_user.id)
-		pastAssignments = []
-		currentAssignments = []
-		futureAssignments = []
-		adtuList.each do |adtu|
-			defID = adtu.assignment_definition_id
-			assignmentDefinition = AssignmentDefinition.find(defID)
-			assignmentID = assignmentDefinition.assignment_id
-			assignment = Assignment.find(assignmentID)
-			if(assignment.start_date > Time.now)
-				futureAssignments.insert(0,assignment)
-			elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
-				currentAssignments.insert(0,assignment)
-			else
-				pastAssignments.insert(0,assignment)
-			end
-		end
-		@pastAssignments = pastAssignments
-		@futureAssignments = futureAssignments
-		@currentAssignments = currentAssignments
-		@adtuList = adtuList
+		requires ['admin', 'student', 'faculty']
+    studentAssignmentList = AssignmentDefinitionToUser.where(:user_id => current_user.id)
+	  pastAssignments = []
+	  currentAssignments = []
+	  futureAssignments = []
+	  studentAssignmentList.each do |adtu|
+		  defID = adtu.assignment_definition_id
+		  assignmentDefinition = AssignmentDefinition.find(defID)
+		  assignmentID = assignmentDefinition.assignment_id
+		  assignment = Assignment.find(assignmentID)
+		  if(assignment.start_date > Time.now)
+			  futureAssignments.insert(0,assignment)
+		  elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
+			  currentAssignments.insert(0,assignment)
+		  else
+			  pastAssignments.insert(0,assignment)
+		  end
+	  end
+
+    ## TODO: Add a separate TA list and distinguish the two on the view page.
+    taCourseIds = Tagroup.find_all_by_user_id(current_user.id).collect(&:course_id)
+    taAssignments = Assignment.where(taCourseIds.include? :course_id)
+    
+    taAssignments.each do |assignment|
+		  if(assignment.start_date > Time.now)
+			  futureAssignments.insert(0,assignment)
+		  elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
+			  currentAssignments.insert(0,assignment)
+		  else
+			  pastAssignments.insert(0,assignment)
+		  end
+    end
+
+    facultyCourses = Course.find_all_by_user_id(current_user.id).collect(&:id)
+    facultyAssignments = Assignment.where(facultyCourses.include? :course_id)
+
+    facultyAssignments.each do |assignment|
+		  if(assignment.start_date > Time.now)
+			  futureAssignments.insert(0,assignment)
+		  elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
+			  currentAssignments.insert(0,assignment)
+		  else
+			  pastAssignments.insert(0,assignment)
+		  end
+    end
+
+	  @pastAssignments = pastAssignments
+	  @futureAssignments = futureAssignments
+	  @currentAssignments = currentAssignments
   end
 
 
@@ -69,15 +96,7 @@ class AssignmentController < ApplicationController
 	def view
 		@id = params[:id]
 		@assignment = Assignment.find(@id)
-		adtuList = AssignmentDefinitionToUser.where(:user_id => current_user.id)
-		@assignmentDefinition = 'hello'
-		adtuList.each do |adtu|
-			definition = AssignmentDefinition.find(adtu.assignment_definition_id)
-			if(definition.assignment_id == @assignment.id)
-				@assignmentDefinition = definition
-			end
-		end
-		
+    @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(@id)
 	end
 
 	def upload

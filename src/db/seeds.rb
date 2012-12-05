@@ -20,26 +20,26 @@ User.create(:email => 'skeletor@lordofdestruction.com', :first_name => 'Administ
 User.create(:email => 'jiminy@thecricket.com', :first_name => 'Administrator', :last_name => 'Cricket', :password => 'password', :password_confirmation => 'password', :role => :admin)
 
 
-# Faculty 
+# Faculty    nimoy hanks dicaprio locke tzu nitzsche hobbes einstein edison tesla galileo euler obama
 
-User.create(:email => 'leonard.nimoy1@leonardnimoy.com', :first_name => 'Leonard', :last_name => 'Nimoy', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-User.create(:email => 'thanks@thanksbanks.com', :first_name => 'Tom', :last_name => 'Hanks', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-User.create(:email => 'leon.ardo.di@caprio.net', :first_name => 'Leonardo', :last_name => 'DiCaprio', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-
-
-User.create(:email => 'JLocke@philosophers.co.uk', :first_name => 'John', :last_name => 'Locke', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-User.create(:email => 'lao@tzu2.ch', :first_name => 'Lao', :last_name => 'Tzu', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-User.create(:email => 'friedrich@nietzsche.de', :first_name => 'Friedrich', :last_name => 'Nietzsche', :password => 'password', :password_confirmation => 'password', :role => :faculty)
+nimoy = User.create(:email => 'leonard.nimoy1@leonardnimoy.com', :first_name => 'Leonard', :last_name => 'Nimoy', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
+hanks = User.create(:email => 'thanks@thanksbanks.com', :first_name => 'Tom', :last_name => 'Hanks', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
+dicaprio = User.create(:email => 'leon.ardo.di@caprio.net', :first_name => 'Leonardo', :last_name => 'DiCaprio', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
 
 
-User.create(:email => 'thomas@hobbes.co.uk', :first_name => 'Thomas', :last_name => 'Hobbes', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-User.create(:email => 'einsteinsemail@einstein.biz', :first_name => 'Albert', :last_name => 'Einstein', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-User.create(:email => 'edison@foundingfathers.com', :first_name => 'Thomas', :last_name => 'Edison', :password => 'password', :password_confirmation => 'password', :role => :faculty)
+locke = User.create(:email => 'JLocke@philosophers.co.uk', :first_name => 'John', :last_name => 'Locke', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
+tzu = User.create(:email => 'lao@tzu2.ch', :first_name => 'Lao', :last_name => 'Tzu', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
+nietzsche = User.create(:email => 'friedrich@nietzsche.de', :first_name => 'Friedrich', :last_name => 'Nietzsche', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
 
 
-User.create(:email => 'nk@tesla.cr', :first_name => 'Nikolai', :last_name => 'Tesla', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-User.create(:email => 'galileo@galileo.gr', :first_name => 'Galileo', :last_name => 'Galilei', :password => 'password', :password_confirmation => 'password', :role => :faculty)
-User.create(:email => 'leonard@euler.com', :first_name => 'Leonard', :last_name => 'Euler', :password => 'password', :password_confirmation => 'password', :role => :faculty)
+hobbes = User.create(:email => 'thomas@hobbes.co.uk', :first_name => 'Thomas', :last_name => 'Hobbes', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
+einstein = User.create(:email => 'einsteinsemail@einstein.biz', :first_name => 'Albert', :last_name => 'Einstein', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
+edison = User.create(:email => 'edison@foundingfathers.com', :first_name => 'Thomas', :last_name => 'Edison', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
+
+
+tesla = User.create(:email => 'nk@tesla.cr', :first_name => 'Nikolai', :last_name => 'Tesla', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
+galileo = User.create(:email => 'galileo@galileo.gr', :first_name => 'Galileo', :last_name => 'Galilei', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
+euler = User.create(:email => 'leonard@euler.com', :first_name => 'Leonard', :last_name => 'Euler', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
 
 
 User.create(:email => 'therealdeal@foundingfathers.com', :first_name => 'Benjamin', :last_name => 'Franklin', :password => 'password', :password_confirmation => 'password', :role => :faculty)
@@ -78,22 +78,24 @@ spartans = User.create(:email => '300@spartans.gr', :first_name => 'The 300', :l
 
 # # # # # # # # COURSES # # # # # # # # # # #
 
-snork1 = Course.create(:name => 'The art of Snorkeling', :course_number => 'Snork-104', :section => '1', :term => 'Winter').id
-snork2 = Course.create(:name => 'The sound of Snorkeling', :course_number => 'Snork-204', :section => '2', :term => 'Winter').id
-snork3 = Course.create(:name => 'The smell of Snorkeling', :course_number => 'Snork-304', :section => '1', :term => 'Winter').id
-snork4 = Course.create(:name => 'How to breathe underwater', :course_number => 'Snork-704', :section => '1', :term => 'Winter').id
+# faculty usernames: nimoy hanks dicaprio locke tzu nitzsche hobbes einstein edison tesla galileo euler obama
+
+snork1 = Course.create(:name => 'The art of Snorkeling', :course_number => 'Snork-104', :section => '1', :term => 'Winter', :user_id => nimoy).id
+snork2 = Course.create(:name => 'The sound of Snorkeling', :course_number => 'Snork-204', :section => '2', :term => 'Winter', :user_id => nimoy).id
+snork3 = Course.create(:name => 'The smell of Snorkeling', :course_number => 'Snork-304', :section => '1', :term => 'Winter', :user_id => hanks).id
+snork4 = Course.create(:name => 'How to breathe underwater', :course_number => 'Snork-704', :section => '1', :term => 'Winter', :user_id => dicaprio).id
 
 
-cs120 = Course.create(:name => 'Introduction to Software Development', :course_number => 'CSSE-120', :section => '1', :term => 'Winter').id
-sr1 = Course.create(:name => 'Senior Project I', :course_number => 'CSSE-497', :section => '1', :term => 'Fall').id
+cs120 = Course.create(:name => 'Introduction to Software Development', :course_number => 'CSSE-120', :section => '1', :term => 'Winter', :user_id => locke).id
+sr1 = Course.create(:name => 'Senior Project I', :course_number => 'CSSE-497', :section => '1', :term => 'Fall', :user_id => tzu).id
 
-sr2 = Course.create(:name => 'Senior Project II', :course_number => 'CSSE-498', :section => '1', :term => 'Winter').id
-tie = Course.create(:name => 'How to tie a tie', :course_number => 'Tie-532', :section => '1', :term => 'Life').id
+sr2 = Course.create(:name => 'Senior Project II', :course_number => 'CSSE-498', :section => '1', :term => 'Winter', :user_id => hobbes).id
+tie = Course.create(:name => 'How to tie a tie', :course_number => 'Tie-532', :section => '1', :term => 'Life', :user_id => einstein).id
 
-shop1 = Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Summer').id
-shop2 = Course.create(:name => 'More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Fall').id
-shop3 = Course.create(:name => 'Even More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Winter').id
-shop4 = Course.create(:name => 'Shopping and dropping', :course_number => 'Shop-208', :section => '1', :term => 'Spring').id
+shop1 = Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Summer', :user_id => tesla).id
+shop2 = Course.create(:name => 'More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Fall', :user_id => galileo).id
+shop3 = Course.create(:name => 'Even More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Winter', :user_id => euler).id
+shop4 = Course.create(:name => 'Shopping and dropping', :course_number => 'Shop-208', :section => '1', :term => 'Spring', :user_id => obama).id
 
 # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -121,6 +123,8 @@ Tagroup.create(:course_id => snork3, :user_id => spartans)
 Tagroup.create(:course_id => snork3, :user_id => stark)
 
 Studentgroup.create(:course_id => snork4, :user_id => batman)
+Tagroup.create(:course_id => snork4, :user_id => spartans)
+
 
 Studentgroup.create(:course_id => tie, :user_id => mandella)
 Studentgroup.create(:course_id => tie, :user_id => jackson)
@@ -156,3 +160,48 @@ Studentgroup.create(:course_id => shop4, :user_id => fatalbert)
 Tagroup.create(:course_id => shop4, :user_id => batman)
 
 
+# # # # # # # # # # # # # # # # # # # # # # #
+
+# # # # # # # # ASSIGNMENTS # # # # # # # # # #
+
+LastMonth = Time.now - 1.month
+LastWeek = Time.now - 1.week
+Yesterday = Time.now - 1.day
+
+NextMonth = Time.now + 1.month
+NextWeek = Time.now + 1.week
+Tomorrow = Time.now + 1.day
+
+snork1_a = Assignment.create(:course_id => snork1, :start_date => Yesterday, :end_date => NextWeek, :name => "How to hold your breath!").id
+snork2_a = Assignment.create(:course_id => snork2, :start_date => Tomorrow, :end_date => NextWeek, :name => "Using Sonar").id
+snork3_a = Assignment.create(:course_id => snork3, :start_date => NextWeek, :end_date => NextMonth, :name => "Breathing Through a Tube").id
+snork4_a = Assignment.create(:course_id => snork4, :start_date => Yesterday, :end_date => Tomorrow, :name => "Relinquishing Mortality").id
+
+cs120_a = Assignment.create(:course_id => cs120, :start_date => NextMonth, :end_date => NextMonth + 1.day, :name => "Programming with Letters").id
+
+sr1_a = Assignment.create(:course_id => sr1, :start_date => LastMonth, :end_date => LastMonth, :name => "Fitness survey").id
+sr2_a = Assignment.create(:course_id => sr2, :start_date => NextMonth, :end_date => NextMonth, :name => "Happiness survey").id
+
+tie_a = Assignment.create(:course_id => tie, :start_date => Tomorrow, :end_date => NextWeek, :name => "Stretching Your Fingers").id
+
+shop1_a = Assignment.create(:course_id => shop1, :start_date => LastMonth, :end_date => LastWeek, :name => "Window Shopping").id
+shop2_a = Assignment.create(:course_id => shop2, :start_date => LastWeek, :end_date => Yesterday, :name => "Extreme Couponing").id
+shop3_a = Assignment.create(:course_id => shop3, :start_date => Yesterday, :end_date => NextWeek, :name => "Shopping 4 Free").id
+shop4_a = Assignment.create(:course_id => shop4, :start_date => NextWeek, :end_date => NextMonth, :name => "Dropping Practice").id
+
+AssignmentDefinition.create(:assignment_id => snork1_a, :description => "Don't screw up.")
+AssignmentDefinition.create(:assignment_id => snork2_a, :description => "Listen carefully.")
+AssignmentDefinition.create(:assignment_id => snork3_a, :description => "Inflate the nostrils.")
+AssignmentDefinition.create(:assignment_id => snork4_a, :description => "Step 1. Relax!")
+
+AssignmentDefinition.create(:assignment_id => cs120_a, :description => "Spell stuff.")
+
+AssignmentDefinition.create(:assignment_id => sr1_a, :description => "How fit are you?")
+AssignmentDefinition.create(:assignment_id => sr2_a, :description => "How happy are you?")
+
+AssignmentDefinition.create(:assignment_id => tie_a, :description => "Be sure not to strain the fingers.")
+
+AssignmentDefinition.create(:assignment_id => shop1_a, :description => "Look carefully.")
+AssignmentDefinition.create(:assignment_id => shop2_a, :description => "The more you buy, the more you save!")
+AssignmentDefinition.create(:assignment_id => shop3_a, :description => "Stealing is only illegal if you get caught!")
+AssignmentDefinition.create(:assignment_id => shop4_a, :description => "Shop, drop, and roll!")
