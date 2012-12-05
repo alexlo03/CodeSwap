@@ -31,16 +31,6 @@ Assignment Description:
 </div>
 
 
-<div>
-Upload Files:
-<%= form_tag("/assignment/upload", :method => "post",:multipart => true) do %>
-<p><label for="upload">Select File</label> 
-<%= file_field_tag 'datafile', :multiple=>"multiple"%></p>
-<%= hidden_field_tag 'assignment_definition_id', 1 %>
-<%= submit_tag "Upload" %>
-<% end %>
-</div>
-
 
 
 <p class='btn' onClick='submitAssignment();'>Submit</p>
