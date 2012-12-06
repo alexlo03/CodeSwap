@@ -12,7 +12,7 @@
 
 User.create(:email => 'notadmin@codeswap.com', :first_name => 'Sneaky', :last_name => 'Admin', :password => 'password', :password_confirmation => 'password', :role => :admin)
 User.create(:email => 'admin@codeswap.com', :first_name => 'Administrator', :last_name => 'Joel', :password => 'password', :password_confirmation => 'password', :role => :admin)
-User.create(:email => 'admin@test.com', :first_name => 'Administrator', :last_name => 'Frodo', :password => 'password', :password_confirmation => 'password', :role => :admin)
+User.create(:email => 'admin@test.com', :first_name => 'Administrator', :last_name => 'Bilbo', :password => 'password', :password_confirmation => 'password', :role => :admin)
 
 
 User.create(:email => 'heman@masteroftheuniverse.com', :first_name => 'Administrator', :last_name => 'He-Man', :password => 'password', :password_confirmation => 'password', :role => :admin)
