@@ -16,17 +16,20 @@ CodeSwap::Application.routes.draw do
 
   match "admin/create_faculty", :controller => 'admin', :action => 'create_faculty'
   match 'admin', :controller => 'admin', :action => 'index', :as => 'admin_path'
+  match 'users', :controller => 'admin', :action => 'index', :as => 'view_users'
   match 'admin/add_user', :controller => 'admin', :action => 'add_user'
-  match 'admin/view_faculty', :controller => 'admin', :action => 'view_faculty', :as => 'view_faculty'
-  match 'admin/view_admin', :controller => 'admin', :action => 'view_admin', :as => 'view_admin'
-  match 'admin/view_students', :controller => 'admin', :action => 'view_students', :as => 'view_students'
-  match 'admin/view_tas', :controller => 'admin', :action => 'view_tas', :as => 'view_tas'
+  match 'view_faculty', :controller => 'admin', :action => 'view_faculty', :as => 'view_faculty'
+  match 'view_admin', :controller => 'admin', :action => 'view_admin', :as => 'view_admin'
+  match 'view_students', :controller => 'admin', :action => 'view_students', :as => 'view_students'
   match 'admin/delete_user', :controller => 'admin', :action => 'delete_user'
   match 'admin/search_users', :controller => 'admin', :action => 'search_users', :as => 'search_users'
   match 'admin/view_user_info', :controller => 'admin', :action => 'view_user_info', :as => 'view_user_info'
+  match 'admin/recent_activity', :controller => 'admin', :action => 'view_recent_activity'
   match 'faculty/add_course', :controller => 'faculty', :action => 'add_course', :as => 'add_course'
   match 'course/show/:id', :controller => 'course', :action=>'show', :as => 'show_course'
   get "faculty/index"
+  match 'faculty/index', :controller => 'faculty', :action => 'index', :as => 'faculty_index'
+  match '/courses', :controller => 'faculty', :action => 'index', :as => 'course_index'
   get "faculty/new_course" 
   get "faculty/add_course" 
   get "assignment/index"

@@ -69,8 +69,19 @@ class AdminController < ApplicationController
     u = User.find_by_id(params[:id])
     u['student_in'] = u.student_in
     u['ta_in'] = u.ta_in
+    u['professor_of'] = u.professor_of
     u['name'] = u.friendly_full_name
     render :json => u.to_json
+  end
+
+  def view_recent_activity
+    requires ['admin']
+    
+    currentUsers = User.where('current_sign_in_at not null').order(:current_sign_in_at).reverse
+    
+    currentUsers['bs'] = 'bs' 
+
+    render :json => currentUsers.to_json
   end
 
   def search_users

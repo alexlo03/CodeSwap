@@ -34,7 +34,7 @@
               <li><%= link_to "Welcome, " + current_user.friendly_full_name + "!"%></li> <!-- TODO: Make a user settings page that this links to!!!! -->
               <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
             <% else %>
-              <li data-target="#logInModal" role="button" data-toggle="modal"><%= link_to "Log in" %></li>
+              <li data-target="#logInModal" role="button" data-toggle="modal"><%= link_to "Sign in" %></li>
             <% end %>
           </ul>
         </div>
