@@ -86,6 +86,7 @@ class AdminController < ApplicationController
     render :json => u.to_json
   end
 
+<<<<<<< .merge_file_x3v6Nd
   def view_recent_activity
     requires ['admin']
     
@@ -96,7 +97,9 @@ class AdminController < ApplicationController
     render :json => currentUsers.to_json
   end
 
+=======
 	#Searches through users for partial matches of first name, last name, role, and emails. 
+>>>>>>> .merge_file_urTaCd
   def search_users
     requires ['admin']
     email = '%'

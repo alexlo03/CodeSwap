@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <% if current_user.admin? %>
-  <li><%= link_to "Admin", admin_index_path %></li>
-  <li><%= link_to "Courses", faculty_index_path %></li>
+  <li><%= link_to "Manage Users", view_users_path %></li>
+  <li><%= link_to "Manage Courses", course_index_path %></li>
 <% elsif current_user.faculty? %>
-  <li><%= link_to "Faculty" %></li>
-  <li><%= link_to "Courses", faculty_index_path %></li>
-  <li><%= link_to "Assignments", assignment_index_path %></li>
+  <li><%= link_to "Courses", course_index_path %></li>
+  <li><%= link_to "Assignments Overview", assignment_index_path %></li>
 <% elsif current_user.ta? %>
-  <li><%= link_to "Teaching Assistant" %></li>
-  <li><%= link_to "Assignments", assignment_index_path %></li>
+  <li><%= link_to "My Courses", course_index_path %></li>
+  <li><%= link_to "My Assignments", assignment_index_path %></li>
 <% elsif current_user.student? %>
-  <li><%= link_to "Student" %></li>
-  <li><%= link_to "Assignments", assignment_index_path %></li>
+  <li><%= link_to "My Courses", course_index_path %></li>
+  <li><%= link_to "My Assignments", assignment_index_path %></li>
 <% end %>

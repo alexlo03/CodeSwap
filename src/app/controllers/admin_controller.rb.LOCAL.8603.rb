@@ -1,7 +1,5 @@
 class AdminController < ApplicationController
   
-
-	#List 5 oldest students, admins, and faculty members (teachers)
   def index
     requires ['admin']
     @students = User.find_all_by_role([:student, :ta]).take(5)
@@ -25,7 +23,6 @@ class AdminController < ApplicationController
         :password_confirmation => 'password',
         :role => params[:role],
         :id =>  User.last.id + 1)
-			#Create random password, requires members to respond to email before using the system.
       o =[('a'..'z'),('A'..'Z'),('0'..'9')].map{|i| i.to_a}.flatten
       u.reset_password_token = (0...12).map{ o[rand(o.length)] }.join
       u.reset_password_sent_at = Time.now
@@ -40,8 +37,6 @@ class AdminController < ApplicationController
   end
 
   def delete_user
-		#Removes user from the database
-		#TODO Cascading deletes?
     requires ['admin']
     u = User.find_by_email(params[:email])
     u.destroy
@@ -49,33 +44,26 @@ class AdminController < ApplicationController
   end
 
 
-	#View all faculty members
   def view_faculty
     requires ['admin']
     @faculty = User.find_all_by_role('faculty')
   end
 
-	#View all admins
   def view_admin
     requires ['admin']
     @admins = User.find_all_by_role('admin')
   end
 
-	#View all students
   def view_students
     requires ['admin']
     @students = User.find_all_by_role('student')
   end
 
-
-	#View all TAs
-	#TODO Delete if safe to remove
   def view_tas
     requires ['admin']
     @tas = User.find_all_by_role('ta')
   end
 
-	#view for a specific user
   def view_user_info
     requires ['admin']
     u = User.find_by_id(params[:id])
@@ -96,29 +84,21 @@ class AdminController < ApplicationController
     render :json => currentUsers.to_json
   end
 
-	#Searches through users for partial matches of first name, last name, role, and emails. 
   def search_users
     requires ['admin']
     email = '%'
     firstname = '%'
     lastname = '%'
-		#If parameters are present, set the variables equal to the parameters.
     email = '%' + params[:email] + '%' if params[:email] != ''
     firstname = '%' + params[:first_name] + '%' if params[:first_name] != ''
     lastname = '%' + params[:last_name] + '%' if params[:last_name] != ''
     u = User.where('role = ?', params[:role])
-
-		#Do the actual searches
     matching_first_name = User.where('lower(first_name) like ?', firstname.downcase)
     matching_last_name = User.where('lower(last_name) like ?', lastname.downcase)
     matching_email = User.where('lower(email) like ?', email.downcase)
-		
-		#Add results to return list
     u = u & matching_first_name if matching_first_name
     u = u & matching_last_name if matching_last_name
     u = u & matching_email if matching_email
-	
-		#Sort list (if option seleced)
     u.order_by(:email) if params[:sortby] == 'email'
     render :json => u.to_json
   end

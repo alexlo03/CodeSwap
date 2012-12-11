@@ -1,16 +1,18 @@
-<p>Home</p>
-
 
 <% unless current_user %>
-  You should log in.
+  You should <u data-target="#logInModal" role="button" data-toggle="modal"><%= link_to "Sign in" %></u>!
 <% else %>
   <% if current_user.admin? %>
     You are logged in as an administrator!
+    <%= render '/home/admin_home' %>
   <% elsif current_user.faculty? %>
     You are logged in as faculty!
-  <% elsif current_user.ta? %>
-    You're logged in as a TA!!!!!!!!!!!!!!!!
+    <%= render '/home/faculty_home' %>
   <% elsif current_user.student? %>
     You are a student.
+    <%= render '/home/student_home' %>
+  <% end %>
+  <% if current_user.ta? %>
+    You have TA access for some courses!
   <% end %>
 <% end %>
