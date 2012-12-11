@@ -15,14 +15,13 @@
         <td><%= course.course_number + ' - ' + course.section.to_s%></td>
         <td><%= course.name %></td>
         <td><%= course.term %></td>   
-        <td><a href=<%= "../course/show/"+course.id.to_s%> class="btn">View</a></td>
+        <td>
+          <a href=<%= "../course/show/"+course.id.to_s%> class="btn">View</a>
+          <a href=<%= "../course/edit/"+course.id.to_s%> class="btn">Edit</a>
+        </td>
       </tr>
   <% end %>
   </tbody>
 </table>
 </br>
 <p class="btn" id='add_course' onclick='window.location.href="/faculty/new_course"'>Add Course</p>
-
-
-
-

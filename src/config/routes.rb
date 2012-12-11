@@ -27,6 +27,7 @@ CodeSwap::Application.routes.draw do
   match 'admin/recent_activity', :controller => 'admin', :action => 'view_recent_activity'
   match 'faculty/add_course', :controller => 'faculty', :action => 'add_course', :as => 'add_course'
   match 'course/show/:id', :controller => 'course', :action=>'show', :as => 'show_course'
+  match 'course/edit/:id', :controller => 'course', :action => 'edit', :as => 'edit_course'
   get "faculty/index"
   match 'faculty/index', :controller => 'faculty', :action => 'index', :as => 'faculty_index'
   match '/courses', :controller => 'faculty', :action => 'index', :as => 'course_index'
