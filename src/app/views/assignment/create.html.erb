@@ -37,7 +37,7 @@ Assignment Description:
 <p class='btn' onClick='assignments.create.submitAssignment();'>Submit</p>
 
 <script type='text/javascript' >
-  assignments.create.pageLoad();
+  assignments.create.pageLoad(<%= @course.id %>);
 </script>
 
 

@@ -1,13 +1,16 @@
 
+var course_id;
+
 assignments = {
 
   create: {
     
-    pageLoad: function() {
+    pageLoad: function(courseId) {
         $('#start-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#start-date').datepicker('hide'); });
 
         $('#end-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
-
+        
+        course_id = courseId; 
     },
 
     submitAssignment: function() {
@@ -15,10 +18,10 @@ assignments = {
       var endDate = $('#end-date-value').val();
       var name = $('#name').val();
       var desc = $('#description').val();
-      if(!datesFormatOK(startDate, endDate)) {
+      if(!assignments.create.datesFormatOK(startDate, endDate)) {
         alert('Please verify the dates entered are valid.');  
       }
-      else if(!dateTimesOK(startDate, endDate)) {
+      else if(!assignments.create.dateTimesOK(startDate, endDate)) {
         alert('The start date cannot occur after the end date.');
       }
       else {
@@ -27,9 +30,9 @@ assignments = {
           'endDate':endDate,
           'name':name,
           'description':desc,
-          'course_id':<%= @course.id %>
+          'course_id':course_id
           }, function() {
-            window.location = '/course/show/' + <%= @course.id %>;
+            window.location = '/course/show/' + course_id;
           }          
         );
       }
@@ -40,7 +43,7 @@ assignments = {
       return (startDate.split('-').length == 3) && (endDate.split('-').length == 3);
     },
 
-    dateTimesOK = function(startDate, endDate) {
+    dateTimesOK : function(startDate, endDate) {
       startYear = startDate.split('-')[2];
       startDay = startDate.split('-')[1];
       startMonth = startDate.split('-')[0];
