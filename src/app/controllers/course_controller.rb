@@ -1,3 +1,4 @@
+# TODO: Email Notifications for Administrators
 class CourseController < ApplicationController
 	
 	#Show information about a course
@@ -16,4 +17,26 @@ class CourseController < ApplicationController
       @assignments = Assignment.where(:course_id => id)
     end
   end
+
+  
+  # GET
+  def edit
+    id = params[:id]
+    @course = Course.find(id)
+    if(@course.nil?)
+      flash[:error] = 'Something has gone horribly wrong. A system administrator has been contacted.'
+    else
+      student_ids = Studentgroup.where(:course_id => id).collect(&:user_id)
+      ta_ids = Tagroup.where(:course_id => id).collect(&:user_id)
+      
+      @students = User.find_all_by_id(student_ids)
+      @tas = User.find_all_by_id(ta_ids)
+    end
+  end
+
+  # POST
+  def edit_submit
+
+  end 
+
 end

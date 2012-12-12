@@ -1,0 +1,63 @@
+
+
+<p>Editing Course: <strong id='course_name'><%= @course.name %></strong></p>
+
+<p class='edit_course_info'>
+
+  <ul>
+    General Info: 
+    <ul>
+    <li>
+      Section: <strong id='course_section'><%= @course.section %></strong>
+    </t></li>
+
+    <li>
+      Term: <strong  id='course_term'><%= @course.term %></strong>
+    </li>
+    
+    <li>
+      Number: <strong id='course_number'><%= @course.course_number %></strong>  
+    </li>
+    </ul>
+  </ul>
+
+</p>
+
+<p class='edit_course_students'>
+    There are <strong><%= @students.count %></strong> students enrolled in the course. <t class='btn' id='toggle_students_button' onclick="$('#student_table').slideToggle('fast');">Show/Hide Student Roster</t>
+
+  <table class='table table-hover' id='student_table' style='display:none'>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.id %></td>
+          <td><%= student.friendly_full_name %></td>
+          <td id="<%= student.id %>_enrolled">Enrolled</td>
+          <td id="<%= student.id %>_add" style="display: none"><t class='btn' onclick="courses.edit.toggleStudent(<%=student.id%>);">Undo</t></td>
+          <td id="<%=student.id %>_remove"><t class='btn btn-danger' onclick="courses.edit.toggleStudent(<%=student.id%>);">Remove</t></td>
+        </tr>
+      <% end %>
+    </tbody>    
+  </table>
+</p>
+
+<p class='edit_course_tas'>
+    There are <strong><%= @tas.count %></strong> teaching assistants enrolled in the course. <t class='btn' onclick='courses.edit.editTAs();'>Edit TA Roster</t>
+</p>
+
+
+<script type='text/javascript'>
+  $(document).ready(function() {
+    courses.edit.pageLoad();
+  });
+
+</script>

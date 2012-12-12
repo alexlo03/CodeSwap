@@ -13,6 +13,9 @@
 
 schema.rb
 
+# Ignore all uploaded files.
+/src/Uploads/*
+
 # Ignore hashed files.
 [#]*[#]
 *.*~
