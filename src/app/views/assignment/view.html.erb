@@ -16,7 +16,6 @@
 <br/>
 <br/>
 
-<% if @assignment.
 <%= form_tag("/assignment/upload", :method => "post",:multipart => true) do %>
 <p><label for="upload">Select File</label> 
 <%= file_field_tag 'datafile' %></p>
