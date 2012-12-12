@@ -164,6 +164,8 @@ class AssignmentController < ApplicationController
 		id = params[:id]
 		@assignment = Assignment.find(id)
     @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(id)
+		#Get previous submissions
+		@files = FileSubmission.where(:assignment_id => @id, :user_id => current_user.id)
 	end
 
 	def upload
@@ -188,9 +190,23 @@ class AssignmentController < ApplicationController
     File.open(path, 'wb') { |f| f.write(params['datafile'].read) }
     
 
-    flash[:notice] = "File Submitted Successfully! Well done! A++!"
+    flash[:notice] = "File Submitted Successfully! Well done! A++!" + submission.save_directory
     redirect_to '/assignment/index'
 
 	end
+
+
+	def adminView
+		assignment_id = params[:assignment_id]
+		@assignment = Assignment.find(assignment_id)
+		@fileSubmissions = FileSubmission.where(:assignment_id => assignment_id)
+	end
+
+	def download
+		file_id = params[:file_id]
+		file = FileSubmission.find(file_id)
+		send_file File.join(file.save_directory , file.name)
+	end
+
 
 end

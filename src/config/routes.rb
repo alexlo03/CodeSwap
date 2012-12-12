@@ -43,6 +43,8 @@ CodeSwap::Application.routes.draw do
   match 'assignment/submit_new', :controller => 'assignment', :action => 'submit_new'
   match 'assignment/submitchanges', :controller =>'assignment', :action => 'submitchanges'
   match 'assignment/upload', :controller => 'assignment', :action => 'upload'
+  match 'assignment/adminView/:assignment_id', :controller => 'assignment', :action => 'adminView'
+  match 'assignment/download/:file_id', :controller => 'assignment', :action => 'download'
 
 
   # The priority is based upon order of creation:

@@ -9,7 +9,6 @@ Creating assignment for <%= @course.name %>
 <%=render '/assignment/assignment_form' %>
 
 <p class='btn' onClick='assignments.create.submitAssignment();'>Submit</p>
-<a class='btn' href="/assignment/view/<%= @assignment.id %>">Cancel</p>
 <script type='text/javascript' >
   assignments.create.pageLoad(<%= @course.id %>);
 </script>
