@@ -38,8 +38,12 @@ CodeSwap::Application.routes.draw do
   match 'assignment', :controller => 'assignment', :action=> 'index'
   match 'assignments', :controller => 'assignment', :action=> 'index'
   match 'assignment/create/:course_id', :controller => 'assignment', :action => 'create' 
+<<<<<<< HEAD
+	match 'assignment/view/:id',:controller => 'assignment', :action => 'view', :as => 'assignment_view'
+=======
   match 'assignment/edit/:assignment_id', :controller => 'assignment', :action => 'edit' 
 	match 'assignment/view/:id',:controller => 'assignment', :action => 'view'
+>>>>>>> 290bfb582878e6b3e8f96685a43779b5b29a7b91
   match 'assignment/submit_new', :controller => 'assignment', :action => 'submit_new'
   match 'assignment/submitchanges', :controller =>'assignment', :action => 'submitchanges'
   match 'assignment/upload', :controller => 'assignment', :action => 'upload'
