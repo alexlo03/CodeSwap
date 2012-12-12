@@ -104,60 +104,60 @@ shop4 = Course.create(:name => 'Shopping and dropping', :course_number => 'Shop-
 
 # student usernames:  queen mandella jackson poppins stewart fatalbert hulk parker gandhi emperor stark superman batman spartans
 
-Studentgroup.create(:course_id => snork1, :user_id => queen)
-Studentgroup.create(:course_id => snork1, :user_id => mandella)
-Studentgroup.create(:course_id => snork1, :user_id => jackson)
-Tagroup.create(:course_id => snork1, :user_id => gandhi)
-Tagroup.create(:course_id => snork1, :user_id => stewart)
-Tagroup.create(:course_id => snork1, :user_id => obama)
+snork1_students = [queen, mandella, jackson]
+snork1_tas = [gandhi, stewart, obama]
 
-Studentgroup.create(:course_id => snork2, :user_id => fatalbert)
-Studentgroup.create(:course_id => snork2, :user_id => hulk)
-Tagroup.create(:course_id => snork2, :user_id => poppins)
+snork2_students = [fatalbert, hulk, poppins]
+snork2_tas = [poppins]
 
-Studentgroup.create(:course_id => snork3, :user_id => parker)
-Studentgroup.create(:course_id => snork3, :user_id => stewart)
-Studentgroup.create(:course_id => snork3, :user_id => gandhi)
-Tagroup.create(:course_id => snork3, :user_id => superman)
-Tagroup.create(:course_id => snork3, :user_id => spartans)
-Tagroup.create(:course_id => snork3, :user_id => stark)
+snork3_students = [parker, stewart, gandhi]
+snork3_tas = [superman, spartans, stark]
 
-Studentgroup.create(:course_id => snork4, :user_id => batman)
-Tagroup.create(:course_id => snork4, :user_id => spartans)
+snork4_students = [batman]
+snork4_tas = [spartans]
+
+tie_students = [mandella, jackson, fatalbert, hulk, parker, gandhi, emperor, stark, superman, batman, spartans]
+tie_tas = [poppins]
+
+shop1_students = [poppins, stewart, fatalbert]
+shop1_tas = [batman, fatalbert]
+
+shop2_students = [poppins, stewart, fatalbert]
+shop2_tas = [batman, jackson]
+
+shop3_students = [poppins, parker, superman]
+shop3_tas = [batman, queen, mandella]
+
+shop4_students = [hulk, parker, superman]
+shop4_tas = [batman, stark, spartans]
 
 
-Studentgroup.create(:course_id => tie, :user_id => mandella)
-Studentgroup.create(:course_id => tie, :user_id => jackson)
-Studentgroup.create(:course_id => tie, :user_id => fatalbert)
-Studentgroup.create(:course_id => tie, :user_id => hulk)
-Studentgroup.create(:course_id => tie, :user_id => parker)
-Studentgroup.create(:course_id => tie, :user_id => gandhi)
-Studentgroup.create(:course_id => tie, :user_id => emperor)
-Studentgroup.create(:course_id => tie, :user_id => stark)
-Studentgroup.create(:course_id => tie, :user_id => superman)
-Studentgroup.create(:course_id => tie, :user_id => batman)
-Studentgroup.create(:course_id => tie, :user_id => spartans)
-Tagroup.create(:course_id => tie, :user_id => poppins)
+snork1_students.each{ |s| Studentgroup.create(:course_id => snork1, :user_id => s)}
+snork1_tas.each{ |t| Tagroup.create(:course_id => snork1, :user_id => t)} 
 
-Studentgroup.create(:course_id => shop1, :user_id => poppins)
-Studentgroup.create(:course_id => shop1, :user_id => stewart)
-Studentgroup.create(:course_id => shop1, :user_id => fatalbert)
-Tagroup.create(:course_id => shop1, :user_id => batman)
+snork2_students.each{ |s| Studentgroup.create(:course_id => snork2, :user_id => s)}
+snork2_tas.each{ |t| Tagroup.create(:course_id => snork2, :user_id => t)}
 
-Studentgroup.create(:course_id => shop2, :user_id => poppins)
-Studentgroup.create(:course_id => shop2, :user_id => stewart)
-Studentgroup.create(:course_id => shop2, :user_id => fatalbert)
-Tagroup.create(:course_id => shop2, :user_id => batman)
+snork3_students.each{ |s| Studentgroup.create(:course_id => snork3, :user_id => s)}
+snork3_tas.each{ |t| Tagroup.create(:course_id => snork3, :user_id => t)}
 
-Studentgroup.create(:course_id => shop3, :user_id => poppins)
-Studentgroup.create(:course_id => shop3, :user_id => stewart)
-Studentgroup.create(:course_id => shop3, :user_id => fatalbert)
-Tagroup.create(:course_id => shop3, :user_id => batman)
+snork4_students.each{ |s| Studentgroup.create(:course_id => snork4, :user_id => s)}
+snork4_tas.each{ |t| Tagroup.create(:course_id => snork4, :user_id => t)}
 
-Studentgroup.create(:course_id => shop4, :user_id => poppins)
-Studentgroup.create(:course_id => shop4, :user_id => stewart)
-Studentgroup.create(:course_id => shop4, :user_id => fatalbert)
-Tagroup.create(:course_id => shop4, :user_id => batman)
+tie_students.each{ |s| Studentgroup.create(:course_id => tie, :user_id => s)}
+tie_tas.each{ |t| Tagroup.create(:course_id => tie, :user_id => t)}
+
+shop1_students.each{ |s| Studentgroup.create(:course_id => shop1, :user_id => s)}
+shop1_tas.each{ |t| Tagroup.create(:course_id => shop1, :user_id => t)}
+
+shop2_students.each{ |s| Studentgroup.create(:course_id => shop2, :user_id => s)}
+shop2_tas.each{ |t| Tagroup.create(:course_id => shop2, :user_id => t)}
+
+shop3_students.each{ |s| Studentgroup.create(:course_id => shop3, :user_id => s)}
+shop3_tas.each{ |t| Tagroup.create(:course_id => shop3, :user_id => t)}
+
+shop4_students.each{ |s| Studentgroup.create(:course_id => shop4, :user_id => s)}
+shop4_tas.each{ |t| Tagroup.create(:course_id => shop4, :user_id => t)}
 
 
 # # # # # # # # # # # # # # # # # # # # # # #
@@ -172,36 +172,52 @@ NextMonth = Time.now + 1.month
 NextWeek = Time.now + 1.week
 Tomorrow = Time.now + 1.day
 
-snork1_a = Assignment.create(:course_id => snork1, :start_date => Yesterday, :end_date => NextWeek, :name => "How to hold your breath!").id
-snork2_a = Assignment.create(:course_id => snork2, :start_date => Tomorrow, :end_date => NextWeek, :name => "Using Sonar").id
-snork3_a = Assignment.create(:course_id => snork3, :start_date => NextWeek, :end_date => NextMonth, :name => "Breathing Through a Tube").id
-snork4_a = Assignment.create(:course_id => snork4, :start_date => Yesterday, :end_date => Tomorrow, :name => "Relinquishing Mortality").id
+snork1_a_1 = Assignment.create(:course_id => snork1, :start_date => Yesterday, :end_date => NextWeek, :name => "How to hold your breath!").id
+snork2_a_1 = Assignment.create(:course_id => snork2, :start_date => Tomorrow, :end_date => NextWeek, :name => "Using Sonar").id
+snork3_a_1 = Assignment.create(:course_id => snork3, :start_date => NextWeek, :end_date => NextMonth, :name => "Breathing Through a Tube").id
+snork4_a_1 = Assignment.create(:course_id => snork4, :start_date => Yesterday, :end_date => Tomorrow, :name => "Relinquishing Mortality").id
 
-cs120_a = Assignment.create(:course_id => cs120, :start_date => NextMonth, :end_date => NextMonth + 1.day, :name => "Programming with Letters").id
+cs120_a_1 = Assignment.create(:course_id => cs120, :start_date => NextMonth, :end_date => NextMonth + 1.day, :name => "Programming with Letters").id
 
-sr1_a = Assignment.create(:course_id => sr1, :start_date => LastMonth, :end_date => LastMonth, :name => "Fitness survey").id
-sr2_a = Assignment.create(:course_id => sr2, :start_date => NextMonth, :end_date => NextMonth, :name => "Happiness survey").id
+sr1_a_1 = Assignment.create(:course_id => sr1, :start_date => LastMonth, :end_date => LastMonth, :name => "Fitness survey").id
+sr2_a_1 = Assignment.create(:course_id => sr2, :start_date => NextMonth, :end_date => NextMonth, :name => "Happiness survey").id
 
-tie_a = Assignment.create(:course_id => tie, :start_date => Tomorrow, :end_date => NextWeek, :name => "Stretching Your Fingers").id
+tie_a_1 = Assignment.create(:course_id => tie, :start_date => Tomorrow, :end_date => NextWeek, :name => "Stretching Your Fingers").id
 
-shop1_a = Assignment.create(:course_id => shop1, :start_date => LastMonth, :end_date => LastWeek, :name => "Window Shopping").id
-shop2_a = Assignment.create(:course_id => shop2, :start_date => LastWeek, :end_date => Yesterday, :name => "Extreme Couponing").id
-shop3_a = Assignment.create(:course_id => shop3, :start_date => Yesterday, :end_date => NextWeek, :name => "Shopping 4 Free").id
-shop4_a = Assignment.create(:course_id => shop4, :start_date => NextWeek, :end_date => NextMonth, :name => "Dropping Practice").id
+shop1_a_1 = Assignment.create(:course_id => shop1, :start_date => LastMonth, :end_date => LastWeek, :name => "Window Shopping").id
+shop2_a_1 = Assignment.create(:course_id => shop2, :start_date => LastWeek, :end_date => Yesterday, :name => "Extreme Couponing").id
+shop3_a_1 = Assignment.create(:course_id => shop3, :start_date => Yesterday, :end_date => NextWeek, :name => "Shopping 4 Free").id
+shop4_a_1 = Assignment.create(:course_id => shop4, :start_date => NextWeek, :end_date => NextMonth, :name => "Dropping Practice").id
 
-AssignmentDefinition.create(:assignment_id => snork1_a, :description => "Don't screw up.")
-AssignmentDefinition.create(:assignment_id => snork2_a, :description => "Listen carefully.")
-AssignmentDefinition.create(:assignment_id => snork3_a, :description => "Inflate the nostrils.")
-AssignmentDefinition.create(:assignment_id => snork4_a, :description => "Step 1. Relax!")
+snork1_a_d_1 = AssignmentDefinition.create(:assignment_id => snork1_a_1, :description => "Don't screw up.")
+snork2_a_d_1 = AssignmentDefinition.create(:assignment_id => snork2_a_1, :description => "Listen carefully.")
+snork3_a_d_1 = AssignmentDefinition.create(:assignment_id => snork3_a_1, :description => "Inflate the nostrils.")
+snork4_a_d_1 = AssignmentDefinition.create(:assignment_id => snork4_a_1, :description => "Step 1. Relax!")
 
-AssignmentDefinition.create(:assignment_id => cs120_a, :description => "Spell stuff.")
+cs120_a_d_1 = AssignmentDefinition.create(:assignment_id => cs120_a_1, :description => "Spell stuff.")
 
-AssignmentDefinition.create(:assignment_id => sr1_a, :description => "How fit are you?")
-AssignmentDefinition.create(:assignment_id => sr2_a, :description => "How happy are you?")
+sr1_a_d_1 = AssignmentDefinition.create(:assignment_id => sr1_a_1, :description => "How fit are you?")
+sr2_a_d_1 = AssignmentDefinition.create(:assignment_id => sr2_a_1, :description => "How happy are you?")
 
-AssignmentDefinition.create(:assignment_id => tie_a, :description => "Be sure not to strain the fingers.")
+tie_a_d_1 = AssignmentDefinition.create(:assignment_id => tie_a_1, :description => "Be sure not to strain the fingers.")
 
-AssignmentDefinition.create(:assignment_id => shop1_a, :description => "Look carefully.")
-AssignmentDefinition.create(:assignment_id => shop2_a, :description => "The more you buy, the more you save!")
-AssignmentDefinition.create(:assignment_id => shop3_a, :description => "Stealing is only illegal if you get caught!")
-AssignmentDefinition.create(:assignment_id => shop4_a, :description => "Shop, drop, and roll!")
+shop1_a_d_1 = AssignmentDefinition.create(:assignment_id => shop1_a_1, :description => "Look carefully.")
+shop2_a_d_1 = AssignmentDefinition.create(:assignment_id => shop2_a_1, :description => "The more you buy, the more you save!")
+shop3_a_d_1 = AssignmentDefinition.create(:assignment_id => shop3_a_1, :description => "Stealing is only illegal if you get caught!")
+shop4_a_d_1 = AssignmentDefinition.create(:assignment_id => shop4_a_1, :description => "Shop, drop, and roll!")
+
+snork1_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => snork1_a_d_1, :user_id => s) }
+snork2_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => snork2_a_d_1, :user_id => s) }
+snork3_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => snork3_a_d_1, :user_id => s) }
+snork4_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => snork4_a_d_1, :user_id => s) }
+
+tie_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => tie_a_d_1, :user_id => s) }
+
+shop1_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => shop1_a_d_1, :user_id => s) }
+shop2_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => shop2_a_d_1, :user_id => s) }
+shop3_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => shop3_a_d_1, :user_id => s) }
+shop4_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => shop4_a_d_1, :user_id => s) }
+
+
+
+
