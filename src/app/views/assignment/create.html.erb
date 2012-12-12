@@ -2,37 +2,11 @@
 
 <%= javascript_include_tag 'bootstrap-datepicker-1' %>
 
+<span id="flash" style="display:none; padding:4px; background-color:#F70; color:#000"></span>
 
 Creating assignment for <%= @course.name %>
 
-<div>
-Assignment Name: <input id='name' class='span2' size='16' type='text'/>
-</div>
-
-<div>
-Assignment Start Date:<p class="input-append date" id="start-date" data-date="<%= Time.now.strftime('%m-%d-%Y') %>" data-date-format="mm-dd-yyyy">
-<input id='start-date-value' class="span2" size="16" type="text" value="<%= Time.now.strftime('%m-%d-%Y') %>">
-  <span class="add-on"><i class="icon-th"></i></span>
-</p>
-</div>
-
-
-
-Assignment End Date: <p class="input-append date" id="end-date" data-date="<%= (Time.now + 1.week).strftime('%m-%d-%Y') %>" data-date-format="mm-dd-yyyy">
- <input class="span2" id='end-date-value' size="16" type="text" value="<%= (Time.now + 1.week).strftime('%m-%d-%Y') %>">
-  <span class="add-on"><i class="icon-th"></i></span>
-</p>
-
-
-
-<div>
-Assignment Description:
-<textarea id='description' class='span2' size='16' rows='3'></textarea>
-</div>
-
-
-
-<!-- TODO Add Cancel Button Here -->
+<%=render '/assignment/assignment_form' %>
 
 <p class='btn' onClick='assignments.create.submitAssignment();'>Submit</p>
 

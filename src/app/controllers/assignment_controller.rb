@@ -60,12 +60,20 @@ class AssignmentController < ApplicationController
   end
 
 
-  # GET
+  # Get course id for creating an assignment
   def create
     course_id = params[:course_id]
     @course = Course.find_by_id(course_id)
+    
   end
 
+  # Get data for editing an assignment
+  def edit
+    assignment_id = params[:assignment_id]
+    @assignment = Assignment.find_by_id(assignment_id)
+    @course = Course.find_by_id(@assignment.course_id)
+    @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(assignment_id)
+  end
 
   # POST
   def submit_new
@@ -106,11 +114,46 @@ class AssignmentController < ApplicationController
   end
 
 
+
+  # POST
+  def submitchanges
+		#Get values from the parameters
+    startDate = params[:startDate]
+    endDate = params[:endDate]
+    name = params[:name]
+    description = params[:description]
+    assignment_id = params[:assignment_id].to_i
+    
+
+		#Convert strings to Date objects using format MM/DD/YYYY
+    startDate = Date.strptime(startDate, '%m-%d-%Y')
+    endDate = Date.strptime(endDate, '%m-%d-%Y')
+
+		#Create a new assignment with startDate, endDate, name, and courseID
+    assignment = Assignment.find(assignment_id)
+      assignment.start_date = startDate
+      assignment.end_date = endDate
+      assignment.name = name
+    assignment.save
+		
+		#Create a new Assignment_Definition with the description given
+		#TODO: Allow multiple definitions per assignment
+    definition = AssignmentDefinition.find_by_assignment_id(assignment_id)
+      definition.description = description
+    definition.save
+    
+    flash[:notice] = 'Those changes are GRRRREAT!  Like Frosted Flakes.'
+  end
+
+
+
+
+
 	#Populate varibles for use in the view
 	def view
-		@id = params[:id]
-		@assignment = Assignment.find(@id)
-    @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(@id)
+		id = params[:id]
+		@assignment = Assignment.find(id)
+    @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(id)
 	end
 
 	def upload

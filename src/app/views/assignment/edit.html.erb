@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<%= javascript_include_tag 'bootstrap-datepicker-1' %>
+
+<span id="flash" style="display:none; padding:4px; background-color:#F70; color:#000"></span>
+
+Editing assignment for <%= @course.name %>
+
+<%=render '/assignment/assignment_form' %>
+
+<p class='btn' onClick="assignments.edit.submitAssignment('<%= @assignment.id %>');">Submit</p>
+
+<script type='text/javascript' >
+  assignments.edit.pageLoad("<%= raw @assignment.name %>", "<%= @assignment.start_date.strftime('%m-%d-%Y') %>","<%= @assignment.end_date.strftime('%m-%d-%Y') %>","<%= raw @assignmentDefinition.description %>");
+</script>
