@@ -22,7 +22,7 @@ User.create(:email => 'jiminy@thecricket.com', :first_name => 'Administrator', :
 
 # Faculty    nimoy hanks dicaprio locke tzu nitzsche hobbes einstein edison tesla galileo euler obama
 
-nimoy = User.create(:email => 'leonard.nimoy1@leonardnimoy.com', :first_name => 'Leonard', :last_name => 'Nimoy', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
+nimoy = User.create(:email => 'spock@enterprise.uss', :first_name => 'Leonard', :last_name => 'Nimoy', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
 hanks = User.create(:email => 'thanks@thanksbanks.com', :first_name => 'Tom', :last_name => 'Hanks', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
 dicaprio = User.create(:email => 'leon.ardo.di@caprio.net', :first_name => 'Leonardo', :last_name => 'DiCaprio', :password => 'password', :password_confirmation => 'password', :role => :faculty).id
 
@@ -189,22 +189,22 @@ shop2_a_1 = Assignment.create(:course_id => shop2, :start_date => LastWeek, :end
 shop3_a_1 = Assignment.create(:course_id => shop3, :start_date => Yesterday, :end_date => NextWeek, :name => "Shopping 4 Free").id
 shop4_a_1 = Assignment.create(:course_id => shop4, :start_date => NextWeek, :end_date => NextMonth, :name => "Dropping Practice").id
 
-snork1_a_d_1 = AssignmentDefinition.create(:assignment_id => snork1_a_1, :description => "Don't screw up.")
-snork2_a_d_1 = AssignmentDefinition.create(:assignment_id => snork2_a_1, :description => "Listen carefully.")
-snork3_a_d_1 = AssignmentDefinition.create(:assignment_id => snork3_a_1, :description => "Inflate the nostrils.")
-snork4_a_d_1 = AssignmentDefinition.create(:assignment_id => snork4_a_1, :description => "Step 1. Relax!")
+snork1_a_d_1 = AssignmentDefinition.create(:assignment_id => snork1_a_1, :description => "Don't screw up.").id
+snork2_a_d_1 = AssignmentDefinition.create(:assignment_id => snork2_a_1, :description => "Listen carefully.").id
+snork3_a_d_1 = AssignmentDefinition.create(:assignment_id => snork3_a_1, :description => "Inflate the nostrils.").id
+snork4_a_d_1 = AssignmentDefinition.create(:assignment_id => snork4_a_1, :description => "Step 1. Relax!").id
 
-cs120_a_d_1 = AssignmentDefinition.create(:assignment_id => cs120_a_1, :description => "Spell stuff.")
+cs120_a_d_1 = AssignmentDefinition.create(:assignment_id => cs120_a_1, :description => "Spell stuff.").id
 
-sr1_a_d_1 = AssignmentDefinition.create(:assignment_id => sr1_a_1, :description => "How fit are you?")
-sr2_a_d_1 = AssignmentDefinition.create(:assignment_id => sr2_a_1, :description => "How happy are you?")
+sr1_a_d_1 = AssignmentDefinition.create(:assignment_id => sr1_a_1, :description => "How fit are you?").id
+sr2_a_d_1 = AssignmentDefinition.create(:assignment_id => sr2_a_1, :description => "How happy are you?").id
 
-tie_a_d_1 = AssignmentDefinition.create(:assignment_id => tie_a_1, :description => "Be sure not to strain the fingers.")
+tie_a_d_1 = AssignmentDefinition.create(:assignment_id => tie_a_1, :description => "Be sure not to strain the fingers.").id
 
-shop1_a_d_1 = AssignmentDefinition.create(:assignment_id => shop1_a_1, :description => "Look carefully.")
-shop2_a_d_1 = AssignmentDefinition.create(:assignment_id => shop2_a_1, :description => "The more you buy, the more you save!")
-shop3_a_d_1 = AssignmentDefinition.create(:assignment_id => shop3_a_1, :description => "Stealing is only illegal if you get caught!")
-shop4_a_d_1 = AssignmentDefinition.create(:assignment_id => shop4_a_1, :description => "Shop, drop, and roll!")
+shop1_a_d_1 = AssignmentDefinition.create(:assignment_id => shop1_a_1, :description => "Look carefully.").id
+shop2_a_d_1 = AssignmentDefinition.create(:assignment_id => shop2_a_1, :description => "The more you buy, the more you save!").id
+shop3_a_d_1 = AssignmentDefinition.create(:assignment_id => shop3_a_1, :description => "Stealing is only illegal if you get caught!").id
+shop4_a_d_1 = AssignmentDefinition.create(:assignment_id => shop4_a_1, :description => "Shop, drop, and roll!").id
 
 snork1_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => snork1_a_d_1, :user_id => s) }
 snork2_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => snork2_a_d_1, :user_id => s) }

@@ -7,6 +7,10 @@
 </br>
 
 
+<% if current_user.id == @course.user_id %>
+    <a class='btn' href="<%= edit_course_path @course.id %>">Edit Course / Roster</a>
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="span6">
@@ -39,7 +43,7 @@
                 <td><%= user.friendly_full_name %></td>
                 <td><%= user.last_sign_in_at %></td>
                 <td>
-                  <p class='btn' onclick="viewUser('<%= user.id %>')">View</p>
+                  <p class='btn' onclick="users.viewUser('<%= user.id %>')">View</p>
                 </td>  
               </tr>
             <% end %>
@@ -70,7 +74,7 @@
                 <td><%= user.friendly_full_name %></td>
                 <td><%= user.last_sign_in_at %></td>
                 <td>
-                  <p class='btn' onclick="viewUser('<%= user.id %>')">View</p>
+                  <p class='btn' onclick="users.viewUser('<%= user.id %>')">View</p>
                 </td>  
               </tr>
             <% else %>
@@ -87,7 +91,11 @@
       <% if @user_is_student || @user_is_ta_or_faculty %>
         <h3>Assignments: </h3>
           <% @assignments.each do |assignment| %>
-            <p><%= assignment.name %></p>
+            <p><%= assignment.name %> <a class ='btn' href="<%= assignment_view_path assignment.id %>">View</a>
+              <% if @user_is_ta_or_faculty %>
+                <a class='btn' href="<%= edit_course_path(@course.id) %>">Edit</a>
+              <% end %>
+            </p>
           <% end %>
       <% end %>
 			<!-- only display to ta or faculty -->

@@ -11,13 +11,15 @@
   </thead>
   <tbody>
   <% @classes.each do |course| %>
-      <tr>
+      <tr <% if current_user.id == course.user_id %> class='info' <% end %> >
         <td><%= course.course_number + ' - ' + course.section.to_s%></td>
         <td><%= course.name %></td>
         <td><%= course.term %></td>   
         <td>
           <a href=<%= "../course/show/"+course.id.to_s%> class="btn">View</a>
-          <a href=<%= "../course/edit/"+course.id.to_s%> class="btn">Edit</a>
+          <% if current_user.id == course.user_id %>
+            <a href=<%= "../course/edit/"+course.id.to_s%> class="btn">Edit</a>
+          <% end %>
         </td>
       </tr>
   <% end %>

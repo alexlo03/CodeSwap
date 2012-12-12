@@ -35,8 +35,31 @@ class CourseController < ApplicationController
   end
 
   # POST
-  def edit_submit
+  def submit_edit
+    id = params[:course_id]
+    course_number = params[:number]
+    course_term = params[:term]
+    course_name = params[:name]
+    course_section = params[:section]
 
+    studentsToRemove = params[:students_to_remove]
+    tasToRemove = params[:tas_to_remove]
+
+    course = Course.find(id)
+    
+
+
+    course.course_number = course_number
+    course.term = course_term
+    course.name = course_name
+    course.section = course_section
+    course.save
+    
+    Studentgroup.delete_all(:course_id => id, :user_id => studentsToRemove)
+    Tagroup.delete_all(:course_id => id, :user_id => tasToRemove)
+
+    flash[:notice] = "Changes saved."
+  
   end 
 
 end

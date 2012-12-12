@@ -1,10 +1,34 @@
 
 
 var studentsToRemove = [];
+var tasToRemove = [];
 
 courses = {
   
   edit : {
+
+    submit: function() {
+
+      course_section = $('#course_section').text();
+      course_term = $('#course_term').text();
+      course_number = $('#course_number').text();    
+      course_name = $('#course_name').text();
+      course_id = $('#course_id').text();
+
+
+      $.post('/course/submit_edit/',
+        {'section':course_section,
+        'term':course_term,
+        'number':course_number,
+        'course_id':course_id,
+        'name':course_name,
+        'students_to_remove':studentsToRemove,
+        'tas_to_remove':tasToRemove
+        },
+        function() {
+          window.location = '/course/show/' + course_id;
+        });
+    },
 
     pageLoad : function() {
 
@@ -36,6 +60,26 @@ courses = {
 
     toggleStudentsDisplay: function() {
       
+    },
+
+    toggleTa: function(id) {
+      if($.inArray(id, tasToRemove) > -1) {
+        $('#'+id+'_enrolled').text('Enrolled');
+
+        tasToRemove = $.grep(tasToRemove, function(sid) {
+          return sid != id;
+        });
+
+        $('#'+id+'_add').toggle();
+        $('#'+id+'_remove').toggle();
+      }
+      else {
+        $('#'+id+'_enrolled').text('NOT Enrolled');
+        tasToRemove.push(id);
+        
+        $('#'+id+'_add').toggle();
+        $('#'+id+'_remove').toggle();
+      }
     },
 
     toggleStudent: function(id) {

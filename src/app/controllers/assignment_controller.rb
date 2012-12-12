@@ -1,62 +1,72 @@
 class AssignmentController < ApplicationController
 
   def index
-		requires ['admin', 'student', 'faculty'] #Validation of login and roles
-    studentAssignmentList = AssignmentDefinitionToUser.where(:user_id => current_user.id) #Get the mappings of Users to Assignment_Definitions
+		requires ['admin', 'student', 'faculty'] # Validation of login and roles
+
 	  pastAssignments = []
 	  currentAssignments = []
 	  futureAssignments = []
-	  studentAssignmentList.each do |adtu|
-			#Get the ID of the Assignment_Definition, then find it
-		  defID = adtu.assignment_definition_id 
-		  assignmentDefinition = AssignmentDefinition.find(defID) 
 
-			#Get the ID of the Assignment, then find it
-		  assignmentID = assignmentDefinition.assignment_id
-		  assignment = Assignment.find(assignmentID)
+    taCurrentAssignments = []
+    taFutureAssignments = []
+    taPastAssignments = []
 
-			#Sort Assignments by dates (past, current, and future)
-		  if(assignment.start_date > Time.now)
-			  futureAssignments.insert(0,assignment)
-		  elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
-			  currentAssignments.insert(0,assignment)
-		  else
-			  pastAssignments.insert(0,assignment)
-		  end
-	  end
-=begin
-    ## TODO: Add a separate TA list and distinguish the two on the view page.
-    taCourseIds = Tagroup.find_all_by_user_id(current_user.id).collect(&:course_id)
-    taAssignments = Assignment.where(taCourseIds.include? :course_id)
-    
-    taAssignments.each do |assignment|
-		  if(assignment.start_date > Time.now)
-			  futureAssignments.insert(0,assignment)
-		  elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
-			  currentAssignments.insert(0,assignment)
-		  else
-			  pastAssignments.insert(0,assignment)
-		  end
+
+    if current_user.student?
+
+      # Gathers Student's Assignments based on the AssignmentDefinitionToUser table
+  
+      studentAssignmentDefinitionIds = AssignmentDefinitionToUser.find_all_by_user_id(current_user.id).collect(&:assignment_definition_id)
+      studentAssignmentIDs = AssignmentDefinition.find_all_by_id(studentAssignmentDefinitionIds).collect(&:assignment_id)
+      studentAssignments = Assignment.find_all_by_id(studentAssignmentIDs)
+
+
+      studentAssignments.each do |assignment|
+		    if(assignment.start_date > Time.now)
+			    futureAssignments.insert(0,assignment)
+		    elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
+			    currentAssignments.insert(0,assignment)
+		    else
+			    pastAssignments.insert(0,assignment)
+		    end
+      end
+
+      taCourseIds = Tagroup.find_all_by_user_id(current_user.id).collect(&:course_id)
+      taAssignments = Assignment.where(:course_id => taCourseIds)
+      
+      taAssignments.each do |assignment|
+	      if(assignment.start_date > Time.now)
+		      taFutureAssignments.insert(0,assignment)
+	      elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
+		      taCurrentAssignments.insert(0,assignment)
+	      else
+		      taPastAssignments.insert(0,assignment)
+	      end
+      end
+
+	  else
+      facultyCourses = Course.find_all_by_user_id(current_user.id).collect(&:id)
+      facultyAssignments = Assignment.where(:course_id => facultyCourses)
+
+      facultyAssignments.each do |assignment|
+		    if(assignment.start_date > Time.now)
+			    futureAssignments.insert(0,assignment)
+		    elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
+			    currentAssignments.insert(0,assignment)
+		    else
+			    pastAssignments.insert(0,assignment)
+		    end
+      end
     end
 
-    facultyCourses = Course.find_all_by_user_id(current_user.id).collect(&:id)
-    facultyAssignments = Assignment.where(facultyCourses.include? :course_id)
-
-    facultyAssignments.each do |assignment|
-		  if(assignment.start_date > Time.now)
-			  futureAssignments.insert(0,assignment)
-		  elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
-			  currentAssignments.insert(0,assignment)
-		  else
-			  pastAssignments.insert(0,assignment)
-		  end
-    end
-
-=end
 		#Set global varibles for use in the view
 	  @pastAssignments = pastAssignments
 	  @futureAssignments = futureAssignments
 	  @currentAssignments = currentAssignments
+
+    @taPastAssignments = taPastAssignments
+    @taFutureAssignments = taFutureAssignments
+    @taCurrentAssignments = taCurrentAssignments
   end
 
 

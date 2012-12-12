@@ -6,7 +6,7 @@ class Assignment < ActiveRecord::Base
   attr_accessible :start_date, :end_date, :name, :description, :course_id
   
   def course
-    Course.find(:course_id)
+    Course.find(course_id)
   end
   
 end

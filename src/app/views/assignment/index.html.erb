@@ -6,6 +6,7 @@
 <table class='table table-hover'>
 	<thead>
 	  <tr>
+    <th>Course</th>
 		<th>Name</th>
 	  <th>Start Date</th>
 	  <th>Due Date</th>
@@ -13,13 +14,24 @@
 		</tr>
 	</thead>
 	<% @currentAssignments.each do |assignment| %>
-	  <tr>
+	  <tr class='success'>
+    <td><%= assignment.course.name %></td>
 		<td><%= assignment.name %></td>
 	  <td><%= assignment.start_date.to_date %></td>
 	  <td><%= assignment.end_date.to_date %></td>
 		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
 		</tr>
 	<% end %>
+	<% @taCurrentAssignments.each do |assignment| %>
+	  <tr class='info'>
+    <td><%= assignment.course.name %></td>
+		<td><%= assignment.name %></td>
+	  <td><%= assignment.start_date.to_date %></td>
+	  <td><%= assignment.end_date.to_date %></td>
+		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
+		</tr>
+	<% end %>
+
 </table>
 
 
@@ -27,26 +39,40 @@
 <table class='table table-hover'>
 	<thead>
 	  <tr>
+    <th>Course</th>
 		<th>Name</th>
 	  <th>Start Date</th>
 	  <th>Due Date</th>
 		<th></th>
 		</tr>
 	</thead>
+  
 	<% @futureAssignments.each do |assignment| %>
-	  <tr>
+	  <tr class='success'>
+    <td><%= assignment.course.name %></td>
 		<td><%= assignment.name %></td>
 	  <td><%= assignment.start_date.to_date %></td>
 	  <td><%= assignment.end_date.to_date %></td>
 		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
 		</tr>
 	<% end %>
+	<% @taFutureAssignments.each do |assignment| %>
+	  <tr class='info'>
+    <td><%= assignment.course.name %></td>
+		<td><%= assignment.name %></td>
+	  <td><%= assignment.start_date.to_date %></td>
+	  <td><%= assignment.end_date.to_date %></td>
+		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
+		</tr>
+	<% end %>
+
 </table>
 
 <h2>Old Assignments</h2>
 <table class='table table-hover'>
 	<thead>
 	  <tr>
+    <th>Course</th>
 		<th>Name</th>
 	  <th>Start Date</th>
 	  <th>Due Date</th>
@@ -54,13 +80,25 @@
 		</tr>
 	</thead>
 	<% @pastAssignments.each do |assignment| %>
-	  <tr>
+	  <tr class='success'>
+    <td><%= assignment.course.name %></td>
 		<td><%= assignment.name %></td>
 	  <td><%= assignment.start_date.to_date %></td>
 	  <td><%= assignment.end_date.to_date %></td>
 		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
 		</tr>
 	<% end %>
+
+	<% @taPastAssignments.each do |assignment| %>
+	  <tr class='info'>
+    <td><%= assignment.course.name %></td>
+		<td><%= assignment.name %></td>
+	  <td><%= assignment.start_date.to_date %></td>
+	  <td><%= assignment.end_date.to_date %></td>
+		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
+		</tr>
+	<% end %>
+
 </table>
 
 <script type='text/javascript' >

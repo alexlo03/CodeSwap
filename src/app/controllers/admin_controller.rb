@@ -77,7 +77,7 @@ class AdminController < ApplicationController
 
 	#view for a specific user
   def view_user_info
-    requires ['admin']
+    requires ['admin', 'faculty']
     u = User.find_by_id(params[:id])
     u['student_in'] = u.student_in
     u['ta_in'] = u.ta_in
