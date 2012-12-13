@@ -171,7 +171,11 @@ class AssignmentController < ApplicationController
     
     courseStudentIds = Studentgroup.find_all_by_course_id(course.id).collect(&:user_id)
 
-    @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => courseStudentIds)
+    @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => current_user.id)
+
+    if @user_is_ta or @user_is_faculty
+      @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => courseStudentIds)
+    end
 
     @user_is_student = !Studentgroup.where(:course_id => @assignment.course_id, :user_id => current_user.id).empty?
 
