@@ -1,33 +1,86 @@
 <!-- TODO: Make a separate TA/Faculty view that shows what students have submitted solutions to this assignment. -->
 <!-- Assignment View || Shows the basic information regarding an assignment; allows for students to upload a submisison. -->
 
-<h1><%= @assignment.name %></h1>
 
 
-<h3>Description</h3>
-<%= @assignmentDefinition.description %>
+<h3>Assignment: <%= @assignment.name %></h1>
 
 
-<h3>Start Date</h3>
-<%= @assignment.start_date.to_date %>
 
-<h3>End Date</h3>
-<%= @assignment.end_date.to_date %>
-<br/>
-<br/>
+<div class='row'>
+
+  <div class='span4'>
+    <h3>Description</h3>
+    <%= @assignmentDefinition.description %>
+  </div>
+
+  <div class='span4'>
+    <h3>Start Date</h3>
+    <%= @assignment.start_date.to_date %>
+  </div>
+
+  <div class='span4'>
+    <h3>End Date</h3>
+    <%= @assignment.end_date.to_date %>
+  </div>
+</div>
+<h3>Assignment Files</h3>
+  <% if @assignmentFiles.empty? %>
+    No files provided.
+  <% else %>
+    <table class='table table-hover'>
+    <tr>
+      <th> File Name </th>
+      <th> Download </th>
+    </tr>
+
+    <% @assignmentFiles.each do |file| %>
+      <tr>      
+      <td> <%= file.name %></td>
+      <td> <a class='btn' href="<%= '/assignment/download/' + file.id.to_s %>">Download</a> </td>
+    <% end %>
+    </table>
+  <% end %>
 
 
-<h3>Previous Submissions</h3>
-<table class='table table-hover'>
-<% @files.each do |file| %>
-<td> <a href=<%= "/assignment/download/" + file.id.to_s %>> <%= file.name %> </a> </td>
+<% if @user_is_student %>
+  <h3>My Previous Submissions</h3>
+<% elsif @user_is_ta or @user_is_faculty %>
+  <h3>Student Submissions</h3>
 <% end %>
-</table>
+
+<% if @user_is_student or @user_is_ta or @user_is_faculty %>
+  <% if @files.empty? %>
+    No students have submitted anything yet.
+  <% else %>
+  <table class='table table-hover'>
+    <tr>
+      <th>Student Name </th>
+      <th>File Name </th>
+      <th></th>
+    </tr>
+    <% @files.each do |file| %>
+    <tr>
+      <td> <%= User.find(file.user_id).friendly_full_name %> </td>
+      <td> <%= file.name %> </td>
+      <td> <a class='btn' href="<%= '/assignment/download/' + file.id.to_s %>">Download</a> </td>
+    </tr>
+    <% end %>
+  </table>
+  <% end %>
+<% end %>
+
+<% if @user_is_ta or @user_is_faculty %>
+  <h3> Upload Additional Assignment Files </h3>
+<% elsif @user_is_student %>
+  <h3> Submit Your Work </h3>
+<% end %>
 
 <%= form_tag("/assignment/upload", :method => "post",:multipart => true) do %>
-<p><label for="upload">Select File</label> 
-<%= file_field_tag 'datafile' %></p>
-<%= hidden_field_tag 'assignment_definition_id', @assignmentDefinition.id %>
-<%= submit_tag "Upload" %>
+  <p><label for="upload">Select File</label> 
+  <%= file_field_tag 'datafile' %></p>
+  <%= hidden_field_tag 'assignment_definition_id', @assignmentDefinition.id %>
+  <%= submit_tag "Upload" %>
 <% end %>
+
 
