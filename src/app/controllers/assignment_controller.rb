@@ -180,6 +180,7 @@ class AssignmentController < ApplicationController
     elsif @student
       @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => current_user.id)
     end
+		@id = id
 
   end
 
@@ -221,6 +222,26 @@ class AssignmentController < ApplicationController
 		file_id = params[:file_id]
 		file = FileSubmission.find(file_id)
 		send_file File.join(file.save_directory, file.name)
+	end
+
+
+	def downloadAll
+	  require 'zip/zip'
+  	require 'zip/zipfilesystem'
+		assignment_id = params[:assignment_id]
+		assignment = Assignment.find(assignment_id)
+		course_id = assignment.course_id
+		dir = 'Uploads/Assignments/Course ID' + course_id.to_s + '/Assignment ID' + assignment.id.to_s
+		archive = File.join(dir,File.basename(dir))+'.zip'
+  	FileUtils.rm archive, :force=>true
+
+  	Zip::ZipFile.open(archive, 'w') do |zipfile|
+    	Dir["#{dir}/**/**"].reject{|f|f==archive}.each do |file|
+   	   zipfile.add(file.sub(dir+'/',''),file)
+   		end
+  	end
+		
+		send_file archive
 	end
 
 

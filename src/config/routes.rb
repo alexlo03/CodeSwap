@@ -52,6 +52,7 @@ CodeSwap::Application.routes.draw do
   match 'assignment/upload', :controller => 'assignment', :action => 'upload'
   match 'assignment/adminView/:assignment_id', :controller => 'assignment', :action => 'adminView'
   match 'assignment/download/:file_id', :controller => 'assignment', :action => 'download'
+  match 'assignment/downloadAll/:assignment_id', :controller => 'assignment', :action => 'downloadAll'
 
   # File Routes
 
