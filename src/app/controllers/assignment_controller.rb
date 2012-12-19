@@ -174,6 +174,7 @@ class AssignmentController < ApplicationController
     @faculty = current_user.id == course.user_id
     @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
     @student = !Studentgroup.where(:course_id => course.id, :user_id => current_user.id).empty?
+    end
 
     if @faculty or @ta
       @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => courseStudentIds)
