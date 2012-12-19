@@ -96,7 +96,7 @@
 							<td><%= assignment.name %></td>
 							<td>
                 <a class='btn' href=<%= "/assignment/view/" + assignment.id.to_s %> >View</a>
-                <a class='btn' href="<%= edit_course_path(@course.id) %>">Edit</a>
+                <a class='btn' href=<%= "/assignment/edit/" + assignment.id.to_s %> >Edit</a>
               </td>							
 						</tr>
           <% end %>
