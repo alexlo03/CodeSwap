@@ -25,6 +25,9 @@ CodeSwap::Application.routes.draw do
   match 'admin/search_users', :controller => 'admin', :action => 'search_users', :as => 'search_users'
   match 'admin/view_user_info', :controller => 'admin', :action => 'view_user_info', :as => 'view_user_info'
   match 'admin/recent_activity', :controller => 'admin', :action => 'view_recent_activity'
+
+  # Faculty // Course Routes
+
   match 'faculty/add_course', :controller => 'faculty', :action => 'add_course', :as => 'add_course'
   match 'course/show/:id', :controller => 'course', :action=>'show', :as => 'show_course'
   match 'course/edit/:id', :controller => 'course', :action => 'edit', :as => 'edit_course'
@@ -34,73 +37,25 @@ CodeSwap::Application.routes.draw do
   match '/courses', :controller => 'faculty', :action => 'index', :as => 'course_index'
   get "faculty/new_course" 
   get "faculty/add_course" 
+
+
+  # Assignment Routes
+
   get "assignment/index"
   match 'assignment', :controller => 'assignment', :action=> 'index'
   match 'assignments', :controller => 'assignment', :action=> 'index'
   match 'assignment/create/:course_id', :controller => 'assignment', :action => 'create' 
   match 'assignment/edit/:assignment_id', :controller => 'assignment', :action => 'edit' 
-	match 'assignment/view/:id',:controller => 'assignment', :action => 'view'
+	match 'assignment/view/:assignment_id',:controller => 'assignment', :action => 'view', :as => 'assignment_view'
   match 'assignment/submit_new', :controller => 'assignment', :action => 'submit_new'
   match 'assignment/submitchanges', :controller =>'assignment', :action => 'submitchanges'
   match 'assignment/upload', :controller => 'assignment', :action => 'upload'
   match 'assignment/adminView/:assignment_id', :controller => 'assignment', :action => 'adminView'
   match 'assignment/download/:file_id', :controller => 'assignment', :action => 'download'
 
+  # File Routes
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
+  match 'files/delete/:file_id', :controller => 'file_submissions', :action => 'delete', :as => 'remove_file'
 
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
 
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
 end

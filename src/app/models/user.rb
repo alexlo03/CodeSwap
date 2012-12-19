@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
+  
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :first_name, :last_name, :current_sign_in_at
 
   Devise.reset_password_within = 2.days
@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
 
   def full_name
     last_name + ", " + first_name
+  end
+
+  def username
+    email.split("@")[0]
   end
 
   def friendly_full_name

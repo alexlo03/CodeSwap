@@ -22,12 +22,12 @@ class AssignmentController < ApplicationController
 
 
       studentAssignments.each do |assignment|
-		    if(assignment.start_date > Time.now)
-			    futureAssignments.insert(0,assignment)
-		    elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
-			    currentAssignments.insert(0,assignment)
+		    if assignment.has_not_started
+			    futureAssignments.unshift assignment
+		    elsif assignment.is_active
+			    currentAssignments.unshift assignment
 		    else
-			    pastAssignments.insert(0,assignment)
+			    pastAssignments.unshift assignment
 		    end
       end
 
@@ -35,12 +35,12 @@ class AssignmentController < ApplicationController
       taAssignments = Assignment.where(:course_id => taCourseIds)
       
       taAssignments.each do |assignment|
-	      if(assignment.start_date > Time.now)
-		      taFutureAssignments.insert(0,assignment)
-	      elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
-		      taCurrentAssignments.insert(0,assignment)
+	      if assignment.has_not_started
+		      taFutureAssignments.unshift assignment
+	      elsif assignment.is_active
+		      taCurrentAssignments.unshift assignment
 	      else
-		      taPastAssignments.insert(0,assignment)
+		      taPastAssignments.unshift assignment
 	      end
       end
 
@@ -49,12 +49,12 @@ class AssignmentController < ApplicationController
       facultyAssignments = Assignment.where(:course_id => facultyCourses)
 
       facultyAssignments.each do |assignment|
-		    if(assignment.start_date > Time.now)
-			    futureAssignments.insert(0,assignment)
-		    elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
-			    currentAssignments.insert(0,assignment)
+		    if assignment.has_not_started 
+			    futureAssignments.unshift assignment
+		    elsif assignment.is_active
+			    currentAssignments.unshift assignment
 		    else
-			    pastAssignments.insert(0,assignment)
+			    pastAssignments.unshift assignment
 		    end
       end
     end
@@ -161,7 +161,7 @@ class AssignmentController < ApplicationController
 
 	#Populate varibles for use in the view
 	def view
-		id = params[:id]
+		id = params[:assignment_id]
 		@assignment = Assignment.find(id)
     @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(id)
 		#Get previous submissions
@@ -171,15 +171,17 @@ class AssignmentController < ApplicationController
     
     courseStudentIds = Studentgroup.find_all_by_course_id(course.id).collect(&:user_id)
 
-    @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => courseStudentIds)
+    @faculty = current_user.id == course.user_id
+    @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
+    @student = !Studentgroup.where(:course_id => course.id, :user_id => current_user.id).empty?
 
-    @user_is_student = !Studentgroup.where(:course_id => @assignment.course_id, :user_id => current_user.id).empty?
+    if @faculty or @ta
+      @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => courseStudentIds)
+    elsif @student
+      @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => current_user.id)
+    end
 
-    @user_is_ta = !Tagroup.where(:course_id => @assignment.course_id, :user_id => current_user.id).empty?
-    @user_is_faculty = !Course.where(:id => @assignment.course_id, :user_id => current_user.id).empty?
-
-
-	end
+  end
 
 	def upload
 		#params['datafile'] is a File object stored in the system tmp directories
@@ -218,7 +220,7 @@ class AssignmentController < ApplicationController
 	def download
 		file_id = params[:file_id]
 		file = FileSubmission.find(file_id)
-		send_file File.join(file.save_directory , file.name)
+		send_file File.join(file.save_directory, file.name)
 	end
 
 

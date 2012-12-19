@@ -8,10 +8,13 @@ Creating assignment for <%= @course.name %>
 
 <%=render '/assignment/assignment_form' %>
 
+<p>
+Note: You can upload assignment files (Grading rubric, starting files, etc.) after the assignment has been created.
+</p>
 <p class='btn' onClick='assignments.create.submitAssignment();'>Submit</p>
+
+
 <script type='text/javascript' >
   assignments.create.pageLoad(<%= @course.id %>);
 </script>
-
-
 
