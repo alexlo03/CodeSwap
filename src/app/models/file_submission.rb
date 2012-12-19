@@ -5,7 +5,7 @@ class FileSubmission < ActiveRecord::Base
   mount_uploader :file, FileSubmissionUploader
 
   def full_save_path
-    return save_directory + '/' + name
+    return save_directory + name
   end
 
   def save_directory

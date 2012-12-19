@@ -3,7 +3,9 @@
   <td> <%= file.name %> </td>
   <td> <%= file.created_at.strftime("%m/%d  %k:%M:%S") %> </td>
   <td> <a class='btn' href="<%= '/assignment/download/' + file.id.to_s %>">Download</a> </td>
-  <% if (file.user_id == current_user.id) %>
-  <a class='btn btn-danger' href="/files/delete/<%= file.id %>">Delete</a>
-  <% end %>
+  <td>
+      <% if (file.user_id == current_user.id) %>
+      <a class='btn btn-danger' href="/files/delete/<%= file.id %>">Delete</a>
+      <% end %>
+  </td>
 </tr>

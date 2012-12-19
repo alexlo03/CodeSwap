@@ -32,6 +32,7 @@ class FileSubmissionsController < ApplicationController
     faculty_id = Course.find(Assignment.find(submission.assignment_id).course_id).user_id
 
     if ((current_user.id == submission.user_id) or (current_user.id == faculty_id))
+      File.delete(submission.full_save_path) 
       FileSubmission.destroy(id)
       flash[:notice] = "File removed successfully."
     else
