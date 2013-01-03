@@ -59,4 +59,7 @@ CodeSwap::Application.routes.draw do
   match 'files/delete/:file_id', :controller => 'file_submissions', :action => 'delete', :as => 'remove_file'
 
 
+  #Redirect to 404 Page
+  #This MUST be the last route
+  match '*a', :to => 'errors#routing'
 end
