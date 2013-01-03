@@ -174,7 +174,7 @@ class AssignmentController < ApplicationController
     @faculty = current_user.id == course.user_id
     @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
     @student = !Studentgroup.where(:course_id => course.id, :user_id => current_user.id).empty?
-
+	
     if @faculty or @ta
       @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => courseStudentIds)
     elsif @student
@@ -184,6 +184,8 @@ class AssignmentController < ApplicationController
 
   end
 
+
+  #NOTE: Out of date, probably safe to remove. 
 	def upload
 		#params['datafile'] is a File object stored in the system tmp directories
     name =  params['datafile'].original_filename
@@ -191,6 +193,16 @@ class AssignmentController < ApplicationController
     assignment_definition_id = params['assignment_definition_id']
     assignment_id = AssignmentDefinition.find(assignment_definition_id).assignment_id
     course_id = Assignment.find(assignment_id).course_id
+
+
+		if current_user.student? 
+			oldSubmission = FileSubmission.where(:assignment_id => assignment_id,
+						:course_id => course_id, :user_id => current_user.id)[0]
+			unless oldSubmission.nil?
+				File.delete(oldSubmission.full_save_path)	
+				oldSubmission.destroy
+			end
+		end
 
     # creates and saves a new file submission within the database
     submission = FileSubmission.new
@@ -200,6 +212,7 @@ class AssignmentController < ApplicationController
       submission.assignment_id = assignment_id
       submission.assignment_definition_id = assignment_definition_id
     submission.save
+		
 
     FileUtils.mkpath(submission.save_directory)
     path = File.join(submission.save_directory, name)

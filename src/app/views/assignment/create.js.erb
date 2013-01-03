@@ -1,8 +1,8 @@
 <% if @ta or @faculty %>
   
-$('#assignment_files').append("<%= escape_javascript("#{render '/assignment/table_layouts/assignment_file', :file => @submission}").html_safe %>");
+$('#assignment_files').empty().append("<%= escape_javascript("#{render '/assignment/table_layouts/assignment_file', :file => @submission}").html_safe %>");
 
 <% elsif @student %>
-$('#student_submissions').append("<%= escape_javascript("#{render '/assignment/table_layouts/assignment_submission', :file => @submission}").html_safe %>");
+$('#student_submissions').empty().append("<%= escape_javascript("#{render '/assignment/table_layouts/assignment_submission', :file => @submission}").html_safe %>");
 <% end %>
 

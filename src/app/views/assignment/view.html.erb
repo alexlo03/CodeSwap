@@ -77,6 +77,7 @@
   <h3> Upload Additional Assignment Files </h3>
 <% elsif @student %>
   <h3> Submit Your Work </h3>
+	<p>Note: Only one assignment can be uploaded. Uploading additional assignments will delete previous assignments</p>
 <% end %>
 
 <% if @assignment.has_not_started and @student %>
