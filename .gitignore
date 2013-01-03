@@ -21,6 +21,10 @@ schema.rb
 *.*~
 *~
 
+# Ignore merge files
+*.orig
+
+
 # Ignore all logfiles and tempfiles.
 /src/log/*.log
 /src/tmp
