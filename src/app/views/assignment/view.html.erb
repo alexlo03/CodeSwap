@@ -4,7 +4,9 @@
 
 
 <h3>Assignment: <%= @assignment.name %></h1>
-
+<% if @faculty %>
+  <%= link_to 'Swap Assignment', '#', :style => 'color: #EEE;}', :class => 'btn btn-success' %>
+<% end %>
 
 
 <div class='row'>
