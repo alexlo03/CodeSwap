@@ -70,14 +70,16 @@
       <% end %>
     </tbody>
   </table>
+	<% if @ta or @faculty %>
 	<a href=<%= "/assignment/downloadAll/" + @id.to_s %>>Download All</a>
-<% end %>
+	<% end %>
+<% end %>	
 
 <% if @ta or @faculty %>
   <h3> Upload Additional Assignment Files </h3>
 <% elsif @student %>
   <h3> Submit Your Work </h3>
-	<p>Note: Only one assignment can be uploaded. Uploading additional assignments will delete previous assignments</p>
+	<p>Note: Only one assignment can be uploaded. Uploading additional assignments will delete previous assignments.</p>
 <% end %>
 
 <% if @assignment.has_not_started and @student %>

@@ -247,10 +247,13 @@ class AssignmentController < ApplicationController
 		dir = 'Uploads/Assignments/Course ID' + course_id.to_s + '/Assignment ID' + assignment.id.to_s
 		archive = File.join(dir,File.basename(dir))+'.zip'
   	FileUtils.rm archive, :force=>true
-
+		logger = Logger.new("logfile.log")
+		facultySubmissions = assignment.getFacultyFileSubmissions
+		logger.info "**NEW**"
+		facultySubmissions.collect! {|file| file.full_save_path}
   	Zip::ZipFile.open(archive, 'w') do |zipfile|
-    	Dir["#{dir}/**/**"].reject{|f|f==archive}.each do |file|
-   	   zipfile.add(file.sub(dir+'/',''),file)
+    	Dir["#{dir}/**/**"].reject{|f|f==archive}.reject{|f| facultySubmissions.include? f}.each do |file|
+   	   		zipfile.add(file.sub(dir+'/',''),file)
    		end
   	end
 		
