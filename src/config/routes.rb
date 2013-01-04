@@ -37,7 +37,8 @@ CodeSwap::Application.routes.draw do
   match '/courses', :controller => 'faculty', :action => 'index', :as => 'course_index'
   get "faculty/new_course" 
   get "faculty/add_course" 
-
+  match 'course/new', :controller => 'course', :action => 'new', :as => 'new_course'
+  match 'course/create', :controller => 'course', :action => 'create', :as => 'create_course'
 
   # Assignment Routes
 

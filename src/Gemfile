@@ -11,6 +11,10 @@ gem 'sqlite3'
 # Authorization
 gem 'cancan'
 
+
+# Parsing .CSV, .XLS, and .XLSX files
+gem 'roo'
+
 group :development, :test do
     gem 'railroady'
 end

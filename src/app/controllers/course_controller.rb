@@ -1,6 +1,7 @@
 # TODO: Email Notifications for Administrators
 class CourseController < ApplicationController
-	
+
+
 	#Show information about a course
   def show
 		#Find the course, then if the course is found, retrieve mappings of students and tas to a course.
@@ -61,5 +62,30 @@ class CourseController < ApplicationController
     flash[:notice] = "Changes saved."
   
   end 
+
+  def new
+
+  end
+
+  def create
+    course_name = params[:course_name]
+    course_term = params[:course_term]
+    course_number = params[:course_number]
+    course_section = params[:course_section]
+
+    course_exists = Course.find_all_by_name_and_course_number_and_section_and_term(course_name, course_number, course_section, course_term).nil?
+
+    if course_exists
+      flash[:error] = 'A course already exists with that information. Please try again with new info or contact a system administrator.'
+      redirect_to new_course_path
+    else
+      course = Course.create(:name => course_name, :course_number => course_number, :section => course_section, :term => course_term)
+      course.import_students_and_tas(params[:students_csv])
+
+      flash[:notice] = 'Course created successfully!'
+      redirect_to show_course_path course.id
+    end
+
+  end
 
 end
