@@ -4,7 +4,7 @@ CodeSwap::Application.routes.draw do
   resources :file_submissions
   resources :authentications
   resources :user
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => 'registrations'}
 
   get "home/index"
 
