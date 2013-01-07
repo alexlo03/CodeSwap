@@ -2,6 +2,8 @@
 
 <%= javascript_include_tag 'bootstrap-datepicker-1' %>
 
+<p><%= link_to "Home", root_url %> // <%= link_to "Courses", "/courses" %> // <%= link_to @assignment.course.name, "/course/show/"+ @assignment.course.id.to_s %> // <%= @assignment.name %> </p>
+
 <span id="flash" style="display:none; padding:4px; background-color:#F70; color:#000"></span>
 
 Editing assignment for <%= @course.name %>

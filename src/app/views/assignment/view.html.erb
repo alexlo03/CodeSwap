@@ -1,7 +1,12 @@
 <!-- TODO: Make a separate TA/Faculty view that shows what students have submitted solutions to this assignment. -->
 <!-- Assignment View || Shows the basic information regarding an assignment; allows for students to upload a submisison. -->
+<% if @ta or @faculty %>
+<p><%= link_to "Home", root_url %> // <%= link_to "Courses", "/courses" %> // <%= link_to @assignment.course.name, "/course/show/"+ @assignment.course.id.to_s %>  // <%= @assignment.name %> </p>
+<% end %>
 
-
+<% if @student %>
+<p><%= link_to "Home", root_url %> // <%= link_to "Assignments", "/assignment/index" %> // <%= @assignment.name %> </p>
+<% end %>
 
 <h3>Assignment: <%= @assignment.name %></h1>
 <% if @faculty %>
