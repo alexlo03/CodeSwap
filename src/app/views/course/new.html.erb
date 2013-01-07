@@ -11,13 +11,13 @@
 <%= form_tag create_course_path, :id => 'add_students', :class => 'form-search', :multipart => true do %>
     <p>Add the basic class information here</p></br>
              <h4><strong>Course Number:</strong></h4>
-                <%= text_field_tag 'course_number', nil, :class => 'input-medium search-query' %>
+                <%= text_field_tag 'course_number', @number, :class => 'input-medium search-query' %>
              <h4><strong>Course Name:</strong>  </h4>
-                <%= text_field_tag 'course_name', nil, :class => 'input-medium search-query' %>
+                <%= text_field_tag 'course_name', @name, :class => 'input-medium search-query' %>
              <h4><strong>Course Section:</strong></h4> 
-                <%= number_field_tag 'course_section', nil, :class => 'input-medium search-query', :in => 1..100 %>
+                <%= number_field_tag 'course_section', @section, :class => 'input-medium search-query', :in => 1..100 %>
             <h4><strong>Course Term:</strong></h4>
-                <%= text_field_tag 'course_term', nil, :class => 'input-medium search-query' %>
+                <%= text_field_tag 'course_term', @term, :class => 'input-medium search-query' %>
 <br/>
 
     <p>Upload a .csv file with student and TA information here. New student accounts will be created automatically if the student is not already registered on CodeSwap. Please follow the provided template for formatting.</p>

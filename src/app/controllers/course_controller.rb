@@ -64,7 +64,10 @@ class CourseController < ApplicationController
   end 
 
   def new
-
+    @name = params[:name]
+    @term = params[:term]
+    @number = params[:number]
+    @section = params[:section]
   end
 
   def create
@@ -73,14 +76,15 @@ class CourseController < ApplicationController
     course_number = params[:course_number]
     course_section = params[:course_section]
 
-    course_exists = Course.find_all_by_name_and_course_number_and_section_and_term(course_name, course_number, course_section, course_term).nil?
+    course_exists = !(Course.find_all_by_name_and_course_number_and_section_and_term(course_name, course_number, course_section, course_term).empty?)
 
     if course_exists
       flash[:error] = 'A course already exists with that information. Please try again with new info or contact a system administrator.'
-      redirect_to new_course_path
+      redirect_to new_course_path(:name => course_name, :term => course_term, :number => course_number, :section => course_section)
     else
       course = Course.create(:name => course_name, :course_number => course_number, :section => course_section, :term => course_term)
       course.import_students_and_tas(params[:students_csv])
+      course.user_id = current_user.id
 
       flash[:notice] = 'Course created successfully!'
       redirect_to show_course_path course.id
