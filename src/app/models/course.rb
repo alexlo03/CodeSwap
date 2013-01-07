@@ -3,4 +3,5 @@ class Course < ActiveRecord::Base
   has_one :studentgroup
   has_one :tagroup
   attr_accessible :course_number, :name, :section, :term, :user_id
+
 end

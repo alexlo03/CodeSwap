@@ -1,0 +1,11 @@
+<h1> Assignment: <%= @assignment.name %> </h1>
+
+<h2> Submissions </h2>
+<table class='table table-hover'>
+<tr>
+<% @fileSubmissions.each do |file| %>
+<td><%= User.find(file.user_id).full_name %></td>
+<td> <a href=<%= "/assignment/download/" + file.id.to_s %>> Download </a> </td>
+</tr>
+<% end %>
+</table>

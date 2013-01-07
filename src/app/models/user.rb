@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-         
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :first_name, :last_name, :deleted_at
+
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :first_name, :last_name, :deleted_at, :current_sign_in_at
+
 
   Devise.reset_password_within = 2.days
   
@@ -42,6 +43,10 @@ class User < ActiveRecord::Base
     last_name + ", " + first_name
   end
 
+  def username
+    email.split("@")[0]
+  end
+
   def friendly_full_name
     first_name + " " + last_name
   end
@@ -54,6 +59,9 @@ class User < ActiveRecord::Base
     Course.find_all_by_id(Tagroup.find_all_by_user_id(id).map(&:course_id))
   end
 
+  def professor_of
+    Course.find_all_by_user_id(id)
+  end
 
   def self.search(search)
     if search

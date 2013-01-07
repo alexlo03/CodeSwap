@@ -1,0 +1,8 @@
+<tr><td><%= file.name %></td>
+<td><a class='btn' href='<%= '/assignment/download/' + file.id.to_s %>'>Download</a></td>
+<td>
+<% if (file.user_id == current_user.id) or @faculty %>
+<a class='btn btn-danger' href='/files/delete/<%= file.id %>'>Delete</a>
+<% end %>
+</td>
+</tr>

@@ -1,31 +1,102 @@
 <!-- TODO: Make a separate TA/Faculty view that shows what students have submitted solutions to this assignment. -->
 <!-- Assignment View || Shows the basic information regarding an assignment; allows for students to upload a submisison. -->
 
-<h1><%= @assignment.name %></h1>
 
 
-<h3>Description</h3>
-<%= @assignmentDefinition.description %>
-
-
-<h3>Start Date</h3>
-<%= @assignment.start_date.to_date %>
-
-<h3>End Date</h3>
-<%= @assignment.end_date.to_date %>
-<br/>
-<br/>
-
-<%= form_tag("/assignment/upload", :method => "post",:multipart => true) do %>
-<p><label for="upload">Select File</label> 
-<%= file_field_tag 'datafile' %></p>
-<%= hidden_field_tag 'assignment_definition_id', @assignmentDefinition.id %>
-<%= submit_tag "Upload" %>
+<h3>Assignment: <%= @assignment.name %></h1>
+<% if @faculty %>
+  <%= link_to 'Swap Assignment', '#', :style => 'color: #EEE;}', :class => 'btn btn-success' %>
 <% end %>
 
-<p class = 'btn' onClick = 'test();'>Test</p>
-<script type='text/javascript'>
-  var test = function(){
-  alert(document.getElementById('datafile').value);
-}
-</script>
+
+<div class='row'>
+
+  <div class='span4'>
+    <h3>Description</h3>
+    <%= @assignmentDefinition.description %>
+  </div>
+
+  <div class='span4'>
+    <h3>Start Date</h3>
+    <%= @assignment.start_date.to_date %>
+  </div>
+
+  <div class='span4'>
+    <h3>End Date</h3>
+    <%= @assignment.end_date.to_date %>
+  </div>
+</div>
+
+
+<h3>Assignment Files</h3>
+  <% if @assignmentFiles.empty? %>
+    No files provided.
+  <% else %>
+    <table class='table table-hover'>
+    <thead>
+      <tr>
+        <th> File Name </th>
+        <th> Download </th>
+      </tr>
+    </thead>
+    <tbody  id='assignment_files'>
+      <% @assignmentFiles.each do |file| %>
+        <%= render '/assignment/table_layouts/assignment_file', :file => file %>
+      <% end %>
+    </tbody>
+    </table>
+  <% end %>
+
+
+<% if @student %>
+  <h3>My Previous Submissions</h3>
+<% elsif @ta or @faculty %>
+  <h3>Student Submissions</h3>
+<% end %>
+
+<% if @student or @ta or @faculty %>
+  <table class='table table-hover'>
+    <thead>
+      <tr>
+        <th>Student Name </th>
+        <th>File Name </th>
+        <th>Date Uploaded</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody  id='student_submissions'>
+      <% @files.each do |file| %>
+        <%= render '/assignment/table_layouts/assignment_submission', :file => file %>
+      <% end %>
+    </tbody>
+  </table>
+	<a href=<%= "/assignment/downloadAll/" + @id.to_s %>>Download All</a>
+<% end %>
+
+<% if @ta or @faculty %>
+  <h3> Upload Additional Assignment Files </h3>
+<% elsif @student %>
+  <h3> Submit Your Work </h3>
+<% end %>
+
+<% if @assignment.has_not_started and @student %>
+  <h4> This assignment has not started yet. You cannot submit files before the assignment has been assigned! </h4>
+<% elsif @assignment.is_over %>
+  <h4> This assignment has ended. No more files may be submitted. </h4>
+<% elsif @assignment.is_active %>
+
+    <%= form_for FileSubmission.new do |f| %>
+      <%= f.label :file %>
+      <%= f.hidden_field :assignment_id, :value => @assignment.id %>
+      <%= f.file_field :file, multiple: true, name: "file_submission[file]" %>
+    <% end %>
+
+<% end %>
+
+    <script id="template-upload" type="text/x-tmpl">
+    <div class="upload">
+      {%= o.name %}
+      <div class="progress"><div class="bar" style="width: 0%"></div></div>
+    </div>
+    </script>
+

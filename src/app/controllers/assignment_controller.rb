@@ -1,71 +1,89 @@
 class AssignmentController < ApplicationController
 
   def index
-		requires ['admin', 'student', 'faculty'] #Validation of login and roles
-    studentAssignmentList = AssignmentDefinitionToUser.where(:user_id => current_user.id) #Get the mappings of Users to Assignment_Definitions
+		requires ['admin', 'student', 'faculty'] # Validation of login and roles
+
 	  pastAssignments = []
 	  currentAssignments = []
 	  futureAssignments = []
-	  studentAssignmentList.each do |adtu|
-			#Get the ID of the Assignment_Definition, then find it
-		  defID = adtu.assignment_definition_id 
-		  assignmentDefinition = AssignmentDefinition.find(defID) 
 
-			#Get the ID of the Assignment, then find it
-		  assignmentID = assignmentDefinition.assignment_id
-		  assignment = Assignment.find(assignmentID)
+    taCurrentAssignments = []
+    taFutureAssignments = []
+    taPastAssignments = []
 
-			#Sort Assignments by dates (past, current, and future)
-		  if(assignment.start_date > Time.now)
-			  futureAssignments.insert(0,assignment)
-		  elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
-			  currentAssignments.insert(0,assignment)
-		  else
-			  pastAssignments.insert(0,assignment)
-		  end
-	  end
-=begin
-    ## TODO: Add a separate TA list and distinguish the two on the view page.
-    taCourseIds = Tagroup.find_all_by_user_id(current_user.id).collect(&:course_id)
-    taAssignments = Assignment.where(taCourseIds.include? :course_id)
-    
-    taAssignments.each do |assignment|
-		  if(assignment.start_date > Time.now)
-			  futureAssignments.insert(0,assignment)
-		  elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
-			  currentAssignments.insert(0,assignment)
-		  else
-			  pastAssignments.insert(0,assignment)
-		  end
+
+    if current_user.student?
+
+      # Gathers Student's Assignments based on the AssignmentDefinitionToUser table
+  
+      studentAssignmentDefinitionIds = AssignmentDefinitionToUser.find_all_by_user_id(current_user.id).collect(&:assignment_definition_id)
+      studentAssignmentIDs = AssignmentDefinition.find_all_by_id(studentAssignmentDefinitionIds).collect(&:assignment_id)
+      studentAssignments = Assignment.find_all_by_id(studentAssignmentIDs)
+
+
+      studentAssignments.each do |assignment|
+		    if assignment.has_not_started
+			    futureAssignments.unshift assignment
+		    elsif assignment.is_active
+			    currentAssignments.unshift assignment
+		    else
+			    pastAssignments.unshift assignment
+		    end
+      end
+
+      taCourseIds = Tagroup.find_all_by_user_id(current_user.id).collect(&:course_id)
+      taAssignments = Assignment.where(:course_id => taCourseIds)
+      
+      taAssignments.each do |assignment|
+	      if assignment.has_not_started
+		      taFutureAssignments.unshift assignment
+	      elsif assignment.is_active
+		      taCurrentAssignments.unshift assignment
+	      else
+		      taPastAssignments.unshift assignment
+	      end
+      end
+
+	  else
+      facultyCourses = Course.find_all_by_user_id(current_user.id).collect(&:id)
+      facultyAssignments = Assignment.where(:course_id => facultyCourses)
+
+      facultyAssignments.each do |assignment|
+		    if assignment.has_not_started 
+			    futureAssignments.unshift assignment
+		    elsif assignment.is_active
+			    currentAssignments.unshift assignment
+		    else
+			    pastAssignments.unshift assignment
+		    end
+      end
     end
 
-    facultyCourses = Course.find_all_by_user_id(current_user.id).collect(&:id)
-    facultyAssignments = Assignment.where(facultyCourses.include? :course_id)
-
-    facultyAssignments.each do |assignment|
-		  if(assignment.start_date > Time.now)
-			  futureAssignments.insert(0,assignment)
-		  elsif((assignment.start_date <= Time.now) && (Time.now <= assignment.end_date))
-			  currentAssignments.insert(0,assignment)
-		  else
-			  pastAssignments.insert(0,assignment)
-		  end
-    end
-
-=end
 		#Set global varibles for use in the view
 	  @pastAssignments = pastAssignments
 	  @futureAssignments = futureAssignments
 	  @currentAssignments = currentAssignments
+
+    @taPastAssignments = taPastAssignments
+    @taFutureAssignments = taFutureAssignments
+    @taCurrentAssignments = taCurrentAssignments
   end
 
 
-  # GET
+  # Get course id for creating an assignment
   def create
     course_id = params[:course_id]
     @course = Course.find_by_id(course_id)
+    
   end
 
+  # Get data for editing an assignment
+  def edit
+    assignment_id = params[:assignment_id]
+    @assignment = Assignment.find_by_id(assignment_id)
+    @course = Course.find_by_id(@assignment.course_id)
+    @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(assignment_id)
+  end
 
   # POST
   def submit_new
@@ -106,36 +124,125 @@ class AssignmentController < ApplicationController
   end
 
 
+
+  # POST
+  def submitchanges
+		#Get values from the parameters
+    startDate = params[:startDate]
+    endDate = params[:endDate]
+    name = params[:name]
+    description = params[:description]
+    assignment_id = params[:assignment_id].to_i
+    
+
+		#Convert strings to Date objects using format MM/DD/YYYY
+    startDate = Date.strptime(startDate, '%m-%d-%Y')
+    endDate = Date.strptime(endDate, '%m-%d-%Y')
+
+		#Create a new assignment with startDate, endDate, name, and courseID
+    assignment = Assignment.find(assignment_id)
+      assignment.start_date = startDate
+      assignment.end_date = endDate
+      assignment.name = name
+    assignment.save
+		
+		#Create a new Assignment_Definition with the description given
+		#TODO: Allow multiple definitions per assignment
+    definition = AssignmentDefinition.find_by_assignment_id(assignment_id)
+      definition.description = description
+    definition.save
+    
+    flash[:notice] = 'Those changes are GRRRREAT!  Like Frosted Flakes.'
+  end
+
+
+
+
+
 	#Populate varibles for use in the view
 	def view
-		@id = params[:id]
-		@assignment = Assignment.find(@id)
-    @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(@id)
-	end
+		id = params[:assignment_id]
+		@assignment = Assignment.find(id)
+    @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(id)
+		#Get previous submissions
+
+    course = Course.find(@assignment.course_id)
+    @assignmentFiles = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => course.user_id)
+    
+    courseStudentIds = Studentgroup.find_all_by_course_id(course.id).collect(&:user_id)
+
+    @faculty = current_user.id == course.user_id
+    @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
+    @student = !Studentgroup.where(:course_id => course.id, :user_id => current_user.id).empty?
+
+    if @faculty or @ta
+      @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => courseStudentIds)
+    elsif @student
+      @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => current_user.id)
+    end
+		@id = id
+
+  end
 
 	def upload
 		#params['datafile'] is a File object stored in the system tmp directories
     name =  params['datafile'].original_filename
 
-		#TODO: change directory to be task specific and stores into 'courseid/assignmentid/userid/'
-    directory = 'public/data'
-    # create the file path
-    path = File.join(directory, name)
-    # write the file
-    File.open(path, 'wb') { |f| f.write(params['datafile'].read) }
-    
-    # fetches assignment definition id from view
-    id = params['assignment_definition_id']
-    
+    assignment_definition_id = params['assignment_definition_id']
+    assignment_id = AssignmentDefinition.find(assignment_definition_id).assignment_id
+    course_id = Assignment.find(assignment_id).course_id
+
     # creates and saves a new file submission within the database
     submission = FileSubmission.new
-      submission.assignment_definition_id = id
       submission.name = name
       submission.user_id = current_user.id
+      submission.course_id = course_id
+      submission.assignment_id = assignment_id
+      submission.assignment_definition_id = assignment_definition_id
     submission.save
-    flash[:notice] = "Cool file man...that's WICKED!...so raaaad..."
+
+    FileUtils.mkpath(submission.save_directory)
+    path = File.join(submission.save_directory, name)
+    File.open(path, 'wb') { |f| f.write(params['datafile'].read) }
+    
+
+    flash[:notice] = "File Submitted Successfully! Well done! A++!" + submission.save_directory
     redirect_to '/assignment/index'
 
 	end
+
+
+	def adminView
+		assignment_id = params[:assignment_id]
+		@assignment = Assignment.find(assignment_id)
+		@fileSubmissions = FileSubmission.where(:assignment_id => assignment_id)
+	end
+
+	def download
+		file_id = params[:file_id]
+		file = FileSubmission.find(file_id)
+		send_file File.join(file.save_directory, file.name)
+	end
+
+
+	def downloadAll
+	  require 'zip/zip'
+  	require 'zip/zipfilesystem'
+		assignment_id = params[:assignment_id]
+		assignment = Assignment.find(assignment_id)
+		course_id = assignment.course_id
+		dir = 'Uploads/Assignments/Course ID' + course_id.to_s + '/Assignment ID' + assignment.id.to_s
+		archive = File.join(dir,File.basename(dir))+'.zip'
+  	FileUtils.rm archive, :force=>true
+
+  	Zip::ZipFile.open(archive, 'w') do |zipfile|
+    	Dir["#{dir}/**/**"].reject{|f|f==archive}.each do |file|
+   	   zipfile.add(file.sub(dir+'/',''),file)
+   		end
+  	end
+		
+		send_file archive
+	end
+
 
 end

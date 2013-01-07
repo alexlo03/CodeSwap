@@ -2,10 +2,17 @@
 <html>
 <head>
   <title>The page you were looking for doesn't exist (404)</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= render 'shared/log_in_modal' %>
+  <%= render 'shared/view_user_modal' %>
+  <%= render 'shared/loading_modal' %>
+  <%= render 'shared/favicon_loader' %>
   <style type="text/css">
     body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
     div.dialog {
-      width: 25em;
+      width: 30em;
       padding: 0 4em;
       margin: 4em auto 0 auto;
       border: 1px solid #ccc;
@@ -17,10 +24,43 @@
 </head>
 
 <body>
+<div class="navbar navbar-inverse navbar-fluid-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "Code Swap Application", root_path, :class => 'brand' %></li>
+            <li><%= link_to "Wiki", "https://github.com/alexlo03/CodeSwap/wiki" %></li>
+            <% if current_user %>
+              <%= render 'shared/user_role_links' %>
+            <% end %>
+          </ul>
+          <ul class="nav pull-right">
+            <% if current_user %>
+              <!-- TODO: Put this in the user settings page. -->
+							<!--<li><%= link_to "Authentications", authentications_path %></li> -->
+              <li><%= link_to "Welcome, " + current_user.friendly_full_name + "!"%></li> <!-- TODO: Make a user settings page that this links to!!!! -->
+              <li><%= link_to "Log out", destroy_user_session_path, :method => :delete %></li>
+            <% else %>
+              <li data-target="#logInModal" role="button" data-toggle="modal"><%= link_to "Sign in" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- This file lives in public/404.html -->
   <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
+    <h1>Uh oh!  How'd you get here?!<br>...The time-space continum must have collapsed</h1>
+    <p>Try correcting your address or clicking one of the links on this page.<br>Otherwise, bounce a few cats while pondering your destination.</p>
   </div>
+  <div id = "catbounce" style="padding:10px 5px; height:40%;">
+   <iframe src="http://cat-bounce.com/" width="75%" height="70%" frameborder="0"></iframe>
+</div>
 </body>
 </html>

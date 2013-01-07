@@ -13,8 +13,56 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-fileupload/basic
+//= require jquery-fileupload/vendor/tmpl
 //= require twitter/bootstrap
 //= require_tree .
 
+var button_link = function(href, text) {
+  return '<a class="btn" href="' + href + '">' + text + '</a></br>'
+}
+
+users = {
+
+  viewUser : function(id) {
+    $.post('/admin/view_user_info',
+      { 'id' : id },
+      function(user) {
+        var courses = '';
+
+        if(user.professor_of.length > 0) {
+          courses += 'Professor of: </br><h5>'
+          
+          $.each(user.professor_of, function(index, course) {
+            courses += course.name + ' ' + button_link('/course/show/' + course.id, 'View');
+          });
+
+          courses += '</h5>';
+        }
+  
+        else {
+          if(user.student_in.length > 0) { 
+            courses += 'Enrolled in: </br><h5>';
+            $.each(user.student_in, function(index, course) {
+              courses += course.name + ' ' + button_link('/course/show/' + course.id, 'View');
+            });
+            courses += '</h5>';
+          }
+          
+          if(user.ta_in.length > 0) {
+            courses += 'Teaching Assistant in: </br><h5>';
+            $.each(user.ta_in, function(index, course) {
+              courses += course.name + ' ' + button_link('/course/show/' + course.id, 'View');
+            });
+            courses += '</h5>'; 
+          }
+        }
+
+        $('#viewUserName').html(user.name);
+        $('#viewUserEmail').html(user.email);
+        $('#viewUserCourses').html(courses);
+        $('#viewUserModal').modal('show');
+    });
+  },
+}
 
 

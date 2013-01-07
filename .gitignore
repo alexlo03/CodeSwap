@@ -13,10 +13,17 @@
 
 schema.rb
 
+# Ignore all uploaded files.
+/src/Uploads/*
+
 # Ignore hashed files.
 [#]*[#]
 *.*~
 *~
+
+# Ignore merge files
+*.orig
+
 
 # Ignore all logfiles and tempfiles.
 /src/log/*.log
