@@ -1,6 +1,6 @@
 # TODO: Email Notifications for Administrators
 class CourseController < ApplicationController
-
+include ApplicationHelper
 
 	#Show information about a course
   def show
@@ -89,6 +89,33 @@ class CourseController < ApplicationController
       flash[:notice] = 'Course created successfully!'
       redirect_to show_course_path course.id
     end
+  end
+
+  def add_student
+    first = params[:first]
+    last = params[:last]
+    email = params[:email]
+    role = params[:role]
+    course_id = params[:course_id]
+    
+    course = Course.find(course_id)
+
+    student = User.find_by_email(email)
+    unless student
+      student = create_and_invite_user(first, last, email, 'student')
+    end
+
+    unless student
+      render :text => 'Error adding student.'
+    else
+      if role == 'student'
+        Studentgroup.create(:user_id => student.id, :course_id => course.id)
+        render :text => 'Student added successfully.'
+      elsif role == 'ta'
+        Tagroup.create(:user_id => student.id, :course_id => course.id)
+        render :text => 'TA added successfully.'
+      end
+    end    
 
   end
 

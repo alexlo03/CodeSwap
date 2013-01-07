@@ -14,6 +14,7 @@ class AdminController < ApplicationController
     @faculty = User.new
   end
 
+
   def add_user
     requires ['admin']
     name = params[:name].chomp.split

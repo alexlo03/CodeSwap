@@ -42,6 +42,8 @@ courses = {
       $('#course_number').popover({'title':'Enter New Course Number', 'content':courses.edit.textForEditPopover('number')});
       $('#course_section').popover({'title':'Enter New Course Section', 'content':courses.edit.textForEditPopover('section')});
 
+      $('#add_student_button').click(function() {courses.edit.addStudent();});
+
     },
 
     textForEditPopover : function(id) {
@@ -100,6 +102,27 @@ courses = {
         $('#'+id+'_add').toggle();
         $('#'+id+'_remove').toggle();
       }
+    },
+
+    addStudent: function() {
+      first = $('#first_name').val();
+      last = $('#last_name').val();
+      email = $('#email').val();
+      role = $('#role').val();
+      id = $('#course_id').text();
+      
+      $.post('/course/add_student', 
+        { 'first':first,
+          'last':last,
+          'email':email,
+          'role':role,
+          'course_id':id },
+        function(text) {
+          if(/error/i.test(text))
+            alert(text);
+          else
+            location.reload();
+        });
     }
   }
 }

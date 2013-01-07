@@ -73,16 +73,29 @@
           <td id="<%= ta.id %>_remove"><t class='btn btn-danger' onclick="courses.edit.toggleTa(<%=ta.id%>);">Remove</t></td>
         </tr>
       <% end %>
-    </tbody>    
+    </tbody>
   </table>
 
 </p>
 
+<p class='add_new_student'>
+  <a class='btn' id='add_admin_button' onclick='$("#add_new_student").toggle("fast");'>Add New Student/TA</a>
+  <form class="form-search" id='add_new_student' style='display:none'>
+    <strong>First Name: </strong>
+      <%= text_field_tag 'first_name', nil, :class => 'input-medium search-query', :placeholder => 'First Name' %>
+    <strong>Last Name: </strong>
+      <%= text_field_tag 'last_name', nil, :class => 'input-medium search-query', :placeholder => 'Last Name' %> 
+    <strong>E-mail:</strong>  
+      <%= text_field_tag 'email', nil, :class => 'input-medium search-query', :placeholder => 'email' %>
+    <strong>Role:</strong>
+      <%= select_tag 'role', options_for_select([['student', 'student'], ['teaching assistant', 'ta']]) %>
+    <p class="btn" id='add_student_button'>Add</p>
+  </form>
+</p>
+
 <p class='edit_course_submit'>
   <p class='btn' onclick='courses.edit.submit()'>Save Changes</p>
-
   <%= link_to 'Cancel', :back, :class => 'btn' %>
-
 </p>
 
 
