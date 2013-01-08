@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <!-- Displays all of the courses in the system, contains button to add new course -->
 
+<p><%= link_to "Home", root_url %> // <%= link_to "Courses", "/courses" %> // <%= @course.name %> </p>
+
 <h1><%= @course.name %></h1>
 </br>
 <h3><%= @course.course_number.concat(" - ").concat(@course.section.to_s) %> <%= @course.term %></h3>
