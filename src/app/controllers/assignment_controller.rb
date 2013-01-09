@@ -224,7 +224,6 @@ class AssignmentController < ApplicationController
 
 	end
 
-
 	def adminView
 		assignment_id = params[:assignment_id]
 		@assignment = Assignment.find(assignment_id)
@@ -236,7 +235,6 @@ class AssignmentController < ApplicationController
 		file = FileSubmission.find(file_id)
 		send_file File.join(file.save_directory, file.name)
 	end
-
 
 	def downloadAll
 	  require 'zip/zip'
