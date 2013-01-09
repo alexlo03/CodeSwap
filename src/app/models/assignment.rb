@@ -20,4 +20,11 @@ class Assignment < ActiveRecord::Base
   def is_over
     end_date < Time.now
   end
+
+
+	#Get the faculty file submissions, used to filter out results for downloads
+	def getFacultyFileSubmissions
+		course = Course.find(course_id)
+		FileSubmission.where(:user_id => course.user_id, :assignment_id => id)
+	end
 end

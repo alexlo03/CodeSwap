@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <!-- Displays all of the courses in the system, contains button to add new course -->
 
+<p><%= link_to "Home", root_url %> // <%= link_to "Courses", "/courses" %> // <%= @course.name %> </p>
+
 <h1><%= @course.name %></h1>
 </br>
 <h3><%= @course.course_number.concat(" - ").concat(@course.section.to_s) %> <%= @course.term %></h3>
@@ -53,6 +55,7 @@
       </br>
 
       <% unless @students.nil? %>
+	  <% if @user_is_ta_or_faculty %>
       <h3>Students</h3>
         <table class='table table-hover'>
           <thead>
@@ -86,6 +89,7 @@
           </tbody>
         </table>
       <% end %>
+	  <% end %>
     </div>
     <div class= "span6" >
       <% if @user_is_ta_or_faculty %>

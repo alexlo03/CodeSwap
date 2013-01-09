@@ -9,10 +9,19 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :first_name, :last_name, :current_sign_in_at
+
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :first_name, :last_name, :deleted_at, :current_sign_in_at
+
 
   Devise.reset_password_within = 2.days
+  
+  def active_for_authentication?
+    super && !deleted_at
+  end
+  
+  def soft_delete
+    update_attribute(:deleted_at, Time.current)
+  end
 
   def admin?
     role.eql? "admin"

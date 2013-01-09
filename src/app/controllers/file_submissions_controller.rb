@@ -12,6 +12,14 @@ class FileSubmissionsController < ApplicationController
     definition = AssignmentDefinition.find_by_assignment_id(assignment.id)
     file = parameters['file']
 
+		if current_user.student? 
+			oldSubmission = FileSubmission.where(:assignment_id => assignment.id,
+						:course_id => assignment.course_id, :user_id => current_user.id)[0]
+			unless oldSubmission.nil?
+				File.delete(oldSubmission.full_save_path)	
+				oldSubmission.destroy
+			end
+		end
     @submission = FileSubmission.new(:course_id => assignment.course_id, :assignment_id => assignment.id, :assignment_definition_id => definition.id, :user_id => current_user.id, :file => file, :name => file.original_filename)
 
     @submission.save
