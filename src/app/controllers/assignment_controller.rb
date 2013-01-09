@@ -246,6 +246,7 @@ class AssignmentController < ApplicationController
 		archive = File.join(dir,File.basename(dir))+'.zip'
   	FileUtils.rm archive, :force=>true
 		logger = Logger.new("logfile.log")
+		logger.info archive
 		facultySubmissions = assignment.getFacultyFileSubmissions
 		logger.info "**NEW**"
 		facultySubmissions.collect! {|file| file.full_save_path}

@@ -13,7 +13,6 @@ class Course < ActiveRecord::Base
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
         user = User.find_by_email(row["email"])
-        
         #Create random password, requires members to respond to email before using the system.
         unless user
           o =[('a'..'z'),('A'..'Z'),('0'..'9')].map{|i| i.to_a}.flatten
@@ -28,7 +27,7 @@ class Course < ActiveRecord::Base
         end
 
         if row["role"].downcase == 'student'
-          Studentgroup.create(:user_id => user.id, :course_id => id)
+          Studentgroup.create(:user_id =>  user.id, :course_id => id)
         elsif row["role"].downcase == 'ta'
           Tagroup.create(:user_id => user.id, :course_id => id)
         end
