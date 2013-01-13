@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108234815) do
+ActiveRecord::Schema.define(:version => 20130113214033) do
 
   create_table "assignment_definition_to_users", :force => true do |t|
     t.integer  "user_id"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20130108234815) do
     t.string   "description"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "assignment_pairings", :force => true do |t|
+    t.integer  "assignment_definition_id"
+    t.integer  "seed"
+    t.integer  "previous_id"
+    t.integer  "depth"
+    t.integer  "number_of_graders"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "assignments", :force => true do |t|
