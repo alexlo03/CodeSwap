@@ -5,7 +5,7 @@ end
 
 Given /^I am logged in as an admin$/ do
   visit '/'
-  User.create(:email => 'admin@admin.com', :password => 'admins_are_the_best', :role => 'admin')
+  User.create(:email => 'admin@admin.com', :password => 'admins_are_the_best', :role => 'admin',:first_name => "test", :last_name => "Test")
   visit 'users/sign_in'
   fill_in "Email", :with => 'admin@admin.com'
   fill_in 'Password', :with => 'admins_are_the_best'
@@ -13,7 +13,7 @@ Given /^I am logged in as an admin$/ do
 end
 
 Given /^There is a faculty member$/ do
-  User.create(:email => 'faculty@faculty.com', :password => 'admins_are_the_best', :role => 'faculty')
+  User.create(:email => 'faculty@faculty.com', :password => 'admins_are_the_best', :role => 'faculty',:first_name => "test", :last_name => "Test")
 end
 
 When /^Enter a new faculty member email$/ do
