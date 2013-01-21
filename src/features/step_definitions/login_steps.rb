@@ -3,7 +3,7 @@ Given /^I am not logged in$/ do
 end
 
 Given /^I have an account$/ do
-  u = User.new(:email => 'test@test.com', :password => 'password')
+  u = User.new(:email => 'test@test.com', :password => 'password',:first_name => "test",:last_name =>"tests")
   u.save
 end
 

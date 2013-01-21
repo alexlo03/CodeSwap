@@ -1,5 +1,5 @@
 class Emailer < ActionMailer::Base
-  default from: "from@example.com"
+  default :from => "from@example.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -11,6 +11,6 @@ class Emailer < ActionMailer::Base
     @user = user
     @greeting = "CodeSwap Account Created"
 
-    mail content_type: 'text/html', to: user.email, subject: "CodeSwap Account Creation Successfully"
+    mail :content_type => 'text/html', :to => user.email, :subject => "CodeSwap Account Creation Successfully"
   end
 end
