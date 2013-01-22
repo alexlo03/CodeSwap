@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  start_date: 2013-01-21 18:58:38
+  end_date: 2013-01-21 18:58:38
+  user_id: 1
+  course_id: 1
+  assignment_definition_id: 1
+  assignment_pairing_id: 1
+
+two:
+  start_date: 2013-01-21 18:58:38
+  end_date: 2013-01-21 18:58:38
+  user_id: 1
+  course_id: 1
+  assignment_definition_id: 1
+  assignment_pairing_id: 1
