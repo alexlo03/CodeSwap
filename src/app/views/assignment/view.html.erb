@@ -10,7 +10,7 @@
 
 <h3>Assignment: <%= @assignment.name %></h1>
 <% if @faculty %>
-  <%= link_to 'Swap Assignment', '#', :style => 'color: #EEE;}', :class => 'btn btn-success' %>
+  <%= link_to 'Swap Assignment', '/reviewassignment/create/'+ @assignment.id.to_s, :style => 'color: #EEE;}', :class => 'btn btn-success' %>
 <% end %>
 
 
