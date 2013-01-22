@@ -48,7 +48,11 @@ class User < ActiveRecord::Base
   end
 
   def friendly_full_name
-    first_name + " " + last_name
+		ret = "NO FIRST OR LAST NAME"
+		unless first_name.nil? or last_name.nil?
+    ret = first_name + " " + last_name
+		end
+		ret
   end
 
   def student_in
