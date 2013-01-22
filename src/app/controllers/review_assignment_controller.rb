@@ -1,0 +1,2 @@
+class ReviewAssignmentController < ApplicationController
+end
