@@ -23,6 +23,7 @@ module PairingHelper
 			pairings
 	end
 	
+  # Probably will be killed...
 	def pair_assignment(assignment_definition_id, previous_assignment_id)	
 		assignment_pairing = AssignmentPairing.new(:assignment_definition_id => assignment_definition_id)
 		if previous_assignment_id.nil?
@@ -43,5 +44,35 @@ module PairingHelper
 		assignment_pairing.save
 		create_pairings(list, assignment_pairing.depth,assignment_pairing.seed)
 	end
+
+  # Gets the seed from the previous assignment, random if no previous assignment given
+  def get_seed(previous_assignment_id)
+    if previous_assignment_id.nil?
+      return rand(200000000)
+    end
+    
+    old_pairing = AssignmentPairing.find_by_assignment_definition_id (previous_assignment_id)
+    if old_pairing.nil? 
+      return rand(200000000)
+    end
+
+    old_pairing.seed
+  end
+
+
+  # Gets the depth from the previous assignment, 0 if no previous assignment given
+  def get_depth(previous_assignment_id)
+    if previous_assignment_id.nil?
+      return 0
+    end
+    
+    old_pairing = AssignmentPairing.find_by_assignment_definition_id (previous_assignment_id)
+    if old_pairing.nil? 
+      return 0
+    end
+
+    old_pairing.depth + 1
+  end
+
 
 end

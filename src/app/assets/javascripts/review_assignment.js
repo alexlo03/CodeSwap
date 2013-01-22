@@ -3,13 +3,7 @@ var assignment_id;
 var that = this;
 reviewassignments = {
 
-  create: {
-    alert("testing");
-
-  }
-}
-
- /* 
+  create: {  
     pageLoad: function(a_id) {
         $('#start-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#start-date').datepicker('hide'); });
 
@@ -34,7 +28,7 @@ reviewassignments = {
         reviewassignments.create.flashError("flash","Oh no!  This assignment is nameless. Try giving it a title");
       }
       else if(!desc){
-        reviewassignments.create.flashError("flash","Gahh! What\'s this assignment about?  Let's add a little description.");
+        review_assignments.create.flashError("flash","Gahh! What\'s this assignment about?  Let's add a little description.");
       }
       else {
         $.post('/reviewassignment/create/'+assignment_id,
@@ -75,6 +69,6 @@ reviewassignments = {
         $(that).delay(2500).fadeOut();});
   }
   }
-}*/
+}
 
   

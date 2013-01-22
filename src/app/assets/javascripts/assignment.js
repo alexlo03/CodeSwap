@@ -158,7 +158,7 @@ reviewassignments = {
           'name':name,
           'description':desc
           }, function() {
-            window.location = '/';
+            window.location = '/reviewassignment/pairings';
           }          
         );
       }
