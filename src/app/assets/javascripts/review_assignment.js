@@ -26,6 +26,7 @@ reviewassignments = {
       var endDate = $('#end-date-value').val();
       var name = $('#name').val();
       var desc = $('#description').val();
+			var prev_id = $('#previous_selection').val();
       if(!reviewassignments.create.datesFormatOK(startDate, endDate)) {
         reviewassignments.create.flashError("flash","Please verify the dates entered are valid.");  
       }
@@ -43,7 +44,8 @@ reviewassignments = {
           {'startDate':startDate,
           'endDate':endDate,
           'name':name,
-          'description':desc
+          'description':desc,
+					'previous_id':prev_id
           }, function() {
             window.location = '/reviewassignment/pairings';
           }          

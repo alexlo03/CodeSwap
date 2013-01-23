@@ -11,11 +11,11 @@ review the assignemnt for the student in the right column. </p>
 <tr><td><%= User.find(k).friendly_full_name %></td><td><%= User.find(v).friendly_full_name %></td></tr>
 <% end %>
 </table>
-
 <div class="span6">
 <p class='btn' onClick='reviewassignments.create.submitPairing();'>Submit</p>
-
-<%= link_to 'Reassign', '/reviewassignment/pairings', :class => 'btn' %>
+<% if @prev_id.nil? %>
+<%= link_to 'Reassign', '/reviewassignment/pairings/1', :class => 'btn' %>
+<% end %>
 <%= link_to 'Cancel', '#', :class => 'btn' %>
 </div>
 

@@ -25,3 +25,16 @@ Assignment Name: <input id='name' class='span2' size='16' type='text'/>
 </div>
 
 
+<div>
+<h5>Previous Assignment:</h5>
+<select id='previous_selection'>
+<option value="-1">None</option>
+<% @review_assignments.each do |review_assignment| %>
+<option value="<%= review_assignment.id %>"><%= review_assignment.name %></option>
+<% end %>
+</select>
+</div>
+
+
+
+
