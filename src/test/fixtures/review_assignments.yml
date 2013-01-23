@@ -5,7 +5,7 @@ one:
   end_date: 2013-01-21 18:58:38
   user_id: 1
   course_id: 1
-  assignment_definition_id: 1
+  assignment_id: 1
   assignment_pairing_id: 1
 
 two:
@@ -13,5 +13,5 @@ two:
   end_date: 2013-01-21 18:58:38
   user_id: 1
   course_id: 1
-  assignment_definition_id: 1
+  assignment_id: 1
   assignment_pairing_id: 1
