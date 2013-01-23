@@ -6,14 +6,14 @@ class Course < ActiveRecord::Base
   has_one :tagroup
   attr_accessible :course_number, :name, :section, :term, :user_id
 
-
+  # Imports Students / TAs from a spreadsheet
   def import_students_and_tas(file)
       spreadsheet = open_spreadsheet(file)
       header = spreadsheet.row(1)
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
         user = User.find_by_email(row["email"])
-        #Create random password, requires members to respond to email before using the system.
+        # Create random password, requires members to respond to email before using the system.
         unless user
           o =[('a'..'z'),('A'..'Z'),('0'..'9')].map{|i| i.to_a}.flatten
           token = (0...12).map{ o[rand(o.length)] }.join
@@ -34,6 +34,12 @@ class Course < ActiveRecord::Base
       end
   end
 
+  # Fetches students within a course
+  def get_students
+    Studentgroup.where(:course_id => id).collect(&:user_id)
+  end
+
+  # Opens CSV / Excel files
   def open_spreadsheet(file)
     case File.extname(file.original_filename)
     when ".csv" then Csv.new(file.path, nil, :ignore)

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<p class='span6'>These are the pairings for students reviews. The student in the left colomn will
+review the assignemnt for the student in the right column. </p>
+
+<table class='table table-hover span6'>
+<thead>
+<tr><th>Student Grader</th><th> Whose Assignment</th></tr>
+</thead>
+<% @student_pairing_hash.each do |k,v| %>
+<tr><td><%= User.find(k).friendly_full_name %></td><td><%= User.find(v).friendly_full_name %></td></tr>
+<% end %>
+</table>
+<div class="span6">
+<p class='btn' onClick='reviewassignments.create.submitPairing();'>Submit</p>
+<% if @prev_id.nil? %>
+<%= link_to 'Reassign', '/reviewassignment/pairings/1', :class => 'btn' %>
+<% end %>
+<%= link_to 'Cancel', '#', :class => 'btn' %>
+</div>
+
