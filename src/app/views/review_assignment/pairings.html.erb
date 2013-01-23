@@ -1,4 +1,6 @@
-<p>These are the pairings for students reviews. The student in the left colomn will
+<!DOCTYPE html>
+
+<p class='span6'>These are the pairings for students reviews. The student in the left colomn will
 review the assignemnt for the student in the right column. </p>
 
 <table class='table table-hover span6'>
@@ -10,4 +12,10 @@ review the assignemnt for the student in the right column. </p>
 <% end %>
 </table>
 
+<div class="span6">
+<p class='btn' onClick='reviewassignments.create.submitPairing();'>Submit</p>
+
+<%= link_to 'Reassign', '/reviewassignment/pairings', :class => 'btn' %>
+<%= link_to 'Cancel', '#', :class => 'btn' %>
+</div>
 

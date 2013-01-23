@@ -105,6 +105,14 @@
 						</tr>
           <% end %>
 				</table>
+        <h3>Review Assignments: </h3>
+					<table class='table table-hover'>
+          <% @review_assignments.each do |assignment| %>
+            <tr>
+							<td><%= assignment.name %></td>
+						</tr>
+          <% end %>
+				</table>
         <%= button_to 'Create New', {:action => 'create', :controller => 'assignment', :course_id => @course.id} %>
       <% end %>
     </div>

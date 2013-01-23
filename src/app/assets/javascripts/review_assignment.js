@@ -13,6 +13,14 @@ reviewassignments = {
         assignment_id = a_id; 
     },
 
+
+		submitPairing: function(){
+				$.post('/reviewassignment/pairings',{},function ()
+					{	
+						window.location = '/assignment/index'
+					}
+				);
+		},
     submitAssignment: function() {
       var startDate = $('#start-date-value').val();
       var endDate = $('#end-date-value').val();
