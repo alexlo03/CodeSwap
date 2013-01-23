@@ -10,6 +10,7 @@ include PairingHelper
      session[:assignment_id] = params[:assignment_id]
     else
       @assignment_id = params[:assignment_id]
+			@review_assignments = ReviewAssignment.where(:course_id => Assignment.find(params[:assignment_id]).course.id)
     end
 		
   end
