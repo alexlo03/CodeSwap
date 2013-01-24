@@ -15,6 +15,7 @@ include PairingHelper
     else
 			#Handle get request
       @assignment_id = params[:assignment_id]
+      @assignment = Assignment.find(@assignment_id)
 			@review_assignments = ReviewAssignment.where(:course_id => Assignment.find(params[:assignment_id]).course.id)
     end
 		

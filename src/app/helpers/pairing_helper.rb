@@ -39,7 +39,6 @@ module PairingHelper
 
     graders = 2
 
-
     for i in (0..size).step(graders)
       shift = i+graders+shift_amount
       list = []
@@ -52,15 +51,12 @@ module PairingHelper
     end
 
     if (size + 1).odd?
-      puts "uneven."
       unpaired_student = pairings[shuffled_list[i+graders+shift_amount]].first
       pairings[shuffled_list[shift_amount]] += [unpaired_student]
-    else
-      puts "even?"
     end
 
     pairings.delete(nil)
-    [unpaired_student, pairings]
+    pairings
   end
 
 	# Method takes an assignment definition ID and previous assignment ID
@@ -76,21 +72,19 @@ module PairingHelper
 	# pairing, list = get_latest_assignment_pairing(1, nil)
 	# => [#<AssignmentPairing assignment_definition_id: 1, seed: 32554653, previous_id: nil, depth: 0, number_of_graders: nil>, [25, 26, 27]] 
 
-  def get_latest_assignment_pairing(assignment_definition_id, previous_assignment_id)
-    assignment_pairing = AssignmentPairing.new(:assignment_definition_id => assignment_definition_id)
+  def get_latest_assignment_pairing(assignment_id, previous_assignment_id)
+    assignment_pairing = AssignmentPairing.new(:assignment_id => assignment_id)
     assignment_pairing.number_of_graders = 2
-    if previous_assignment_id.nil?
-	    assignment_pairing.seed = rand(200000000)
-	    assignment_pairing.depth = 0
-    else
-	    old_pairing = AssignmentPairing.find_by_assignment_definition_id(previous_assignment_id)
-	    assignment_pairing.seed = old_pairing.seed
-	    assignment_pairing.depth = old_pairing.depth + 1
-	    assignment_pairing.previous_id = old_pairing.id
-    end
 
-		course = AssignmentDefinition.find(assignment_definition_id).assignment.course
+    old_pairing = AssignmentPairing.find_by_assignment_id(previous_assignment_id)
+
+    assignment_pairing.seed = get_seed(old_pairing.id)
+    assignment_pairing.depth = get_depth(old_pairing.id)
+    assignment_pairing.previous_id = old_pairing.id
+
+		course = Assignment.find(assignment_id).course
 		list = Studentgroup.find_all_by_course_id(course.id).collect(&:user_id)
+
 		if assignment_pairing.depth == list.length - 1
 			assignment_pairing.seed = rand(200000000)
 			assignment_pairing.depth = 0 
@@ -118,17 +112,13 @@ module PairingHelper
     create_pairings_mk_2(list, assignment_pairing.depth, assignment_pairing.seed, assignment_pairing.number_of_graders)
   end
 
-
-
-  
-
   # Gets the seed from the previous assignment, random if no previous assignment given
   def get_seed(previous_assignment_id)
     if previous_assignment_id.nil?
       return rand(200000000)
     end
     
-    old_pairing = AssignmentPairing.find_by_assignment_definition_id (previous_assignment_id)
+    old_pairing = AssignmentPairing.find_by_assignment_id (previous_assignment_id)
     if old_pairing.nil? 
       return rand(200000000)
     end
@@ -143,7 +133,7 @@ module PairingHelper
       return 0
     end
     
-    old_pairing = AssignmentPairing.find_by_assignment_definition_id (previous_assignment_id)
+    old_pairing = AssignmentPairing.find_by_assignment_id (previous_assignment_id)
     if old_pairing.nil? 
       return 0
     end
