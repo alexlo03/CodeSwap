@@ -14,15 +14,14 @@ class User < ActiveRecord::Base
 
 
   Devise.reset_password_within = 2.days
-  
+  def destroy
+    update_attribute(:deleted_at, Time.current)
+  end
+
   def active_for_authentication?
     super && !deleted_at
   end
   
-  def soft_delete
-    update_attribute(:deleted_at, Time.current)
-  end
-
   def admin?
     role.eql? "admin"
   end
@@ -70,8 +69,7 @@ class User < ActiveRecord::Base
       scoped
     end
   end
-
-
-
+end
+class RegistrationsController < Devise::RegistrationsController
 
 end
