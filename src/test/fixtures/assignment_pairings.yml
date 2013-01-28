@@ -1,15 +1,3 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  assignment_definition_id: 
-  seed: 
-  previous_id: 
-  depth: 
-  number_of_graders: 
 
-two:
-  assignment_definition_id: 
-  seed: 
-  previous_id: 
-  depth: 
-  number_of_graders: 

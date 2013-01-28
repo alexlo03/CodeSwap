@@ -4,7 +4,7 @@
 
 <span id="flash" style="display:none; padding:4px; background-color:#F70; color:#000"></span>
 
-Creating assignment for <%= @course.name %>
+<h3>Creating assignment for <%= @course.name %></h3>
 
 <%=render '/assignment/assignment_form' %>
 
@@ -14,7 +14,7 @@ Note: You can upload assignment files (Grading rubric, starting files, etc.) aft
 <p class='btn' onClick='assignments.create.submitAssignment();'>Submit</p>
 
 
-<%= link_to 'Cancel', :back, :class => 'btn' %>
+<%= link_to 'Cancel', '/assignment', :class => 'btn' %>
 
 <script type='text/javascript' >
   assignments.create.pageLoad(<%= @course.id %>);

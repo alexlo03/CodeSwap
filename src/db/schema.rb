@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -10,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113214033) do
+ActiveRecord::Schema.define(:version => 20130122232722) do
 
   create_table "assignment_definition_to_users", :force => true do |t|
     t.integer  "user_id"
@@ -95,6 +96,19 @@ ActiveRecord::Schema.define(:version => 20130113214033) do
     t.integer  "course_id"
     t.integer  "assignment_id"
     t.string   "file"
+  end
+
+  create_table "review_assignments", :force => true do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "assignment_id"
+    t.integer  "assignment_pairing_id"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
+    t.string   "name"
+    t.string   "description"
   end
 
   create_table "studentgroups", :force => true do |t|

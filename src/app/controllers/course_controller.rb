@@ -16,6 +16,7 @@ include ApplicationHelper
       @user_is_student = !@students.find_all_by_user_id(current_user.id).empty?
       @user_is_ta_or_faculty = !@tas.find_all_by_user_id(current_user.id).empty? || (current_user.id == @teacher.id unless @teacher.nil?)
       @assignments = Assignment.where(:course_id => id)
+			@review_assignments = ReviewAssignment.find_all_by_course_id(id)
     end
   end
 
@@ -82,9 +83,9 @@ include ApplicationHelper
       flash[:error] = 'A course already exists with that information. Please try again with new info or contact a system administrator.'
       redirect_to new_course_path(:name => course_name, :term => course_term, :number => course_number, :section => course_section)
     else
-      course = Course.create(:name => course_name, :course_number => course_number, :section => course_section, :term => course_term)
+      course = Course.create(:name => course_name, :course_number => course_number, :section => course_section, :term => course_term, :user_id => current_user.id)
 
-      course.user_id = current_user.id
+      
       course.import_students_and_tas(params[:students_csv])
 			course.save
       flash[:notice] = 'Course created successfully!'

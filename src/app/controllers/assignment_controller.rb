@@ -6,7 +6,8 @@ class AssignmentController < ApplicationController
 	  pastAssignments = []
 	  currentAssignments = []
 	  futureAssignments = []
-
+		reviewAssignments = []
+		
     taCurrentAssignments = []
     taFutureAssignments = []
     taPastAssignments = []
@@ -19,7 +20,7 @@ class AssignmentController < ApplicationController
       studentAssignmentDefinitionIds = AssignmentDefinitionToUser.find_all_by_user_id(current_user.id).collect(&:assignment_definition_id)
       studentAssignmentIDs = AssignmentDefinition.find_all_by_id(studentAssignmentDefinitionIds).collect(&:assignment_id)
       studentAssignments = Assignment.find_all_by_id(studentAssignmentIDs)
-
+			reviewAssignments = ReviewAssignment.find_all_by_id(studentAssignmentIDs)
 
       studentAssignments.each do |assignment|
 		    if assignment.has_not_started
@@ -47,6 +48,7 @@ class AssignmentController < ApplicationController
 	  else
       facultyCourses = Course.find_all_by_user_id(current_user.id).collect(&:id)
       facultyAssignments = Assignment.where(:course_id => facultyCourses)
+			reviewAssignments = ReviewAssignment.where(:course_id => facultyCourses)
 
       facultyAssignments.each do |assignment|
 		    if assignment.has_not_started 
@@ -67,6 +69,8 @@ class AssignmentController < ApplicationController
     @taPastAssignments = taPastAssignments
     @taFutureAssignments = taFutureAssignments
     @taCurrentAssignments = taCurrentAssignments
+
+		@reviewAssignments = reviewAssignments
   end
 
 
@@ -242,6 +246,7 @@ class AssignmentController < ApplicationController
 		assignment_id = params[:assignment_id]
 		assignment = Assignment.find(assignment_id)
 		course_id = assignment.course_id
+		faculty = User.find(current_user.id)
 		dir = 'Uploads/Assignments/Course ID' + course_id.to_s + '/Assignment ID' + assignment.id.to_s
 		archive = File.join(dir,File.basename(dir))+'.zip'
   	FileUtils.rm archive, :force=>true
@@ -251,7 +256,8 @@ class AssignmentController < ApplicationController
 		logger.info "**NEW**"
 		facultySubmissions.collect! {|file| file.full_save_path}
   	Zip::ZipFile.open(archive, 'w') do |zipfile|
-    	Dir["#{dir}/**/**"].reject{|f|f==archive}.reject{|f| facultySubmissions.include? f}.each do |file|
+    	Dir["#{dir}/**/**"].reject{|f|f==archive}.reject{|f| facultySubmissions.include? f}.reject{|f| f == "#{dir}/#{faculty.username}"}.each do |file|
+					logger.info file
    	   		zipfile.add(file.sub(dir+'/',''),file)
    		end
   	end
