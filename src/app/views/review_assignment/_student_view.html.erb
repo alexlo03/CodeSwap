@@ -6,6 +6,21 @@
 	<a href=<%= "/assignment/download/" + @file_submission.id.to_s %>>Download</a>
 <% end %>
 
+<p> Please download and review the code above. After you are done, please answer the following questions: </p>
+<table>
+<thead></thead>
+<% @questions.each_with_index do |question,i| %>
+	<tr><%= "#{i}. #{question.content}" %></tr></br>
+	<% name = "q#{i}" %>
+	<% if question.multipleChoice? %>
+	<% elsif question.numerical? %>
+		<tr><input type="number" name="<%= name %>" min="1" /></tr></br>
+	<% elsif question.shortAnswer? %>
+		<tr><input type="text" name="<%= name %>"/></tr></br>
+	<% end %>
+<% end %>
+</table>
+
 
 
 

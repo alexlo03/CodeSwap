@@ -7,10 +7,8 @@ class Emailer < ActionMailer::Base
   #   en.emailer.signup_confirmation.subject
   #
   def signup_confirmation(user)
-  
     @user = user
     @greeting = "CodeSwap Account Created"
-
     mail :content_type => 'text/html', :to => user.email, :subject => "CodeSwap Account Creation Successfully"
   end
 
@@ -19,7 +17,6 @@ class Emailer < ActionMailer::Base
     @name = 'Somebody' if name == ''
     @subject = subject
     @comment = comment
-
     mail(:content_type => 'text/html', :to => 'rosehulman.codeswap@gmail.com', :subject => '[CodeSwap][Complaint] ' + subject)
   end
 

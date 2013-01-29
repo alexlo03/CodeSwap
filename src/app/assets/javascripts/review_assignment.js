@@ -1,6 +1,9 @@
 
 var assignment_id;
 var that = this;
+
+var num_questions = 1;
+
 reviewassignments = {
 
   create: {  
@@ -77,7 +80,31 @@ reviewassignments = {
          document.getElementById(id).innerHTML="<b>"+message+"</b><br>";
          $('#'+id).delay(500).fadeIn('normal', function() {
         $(that).delay(2500).fadeOut();});
-  }
+  },
+
+  addQuestion : function() {
+
+    
+
+    $('#add_questions_here').before(" \
+      <div id='question_" + num_questions +"'>           \
+        <p>                           \
+        <strong>Question " + num_questions +"</strong>   \
+          <input name='question_'" + num_questions + "_type' type='radio' value='instruction'/>Instruction      \
+          <input name='question_'" + num_questions + "_type' type='radio' value='short_answer'/>Short Answer    \
+          <input name='question_'" + num_questions + "_type' type='radio' value='numerical_answer'/>Numerical Answer            \
+      </p>                            \
+          <textarea class='span2' id='question_" + num_questions + "_text' name='question_1_text' rows='3'/>  \
+    </div>");
+
+    num_questions++;
+  },
+
+  deleteQuestion: function(id) {
+
+  },
+  
+
   }
 }
 
