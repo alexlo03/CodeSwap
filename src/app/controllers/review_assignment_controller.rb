@@ -11,14 +11,13 @@ include PairingHelper
 		  session[:assignment_id] = params[:assignment_id]
 			session[:prev_id] = params[:previous_id].to_i
 		  render :nothing => true
-		
     else
 			#Handle get request
       @assignment_id = params[:assignment_id]
       @assignment = Assignment.find(@assignment_id)
 			@review_assignments = ReviewAssignment.where(:course_id => Assignment.find(params[:assignment_id]).course.id)
     end
-		
+
   end
 
   def pairings
