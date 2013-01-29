@@ -117,8 +117,8 @@ include ApplicationHelper
         Tagroup.create(:user_id => student.id, :course_id => course.id)
         render :text => 'TA added successfully.'
       end
-    end    
-
+    end
+  
   end
 
 end

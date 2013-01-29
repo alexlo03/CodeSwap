@@ -4,10 +4,11 @@ Assignment Name: <input id='name' class='span2' size='16' type='text'/>
 </div>
 
 <div>
-<h5>Review Start Date:</h5><p class="input-append date" id="start-date" data-date="<%= Time.now.strftime('%m-%d-%Y') %>" data-date-format="mm-dd-yyyy">
-<input id='start-date-value' class="span2" size="16" type="text" value="<%= Time.now.strftime('%m-%d-%Y') %>">
-  <span class="add-on"><i class="icon-th"></i></span>
-</p>
+  <h5>Review Start Date:</h5>
+  <p class="input-append date" id="start-date" data-date="<%= Time.now.strftime('%m-%d-%Y') %>" data-date-format="mm-dd-yyyy">
+  <input id='start-date-value' class="span2" size="16" type="text" value="<%= Time.now.strftime('%m-%d-%Y') %>">
+    <span class="add-on"><i class="icon-th"></i></span>
+  </p>
 </div>
 
 
@@ -20,19 +21,19 @@ Assignment Name: <input id='name' class='span2' size='16' type='text'/>
 
 
 <div>
-<h5>Instructions:</h5>
-<textarea id='description' class='span2' size='16' rows='3'></textarea>
+  <h5>Instructions:</h5>
+  <textarea id='description' class='span2' size='16' rows='3'></textarea>
 </div>
 
 
 <div>
-<h5>Previous Assignment:</h5>
-<select id='previous_selection'>
-<option value="-1">None</option>
-<% @review_assignments.each do |review_assignment| %>
-<option value="<%= review_assignment.id %>"><%= review_assignment.name %></option>
-<% end %>
-</select>
+  <h5>Previous Assignment:</h5>
+  <select id='previous_selection'>
+  <option value="-1">None</option>
+  <% @review_assignments.each do |review_assignment| %>
+    <option value="<%= review_assignment.id %>"><%= review_assignment.name %></option>
+  <% end %>
+  </select>
 </div>
 
 
