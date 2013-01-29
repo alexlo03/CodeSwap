@@ -10,9 +10,12 @@ class HomeController < ApplicationController
     subject = params[:comment_subject]
     comment = params[:comment_text]
 
-    Emailer.delay.file_complaint(name, subject, comment)
-
-    flash[:notice] = 'Message received! Thank you very much for your feedback!'
+    if comment == ''
+      flash[:error] = 'Please enter content to the comment section before submitting. Thanks!'
+    else
+      Emailer.delay.file_complaint(name, subject, comment)
+      flash[:notice] = 'Message received! Thank you very much for your feedback!'
+    end    
     redirect_to contact_us_path
   end
 
