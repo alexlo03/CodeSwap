@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<% if @file_submission.nil? %>
+	<p>The person you are supposed to be grading has not uploaded a file!!!!</p>
+<% else %>
+	<a href=<%= "/assignment/download/" + @file_submission.id.to_s %>>Download</a>
+<% end %>
+
+
+
+
+
