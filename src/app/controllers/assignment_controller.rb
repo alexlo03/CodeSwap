@@ -20,7 +20,7 @@ class AssignmentController < ApplicationController
       studentAssignmentDefinitionIds = AssignmentDefinitionToUser.find_all_by_user_id(current_user.id).collect(&:assignment_definition_id)
       studentAssignmentIDs = AssignmentDefinition.find_all_by_id(studentAssignmentDefinitionIds).collect(&:assignment_id)
       studentAssignments = Assignment.find_all_by_id(studentAssignmentIDs)
-			reviewAssignments = ReviewAssignment.find_all_by_id(studentAssignmentIDs)
+			reviewAssignments = ReviewAssignment.find_all_by_assignment_id(studentAssignmentIDs)
 
       studentAssignments.each do |assignment|
 		    if assignment.has_not_started
