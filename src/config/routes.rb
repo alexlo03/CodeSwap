@@ -8,6 +8,9 @@ CodeSwap::Application.routes.draw do
 
   get "home/index"
 
+  match 'contact_us', :controller => 'home', :action => 'contact_us', :as => 'contact_us'
+  match 'send_contact_email', :controller => 'home', :action => 'send_contact_email', :as => 'send_contact_email'
+
   root :to => "home#index"
 
   match '/auth/:provider/callback' => 'authentications#create'
@@ -63,7 +66,6 @@ CodeSwap::Application.routes.draw do
   # File Routes
 
   match 'files/delete/:file_id', :controller => 'file_submissions', :action => 'delete', :as => 'remove_file'
-
 
   #Redirect to 404 Page
   #This MUST be the last route

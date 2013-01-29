@@ -1,0 +1,20 @@
+
+
+<h2>Contact Us</h2>
+
+<%= form_tag send_contact_email_path, :id => 'add_students', :class => 'form-search' do %>
+    <p>Help us improve or tell us what you like about CodeSwap!</p></br>
+             <h4><strong>Name</strong></h4>
+                <%= text_field_tag 'user_name', '', :class => 'input-medium search-query' %>
+             <h4><strong>Subject</strong></h4>
+                <%= text_field_tag 'comment_subject', '', :class => 'input-medium search-query' %>
+             <h4><strong>Comment</strong>:</h4>
+                <%= text_area_tag 'comment_text', '', :class => 'input-large search-query' %>
+<br/>
+<br/>
+    <%= submit_tag "Submit", :class => 'btn' %>
+
+    <%= link_to 'Back', :back, :class => 'btn' %>
+<% end %>
+
+Alternatively, you may shoot us an email at rosehulman.codeswap@gmail.com

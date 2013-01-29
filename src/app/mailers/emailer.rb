@@ -13,4 +13,14 @@ class Emailer < ActionMailer::Base
 
     mail :content_type => 'text/html', :to => user.email, :subject => "CodeSwap Account Creation Successfully"
   end
+
+  def file_complaint(name, subject, comment)
+    @name = name    
+    @name = 'Somebody' if name == ''
+    @subject = subject
+    @comment = comment
+
+    mail(:content_type => 'text/html', :to => 'rosehulman.codeswap@gmail.com', :subject => '[CodeSwap][Complaint] ' + subject)
+  end
+
 end
