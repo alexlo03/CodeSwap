@@ -22,6 +22,11 @@ include PairingHelper
   end
 
   def pairings
+
+			@assignment_id = session[:assignment_id]
+			@assignment = Assignment.find(@assignment_id)
+			@course = @assignment.course
+			@students = @course.get_students
 		#Handle post request
 		if request.post?
 			review_assignment = ReviewAssignment.new
@@ -37,20 +42,19 @@ include PairingHelper
 			pairing.save
 			review_assignment.assignment_pairing_id = pairing.id
 			review_assignment.user_id = current_user.id
-			
 			review_assignment.save
+			hash = create_pairings(@students,pairing.depth,pairing.seed)
+			hash.each do |user_1_id, user_2_id|
+				ReviewMapping.create(:user_id => user_1_id, :other_user_id => user_2_id, :review_assignment_id => review_assignment.id)
+			end
 			render :nothing => true
-
+			
 		else		
 			unless params[:redo].nil?
 				session['seed'] = nil
 				session['depth'] = nil
 			end
 			#Handle get request
-			@assignment_id = session[:assignment_id]
-			@assignment = Assignment.find(@assignment_id)
-			@course = @assignment.course
-			@students = @course.get_students
 			@prev_id = session[:prev_id]
 			
 			if @prev_id.nil? or (@prev_id == -1)
@@ -68,4 +72,18 @@ include PairingHelper
 	    @student_pairing_hash = create_pairings(@students,@depth,@seed)
 		end
   end
+
+	def view
+		@id = params[:id]
+		@review_assignment = ReviewAssignment.find(@id)
+		unless current_user.nil?
+			if current_user.student?
+				@student = true
+				@review_mapping = ReviewMapping.find_by_user_id_and_review_assignment_id(current_user.id,@id)
+				@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
+			elsif current_user.faculty? || current_user.admin? || current_user.ta?
+				@student = false
+			end
+		end
+	end
 end
