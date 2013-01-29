@@ -21,9 +21,21 @@ Assignment Name: <input id='name' class='span2' size='16' type='text'/>
 
 
 <div>
-  <h5>Instructions:</h5>
-  <textarea id='description' class='span2' size='16' rows='3'></textarea>
+  <h5>Instructions/Questions:</h5>
+    <div id='question_1'>
+      <p>
+        <strong>Main Instructions</strong>
+          <%= radio_button_tag 'question_1_type', 'Instruction' %> Instruction
+          <%= radio_button_tag 'question_1_type', 'Short Answer' %> Short Answer
+          <%= radio_button_tag 'question_1_type', 'Numerical Answer' %> Multiple Choice
+      </p>
+        <%= text_area_tag 'question_1_text', '', :class => 'span2', :rows => 3 %>
+    </div>
+
+    <div id='add_questions_here'/>
 </div>
+
+<p class='btn' onclick='reviewassignments.create.addQuestion()'>Add A Question</p>
 
 
 <div>
@@ -35,7 +47,3 @@ Assignment Name: <input id='name' class='span2' size='16' type='text'/>
   <% end %>
   </select>
 </div>
-
-
-
-

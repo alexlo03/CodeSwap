@@ -3,6 +3,7 @@ class ReviewQuestion < ActiveRecord::Base
   attr_accessible :content, :type, :review_assignment_id
 	
 	#for the different types
+  #instruction = 0
 	#multipleChoice = 1
 	#numerical = 2
 	#shortAnswer = 3
@@ -12,5 +13,4 @@ class ReviewQuestion < ActiveRecord::Base
 		define_method("#{name}?") {type == i}
 	end
 
-	
 end
