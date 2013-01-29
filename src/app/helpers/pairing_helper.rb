@@ -118,7 +118,7 @@ module PairingHelper
       return rand(200000000)
     end
     
-    old_pairing = AssignmentPairing.find_by_assignment_id (previous_assignment_id)
+    old_pairing = AssignmentPairing.find_by_assignment_id(previous_assignment_id)
     if old_pairing.nil? 
       return rand(200000000)
     end
@@ -133,7 +133,7 @@ module PairingHelper
       return 0
     end
     
-    old_pairing = AssignmentPairing.find_by_assignment_id (previous_assignment_id)
+    old_pairing = AssignmentPairing.find_by_assignment_id(previous_assignment_id)
     if old_pairing.nil? 
       return 0
     end
