@@ -80,6 +80,7 @@ include PairingHelper
 				@student = true
 				@review_mapping = ReviewMapping.find_by_user_id_and_review_assignment_id(current_user.id,@id)
 				@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
+				@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
 			elsif current_user.faculty? || current_user.admin? || current_user.ta?
 				@student = false
 			end
