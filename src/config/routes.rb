@@ -63,6 +63,7 @@ CodeSwap::Application.routes.draw do
   match 'reviewassignment/pairings',:controller => 'review_assignment', :action => 'pairings'
   match 'reviewassignment/pairings/:redo',:controller => 'review_assignment', :action => 'pairings'
   match 'reviewassignment/view/:id',:controller => 'review_assignment', :action => 'view'
+  match 'reviewassignment/studentsubmit',:controller => 'review_assignment', :action => 'student_submit'
 
   # File Routes
 

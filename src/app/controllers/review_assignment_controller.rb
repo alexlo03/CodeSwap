@@ -3,30 +3,28 @@ include PairingHelper
   
   def create
     if request.post?
-		  #Handle post request
+		  # Handle post request
      	session[:startDate] = params[:startDate]
 		  session[:endDate] = params[:endDate]
 		  session[:name] = params[:name]
-		  session[:description] = params[:description]
+		  session['questions'] = params['questions']
 		  session[:assignment_id] = params[:assignment_id]
 			session[:prev_id] = params[:previous_id].to_i
 		  render :nothing => true
     else
-			#Handle get request
+			# Handle get request
       @assignment_id = params[:assignment_id]
       @assignment = Assignment.find(@assignment_id)
 			@review_assignments = ReviewAssignment.where(:course_id => Assignment.find(params[:assignment_id]).course.id)
     end
-
   end
 
   def pairings
-
 			@assignment_id = session[:assignment_id]
 			@assignment = Assignment.find(@assignment_id)
 			@course = @assignment.course
 			@students = @course.get_students
-		#Handle post request
+		# Handle post request
 		if request.post?
 			review_assignment = ReviewAssignment.new
 			pairing = AssignmentPairing.new
@@ -35,13 +33,32 @@ include PairingHelper
 			review_assignment.end_date = Date.strptime(session['endDate'], '%m-%d-%Y')
 			review_assignment.assignment_id = session['assignment_id']
 			review_assignment.name = session['name']
-			review_assignment.description = session['description']
 			review_assignment.course_id = review_assignment.assignment.course.id
 			pairing.depth = session['depth']
+      questions = session['questions']
 			pairing.save
 			review_assignment.assignment_pairing_id = pairing.id
 			review_assignment.user_id = current_user.id
-			review_assignment.save
+			review_assignment.save      
+      questions.each do |question|
+        type = question.split('|').first
+        content = question.split('|').last
+        if type == 'instruction'
+          type = 0
+        elsif type == 'multiple_choice'
+          type = 1
+        elsif type == 'numerical_answer'
+          type = 2
+        elsif type == 'short_answer'
+          type = 3
+        end
+        review_question = ReviewQuestion.new
+        review_question.question_type = type
+        review_question.review_assignment_id = review_assignment.id
+        review_question.content = content
+        review_question.save
+      end
+
 			hash = create_pairings(@students,pairing.depth,pairing.seed)
 			hash.each do |user_1_id, user_2_id|
 				ReviewMapping.create(:user_id => user_1_id, :other_user_id => user_2_id, :review_assignment_id => review_assignment.id)
@@ -81,9 +98,23 @@ include PairingHelper
 				@review_mapping = ReviewMapping.find_by_user_id_and_review_assignment_id(current_user.id,@id)
 				@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
 				@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
+				@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
 			elsif current_user.faculty? || current_user.admin? || current_user.ta?
 				@student = false
 			end
+		end
+	end
+
+	def student_submit
+		unless not request.post?
+			answers = params[:answers]
+			review_assignment = ReviewAssignment.find(params[:id])
+			questions = review_assignment.review_questions
+			user_id = current_user.id
+			answers.each_with_index do |answer, i|
+				ReviewAnswer.create(:user_id => user_id, :review_question_id => questions[i].id, :answer => answer)	
+			end			
+			render :nothing => true
 		end
 	end
 end
