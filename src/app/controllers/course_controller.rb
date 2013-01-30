@@ -1,6 +1,7 @@
 # TODO: Email Notifications for Administrators
 class CourseController < ApplicationController
 include ApplicationHelper
+include CourseHelper
 
 	#Show information about a course
   def show
@@ -24,6 +25,8 @@ include ApplicationHelper
   # GET
   def edit
     id = params[:id]
+    requiresUsers(['admin','faculty'],id)
+
     @course = Course.find(id)
     if(@course.nil?)
       flash[:error] = 'Something has gone horribly wrong. A system administrator has been contacted.'
