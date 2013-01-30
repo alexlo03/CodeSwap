@@ -41,8 +41,9 @@ include PairingHelper
 			review_assignment.user_id = current_user.id
 			review_assignment.save      
       questions.each do |question|
-        type = question.split('|').first
-        content = question.split('|').last
+        title = question.split('|')[0]
+        type = question.split('|')[1]
+        content = question.split('|')[2]
         if type == 'instruction'
           type = 0
         elsif type == 'multiple_choice'
@@ -52,7 +53,9 @@ include PairingHelper
         elsif type == 'short_answer'
           type = 3
         end
+
         review_question = ReviewQuestion.new
+        review_question.question_title = title
         review_question.question_type = type
         review_question.review_assignment_id = review_assignment.id
         review_question.content = content

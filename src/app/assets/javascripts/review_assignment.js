@@ -12,8 +12,26 @@ reviewassignments = {
 
         $('#end-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
 
+        $('#question_1_title').tooltip({'title':'Click to Edit', 'placement':'right'});
+        $('#question_1_title').popover({'title':'Enter Question Title', 'content':reviewassignments.create.textForEditPopover('1')});
+
         assignment_id = a_id; 
     },
+
+    textForEditPopover : function(id) {
+      return '<input type="text" class="input-small" id="new_question_'+ id +'_title"></input> <p class="btn" onclick="reviewassignments.create.finishEditPopover(\''+ id +'\');">Accept</p>  <p class="btn" onclick="reviewassignments.create.closePopover(\''+ id +'\');">Cancel</p>';
+    },
+
+    finishEditPopover : function(id) {
+      $('#question_'+id+'_title').text($('#new_question_'+id+'_title').val());
+      reviewassignments.create.closePopover(id);
+    },
+
+    closePopover : function(id) {
+      $('#new_question_'+id+'_title').val('');
+      $('#question_'+id+'_title').popover('hide');
+    },
+
 
 
 		submitPairing: function(){
@@ -35,7 +53,7 @@ reviewassignments = {
         id = this.id;
         type = $('#' + id + ' input[name='+ id + '_type' +']:checked').val();
         question = $('#' + id + '_text').val();
-
+        title = $('#' + id + '_title').text();
         if(type==undefined) {
           errors.show(id, 'Please select a question type for this question!');
           questionsOK = false;
@@ -44,10 +62,13 @@ reviewassignments = {
           errors.show(id, 'Please enter content for this question or delete it!');
           questionsOK = false;
         }
-        questions.push(type+'|'+question);
-      });
+        if(title==''){
+          errors.show(id, 'Please enter a valid title for this question!');
+          questionsOK = false;
+        }
 
-      alert(questions);
+        questions.push(title+'|'+type+'|'+question);
+      });
 
       if(!reviewassignments.create.datesFormatOK(startDate, endDate)) {
         errors.show("end-date","Please verify the dates entered are valid.");  
@@ -95,13 +116,15 @@ reviewassignments = {
     $('#add_questions_here').before(" \
       <div id='question_" + num_questions +"' class='question'>           \
         <p>                           \
-        <strong>Question " + num_questions +"</strong>   \
+        <strong id='question_" + num_questions + "_title' class='question_title'>Question " + num_questions +"</strong>   \
           <input name='question_" + num_questions + "_type' type='radio' value='instruction'/>Instruction      \
           <input name='question_" + num_questions + "_type' type='radio' value='short_answer'/>Short Answer    \
           <input name='question_" + num_questions + "_type' type='radio' value='numerical_answer'/>Numerical Answer            \
       </p>                            \
           <textarea class='span2' id='question_" + num_questions + "_text' name='question_" + num_questions + "_text' rows='3'/>  \
     </div>");
+    $('#question_' + num_questions + '_title').tooltip({'title':'Click to Edit', 'placement':'right'});
+    $('#question_' + num_questions + '_title').popover({'title':'Enter Question Title', 'content':reviewassignments.create.textForEditPopover(num_questions)});
   },
 
   deleteQuestion: function(id) {
