@@ -112,13 +112,13 @@ module PairingHelper
     create_pairings_mk_2(list, assignment_pairing.depth, assignment_pairing.seed, assignment_pairing.number_of_graders)
   end
 
-  # Gets the seed from the previous assignment, random if no previous assignment given
-  def get_seed(previous_assignment_id)
-    if previous_assignment_id.nil?
+  # Gets the seed from the previous review assignment, random if no previous assignment given
+  def get_seed(previous_id)
+    if previous_id.nil?
       return rand(200000000)
     end
     
-    old_pairing = AssignmentPairing.find_by_assignment_id(previous_assignment_id)
+    old_pairing = AssignmentPairing.find(previous_id)
     if old_pairing.nil? 
       return rand(200000000)
     end

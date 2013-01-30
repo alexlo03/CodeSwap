@@ -1,11 +1,13 @@
 <!DOCTYPE html>
+<% if @done %>
 
-<% if @file_submission.nil? %>
+<h3>Thank you for your submission</h3>
+
+
+<% elsif @file_submission.nil? %>
 	<p>The person you are supposed to be grading has not uploaded a file!!!!</p>
 <% else %>
 	<a href=<%= "/assignment/download/" + @file_submission.id.to_s %>>Download</a>
-<% end %>
-
 <p> Please download and review the code above. After you are done, please answer the following questions: </p>
 <table>
 <thead></thead>
@@ -14,14 +16,15 @@
 	<% name = "q#{i}" %>
 	<% if question.multipleChoice? %>
 	<% elsif question.numerical? %>
-		<tr><input type="number" name="<%= name %>" min="1" /></tr></br>
+		<tr><input type="number" id="<%= name %>" min="1" max="10" /></tr></br>
 	<% elsif question.shortAnswer? %>
-		<tr><input type="text" name="<%= name %>"/></tr></br>
+		<tr><input type="text" id="<%= name %>"/></tr></br>
 	<% end %>
 <% end %>
 </table>
 
+<p class='btn' onClick='assignments.view.submit(<%= @questions.count %>,<%= @id %>);'>Submit Grade</p>
 
-
+<% end %>
 
 
