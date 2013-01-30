@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <div>
 Assignment Name: <input id='name' class='span2' size='16' type='text'/>
 </div>
@@ -12,7 +13,6 @@ Assignment Name: <input id='name' class='span2' size='16' type='text'/>
 </div>
 
 
-
 <h5>Review End Date:</h5> <p class="input-append date" id="end-date" data-date="<%= (Time.now + 1.week).strftime('%m-%d-%Y') %>" data-date-format="mm-dd-yyyy">
  <input class="span2" id='end-date-value' size="16" type="text" value="<%= (Time.now + 1.week).strftime('%m-%d-%Y') %>">
   <span class="add-on"><i class="icon-th"></i></span>
@@ -20,14 +20,14 @@ Assignment Name: <input id='name' class='span2' size='16' type='text'/>
 
 
 
-<div>
+<div id='questions'>
   <h5>Instructions/Questions:</h5>
-    <div id='question_1'>
+    <div id='question_1' class='question'>
       <p>
         <strong>Main Instructions</strong>
-          <%= radio_button_tag 'question_1_type', 'Instruction' %> Instruction
-          <%= radio_button_tag 'question_1_type', 'Short Answer' %> Short Answer
-          <%= radio_button_tag 'question_1_type', 'Numerical Answer' %> Multiple Choice
+          <%= radio_button_tag 'question_1_type', 'instruction' %> Instruction
+          <%= radio_button_tag 'question_1_type', 'short_answer' %> Short Answer
+          <%= radio_button_tag 'question_1_type', 'numerical_answer' %> Numerical Answer
       </p>
         <%= text_area_tag 'question_1_text', '', :class => 'span2', :rows => 3 %>
     </div>
