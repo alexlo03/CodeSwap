@@ -39,12 +39,10 @@ include PairingHelper
 			pairing.save
 			review_assignment.assignment_pairing_id = pairing.id
 			review_assignment.user_id = current_user.id
-			review_assignment.save
-
-      
+			review_assignment.save      
       questions.each do |question|
         type = question.split('|').first
-
+        content = question.split('|').last
         if type == 'instruction'
           type = 0
         elsif type == 'multiple_choice'
@@ -54,12 +52,10 @@ include PairingHelper
         elsif type == 'short_answer'
           type = 3
         end
-
-        content = question.split('|').last
         review_question = ReviewQuestion.new
         review_question.question_type = type
         review_question.review_assignment_id = review_assignment.id
-        review_question.content = question
+        review_question.content = content
         review_question.save
       end
 
