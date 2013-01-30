@@ -44,19 +44,11 @@ include PairingHelper
         title = question.split('|')[0]
         type = question.split('|')[1]
         content = question.split('|')[2]
-        if type == 'instruction'
-          type = 0
-        elsif type == 'multiple_choice'
-          type = 1
-        elsif type == 'numerical_answer'
-          type = 2
-        elsif type == 'short_answer'
-          type = 3
-        end
+        
 
         review_question = ReviewQuestion.new
         review_question.question_title = title
-        review_question.question_type = type
+        review_question.set_type(type)
         review_question.review_assignment_id = review_assignment.id
         review_question.content = content
         review_question.save
