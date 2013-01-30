@@ -28,8 +28,19 @@ Assignment Name: <input id='name' class='span2' size='16' type='text'/>
           <%= radio_button_tag 'question_1_type', 'instruction' %> Instruction
           <%= radio_button_tag 'question_1_type', 'short_answer' %> Short Answer
           <%= radio_button_tag 'question_1_type', 'numerical_answer' %> Numerical Answer
+          <%= radio_button_tag 'question_1_type', 'multiple_choice' %> Multiple Choice
       </p>
+      <p id='question_1_content_area'>
         <%= text_area_tag 'question_1_text', '', :class => 'span2', :rows => 3 %>
+        <div id='question_1_choices' style='display:none'>
+          <div class='question_1_choice'>
+            <input type='text' class='question_1_choice_text'/> <p class='btn' onclick='$(this).parent().remove();'>Remove Choice</p>
+          </div>
+          <d id='question_1_new_choice'/>
+          <p class='btn' onclick='reviewassignments.create.addMultipleChoice("question_1")'>Add Choice</p>
+        </div>
+       
+      <p>
     </div>
 
     <div id='add_questions_here'/>

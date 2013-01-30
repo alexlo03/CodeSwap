@@ -15,7 +15,34 @@ reviewassignments = {
         $('#question_1_title').tooltip({'title':'Click to Edit', 'placement':'right'});
         $('#question_1_title').popover({'title':'Enter Question Title', 'content':reviewassignments.create.textForEditPopover('1')});
 
+        $('input[name="question_1_type"]').change(function(){ reviewassignments.create.radioChanged(1); });
+
         assignment_id = a_id; 
+    },
+
+    radioChanged : function(id) {
+        id = 'question_' + id;
+        type = $('input[name='+ id + '_type' +']:checked').val();
+        $input_area = $('#' + id + '_text');
+        $choice_area = $('#' + id + '_choices');
+        switch(type) {
+          case 'multiple_choice':
+            $input_area.hide();
+            $choice_area.show();
+            break;
+          default:
+            $choice_area.hide();
+            $input_area.show();
+            break;
+        }
+    },
+
+    addMultipleChoice : function(id) {
+          new_question_field = " \
+          <div class='"+id+"_choice'> \
+            <input type='text' class='"+id+"_choice_text'/> <p class='btn' onclick='$(this).parent().remove();'>Remove Choice</p> \
+          </div>";
+          $('#' + id + '_new_choice').before(new_question_field);
     },
 
     textForEditPopover : function(id) {
@@ -113,18 +140,30 @@ reviewassignments = {
   addQuestion : function() {
     num_questions++;
     
+    id = 'question_' + num_questions;
     $('#add_questions_here').before(" \
-      <div id='question_" + num_questions +"' class='question'>           \
+      <div id='" + id +"' class='question'>           \
         <p>                           \
-        <strong id='question_" + num_questions + "_title' class='question_title'>Question " + num_questions +"</strong>   \
-          <input name='question_" + num_questions + "_type' type='radio' value='instruction'/>Instruction      \
-          <input name='question_" + num_questions + "_type' type='radio' value='short_answer'/>Short Answer    \
-          <input name='question_" + num_questions + "_type' type='radio' value='numerical_answer'/>Numerical Answer            \
+        <strong id='" + id + "_title' class='question_title'>Question " + num_questions +"</strong>   \
+          <input name='" + id + "_type' type='radio' value='instruction'/>Instruction      \
+          <input name='" + id + "_type' type='radio' value='short_answer'/>Short Answer    \
+          <input name='" + id + "_type' type='radio' value='numerical_answer'/>Numerical Answer            \
+          <input name='" + id + "_type' type='radio' value='multiple_choice'/>Multiple Choice              \
       </p>                            \
-          <textarea class='span2' id='question_" + num_questions + "_text' name='question_" + num_questions + "_text' rows='3'/>  \
-    </div>");
-    $('#question_' + num_questions + '_title').tooltip({'title':'Click to Edit', 'placement':'right'});
-    $('#question_' + num_questions + '_title').popover({'title':'Enter Question Title', 'content':reviewassignments.create.textForEditPopover(num_questions)});
+      <p id='" + id + "_content_area'> \
+        <textarea class='span2' id='" + id + "_text' name='" + id + "_text' rows='3'/>  \
+        <div id='" + id + "_choices' style='display:none'> \
+          <div class='" + id + "_choice'> \
+            <input type='text' class='" + id + "_choice_text'/> <p class='btn' onclick='$(this).parent().remove();'>Remove Choice</p> \
+          </div> \
+          <d id='" + id + "_new_choice'/> \
+          <p class='btn' onclick='reviewassignments.create.addMultipleChoice(" + id + ")'>Add Choice</p> \
+        </div> \
+      <p> \
+      </div>");
+    $('input[name="'+ id + '_type"]').change(function(){ reviewassignments.create.radioChanged(num_questions); });
+    $('#' + id + '_title').tooltip({'title':'Click to Edit', 'placement':'right'});
+    $('#' + id + '_title').popover({'title':'Enter Question Title', 'content':reviewassignments.create.textForEditPopover(num_questions)});
   },
 
   deleteQuestion: function(id) {
