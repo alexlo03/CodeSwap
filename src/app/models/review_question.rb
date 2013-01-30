@@ -3,15 +3,23 @@ class ReviewQuestion < ActiveRecord::Base
 	
   attr_accessible :content, :question_type, :review_assignment_id
 	
-	#for the different types
+	#for the different types 
   #instruction = 0
-	#multipleChoice = 1
+	#multipleChoice = 1 (multiple choice not supported)
 	#numerical = 2
 	#shortAnswer = 3
-	TYPES = %w{ multipleChoice numerical shortAnswer }
+	TYPES = %w{instruction multiple_choice numerical_answer short_answer}
 
 	TYPES.each_with_index do |name,i|
 		define_method("#{name}?") {question_type == i}
+	end
+
+	def set_type(type_string)
+		TYPES.each_with_index do |name,i|
+			if name == type_string
+				self.question_type = i
+			end
+		end
 	end
 
 end
