@@ -44,7 +44,7 @@ reviewassignments = {
           errors.show(id, 'Please enter content for this question or delete it!');
           questionsOK = false;
         }
-        questions.push(type+'%$%'+question);
+        questions.push(type+'|'+question);
       });
 
       alert(questions);
@@ -54,6 +54,7 @@ reviewassignments = {
       }
       else if(!name){
         errors.show("name","Oh no!  This assignment is nameless. Try giving it a title.");
+      }
       else if(questionsOK) {
         $.post('/reviewassignment/create/'+assignment_id,
           {'startDate':startDate,
@@ -64,7 +65,7 @@ reviewassignments = {
           }, function() {
             window.location = '/reviewassignment/pairings';
           }          
-        );
+        ); 
       }
     },
    

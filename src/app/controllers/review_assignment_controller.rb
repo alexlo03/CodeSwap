@@ -7,7 +7,7 @@ include PairingHelper
      	session[:startDate] = params[:startDate]
 		  session[:endDate] = params[:endDate]
 		  session[:name] = params[:name]
-		  session[:questions] = params[:questions]
+		  session['questions'] = params['questions']
 		  session[:assignment_id] = params[:assignment_id]
 			session[:prev_id] = params[:previous_id].to_i
 		  render :nothing => true
@@ -35,22 +35,33 @@ include PairingHelper
 			review_assignment.name = session['name']
 			review_assignment.course_id = review_assignment.assignment.course.id
 			pairing.depth = session['depth']
+      questions = session['questions']
 			pairing.save
 			review_assignment.assignment_pairing_id = pairing.id
 			review_assignment.user_id = current_user.id
 			review_assignment.save
 
-      questions = session['questions']
+      
       questions.each do |question|
-        type = question.split('%$%')[0]
-        content = question.split('%$%')[1]
+        type = question.split('|').first
+
+        if type == 'instruction'
+          type = 0
+        elsif type == 'multiple_choice'
+          type = 1
+        elsif type == 'numerical_answer'
+          type = 2
+        elsif type == 'short_answer'
+          type = 3
+        end
+
+        content = question.split('|').last
         review_question = ReviewQuestion.new
-        review_question.type = type
+        review_question.question_type = type
         review_question.review_assignment_id = review_assignment.id
         review_question.content = question
         review_question.save
       end
-
 
 			hash = create_pairings(@students,pairing.depth,pairing.seed)
 			hash.each do |user_1_id, user_2_id|
