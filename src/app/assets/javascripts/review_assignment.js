@@ -39,9 +39,6 @@ reviewassignments = {
       else if(!name){
         reviewassignments.create.flashError("flash","Oh no!  This assignment is nameless. Try giving it a title");
       }
-      else if(!desc){
-        review_assignments.create.flashError("flash","Gahh! What\'s this assignment about?  Let's add a little description.");
-      }
       else {
         $.post('/reviewassignment/create/'+assignment_id,
           {'startDate':startDate,

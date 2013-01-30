@@ -3,6 +3,7 @@ class ReviewAssignment < ActiveRecord::Base
 	belongs_to :assignment
 	belongs_to :course
 	belongs_to :assignment_pairing
+	has_many :review_questions
 
   attr_accessible :assignment_id, :assignment_pairing_id, :course_id, :end_date, :start_date, :user_id
 
