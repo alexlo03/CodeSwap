@@ -72,7 +72,7 @@ assignments = {
         $(that).delay(2500).fadeOut();});
   }
   },
-  
+
   edit:{
     pageLoad: function(name, startDate, endDate, descr){
       // Initializes date pickers
@@ -117,7 +117,21 @@ assignments = {
         );
       }
     },
-  }
+  },
+
+	view:{
+		submit: function(count,id){
+				var answers = new Array();
+				for (var i=0 ; i<count ; i++){
+					answers[i] = $('#q'+i).val();
+				}
+				$.post('/reviewassignment/studentsubmit',
+					{'id':id,'answers':answers},function ()
+				{
+            window.location = '/assignment/index'
+				});
+		}
+	}
 }
 
 

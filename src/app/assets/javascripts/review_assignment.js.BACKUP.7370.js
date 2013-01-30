@@ -53,8 +53,15 @@ reviewassignments = {
         errors.show("end-date","Please verify the dates entered are valid.");  
       }
       else if(!name){
+<<<<<<< HEAD
         errors.show("name","Oh no!  This assignment is nameless. Try giving it a title.");
+      }
       else if(questionsOK) {
+=======
+        reviewassignments.create.flashError("flash","Oh no!  This assignment is nameless. Try giving it a title");
+      }
+      else {
+>>>>>>> 947b469beff290dd6ce990399cfc4da1c6ec18d5
         $.post('/reviewassignment/create/'+assignment_id,
           {'startDate':startDate,
           'endDate':endDate,

@@ -91,9 +91,24 @@ include PairingHelper
 				@review_mapping = ReviewMapping.find_by_user_id_and_review_assignment_id(current_user.id,@id)
 				@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
 				@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
+				@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
 			elsif current_user.faculty? || current_user.admin? || current_user.ta?
 				@student = false
 			end
+		end
+	end
+
+	def student_submit
+		unless not request.post?
+			
+			answers = params[:answers]
+			review_assignment = ReviewAssignment.find(params[:id])
+			questions = review_assignment.review_questions
+			user_id = current_user.id
+			answers.each_with_index do |answer, i|
+				ReviewAnswer.create(:user_id => user_id, :review_question_id => questions[i].id, :answer => answer)	
+			end			
+			render :nothing => true
 		end
 	end
 end

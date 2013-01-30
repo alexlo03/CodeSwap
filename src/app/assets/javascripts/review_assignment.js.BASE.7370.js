@@ -12,6 +12,7 @@ reviewassignments = {
 
         $('#end-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
 
+        
         assignment_id = a_id; 
     },
 
@@ -27,39 +28,26 @@ reviewassignments = {
       var startDate = $('#start-date-value').val();
       var endDate = $('#end-date-value').val();
       var name = $('#name').val();
+      var desc = $('#description').val();
 			var prev_id = $('#previous_selection').val();
-
-      var questions = [];
-      questionsOK = true;
-      $('.question').each( function() {
-        id = this.id;
-        type = $('#' + id + ' input[name='+ id + '_type' +']:checked').val();
-        question = $('#' + id + '_text').val();
-
-        if(type==undefined) {
-          errors.show(id, 'Please select a question type for this question!');
-          questionsOK = false;
-        }
-        if(question==''){
-          errors.show(id, 'Please enter content for this question or delete it!');
-          questionsOK = false;
-        }
-        questions.push(type+'%$%'+question);
-      });
-
-      alert(questions);
-
       if(!reviewassignments.create.datesFormatOK(startDate, endDate)) {
-        errors.show("end-date","Please verify the dates entered are valid.");  
+        reviewassignments.create.flashError("flash","Please verify the dates entered are valid.");  
+      }
+      else if(!reviewassignments.create.dateTimesOK(startDate, endDate)) {
+        reviewassignments.create.flashError("flash","The start date cannot occur after the end date.");
       }
       else if(!name){
-        errors.show("name","Oh no!  This assignment is nameless. Try giving it a title.");
-      else if(questionsOK) {
+        reviewassignments.create.flashError("flash","Oh no!  This assignment is nameless. Try giving it a title");
+      }
+      else if(!desc){
+        review_assignments.create.flashError("flash","Gahh! What\'s this assignment about?  Let's add a little description.");
+      }
+      else {
         $.post('/reviewassignment/create/'+assignment_id,
           {'startDate':startDate,
           'endDate':endDate,
           'name':name,
-          'questions':questions,
+          'description':desc,
 					'previous_id':prev_id
           }, function() {
             window.location = '/reviewassignment/pairings';
@@ -87,25 +75,36 @@ reviewassignments = {
 
       return start.getTime() < end.getTime();
     },
+  flashError : function(id,message) {
+         
+         document.getElementById(id).innerHTML="<b>"+message+"</b><br>";
+         $('#'+id).delay(500).fadeIn('normal', function() {
+        $(that).delay(2500).fadeOut();});
+  },
 
   addQuestion : function() {
-    num_questions++;
+
     
+
     $('#add_questions_here').before(" \
-      <div id='question_" + num_questions +"' class='question'>           \
+      <div id='question_" + num_questions +"'>           \
         <p>                           \
         <strong>Question " + num_questions +"</strong>   \
-          <input name='question_" + num_questions + "_type' type='radio' value='instruction'/>Instruction      \
-          <input name='question_" + num_questions + "_type' type='radio' value='short_answer'/>Short Answer    \
-          <input name='question_" + num_questions + "_type' type='radio' value='numerical_answer'/>Numerical Answer            \
+          <input name='question_'" + num_questions + "_type' type='radio' value='instruction'/>Instruction      \
+          <input name='question_'" + num_questions + "_type' type='radio' value='short_answer'/>Short Answer    \
+          <input name='question_'" + num_questions + "_type' type='radio' value='numerical_answer'/>Numerical Answer            \
       </p>                            \
-          <textarea class='span2' id='question_" + num_questions + "_text' name='question_" + num_questions + "_text' rows='3'/>  \
+          <textarea class='span2' id='question_" + num_questions + "_text' name='question_1_text' rows='3'/>  \
     </div>");
+
+    num_questions++;
   },
 
   deleteQuestion: function(id) {
-    
+
   },
+  
+
   }
 }
 
