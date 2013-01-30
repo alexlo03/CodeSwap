@@ -1,1 +1,20 @@
 # Logfile created on Mon Jan 28 21:20:21 -0500 2013 by logger.rb/1.2.6
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)

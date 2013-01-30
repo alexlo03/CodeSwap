@@ -12,7 +12,8 @@
 <table>
 <thead></thead>
 <% @questions.each_with_index do |question,i| %>
-	<tr><%= "#{i}. #{question.content}" %></tr></br>
+	<tr><h5><strong><%= "#{question.question_title}" %></strong></h5></tr>
+	<tr><%= "#{question.content}" %></tr></br>
 	<% name = "q#{i}" %>
 	<% if question.multipleChoice? %>
 	<% elsif question.numerical? %>
