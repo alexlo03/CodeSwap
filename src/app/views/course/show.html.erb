@@ -105,6 +105,7 @@
 						</tr>
           <% end %>
 				</table>
+        <%= button_to 'New Assignment', {:action => 'create', :controller => 'assignment', :course_id => @course.id}, :class => 'btn btn-success' %>
         <h3>Review Assignments: </h3>
 					<table class='table table-hover'>
           <% @review_assignments.each do |assignment| %>
@@ -113,7 +114,6 @@
 						</tr>
           <% end %>
 				</table>
-        <%= button_to 'Create New', {:action => 'create', :controller => 'assignment', :course_id => @course.id} %>
       <% end %>
     </div>
   </div>

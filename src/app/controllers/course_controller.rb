@@ -25,7 +25,8 @@ include CourseHelper
   # GET
   def edit
     id = params[:id]
-    requiresUsers(['admin','faculty'],id)
+    requires(['admin','faculty'])
+    requiresCourse(id)
 
     @course = Course.find(id)
     if(@course.nil?)

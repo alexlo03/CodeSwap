@@ -3,7 +3,7 @@ class FacultyController < ApplicationController
   def index
 		# List all of the courses
     requires ['admin', 'faculty']
-    @classes = Course.all
+    @classes = Course.find_all_by_user_id(current_user.id)
   end
 
   def new_course
