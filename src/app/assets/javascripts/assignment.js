@@ -79,7 +79,6 @@ assignments = {
       $('#start-date').datepicker({ 'autoClose':true,'data-date':startDate}).on('changeDate', function(ev) { $('#start-date').datepicker('hide'); });
       $('#end-date').datepicker({ 'autoClose':true, 'data-date':endDate}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
 
-
       // Loads-in assignment data
       $('#start-date-value').val(startDate);
       $('#end-date-value').val(endDate);

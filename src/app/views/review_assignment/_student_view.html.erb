@@ -12,12 +12,13 @@
 <table>
 <thead></thead>
 <% @questions.each_with_index do |question,i| %>
-	<tr><%= "#{i}. #{question.content}" %></tr></br>
+	<tr><h5><strong><%= "#{question.question_title}" %></strong></h5></tr>
+	<tr><%= "#{question.content}" %></tr></br>
 	<% name = "q#{i}" %>
-	<% if question.multipleChoice? %>
-	<% elsif question.numerical? %>
+	<% if question.multiple_choice? %>
+	<% elsif question.numerical_answer? %>
 		<tr><input type="number" id="<%= name %>" min="1" max="10" /></tr></br>
-	<% elsif question.shortAnswer? %>
+	<% elsif question.short_answer? %>
 		<tr><input type="text" id="<%= name %>"/></tr></br>
 	<% end %>
 <% end %>

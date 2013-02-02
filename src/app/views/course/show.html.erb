@@ -104,6 +104,7 @@
               </td>							
 						</tr>
           <% end %>
+				<%= button_to 'Create New', {:action => 'create', :controller => 'assignment', :course_id => @course.id} %>
 				</table>
         <%= button_to 'New Assignment', {:action => 'create', :controller => 'assignment', :course_id => @course.id}, :class => 'btn btn-success' %>
         <h3>Review Assignments: </h3>

@@ -2,7 +2,7 @@
 var assignment_id;
 var that = this;
 
-var num_questions = 1;
+var num_questions = 0;
 
 reviewassignments = {
 
@@ -12,8 +12,53 @@ reviewassignments = {
 
         $('#end-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
 
+//        $('#question_1_title').tooltip({'title':'Click to Edit', 'placement':'right'});
+//        $('#question_1_title').popover({'title':'Enter Question Title', 'content':reviewassignments.create.textForEditPopover('1')});
+
+//        $('input[name="question_1_type"]').change(function(){ reviewassignments.create.radioChanged(1); });
+ 
+
+        reviewassignments.create.addQuestion();
+
         assignment_id = a_id; 
     },
+
+    radioChanged : function(id) {
+        type = $('input[name='+ id + '_type' +']:checked').val();
+        $input_area = $('#' + id + '_text');
+        $choice_area = $('#' + id + '_choices');
+        switch(type) {
+          case 'multiple_choice':
+            $choice_area.show();
+            break;
+          default:
+            $choice_area.hide();
+            break;
+        }
+    },
+
+    addMultipleChoice : function(id) {
+          new_question_field = " \
+          <div class='"+id+"_choice'> \
+            <input type='text' class='"+id+"_choice_text'/> <p class='btn' onclick='$(this).parent().remove();'>Remove Choice</p> \
+          </div>";
+          $('#' + id + '_new_choice').before(new_question_field);
+    },
+
+    textForEditPopover : function(id) {
+      return '<input type="text" class="input-small" id="new_question_'+ id +'_title"></input> <p class="btn" onclick="reviewassignments.create.finishEditPopover(\''+ id +'\');">Accept</p>  <p class="btn" onclick="reviewassignments.create.closePopover(\''+ id +'\');">Cancel</p>';
+    },
+
+    finishEditPopover : function(id) {
+      $('#question_'+id+'_title').text($('#new_question_'+id+'_title').val());
+      reviewassignments.create.closePopover(id);
+    },
+
+    closePopover : function(id) {
+      $('#new_question_'+id+'_title').val('');
+      $('#question_'+id+'_title').popover('hide');
+    },
+
 
 
 		submitPairing: function(){
@@ -28,13 +73,27 @@ reviewassignments = {
       var endDate = $('#end-date-value').val();
       var name = $('#name').val();
 			var prev_id = $('#previous_selection').val();
-
+      
       var questions = [];
       questionsOK = true;
       $('.question').each( function() {
         id = this.id;
         type = $('#' + id + ' input[name='+ id + '_type' +']:checked').val();
         question = $('#' + id + '_text').val();
+        title = $('#' + id + '_title').text();
+
+        choices = '';
+        choicesOK = true;
+        if(type == 'multiple_choice') {
+          $('.' + id + '_choice_text').each(function() {
+            if($(this).val() == '' && choicesOK) {
+              errors.show(id, 'Please ensure all choices are filled out.');
+              questionsOK = false;
+              choicesOK = false;
+            }
+            choices += '~' + $(this).val();
+          });
+        }
 
         if(type==undefined) {
           errors.show(id, 'Please select a question type for this question!');
@@ -44,10 +103,13 @@ reviewassignments = {
           errors.show(id, 'Please enter content for this question or delete it!');
           questionsOK = false;
         }
-        questions.push(type+'|'+question);
-      });
+        if(title==''){
+          errors.show(id, 'Please enter a valid title for this question!');
+          questionsOK = false;
+        }
 
-      alert(questions);
+        questions.push(title+'|'+type+'|'+question + choices);
+      });
 
       if(!reviewassignments.create.datesFormatOK(startDate, endDate)) {
         errors.show("end-date","Please verify the dates entered are valid.");  
@@ -92,16 +154,36 @@ reviewassignments = {
   addQuestion : function() {
     num_questions++;
     
-    $('#add_questions_here').before(" \
-      <div id='question_" + num_questions +"' class='question'>           \
-        <p>                           \
-        <strong>Question " + num_questions +"</strong>   \
-          <input name='question_" + num_questions + "_type' type='radio' value='instruction'/>Instruction      \
-          <input name='question_" + num_questions + "_type' type='radio' value='short_answer'/>Short Answer    \
-          <input name='question_" + num_questions + "_type' type='radio' value='numerical_answer'/>Numerical Answer            \
-      </p>                            \
-          <textarea class='span2' id='question_" + num_questions + "_text' name='question_" + num_questions + "_text' rows='3'/>  \
-    </div>");
+    id = 'question_' + num_questions;
+    $('#add_questions_here').before("\
+      <div id='" + id +"' class='question'>\
+        <p>\
+        <strong id='" + id + "_title' class='question_title'>Question " + num_questions +"</strong>\
+          <d class='btn btn-danger' onclick='$(this).parent().parent().remove();'>Remove Question</d>\
+          <p><strong>Type:</strong>\
+            <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='instruction'/>Instruction\
+            <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='short_answer'/>Short Answer\
+            <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='numerical_answer'/>Numerical Answer\
+            <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='multiple_choice'/>Multiple Choice\
+          </p>\
+      </p>\
+      <p id='" + id + "_content_area'>\
+        <textarea class='span2' id='" + id + "_text' name='" + id + "_text' rows='3'/>\
+        <div id='" + id + "_choices' style='display:none'>\
+          <p><strong>Choices:</strong></p>\
+          <div class='" + id + "_choice'>\
+            <input type='text' class='" + id + "_choice_text'/> <p class='btn' onclick='$(this).parent().remove();'>Remove Choice</p>\
+          </div>\
+          <div class='" + id + "_choice'>\
+            <input type='text' class='" + id + "_choice_text'/> <p class='btn' onclick='$(this).parent().remove();'>Remove Choice</p>\
+          </div>\
+          <d id='" + id + "_new_choice'/>\
+          <p class='btn' onclick='reviewassignments.create.addMultipleChoice(\"" + id + "\")'>Add Choice</p>\
+        </div>\
+      <p>\
+      </div>");
+    $('#' + id + '_title').tooltip({'title':'Click to Edit', 'placement':'right'});
+    $('#' + id + '_title').popover({'title':'Enter Question Title', 'content':reviewassignments.create.textForEditPopover(num_questions)});
   },
 
   deleteQuestion: function(id) {

@@ -7,6 +7,7 @@ class AdminController < ApplicationController
     @students = User.find_all_by_role([:student, :ta]).take(5)
     @admins = User.find_all_by_role(:admin).take(5)
     @faculty = User.find_all_by_role(:faculty).take(5)
+    
   end
 
   def create_faculty
@@ -47,6 +48,7 @@ class AdminController < ApplicationController
     u = User.find_by_email(params[:email])
     u.destroy
     render :json => u.to_json
+    
   end
 
 
