@@ -5,9 +5,9 @@ class ReviewQuestion < ActiveRecord::Base
 	
 	#for the different types 
   #instruction = 0
-	#multipleChoice = 1 (multiple choice not supported)
-	#numerical = 2
-	#shortAnswer = 3
+	#multiple_choice = 1
+	#numerical_answer = 2
+	#short_answer = 3
 	TYPES = %w{instruction multiple_choice numerical_answer short_answer}
 
 	TYPES.each_with_index do |name,i|

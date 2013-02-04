@@ -1,0 +1,422 @@
+# Logfile created on Mon Jan 28 21:20:21 -0500 2013 by logger.rb/1.2.6
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/andy/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+
+NoMethodError (undefined method `other_user_id' for nil:NilClass):
+  app/controllers/review_assignment_controller.rb:102:in `view'
+
+
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/andy/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+Binary data inserted for `string` type on column `encrypted_password`
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:js] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+
+SocketError (getaddrinfo: Name or service not known):
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:540:in `initialize'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:540:in `open'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:540:in `tcp_socket'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:549:in `block in do_start'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/timeout.rb:68:in `timeout'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/timeout.rb:99:in `timeout'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:549:in `do_start'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:519:in `start'
+  mail (2.4.4) lib/mail/network/delivery_methods/smtp.rb:144:in `deliver!'
+  mail (2.4.4) lib/mail/message.rb:2034:in `do_delivery'
+  mail (2.4.4) lib/mail/message.rb:229:in `block in deliver'
+  actionmailer (3.2.8) lib/action_mailer/base.rb:415:in `block in deliver_mail'
+  activesupport (3.2.8) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.8) lib/active_support/notifications.rb:123:in `instrument'
+  actionmailer (3.2.8) lib/action_mailer/base.rb:413:in `deliver_mail'
+  mail (2.4.4) lib/mail/message.rb:229:in `deliver'
+  exception_notification (3.0.0) lib/exception_notifier.rb:48:in `rescue in call'
+  exception_notification (3.0.0) lib/exception_notifier.rb:40:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/cookies.rb:339:in `call'
+  activerecord (3.2.8) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:473:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `_run__3743694042424187532__call__709574404420926087__callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.8) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.8) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.8) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.8) lib/rails/engine.rb:479:in `call'
+  railties (3.2.8) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.8) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+
+SocketError (getaddrinfo: Name or service not known):
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:540:in `initialize'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:540:in `open'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:540:in `tcp_socket'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:549:in `block in do_start'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/timeout.rb:68:in `timeout'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/timeout.rb:99:in `timeout'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:549:in `do_start'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:519:in `start'
+  mail (2.4.4) lib/mail/network/delivery_methods/smtp.rb:144:in `deliver!'
+  mail (2.4.4) lib/mail/message.rb:2034:in `do_delivery'
+  mail (2.4.4) lib/mail/message.rb:229:in `block in deliver'
+  actionmailer (3.2.8) lib/action_mailer/base.rb:415:in `block in deliver_mail'
+  activesupport (3.2.8) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.8) lib/active_support/notifications.rb:123:in `instrument'
+  actionmailer (3.2.8) lib/action_mailer/base.rb:413:in `deliver_mail'
+  mail (2.4.4) lib/mail/message.rb:229:in `deliver'
+  exception_notification (3.0.0) lib/exception_notifier.rb:48:in `rescue in call'
+  exception_notification (3.0.0) lib/exception_notifier.rb:40:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/cookies.rb:339:in `call'
+  activerecord (3.2.8) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:473:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `_run__3743694042424187532__call__709574404420926087__callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.8) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.8) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.8) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.8) lib/rails/engine.rb:479:in `call'
+  railties (3.2.8) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.8) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+
+Timeout::Error (Timeout::Error):
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/protocol.rb:146:in `rescue in rbuf_fill'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/protocol.rb:140:in `rbuf_fill'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/protocol.rb:122:in `readuntil'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/protocol.rb:132:in `readline'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:929:in `recv_response'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:915:in `block in getok'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:939:in `critical'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:913:in `getok'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:907:in `quit'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:613:in `do_finish'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:522:in `start'
+  mail (2.4.4) lib/mail/network/delivery_methods/smtp.rb:144:in `deliver!'
+  mail (2.4.4) lib/mail/message.rb:2034:in `do_delivery'
+  mail (2.4.4) lib/mail/message.rb:229:in `block in deliver'
+  actionmailer (3.2.8) lib/action_mailer/base.rb:415:in `block in deliver_mail'
+  activesupport (3.2.8) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.8) lib/active_support/notifications.rb:123:in `instrument'
+  actionmailer (3.2.8) lib/action_mailer/base.rb:413:in `deliver_mail'
+  mail (2.4.4) lib/mail/message.rb:229:in `deliver'
+  exception_notification (3.0.0) lib/exception_notifier.rb:48:in `rescue in call'
+  exception_notification (3.0.0) lib/exception_notifier.rb:40:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/cookies.rb:339:in `call'
+  activerecord (3.2.8) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:473:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `_run__3743694042424187532__call__709574404420926087__callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.8) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.8) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.8) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.8) lib/rails/engine.rb:479:in `call'
+  railties (3.2.8) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.8) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+
+EOFError (end of file reached):
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/openssl/buffering.rb:174:in `sysread_nonblock'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/openssl/buffering.rb:174:in `read_nonblock'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/protocol.rb:141:in `rbuf_fill'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/protocol.rb:122:in `readuntil'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/protocol.rb:132:in `readline'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:929:in `recv_response'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:915:in `block in getok'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:939:in `critical'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:913:in `getok'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:907:in `quit'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:613:in `do_finish'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:522:in `ensure in start'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/net/smtp.rb:522:in `start'
+  mail (2.4.4) lib/mail/network/delivery_methods/smtp.rb:144:in `deliver!'
+  mail (2.4.4) lib/mail/message.rb:2034:in `do_delivery'
+  mail (2.4.4) lib/mail/message.rb:229:in `block in deliver'
+  actionmailer (3.2.8) lib/action_mailer/base.rb:415:in `block in deliver_mail'
+  activesupport (3.2.8) lib/active_support/notifications.rb:123:in `block in instrument'
+  activesupport (3.2.8) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (3.2.8) lib/active_support/notifications.rb:123:in `instrument'
+  actionmailer (3.2.8) lib/action_mailer/base.rb:413:in `deliver_mail'
+  mail (2.4.4) lib/mail/message.rb:229:in `deliver'
+  exception_notification (3.0.0) lib/exception_notifier.rb:48:in `rescue in call'
+  exception_notification (3.0.0) lib/exception_notifier.rb:40:in `call'
+  warden (1.2.1) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.1) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.1) lib/warden/manager.rb:34:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/best_standards_support.rb:17:in `call'
+  rack (1.4.1) lib/rack/etag.rb:23:in `call'
+  rack (1.4.1) lib/rack/conditionalget.rb:25:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/head.rb:14:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/params_parser.rb:21:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/flash.rb:242:in `call'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:205:in `context'
+  rack (1.4.1) lib/rack/session/abstract/id.rb:200:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/cookies.rb:339:in `call'
+  activerecord (3.2.8) lib/active_record/query_cache.rb:64:in `call'
+  activerecord (3.2.8) lib/active_record/connection_adapters/abstract/connection_pool.rb:473:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `_run__3743694042424187532__call__709574404420926087__callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:405:in `__run_callback'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:385:in `_run_call_callbacks'
+  activesupport (3.2.8) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (3.2.8) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/reloader.rb:65:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/remote_ip.rb:31:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/debug_exceptions.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/show_exceptions.rb:56:in `call'
+  railties (3.2.8) lib/rails/rack/logger.rb:26:in `call_app'
+  railties (3.2.8) lib/rails/rack/logger.rb:16:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/request_id.rb:22:in `call'
+  rack (1.4.1) lib/rack/methodoverride.rb:21:in `call'
+  rack (1.4.1) lib/rack/runtime.rb:17:in `call'
+  activesupport (3.2.8) lib/active_support/cache/strategy/local_cache.rb:72:in `call'
+  rack (1.4.1) lib/rack/lock.rb:15:in `call'
+  actionpack (3.2.8) lib/action_dispatch/middleware/static.rb:62:in `call'
+  railties (3.2.8) lib/rails/engine.rb:479:in `call'
+  railties (3.2.8) lib/rails/application.rb:223:in `call'
+  rack (1.4.1) lib/rack/content_length.rb:14:in `call'
+  railties (3.2.8) lib/rails/rack/log_tailer.rb:17:in `call'
+  rack (1.4.1) lib/rack/handler/webrick.rb:59:in `service'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/httpserver.rb:138:in `service'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/httpserver.rb:94:in `run'
+  /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/webrick/server.rb:191:in `block in start_thread'
+
+
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+
+ActionView::Template::Error (undefined method `multipleChoice?' for #<ReviewQuestion:0x000000059418a8>):
+    15: 	<tr><h5><strong><%= "#{question.question_title}" %></strong></h5></tr>
+    16: 	<tr><%= "#{question.content}" %></tr></br>
+    17: 	<% name = "q#{i}" %>
+    18: 	<% if question.multipleChoice? %>
+    19: 	<% elsif question.numerical? %>
+    20: 		<tr><input type="number" id="<%= name %>" min="1" max="10" /></tr></br>
+    21: 	<% elsif question.shortAnswer? %>
+  app/views/review_assignment/_student_view.html.erb:18:in `block in _app_views_review_assignment__student_view_html_erb___1717685743778360073_36425960'
+  app/views/review_assignment/_student_view.html.erb:14:in `each'
+  app/views/review_assignment/_student_view.html.erb:14:in `each_with_index'
+  app/views/review_assignment/_student_view.html.erb:14:in `_app_views_review_assignment__student_view_html_erb___1717685743778360073_36425960'
+  app/views/review_assignment/view.html.erb:8:in `_app_views_review_assignment_view_html_erb___1548024259799757338_38106100'
+
+
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+
+ActionView::Template::Error (undefined method `numerical?' for #<ReviewQuestion:0x007fa5d0353b30>):
+    16: 	<tr><%= "#{question.content}" %></tr></br>
+    17: 	<% name = "q#{i}" %>
+    18: 	<% if question.multiple_choice? %>
+    19: 	<% elsif question.numerical? %>
+    20: 		<tr><input type="number" id="<%= name %>" min="1" max="10" /></tr></br>
+    21: 	<% elsif question.short_answer? %>
+    22: 		<tr><input type="text" id="<%= name %>"/></tr></br>
+  app/views/review_assignment/_student_view.html.erb:19:in `block in _app_views_review_assignment__student_view_html_erb___1717685743778360073_70175072256820'
+  app/views/review_assignment/_student_view.html.erb:14:in `each'
+  app/views/review_assignment/_student_view.html.erb:14:in `each_with_index'
+  app/views/review_assignment/_student_view.html.erb:14:in `_app_views_review_assignment__student_view_html_erb___1717685743778360073_70175072256820'
+  app/views/review_assignment/view.html.erb:8:in `_app_views_review_assignment_view_html_erb___1548024259799757338_38106100'
+
+
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/jackson/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/andy/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+
+RuntimeError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id):
+  app/controllers/review_assignment_controller.rb:41:in `pairings'
+
+
+should be getting a log message here
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/andy/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/andy/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)
+DEPRECATION WARNING: Passing the format in the template name is deprecated. Please pass render with :formats => [:html] instead. (called from realtime at /home/andy/.rvm/rubies/ruby-1.9.3-p286/lib/ruby/1.9.1/benchmark.rb:295)

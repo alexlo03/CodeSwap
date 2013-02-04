@@ -11,6 +11,10 @@ gem 'sqlite3'
 # Authorization
 gem 'cancan'
 
+
+# Parsing .CSV, .XLS, and .XLSX files
+gem 'roo'
+
 group :development, :test do
     gem 'railroady'
 end
@@ -23,6 +27,8 @@ gem 'nokogiri', '~> 1.5.1'
 gem 'cucumber'
 gem 'rspec'
 gem 'webrat'
+gem 'exception_notification'
+
 
 group :test do
   gem 'cucumber-rails'
