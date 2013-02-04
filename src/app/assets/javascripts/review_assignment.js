@@ -91,7 +91,7 @@ reviewassignments = {
               questionsOK = false;
               choicesOK = false;
             }
-            choices += '~' + $(this).val();
+            choices += '@#!$' + $(this).val();
           });
         }
 
@@ -108,7 +108,8 @@ reviewassignments = {
           questionsOK = false;
         }
 
-        questions.push(title+'|'+type+'|'+question + choices);
+        s = '~`~`~';
+        questions.push(title+s+type+s+question + choices);
       });
 
       if(!reviewassignments.create.datesFormatOK(startDate, endDate)) {
@@ -184,12 +185,30 @@ reviewassignments = {
       </div>");
     $('#' + id + '_title').tooltip({'title':'Click to Edit', 'placement':'right'});
     $('#' + id + '_title').popover({'title':'Enter Question Title', 'content':reviewassignments.create.textForEditPopover(num_questions)});
+  }
   },
 
-  deleteQuestion: function(id) {
-    
-  },
-  }
+	view:{
+		submit: function(id){
+				var answers = [];
+        
+        $('.question_area').each(function() {
+           
+          if($(this).attr('type') == '1'){ // mc
+            alert('multiple choice!');                  
+           } else {
+            alert($(this).find('#' + $(this).val()).val());
+           }
+        });
+        if(false) {
+				  $.post('/reviewassignment/studentsubmit',
+					  {'answers':answers},function ()
+				      {
+                  window.location = '/assignment/index';
+				      });
+        }
+		}
+	}
 }
 
   

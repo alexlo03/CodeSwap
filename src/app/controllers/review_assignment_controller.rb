@@ -40,10 +40,11 @@ include PairingHelper
 			review_assignment.assignment_pairing_id = pairing.id
 			review_assignment.user_id = current_user.id
 			review_assignment.save      
+      split_string = '~`~`~'
       questions.each do |question|
-        title = question.split('|')[0]
-        type = question.split('|')[1]
-        content = question.split('|')[2]
+        title = question.split(split_string)[0]
+        type = question.split(split_string)[1]
+        content = question.split(split_string)[2]
         
 
         review_question = ReviewQuestion.new
