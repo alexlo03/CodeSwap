@@ -117,20 +117,6 @@ assignments = {
       }
     },
   },
-
-	view:{
-		submit: function(count,id){
-				var answers = new Array();
-				for (var i=0 ; i<count ; i++){
-					answers[i] = $('#q'+i).val();
-				}
-				$.post('/reviewassignment/studentsubmit',
-					{'id':id,'answers':answers},function ()
-				{
-            window.location = '/assignment/index'
-				});
-		}
-	}
 }
 
 
