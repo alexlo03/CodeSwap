@@ -96,6 +96,7 @@ include PairingHelper
 				@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
 			elsif current_user.faculty? || current_user.admin? || current_user.ta?
 				@student = false
+				@students = User.find_all_by_id(@review_assignment.course.get_students)
 			end
 		end
 	end
@@ -111,5 +112,31 @@ include PairingHelper
 			end			
 			render :nothing => true
 		end
+	end
+
+	def view_submission
+		@student_a = User.find(params["user_id"])
+		@review_assignment = ReviewAssignment.find(params["review_assignment_id"])
+		@student_b = @review_assignment.find_pair(params[:user_id])
+		@answers = ReviewAnswer.find_all_by_user_id(@student_a.id)
+		@answers = @answers.reject{|x| x.review_question.review_assignment.id != @review_assignment.id}
+		
+	end
+
+	def grades
+
+		id = params[:id]
+		@review_assignment = ReviewAssignment.find(id)
+		@students = User.find_all_by_id(@review_assignment.course.get_students)
+		@questions = ReviewQuestion.find_all_by_review_assignment_id(id)
+		@answers = {}
+		@students.each do |s|
+			@answers[s.id] = ReviewAnswer.order(:review_question_id).find_all_by_user_id_and_review_question_id(s.id,@questions.collect(&:id))
+		end
+		respond_to do |format|
+			format.html
+			format.xls
+		end
+		
 	end
 end
