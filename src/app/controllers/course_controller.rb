@@ -9,6 +9,8 @@ include CourseHelper
     id = params[:id]
     @course = Course.find(id)
     unless @course.nil?
+    requires(['admin','faculty','student'])
+    requiresCourse(id)
       @students = Studentgroup.where(:course_id => id)
       @tas = Tagroup.where(:course_id => id)
       @teacher = User.where(:id => @course.user_id).first
