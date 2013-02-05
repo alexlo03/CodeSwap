@@ -4,7 +4,32 @@ var studentsToRemove = [];
 var tasToRemove = [];
 
 courses = {
+  new: {
+    toggleSubmit: function() {
+      if(!courses.new.errorsExist()) {
+      $('#create_course_confirm').toggle();
+      $('#create_course_submit').toggle();
+      }
+    },
+
+    errorsExist: function() {
+      result = false;
+      if(! /.csv/i.test($('#students_csv').val())) {
+        errors.show('csv_errors','Please ensure the file you have attached is in the format of a .csv');
+        result = true;
+      }
+      fields = ['course_number', 'course_name', 'course_section', 'course_term'];
+
+      $.each(fields, function() {
+        if($('#' + this).val() == '') {
+          errors.show(this + '_errors', 'Please ensure ' + this.split('_').join(' ') + ' is not blank');
+          result = true;
+        }
+      });
+      return result;
+    },
   
+  },
   edit : {
 
     submit: function() {
