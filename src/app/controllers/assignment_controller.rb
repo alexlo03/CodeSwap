@@ -90,6 +90,8 @@ include AssignmentHelper
     assignment_id = params[:assignment_id]
     @assignment = Assignment.find_by_id(assignment_id)
     @course = Course.find_by_id(@assignment.course_id)
+    
+
     requires({'role'=>['admin', 'faculty'], 'course_id' =>@course.id})
     if current_user
 
@@ -108,7 +110,12 @@ include AssignmentHelper
       endDate = params[:endDate]
       name = params[:name]
       description = params[:description]
-      
+      hidden = params[:hidden]
+      if(hidden = 'True')
+        hidden = true
+      else
+        hidden = false
+      end
       
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
@@ -121,6 +128,7 @@ include AssignmentHelper
         assignment.end_date = endDate
         assignment.name = name
         assignment.course_id = course_id
+        assignment.hidden = hidden
       assignment.save
 		
 		  #Create a new Assignment_Definition with the description given
@@ -155,7 +163,12 @@ include AssignmentHelper
       endDate = params[:endDate]
       name = params[:name]
       description = params[:description]
-      
+      hidden = params[:hidden]
+      if(hidden = 'True')
+        hidden = true
+      else
+        hidden = false
+      end
       
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
@@ -167,6 +180,7 @@ include AssignmentHelper
         assignment.start_date = startDate
         assignment.end_date = endDate
         assignment.name = name
+        assignment.hidden = hidden
       assignment.save
 		
 		  #Create a new Assignment_Definition with the description given
