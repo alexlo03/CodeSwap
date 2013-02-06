@@ -1,6 +1,6 @@
 
 var course_id;
-var that = this;
+
 assignments = {
 
   create: {
@@ -66,10 +66,10 @@ assignments = {
       return start.getTime() < end.getTime();
     },
   flashError : function(id,message) {
-         
+         var path = '#'+id;
          document.getElementById(id).innerHTML="<b>"+message+"</b><br>";
-         $('#'+id).delay(500).fadeIn('normal', function() {
-        $(that).delay(2500).fadeOut();});
+         $(path).delay(500).fadeIn('normal', function() {
+        $(path).delay(2500).fadeOut();});
   }
   },
 
