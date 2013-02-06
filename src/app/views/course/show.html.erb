@@ -104,9 +104,10 @@
               </td>							
 						</tr>
           <% end %>
-				<%= button_to 'Create New', {:action => 'create', :controller => 'assignment', :course_id => @course.id} %>
-				</table>
-        <%= button_to 'New Assignment', {:action => 'create', :controller => 'assignment', :course_id => @course.id}, :class => 'btn btn-success' %>
+				  <%= button_to 'New Assignment', {:action => 'create', :controller => 'assignment', :course_id => @course.id}, :class => 'btn btn-success', :style => '
+padding:5px 5px 5px;' %>
+        </table>
+        
         <h3>Review Assignments: </h3>
 					<table class='table table-hover'>
           <% @review_assignments.each do |assignment| %>

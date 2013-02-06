@@ -6,10 +6,11 @@ include CourseHelper
   def show
 		#Find the course, then if the course is found, retrieve mappings of students and tas to a course.
     id = params[:id]
-    @course = Course.find(id)
-    unless @course.nil?
-    requires(['admin','faculty','student'])
-    requiresCourse(id)
+    @course = Course.find(id)    
+    requires({'role' => ['admin','faculty','student'],'course_id' => id})
+      unless (@course.nil? || current_user.nil?)
+   ### requires(['admin','faculty','student'])
+   ### requiresCourse(id)
       @students = Studentgroup.where(:course_id => id)
       @tas = Tagroup.where(:course_id => id)
       @teacher = User.where(:id => @course.user_id).first
@@ -25,11 +26,12 @@ include CourseHelper
   
   # GET
   def edit
-    requires(['admin','faculty'])
+   ### requires(['admin','faculty'])
     id = params[:id]
-    requiresCourse(id)
+   ### requiresCourse(id)
 
     @course = Course.find(id)
+    requires({'role' => ['admin','faculty'],'course_id' => id})
     if(@course.nil?)
       flash[:error] = 'Something has gone horribly wrong. A system administrator has been contacted.'
     else
@@ -43,8 +45,8 @@ include CourseHelper
 
   # POST
   def submit_edit
-    requires(['admin','faculty'])
     id = params[:course_id]
+    requires({'role' => ['admin','faculty'],'course_id'=>id})
     course_number = params[:number]
     course_term = params[:term]
     course_name = params[:name]
@@ -71,7 +73,7 @@ include CourseHelper
   end 
 
   def new
-    requires(['admin','faculty'])
+    requires({'role' => ['admin','faculty']})
     @name = params[:name]
     @term = params[:term]
     @number = params[:number]
@@ -79,7 +81,7 @@ include CourseHelper
   end
 
   def create
-    requires(['admin','faculty'])
+    requires({'role' => ['admin','faculty']})
     course_name = params[:course_name]
     course_term = params[:course_term]
     course_number = params[:course_number]
@@ -102,12 +104,13 @@ include CourseHelper
   end
 
   def add_student
-    requires(['admin','faculty'])
+    course_id = params[:course_id]
+    requires({'role' => ['admin','faculty'],'course_id'=>course_id})
     first = params[:first]
     last = params[:last]
     email = params[:email]
     role = params[:role]
-    course_id = params[:course_id]
+    
     
     course = Course.find(course_id)
 

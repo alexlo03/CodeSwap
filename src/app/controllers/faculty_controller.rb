@@ -1,19 +1,21 @@
 class FacultyController < ApplicationController
-
+include ApplicationHelper
   def index
 		# List all of the courses
-    requires ['admin', 'faculty']
-    @classes = Course.find_all_by_user_id(current_user.id)
+    requires({'role'=>['admin', 'faculty']})
+    unless current_user.nil?
+      @classes = Course.find_all_by_user_id(current_user.id)
+    end
   end
 
   def new_course
 		#Create a new Course
-    requires ['admin', 'faculty']
+    requires({'role'=>['admin', 'faculty']})
     @course = Course.new
   end
 
   def add_course
-    requires ['admin', 'faculty']
+    requires({'role'=>['admin', 'faculty']})
 		#Get all of the parameters
     cName = params[:cname]
     cTerm = params[:cterm]
