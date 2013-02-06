@@ -20,4 +20,9 @@ class Emailer < ActionMailer::Base
     mail(:content_type => 'text/html', :to => ENV["GMAIL_USERNAME"], :subject => '[CodeSwap][Complaint] ' + subject)
   end
 
+	def show_error(exception)
+		@exception = exception
+    mail(:content_type => 'text/html', :to => 'rosehulman.codeswap@gmail.com', :subject => '[CodeSwap][Error] New Error')
+	end
+
 end
