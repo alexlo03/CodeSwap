@@ -10,7 +10,7 @@
         <Cell><Data ss:Type="String">Grader</Data></Cell>
         <Cell><Data ss:Type="String">Graded</Data></Cell>
 				<% @questions.each do |question| %>
-        <Cell><Data ss:Type="String"><%= question.content %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= question.content.split('@#!$').first %></Data></Cell>
 				<% end %>
       </Row>
     <% @students.each do |student| %>

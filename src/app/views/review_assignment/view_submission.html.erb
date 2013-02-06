@@ -13,7 +13,7 @@
 <% @answers.each_with_index do |answer,i| %>
 	<% question = answer.review_question %>
 	<tr><strong><%= "#{question.question_title}" %></strong></tr></br>
-	<tr><%= "Question: #{question.content}" %></tr></br>
+	<tr><%= "Question: #{question.content.split('@#!$').first}" %></tr></br>
 	<tr><%= "Answer: #{answer.answer}" %></tr></br>
 <% end %>
 </table>
