@@ -10,7 +10,7 @@ CodeSwap::Application.configure do
   config.whiny_nils = true
 
   config.log_level = :info
-  config.logger = Logger.new("DevelopmentLog.rb")
+  config.logger = Logger.new("log/DevelopmentLog.rb")
   
 
   # Show full error reports and disable caching
@@ -19,10 +19,6 @@ CodeSwap::Application.configure do
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
-
-  config.middleware.use ExceptionNotifier,
-    :sender_address => 'rosehulman.codeswap@gmail.com',
-    :exception_recipients => 'rosehulman.codeswap@gmail.com'
 
   # Change mail delivery to either :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :smtp
@@ -55,8 +51,5 @@ CodeSwap::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  
-
-
 
 end
