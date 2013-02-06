@@ -2,12 +2,15 @@ class FacultyController < ApplicationController
 include ApplicationHelper
   def index
 		# List all of the courses
-    requires({'role'=>['admin', 'faculty']})
+    requires({'role'=>['admin', 'faculty', 'student']})
     unless current_user.nil?
       if(current_user.role == 'admin')
         @classes = Course.all
-      else
+      elsif(current_user.role == 'faculty')
         @classes = Course.find_all_by_user_id(current_user.id)
+      else
+        @classes = Course.find_all_by_id(Studentgroup.find_all_by_user_id(current_user.id).collect(&:course_id))
+        @classes_ta = Course.find_all_by_id(Tagroup.find_all_by_user_id(current_user.id).collect(&:course_id))
       end
     end
   end
