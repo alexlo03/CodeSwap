@@ -78,7 +78,6 @@ class AssignmentController < ApplicationController
   def create
     course_id = params[:course_id]
     @course = Course.find_by_id(course_id)
-    
   end
 
   # Get data for editing an assignment
@@ -87,6 +86,7 @@ class AssignmentController < ApplicationController
     @assignment = Assignment.find_by_id(assignment_id)
     @course = Course.find_by_id(@assignment.course_id)
     @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(assignment_id)
+    @assignment.hidden = params[:hidden]
   end
 
   # POST
@@ -97,6 +97,12 @@ class AssignmentController < ApplicationController
     name = params[:name]
     description = params[:description]
     course_id = params[:course_id].to_i
+    hidden = params[:hidden]
+    if(hidden = 'True')
+      hidden = true
+    else
+      hidden = false
+    end
     
 
 		#Convert strings to Date objects using format MM/DD/YYYY
@@ -109,6 +115,7 @@ class AssignmentController < ApplicationController
       assignment.end_date = endDate
       assignment.name = name
       assignment.course_id = course_id
+      assignment.hidden = hidden
     assignment.save
 		
 		#Create a new Assignment_Definition with the description given

@@ -2,7 +2,7 @@ class FacultyController < ApplicationController
 
   def index
 		# List all of the courses
-    requires ['admin', 'faculty']
+    requires ['admin', 'faculty', 'student']
     @classes = Course.all
   end
 
