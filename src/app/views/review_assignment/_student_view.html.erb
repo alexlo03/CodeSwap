@@ -9,6 +9,9 @@
 <% else %>
 	<a href=<%= "/assignment/download/" + @file_submission.id.to_s %>>Download</a>
 <p> Please download and review the code above. After you are done, please answer the following questions: </p>
+
+<p id="errors"/>
+
 <table>
 <thead></thead>
 <% @questions.each_with_index do |question,i| %>

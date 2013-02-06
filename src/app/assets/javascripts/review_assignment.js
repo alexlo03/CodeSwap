@@ -191,21 +191,36 @@ reviewassignments = {
 	view:{
 		submit: function(id){
 				var answers = [];
-        
+        var answersOK = true;
         $('.question_area').each(function() {
-           
-          if($(this).attr('type') == '1'){ // mc
-            alert('multiple choice!');                  
-           } else {
-            alert($(this).find('#' + $(this).val()).val());
+          val = $(this).attr('value');
+          answer = '';
+
+          type = $(this).attr('type');
+          if(type == '1'){
+            answer = $('input[name="'+ val +'_choice"]:checked').val();
+           } else if(type=='0') {
+             answer = ' '; 
            }
+           else {
+            answer = $('#' + val).val();
+           }
+          if(typeof answer == 'undefined' || answer == '') {
+            answersOK = false;
+
+          } else { 
+          answers.push(answer); 
+          }
         });
-        if(false) {
+        if(answersOK) {
 				  $.post('/reviewassignment/studentsubmit',
-					  {'answers':answers},function ()
+					  {'answers':answers, 'id':id},function ()
 				      {
                   window.location = '/assignment/index';
 				      });
+        }
+        else {
+          errors.show("errors", 'Please answer all questions.');
         }
 		}
 	}

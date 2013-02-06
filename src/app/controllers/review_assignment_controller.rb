@@ -103,7 +103,7 @@ include PairingHelper
 	end
 
 	def student_submit
-		unless not request.post?
+		if request.post?
 			answers = params[:answers]
 			review_assignment = ReviewAssignment.find(params[:id])
 			questions = review_assignment.review_questions
