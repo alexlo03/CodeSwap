@@ -12,20 +12,25 @@
 <table>
 <thead></thead>
 <% @questions.each_with_index do |question,i| %>
+<div id="question_<%= i %>" class='question_area' value="q<%= i %>" type="<%= question.question_type %>">
 	<tr><h5><strong><%= "#{question.question_title}" %></strong></h5></tr>
-	<tr><%= "#{question.content}" %></tr></br>
+	<tr><%= "#{question.content.split('@#!$').first}" %></tr></br>
 	<% name = "q#{i}" %>
 	<% if question.multiple_choice? %>
+    <% choices = question.content.split('@#!$') %>
+    <% for i in 1..(choices.length - 1) %>
+      <tr><input type='radio' id="<%= 'choice_' + i.to_s %>" value="<%= choices[i] %>" name="<%= name + '_choice' %>"/><%= choices[i] %></tr><br/>
+    <% end %>
+    </br>
 	<% elsif question.numerical_answer? %>
 		<tr><input type="number" id="<%= name %>" min="1" max="10" /></tr></br>
 	<% elsif question.short_answer? %>
 		<tr><input type="text" id="<%= name %>"/></tr></br>
 	<% end %>
+</div>
 <% end %>
 </table>
 
-<p class='btn' onClick='assignments.view.submit(<%= @questions.count %>,<%= @id %>);'>Submit Grade</p>
+<p class='btn' onClick="reviewassignments.view.submit(<%= @id %>);">Submit Grade</p>
 
 <% end %>
-
-

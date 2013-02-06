@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+
+<a type="xls" href="<%= "/reviewassignment/#{@review_assignment.id}/grades.xls" %>">Download All as XLS </a>
+
+<p>Click a students name to view his or her answers</p>
+
+<table>
+<thead></thead>
+<% @students.each do |student| %>
+<tr>
+<td><a href="<%= "/reviewassignment/viewsubmission/#{student.id}/#{@review_assignment.id}" %>"><%= student.friendly_full_name %></a></td>
+</tr>
+<% end %>
+</table>
