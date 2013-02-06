@@ -8,6 +8,9 @@ CodeSwap::Application.routes.draw do
 
   get "home/index"
 
+  match 'contact_us', :controller => 'home', :action => 'contact_us', :as => 'contact_us'
+  match 'send_contact_email', :controller => 'home', :action => 'send_contact_email', :as => 'send_contact_email'
+
   root :to => "home#index"
 
   match '/auth/:provider/callback' => 'authentications#create'
@@ -55,10 +58,17 @@ CodeSwap::Application.routes.draw do
   match 'assignment/download/:file_id', :controller => 'assignment', :action => 'download'
   match 'assignment/downloadAll/:assignment_id', :controller => 'assignment', :action => 'downloadAll'
 
+  # Review Assignment Routes
+  match 'reviewassignment/create/:assignment_id',:controller => 'review_assignment', :action => 'create'
+  match 'reviewassignment/pairings',:controller => 'review_assignment', :action => 'pairings'
+  match 'reviewassignment/pairings/:redo',:controller => 'review_assignment', :action => 'pairings'
+  match 'reviewassignment/view/:id',:controller => 'review_assignment', :action => 'view'
+  match 'reviewassignment/studentsubmit',:controller => 'review_assignment', :action => 'student_submit'
+  match 'reviewassignment/viewsubmission/:user_id/:review_assignment_id',:controller => 'review_assignment', :action => 'view_submission'
+	match 'reviewassignment/:id/grades',:controller => 'review_assignment', :action => 'grades'
   # File Routes
 
   match 'files/delete/:file_id', :controller => 'file_submissions', :action => 'delete', :as => 'remove_file'
-
 
   #Redirect to 404 Page
   #This MUST be the last route

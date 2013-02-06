@@ -3,7 +3,7 @@
 <h3>Administrators</h3>
 
   <% unless current_page?(:controller => :admin, :action => 'index') %>
-      <%= render '/shared/user_search_form' %>
+      <%= render '/shared/user_search_form', :role => 'admin' %>
   <% end %>
 
 <table class='table table-hover'>
@@ -33,7 +33,9 @@
     <% if admin_count > @admins.count %>
       <tr id='view_more_admin_row'>
         <td colspan='5'>
-          Currently displaying <strong><%= @admins.count %></strong> of <strong><%= admin_count %></strong> admin. Click here to view the rest.
+          Currently displaying
+            <strong id='count_admin'><%= @admins.count %></strong> of <strong id='total_admin'><%= admin_count %></strong> admin.
+          Click here to view the rest.
         </td>
       </tr>
     <% end %>

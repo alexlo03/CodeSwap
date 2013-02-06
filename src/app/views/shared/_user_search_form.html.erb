@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
   <form class="form-search" id='search_users'>
-    <input type="text" placeholder='First name' class="input-small search-query" id='search_first_name'>
-    <input type="text" placeholder='Last name' class="input-medium search-query" id='search_last_name'>
-    <input type="text" placeholder='Email' class="input-medium search-query" id='search_email'>
+    <input type="text" placeholder='First name' class="input-small search-query" id="search_first_name_<%= role %>" onkeyup="admin.searchUsers('<%= role %>')">
+    <input type="text" placeholder='Last name' class="input-medium search-query" id="search_last_name_<%= role %>" onkeyup="admin.searchUsers('<%= role %>')">
+    <input type="text" placeholder='Email' class="input-medium search-query" id="search_email_<%= role %>" onkeyup="admin.searchUsers('<%= role %>')">
   </form>
 

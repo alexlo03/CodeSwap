@@ -23,6 +23,7 @@
           <ul class="nav">
             <li><%= link_to "Code Swap Application", root_path, :class => 'brand' %></li>
             <li><%= link_to "Wiki", "https://github.com/alexlo03/CodeSwap/wiki" %></li>
+            <li><%= link_to "Contact Us", contact_us_path %></li>
             <% if current_user %>
               <%= render 'shared/user_role_links' %>
             <% end %>

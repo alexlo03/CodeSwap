@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<h1><%= @review_assignment.name %></h1>
+
+<h3><%= "#{@student_a.friendly_full_name} graded #{@student_b.friendly_full_name}"  %></h3>
+
+
+<% if 0 == @answers.count %>
+<p> This student has not submitted anything yet</p> 
+<% else %>
+<table>
+<thead></thead>
+<% @answers.each_with_index do |answer,i| %>
+	<% question = answer.review_question %>
+	<tr><strong><%= "#{question.question_title}" %></strong></tr></br>
+	<tr><%= "Question: #{question.content.split('@#!$').first}" %></tr></br>
+	<tr><%= "Answer: #{answer.answer}" %></tr></br>
+<% end %>
+</table>
+
+<% end %>

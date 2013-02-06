@@ -6,7 +6,7 @@ Feature: Admin abilities
 Scenario: Visit admin page
   Given I am logged in as an admin
   When I go to the admin page
-  Then I should see "Admin Home"
+  Then I should see "Administrators"
 
 Scenario: Faculty appears
   Given I am logged in as an admin
@@ -15,13 +15,6 @@ Scenario: Faculty appears
   Then I should see "faculty@faculty.com"
 
 
-@javascript
-Scenario: Create new Faculty
-  Given I am logged in as an admin
-  When I go to the admin page
-  And Enter a new faculty member email
-  And I click Add
-  Then I should see "newguy@faculty.com"
-  
+
 
   

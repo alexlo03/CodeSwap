@@ -14,15 +14,14 @@ class User < ActiveRecord::Base
 
 
   Devise.reset_password_within = 2.days
-  
+  def destroy
+    update_attribute(:deleted_at, Time.current)
+  end
+
   def active_for_authentication?
     super && !deleted_at
   end
   
-  def soft_delete
-    update_attribute(:deleted_at, Time.current)
-  end
-
   def admin?
     role.eql? "admin"
   end
@@ -48,7 +47,11 @@ class User < ActiveRecord::Base
   end
 
   def friendly_full_name
-    first_name + " " + last_name
+		ret = "NO FIRST OR LAST NAME"
+		unless first_name.nil? or last_name.nil?
+    ret = first_name + " " + last_name
+		end
+		ret
   end
 
   def student_in
@@ -70,8 +73,7 @@ class User < ActiveRecord::Base
       scoped
     end
   end
-
-
-
+end
+class RegistrationsController < Devise::RegistrationsController
 
 end

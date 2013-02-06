@@ -1,5 +1,5 @@
 class Emailer < ActionMailer::Base
-  default from: "from@example.com"
+  default :from => "from@example.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -7,10 +7,22 @@ class Emailer < ActionMailer::Base
   #   en.emailer.signup_confirmation.subject
   #
   def signup_confirmation(user)
-  
     @user = user
     @greeting = "CodeSwap Account Created"
-
-    mail content_type: 'text/html', to: user.email, subject: "CodeSwap Account Creation Successfully"
+    mail :content_type => 'text/html', :to => user.email, :subject => "CodeSwap Account Creation Successfully"
   end
+
+  def file_complaint(name, subject, comment)
+    @name = name    
+    @name = 'Somebody' if name == ''
+    @subject = subject
+    @comment = comment
+    mail(:content_type => 'text/html', :to => ENV["GMAIL_USERNAME"], :subject => '[CodeSwap][Complaint] ' + subject)
+  end
+
+	def show_error(exception)
+		@exception = exception
+    mail(:content_type => 'text/html', :to => 'rosehulman.codeswap@gmail.com', :subject => '[CodeSwap][Error] New Error')
+	end
+
 end

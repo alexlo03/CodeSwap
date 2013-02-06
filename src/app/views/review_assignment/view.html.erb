@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+
+<h1><%= @review_assignment.name %></h1>
+
+
+<% if @student %>
+
+<%= render 'student_view' %>
+
+<% else %>
+
+<%= render 'faculty_view' %>
+
+<% end %>
