@@ -40,20 +40,16 @@ include PairingHelper
 			review_assignment.assignment_pairing_id = pairing.id
 			review_assignment.user_id = current_user.id
 			review_assignment.save      
+      split_string = '~`~`~'
       questions.each do |question|
-        type = question.split('|').first
-        content = question.split('|').last
-        if type == 'instruction'
-          type = 0
-        elsif type == 'multiple_choice'
-          type = 1
-        elsif type == 'numerical_answer'
-          type = 2
-        elsif type == 'short_answer'
-          type = 3
-        end
+        title = question.split(split_string)[0]
+        type = question.split(split_string)[1]
+        content = question.split(split_string)[2]
+        
+
         review_question = ReviewQuestion.new
-        review_question.question_type = type
+        review_question.question_title = title
+        review_question.set_type(type)
         review_question.review_assignment_id = review_assignment.id
         review_question.content = content
         review_question.save
@@ -101,12 +97,13 @@ include PairingHelper
 				@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
 			elsif current_user.faculty? || current_user.admin? || current_user.ta?
 				@student = false
+				@students = User.find_all_by_id(@review_assignment.course.get_students)
 			end
 		end
 	end
 
 	def student_submit
-		unless not request.post?
+		if request.post?
 			answers = params[:answers]
 			review_assignment = ReviewAssignment.find(params[:id])
 			questions = review_assignment.review_questions
@@ -116,5 +113,31 @@ include PairingHelper
 			end			
 			render :nothing => true
 		end
+	end
+
+	def view_submission
+		@student_a = User.find(params["user_id"])
+		@review_assignment = ReviewAssignment.find(params["review_assignment_id"])
+		@student_b = @review_assignment.find_pair(params[:user_id])
+		@answers = ReviewAnswer.find_all_by_user_id(@student_a.id)
+		@answers = @answers.reject{|x| x.review_question.review_assignment.id != @review_assignment.id}
+		
+	end
+
+	def grades
+
+		id = params[:id]
+		@review_assignment = ReviewAssignment.find(id)
+		@students = User.find_all_by_id(@review_assignment.course.get_students)
+		@questions = ReviewQuestion.find_all_by_review_assignment_id(id)
+		@answers = {}
+		@students.each do |s|
+			@answers[s.id] = ReviewAnswer.order(:review_question_id).find_all_by_user_id_and_review_question_id(s.id,@questions.collect(&:id))
+		end
+		respond_to do |format|
+			format.html
+			format.xls
+		end
+		
 	end
 end

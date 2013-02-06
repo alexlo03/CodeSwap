@@ -21,21 +21,11 @@ Assignment Name: <input id='name' class='span2' size='16' type='text'/>
 
 
 <div id='questions'>
-  <h5>Instructions/Questions:</h5>
-    <div id='question_1' class='question'>
-      <p>
-        <strong>Main Instructions</strong>
-          <%= radio_button_tag 'question_1_type', 'instruction' %> Instruction
-          <%= radio_button_tag 'question_1_type', 'short_answer' %> Short Answer
-          <%= radio_button_tag 'question_1_type', 'numerical_answer' %> Numerical Answer
-      </p>
-        <%= text_area_tag 'question_1_text', '', :class => 'span2', :rows => 3 %>
-    </div>
-
+  <h4>Instructions/Questions:</h4>
     <div id='add_questions_here'/>
 </div>
 
-<p class='btn' onclick='reviewassignments.create.addQuestion()'>Add A Question</p>
+<p class='btn btn-success' onclick='reviewassignments.create.addQuestion()'>Add A Question</p>
 
 
 <div>

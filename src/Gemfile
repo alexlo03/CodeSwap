@@ -1,6 +1,6 @@
 source 'https://rubygems.org' 
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -27,8 +27,6 @@ gem 'nokogiri', '~> 1.5.1'
 gem 'cucumber'
 gem 'rspec'
 gem 'webrat'
-gem 'exception_notification'
-
 
 group :test do
   gem 'cucumber-rails'

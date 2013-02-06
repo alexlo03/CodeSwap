@@ -1,6 +1,6 @@
 
 var course_id;
-var that = this;
+
 assignments = {
 
   create: {
@@ -69,10 +69,10 @@ assignments = {
       return start.getTime() < end.getTime();
     },
   flashError : function(id,message) {
-         
+         var path = '#'+id;
          document.getElementById(id).innerHTML="<b>"+message+"</b><br>";
-         $('#'+id).delay(500).fadeIn('normal', function() {
-        $(that).delay(2500).fadeOut();});
+         $(path).delay(500).fadeIn('normal', function() {
+        $(path).delay(2500).fadeOut();});
   }
   },
 
@@ -81,7 +81,6 @@ assignments = {
       // Initializes date pickers
       $('#start-date').datepicker({ 'autoClose':true,'data-date':startDate}).on('changeDate', function(ev) { $('#start-date').datepicker('hide'); });
       $('#end-date').datepicker({ 'autoClose':true, 'data-date':endDate}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
-
 
       // Loads-in assignment data
       $('#start-date-value').val(startDate);
@@ -124,20 +123,6 @@ assignments = {
       }
     },
   },
-
-	view:{
-		submit: function(count,id){
-				var answers = new Array();
-				for (var i=0 ; i<count ; i++){
-					answers[i] = $('#q'+i).val();
-				}
-				$.post('/reviewassignment/studentsubmit',
-					{'id':id,'answers':answers},function ()
-				{
-            window.location = '/assignment/index'
-				});
-		}
-	}
 }
 
 

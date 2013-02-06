@@ -11,23 +11,37 @@
 <%= form_tag create_course_path, :id => 'add_students', :class => 'form-search', :multipart => true do %>
     <p>Add the basic class information here</p></br>
              <h4><strong>Course Number:</strong></h4>
-                <%= text_field_tag 'course_number', @number, :class => 'input-medium search-query' %>
+                <%= text_field_tag 'course_number', @number, :class => 'input-medium search-query' %><p id='course_number_errors'/>
              <h4><strong>Course Name:</strong>  </h4>
-                <%= text_field_tag 'course_name', @name, :class => 'input-medium search-query' %>
+                <%= text_field_tag 'course_name', @name, :class => 'input-medium search-query' %><p id='course_name_errors'/>
              <h4><strong>Course Section:</strong></h4> 
-                <%= number_field_tag 'course_section', @section, :class => 'input-medium search-query', :in => 1..100 %>
+                <%= number_field_tag 'course_section', @section, :class => 'input-medium search-query', :in => 1..100 %><p id='course_section_errors'/>
             <h4><strong>Course Term:</strong></h4>
-                <%= text_field_tag 'course_term', @term, :class => 'input-medium search-query' %>
+                <%= text_field_tag 'course_term', @term, :class => 'input-medium search-query' %><p id='course_term_errors'/>
 <br/>
 
     <p>Upload a .csv file with student and TA information here. New student accounts will be created automatically if the student is not already registered on CodeSwap. (Please follow <%= link_to 'This Provided Template', '/template.csv' %> for formatting.)</p>
+    
     <%= file_field_tag :students_csv %>
+    <p id='csv_errors'/>
 
-    <p>
-    <%= submit_tag "Create Course", :class => 'btn' %>
+    <p id='create_course_confirm' class='btn' onclick='courses.new.toggleSubmit();'>Create Course</p>
 
-    <%= link_to 'Cancel', "/courses" , :class => 'btn' %>
+    <p id='create_course_submit' style='display:none'>
+      A new course will be created.
+      <%= submit_tag "Confirm", :class => 'btn' %>
+      <t class='btn' onclick='courses.new.toggleSubmit();'>Cancel</t>
+    </p>
+    
+
 <% end %>
+
+<script type='text/javascript'>
+
+  
+
+</script>
+
 
 </div>
 
