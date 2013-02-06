@@ -4,7 +4,11 @@ include ApplicationHelper
 		# List all of the courses
     requires({'role'=>['admin', 'faculty']})
     unless current_user.nil?
-      @classes = Course.find_all_by_user_id(current_user.id)
+      if(current_user.role == 'admin')
+        @classes = Course.all
+      else
+        @classes = Course.find_all_by_user_id(current_user.id)
+      end
     end
   end
 

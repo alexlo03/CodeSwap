@@ -4,20 +4,19 @@ include CourseHelper
 
 	#Show information about a course
   def show
-		#Find the course, then if the course is found, retrieve mappings of students and tas to a course.
+    #Validate
     id = params[:id]
     @course = Course.find(id)    
     requires({'role' => ['admin','faculty','student'],'course_id' => id})
+		#if the course is found & and the user is enrolled in the course, retrieve mappings of students and tas to a course.
       unless (@course.nil? || current_user.nil?)
-   ### requires(['admin','faculty','student'])
-   ### requiresCourse(id)
       @students = Studentgroup.where(:course_id => id)
       @tas = Tagroup.where(:course_id => id)
       @teacher = User.where(:id => @course.user_id).first
-
+      @admin = User.where(:role => 'admin')
 			#Detect whether user is student or faculty for this given course (can't use roles due to TAs)
       @user_is_student = !@students.find_all_by_user_id(current_user.id).empty?
-      @user_is_ta_or_faculty = !@tas.find_all_by_user_id(current_user.id).empty? || (current_user.id == @teacher.id unless @teacher.nil?)
+      @user_is_ta_or_faculty_or_admin = !@tas.find_all_by_user_id(current_user.id).empty? || (current_user.id == @teacher.id unless @teacher.nil?) || (@admin.include?(current_user) unless @admin.nil?)
       @assignments = Assignment.where(:course_id => id)
 			@review_assignments = ReviewAssignment.find_all_by_course_id(id)
     end
@@ -26,10 +25,8 @@ include CourseHelper
   
   # GET
   def edit
-   ### requires(['admin','faculty'])
+    #Validate
     id = params[:id]
-   ### requiresCourse(id)
-
     @course = Course.find(id)
     requires({'role' => ['admin','faculty'],'course_id' => id})
     if(@course.nil?)
@@ -81,6 +78,7 @@ include CourseHelper
   end
 
   def create
+  
     requires({'role' => ['admin','faculty']})
     course_name = params[:course_name]
     course_term = params[:course_term]
