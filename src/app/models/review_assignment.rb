@@ -13,4 +13,8 @@ class ReviewAssignment < ActiveRecord::Base
 			assignment_id = self.assignment.id
 			FileSubmission.find_by_user_id_and_assignment_id(user_id,assignment_id)
 	end
+
+	def find_pair(user_id)
+			ReviewMapping.find_by_user_id_and_review_assignment_id(user_id,self.id).other_user
+	end
 end
