@@ -1,6 +1,5 @@
 # TODO: Email Notifications for Administrators
 class CourseController < ApplicationController
-include ApplicationHelper
 include CourseHelper
 
 	#Show information about a course
@@ -26,8 +25,8 @@ include CourseHelper
   
   # GET
   def edit
-    id = params[:id]
     requires(['admin','faculty'])
+    id = params[:id]
     requiresCourse(id)
 
     @course = Course.find(id)
@@ -44,6 +43,7 @@ include CourseHelper
 
   # POST
   def submit_edit
+    requires(['admin','faculty'])
     id = params[:course_id]
     course_number = params[:number]
     course_term = params[:term]
@@ -71,6 +71,7 @@ include CourseHelper
   end 
 
   def new
+    requires(['admin','faculty'])
     @name = params[:name]
     @term = params[:term]
     @number = params[:number]
@@ -78,6 +79,7 @@ include CourseHelper
   end
 
   def create
+    requires(['admin','faculty'])
     course_name = params[:course_name]
     course_term = params[:course_term]
     course_number = params[:course_number]
@@ -100,6 +102,7 @@ include CourseHelper
   end
 
   def add_student
+    requires(['admin','faculty'])
     first = params[:first]
     last = params[:last]
     email = params[:email]

@@ -1,5 +1,5 @@
 class AssignmentController < ApplicationController
-
+include AssignmentHelper
   def index
 		requires ['admin', 'student', 'faculty'] # Validation of login and roles
 
@@ -76,21 +76,25 @@ class AssignmentController < ApplicationController
 
   # Get course id for creating an assignment
   def create
+    requires['admin','faculty']
     course_id = params[:course_id]
     @course = Course.find_by_id(course_id)
-    
+    requiresCourse(@course)
   end
 
   # Get data for editing an assignment
   def edit
+    requires['admin','faculty']
     assignment_id = params[:assignment_id]
     @assignment = Assignment.find_by_id(assignment_id)
     @course = Course.find_by_id(@assignment.course_id)
+    requiresCourse(@course)
     @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(assignment_id)
   end
 
   # POST
   def submit_new
+    requires['admin','faculty']
 		#Get values from the parameters
     startDate = params[:startDate]
     endDate = params[:endDate]
@@ -131,6 +135,7 @@ class AssignmentController < ApplicationController
 
   # POST
   def submitchanges
+    requires['admin','faculty']
 		#Get values from the parameters
     startDate = params[:startDate]
     endDate = params[:endDate]
@@ -165,12 +170,14 @@ class AssignmentController < ApplicationController
 
 	#Populate varibles for use in the view
 	def view
-		id = params[:assignment_id]
+    requires['admin','faculty','student']
+    id = params[:assignment_id]
 		@assignment = Assignment.find(id)
     @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(id)
 		#Get previous submissions
-
     course = Course.find(@assignment.course_id)
+    requiresCourse(course)
+    
     @assignmentFiles = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => course.user_id)
     
     courseStudentIds = Studentgroup.find_all_by_course_id(course.id).collect(&:user_id)
@@ -229,6 +236,7 @@ class AssignmentController < ApplicationController
 	end
 
 	def adminView
+    requires 'admin'
 		assignment_id = params[:assignment_id]
 		@assignment = Assignment.find(assignment_id)
 		@fileSubmissions = FileSubmission.where(:assignment_id => assignment_id)
