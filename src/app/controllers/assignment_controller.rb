@@ -191,7 +191,7 @@ class AssignmentController < ApplicationController
 
   #NOTE: Out of date, probably safe to remove. 
 	def upload
-		#params['datafile'] is a File object stored in the system tmp directories
+		# params['datafile'] is a File object stored in the system tmp directories
     name =  params['datafile'].original_filename
 
     assignment_definition_id = params['assignment_definition_id']

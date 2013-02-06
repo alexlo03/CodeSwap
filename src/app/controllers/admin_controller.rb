@@ -110,7 +110,7 @@ class AdminController < ApplicationController
     firstname = '%' + params[:first_name] + '%' if params[:first_name] != ''
     lastname = '%' + params[:last_name] + '%' if params[:last_name] != ''
     u = User.where('role = ?', params[:role])
-
+    total = u.count
 		#Do the actual searches
     matching_first_name = User.where('lower(first_name) like ?', firstname.downcase)
     matching_last_name = User.where('lower(last_name) like ?', lastname.downcase)
@@ -121,8 +121,10 @@ class AdminController < ApplicationController
     u = u & matching_last_name if matching_last_name
     u = u & matching_email if matching_email
 	
+    u = u.take(50)
+
 		#Sort list (if option seleced)
     u.order_by(:email) if params[:sortby] == 'email'
-    render :json => u.to_json
+    render :json => {:users => u, :count => u.count, :total => total}
   end
 end
