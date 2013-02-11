@@ -3,7 +3,7 @@ class Assignment < ActiveRecord::Base
   belongs_to :course
   has_many :assignment_definitions
 
-  attr_accessible :start_date, :end_date, :name, :description, :course_id
+  attr_accessible :start_date, :end_date, :name, :description, :course_id, :hidden
   
   def course
     Course.find(course_id)

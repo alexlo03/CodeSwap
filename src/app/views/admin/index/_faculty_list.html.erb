@@ -3,7 +3,7 @@
 
 <h3>Faculty</h3>
   <% unless current_page?(:controller => :admin, :action => 'index') %>
-      <%= render '/shared/user_search_form' %>
+      <%= render '/shared/user_search_form', :role => 'faculty' %>
   <% end %>
   <table class='table table-hover'>
     <thead>
@@ -33,7 +33,9 @@
       <% if faculty_count > @faculty.count %>
         <tr id='view_more_faculty_row'>
           <td colspan='5'>
-            Currently displaying <strong><%= @faculty.count %></strong> of <strong><%= faculty_count %></strong> faculty. Click here to view the rest.
+            Currently displaying
+              <strong id='count_faculty'><%= @faculty.count %></strong> of <strong id='total_faculty'><%= faculty_count %></strong> faculty.
+            Click here to view the rest.
           </td>
         </tr>
       <% end %>

@@ -1,6 +1,6 @@
 
 var course_id;
-var that = this;
+
 assignments = {
 
   create: {
@@ -20,6 +20,8 @@ assignments = {
       var endDate = $('#end-date-value').val();
       var name = $('#name').val();
       var desc = $('#description').val();
+	  var hidden = $('input[name="hidden"]:checked').val();
+	  alert(hidden);
       if(!assignments.create.datesFormatOK(startDate, endDate)) {
         assignments.create.flashError("flash","Please verify the dates entered are valid.");  
       }
@@ -38,7 +40,8 @@ assignments = {
           'endDate':endDate,
           'name':name,
           'description':desc,
-          'course_id':course_id
+          'course_id':course_id,
+		  'hidden':hidden
           }, function() {
             window.location = '/course/show/' + course_id;
           }          
@@ -66,10 +69,10 @@ assignments = {
       return start.getTime() < end.getTime();
     },
   flashError : function(id,message) {
-         
+         var path = '#'+id;
          document.getElementById(id).innerHTML="<b>"+message+"</b><br>";
-         $('#'+id).delay(500).fadeIn('normal', function() {
-        $(that).delay(2500).fadeOut();});
+         $(path).delay(500).fadeIn('normal', function() {
+        $(path).delay(2500).fadeOut();});
   }
   },
 
@@ -91,6 +94,8 @@ assignments = {
       var endDate = $('#end-date-value').val();
       var name = $('#name').val();
       var desc = $('#description').val();
+	  var hidden = $('input[name="hidden"]:checked').val();
+	  
       if(!assignments.create.datesFormatOK(startDate, endDate)) {
         assignments.create.flashError("flash","Please verify the dates entered are valid.");  
       }
@@ -109,7 +114,8 @@ assignments = {
           'endDate':endDate,
           'name':name,
           'description':desc,
-          'assignment_id':assignmentId
+          'assignment_id':assignmentId,
+		  'hidden':hidden
           }, function() {
             window.location = '/assignment/view/' + assignmentId;
           }          

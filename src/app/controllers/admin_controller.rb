@@ -1,9 +1,10 @@
 class AdminController < ApplicationController
-  
-
+include ApplicationHelper
+#requires({'role'=>'admin'})
 	#List 5 oldest students, admins, and faculty members (teachers)
   def index
-    requires ['admin']
+    requires({'role'=>'admin'})
+    
     @students = User.find_all_by_role([:student, :ta]).take(5)
     @admins = User.find_all_by_role(:admin).take(5)
     @faculty = User.find_all_by_role(:faculty).take(5)
@@ -11,13 +12,13 @@ class AdminController < ApplicationController
   end
 
   def create_faculty
-    requires ['admin']
+    requires({'role'=>'admin'})
     @faculty = User.new
   end
 
 
   def add_user
-    requires ['admin']
+    requires({'role'=>'admin'})
     name = params[:name].chomp.split
     u = User.new(
         :email => params[:email],
@@ -44,7 +45,7 @@ class AdminController < ApplicationController
   def delete_user
 		#Removes user from the database
 		#TODO Cascading deletes?
-    requires ['admin']
+    requires({'role'=>'admin'})
     u = User.find_by_email(params[:email])
     u.destroy
     render :json => u.to_json
@@ -54,19 +55,19 @@ class AdminController < ApplicationController
 
 	#View all faculty members
   def view_faculty
-    requires ['admin']
+    requires({'role'=>'admin'})
     @faculty = User.find_all_by_role('faculty')
   end
 
 	#View all admins
   def view_admin
-    requires ['admin']
+    requires({'role'=>'admin'})
     @admins = User.find_all_by_role('admin')
   end
 
 	#View all students
   def view_students
-    requires ['admin']
+    requires({'role'=>'admin'})
     @students = User.find_all_by_role('student')
   end
 
@@ -74,13 +75,13 @@ class AdminController < ApplicationController
 	#View all TAs
 	#TODO Delete if safe to remove
   def view_tas
-    requires ['admin']
+    requires({'role'=>'admin'})
     @tas = User.find_all_by_role('ta')
   end
 
 	#view for a specific user
   def view_user_info
-    requires ['admin', 'faculty']
+    requires ({'role'=>['admin', 'faculty']})
     u = User.find_by_id(params[:id])
     u['student_in'] = u.student_in
     u['ta_in'] = u.ta_in
@@ -90,7 +91,7 @@ class AdminController < ApplicationController
   end
 
   def view_recent_activity
-    requires ['admin']
+    requires({'role'=>'admin'})
     
     currentUsers = User.where('current_sign_in_at not null').order(:current_sign_in_at).reverse
     
@@ -101,7 +102,7 @@ class AdminController < ApplicationController
 
 	#Searches through users for partial matches of first name, last name, role, and emails. 
   def search_users
-    requires ['admin']
+    requires({'role'=>'admin'})
     email = '%'
     firstname = '%'
     lastname = '%'
@@ -110,7 +111,7 @@ class AdminController < ApplicationController
     firstname = '%' + params[:first_name] + '%' if params[:first_name] != ''
     lastname = '%' + params[:last_name] + '%' if params[:last_name] != ''
     u = User.where('role = ?', params[:role])
-
+    total = u.count
 		#Do the actual searches
     matching_first_name = User.where('lower(first_name) like ?', firstname.downcase)
     matching_last_name = User.where('lower(last_name) like ?', lastname.downcase)
@@ -121,8 +122,10 @@ class AdminController < ApplicationController
     u = u & matching_last_name if matching_last_name
     u = u & matching_email if matching_email
 	
+    u = u.take(50)
+
 		#Sort list (if option seleced)
     u.order_by(:email) if params[:sortby] == 'email'
-    render :json => u.to_json
+    render :json => {:users => u, :count => u.count, :total => total}
   end
 end

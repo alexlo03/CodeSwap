@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    Rails.logger.fatal "should be getting a log message here"
+
   end
 
   def contact_us
