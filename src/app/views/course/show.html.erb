@@ -92,7 +92,7 @@
 	  <% end %>
     </div>
     <div class= "span6" >
-      <% if @user_is_ta_or_faculty_or_admin %>
+      
         <h3>Assignments: </h3>
 					<table class='table table-hover'>
           <% @assignments.each do |assignment| %>
@@ -104,8 +104,10 @@
               </td>							
 						</tr>
           <% end %>
+		  <% if @user_is_ta_or_faculty_or_admin %>
 				  <%= button_to 'New Assignment', {:action => 'create', :controller => 'assignment', :course_id => @course.id}, :class => 'btn btn-success', :style => '
 padding:5px 5px 5px;' %>
+			<% end %>
         </table>
         
         <h3>Review Assignments: </h3>
@@ -116,7 +118,7 @@ padding:5px 5px 5px;' %>
 						</tr>
           <% end %>
 				</table>
-      <% end %>
+      
     </div>
   </div>
 </div>
