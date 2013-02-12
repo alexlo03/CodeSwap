@@ -111,7 +111,7 @@ include AssignmentHelper
       name = params[:name]
       description = params[:description]
       hidden = params[:hidden]
-      if(hidden = 'True')
+      if(hidden == 'True')
         hidden = true
       else
         hidden = false
@@ -164,7 +164,7 @@ include AssignmentHelper
       name = params[:name]
       description = params[:description]
       hidden = params[:hidden]
-      if(hidden = 'True')
+      if(hidden == 'True')
         hidden = true
       else
         hidden = false

@@ -5,9 +5,9 @@ include ApplicationHelper
   def index
     requires({'role'=>'admin'})
     
-    @students = User.find_all_by_role([:student, :ta]).take(5)
-    @admins = User.find_all_by_role(:admin).take(5)
-    @faculty = User.find_all_by_role(:faculty).take(5)
+    @students = User.find_all_by_role_and_deleted_at([:student, :ta], nil).take(5)
+    @admins = User.find_all_by_role_and_deleted_at(:admin, nil).take(5)
+    @faculty = User.find_all_by_role_and_deleted_at(:faculty, nil).take(5)
     
   end
 
@@ -56,19 +56,19 @@ include ApplicationHelper
 	#View all faculty members
   def view_faculty
     requires({'role'=>'admin'})
-    @faculty = User.find_all_by_role('faculty')
+    @faculty = User.find_all_by_role_and_deleted_at(:faculty, nil)
   end
 
 	#View all admins
   def view_admin
     requires({'role'=>'admin'})
-    @admins = User.find_all_by_role('admin')
+    @admins = User.find_all_by_role_and_deleted_at(:admin, nil)
   end
 
 	#View all students
   def view_students
     requires({'role'=>'admin'})
-    @students = User.find_all_by_role('student')
+    @students = User.find_all_by_role_and_deleted_at(:student, nil)
   end
 
 
@@ -76,7 +76,7 @@ include ApplicationHelper
 	#TODO Delete if safe to remove
   def view_tas
     requires({'role'=>'admin'})
-    @tas = User.find_all_by_role('ta')
+    @tas = User.find_all_by_role_and_deleted_at(:ta, nil)
   end
 
 	#view for a specific user
@@ -110,7 +110,7 @@ include ApplicationHelper
     email = '%' + params[:email] + '%' if params[:email] != ''
     firstname = '%' + params[:first_name] + '%' if params[:first_name] != ''
     lastname = '%' + params[:last_name] + '%' if params[:last_name] != ''
-    u = User.where('role = ?', params[:role])
+    u = User.where('role = ? and deleted_at is null', params[:role])
     total = u.count
 		#Do the actual searches
     matching_first_name = User.where('lower(first_name) like ?', firstname.downcase)
@@ -120,9 +120,8 @@ include ApplicationHelper
 		#Add results to return list
     u = u & matching_first_name if matching_first_name
     u = u & matching_last_name if matching_last_name
-    u = u & matching_email if matching_email
-	
-    u = u.take(50)
+    u = u & matching_email if matching_email		
+    u = u.take(10)
 
 		#Sort list (if option seleced)
     u.order_by(:email) if params[:sortby] == 'email'

@@ -137,6 +137,7 @@ include PairingHelper
 		respond_to do |format|
 			format.html
 			format.xls
+			format.csv {send_data @review_assignment.to_csv(@students,@questions,@answers) }
 		end
 		
 	end

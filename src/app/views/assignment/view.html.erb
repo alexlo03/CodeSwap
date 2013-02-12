@@ -96,7 +96,7 @@
     <%= form_for FileSubmission.new do |f| %>
       <%= f.label :file %>
       <%= f.hidden_field :assignment_id, :value => @assignment.id %>
-      <%= f.file_field :file, multiple: true, name: "file_submission[file]" %>
+      <%= f.file_field :file, :multiple => true, :name => "file_submission[file]" %>
     <% end %>
 
 <% end %>
