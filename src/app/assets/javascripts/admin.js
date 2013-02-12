@@ -23,8 +23,8 @@ admin = {
     + '<td>'+user.first_name + ' ' + user.last_name+'</td>'
     + '<td></td>'
     + '<td>'
-    + '<p class=\'btn\'>View</p>' + ' '
-    + '<p class=\'btn btn-danger\' id="user-'+ user.id +'-remove" onclick="deleteUser(\''+ user.email +'\');">Delete</p>'
+    + '<p class="btn" onclick="users.viewUser('+ user.id +')">View</p>'
+    + '<p class="btn btn-danger" id="user-'+ user.id +'-remove" onclick="admin.deleteUser(\''+user.email +'\');">Delete</p>'
     + '</td>'
     + '</tr>');
     $('#user-'+user.id).show('fast');

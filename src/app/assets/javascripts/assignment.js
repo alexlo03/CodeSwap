@@ -21,7 +21,6 @@ assignments = {
       var name = $('#name').val();
       var desc = $('#description').val();
 	  var hidden = $('input[name="hidden"]:checked').val();
-	  alert(hidden);
       if(!assignments.create.datesFormatOK(startDate, endDate)) {
         assignments.create.flashError("flash","Please verify the dates entered are valid.");  
       }
