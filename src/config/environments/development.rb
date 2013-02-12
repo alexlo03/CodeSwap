@@ -28,8 +28,8 @@ CodeSwap::Application.configure do
     :domain =>  "rose-hulman.edu",
     :authentication => "plain",
     :enable_starttls_auto => true,
-    :user_name => ENV['GMAIL_USERNAME'],
-    :password => ENV['GMAIL_PASSWORD']
+    :user_name => "rose-hulman.codeswap",
+    :password => "donthackme"
   }
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -52,4 +52,6 @@ CodeSwap::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+  # Forces https
+  config.force_ssl = true
 end
