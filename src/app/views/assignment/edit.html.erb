@@ -15,5 +15,5 @@ Editing assignment for <%= @course.name %>
 <%= link_to 'Cancel', :back, :class => 'btn' %>
 
 <script type='text/javascript' >
-  assignments.edit.pageLoad("<%= raw @assignment.name %>", "<%= @assignment.start_date.strftime('%m-%d-%Y') %>","<%= @assignment.end_date.strftime('%m-%d-%Y') %>","<%= raw @assignmentDefinition.description %>");
+  assignments.edit.pageLoad("<%= raw @assignment.name %>", "<%= @assignment.start_date.strftime('%m-%d-%Y') %>","<%= @assignment.end_date.strftime('%m-%d-%Y') %>","<%= raw @assignmentDefinition.description %>", "<%= @assignment.hidden %>");
 </script>

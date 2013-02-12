@@ -87,6 +87,7 @@ assignments = {
       $('#end-date-value').val(endDate);
       $('#name').val(name);
       $('#description').val(descr);
+	  
     },
 
     submitAssignment: function(assignmentId){
