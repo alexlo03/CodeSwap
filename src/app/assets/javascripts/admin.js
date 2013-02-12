@@ -110,6 +110,9 @@ admin = {
         $.each(result.users, function(index, ele){ admin.updateTableWithUser(role, ele); });
 
         $('#total_' + role).text(result.total);
+				if (result.count < result.total && result.count >= 10){
+					$("#"+role+"_table").append("<tr><td></td><td><strong>Refine your search to see more results</strong></td></tr>");
+				}
       });
   },
 

@@ -2,7 +2,7 @@
 <!-- Javascript is located in admin.js -->
 <h3>Administrators</h3>
 
-  <% unless current_page?(:controller => :admin, :action => 'index') %>
+  <% unless current_page?(:controller => :admin, :action => :index) %>
       <%= render '/shared/user_search_form', :role => 'admin' %>
   <% end %>
 

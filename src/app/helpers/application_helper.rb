@@ -12,19 +12,19 @@ module ApplicationHelper
   end
 
   def faculty_count
-    User.where(:role => :faculty).count
+    User.where(:role => :faculty, :deleted_at => nil).count
   end
 
   def admin_count
-    User.where(:role => :admin).count
+    User.where(:role => :admin, :deleted_at => nil).count
   end
 
   def ta_count
-    User.where(:role => :ta).count
+    User.where(:role => :ta, :deleted_at => nil).count
   end
   
   def student_count
-    User.where(:role => :student).count
+    User.where(:role => :student, :deleted_at => nil).count
   end
 
   def create_and_invite_user(first, last, email, role)

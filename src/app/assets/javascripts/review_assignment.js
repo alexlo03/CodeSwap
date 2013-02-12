@@ -85,6 +85,10 @@ reviewassignments = {
         choices = '';
         choicesOK = true;
         if(type == 'multiple_choice') {
+          if($('.' + id + '_choice_text').length == 0) {
+            choicesOK = false;
+            errors.show(id, 'Please add at least one choice for this question.');
+          }
           $('.' + id + '_choice_text').each(function() {
             if($(this).val() == '' && choicesOK) {
               errors.show(id, 'Please ensure all choices are filled out.');
@@ -95,7 +99,7 @@ reviewassignments = {
           });
         }
 
-        if(type==undefined) {
+        if(typeof type==undefined) {
           errors.show(id, 'Please select a question type for this question!');
           questionsOK = false;
         }
