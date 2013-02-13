@@ -25,9 +25,9 @@ include AssignmentHelper
         studentAssignments.each do |assignment|
 		      if assignment.has_not_started && assignment.hidden == false
 			      futureAssignments.unshift assignment
-		      elsif assignment.is_active && assignment.hidden == false
+		      elsif assignment.is_active
 			      currentAssignments.unshift assignment
-          elsif assignment.hidden == false 
+          elsif assignment.is_over
 			      pastAssignments.unshift assignment
 		      end
         end

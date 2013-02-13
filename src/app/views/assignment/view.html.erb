@@ -75,7 +75,7 @@
       <% end %>
     </tbody>
   </table>
-	<% if @ta or @faculty && @files.length > 0 %>o
+	<% if (@ta or @faculty) && (@files.length > 0) %>
 	<a href=<%= "/assignment/downloadAll/" + @id.to_s %>>Download All</a>
 	<% end %>
 <% end %>	
