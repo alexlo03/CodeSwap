@@ -12,6 +12,8 @@ class FileSubmissionsController < ApplicationController
     definition = AssignmentDefinition.find_by_assignment_id(assignment.id)
     file = parameters['file']
 
+    file.original_filename.gsub!(/[^a-z0-9.]/, '')
+    
 		if current_user.student? 
 			oldSubmission = FileSubmission.where(:assignment_id => assignment.id,
 						:course_id => assignment.course_id, :user_id => current_user.id)[0]

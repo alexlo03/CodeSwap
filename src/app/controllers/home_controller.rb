@@ -16,7 +16,7 @@ class HomeController < ApplicationController
     else
       Emailer.delay.file_complaint(name, subject, comment)
       flash[:notice] = 'Message received! Thank you very much for your feedback!'
-    end    
+    end
     redirect_to contact_us_path
   end
 

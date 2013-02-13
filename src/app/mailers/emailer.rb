@@ -17,11 +17,12 @@ class Emailer < ActionMailer::Base
     @name = 'Somebody' if name == ''
     @subject = subject
     @comment = comment
-    mail(:content_type => 'text/html', :to => ENV["GMAIL_USERNAME"], :subject => '[CodeSwap][Complaint] ' + subject)
+    mail(:content_type => 'text/html', :to => 'rosehulman.codeswap@gmail.com', :subject => '[CodeSwap][Complaint] ' + subject.to_s)
   end
 
 	def show_error(exception)
 		@exception = exception
+    @user = current_user
     mail(:content_type => 'text/html', :to => 'rosehulman.codeswap@gmail.com', :subject => '[CodeSwap][Error] New Error')
 	end
 
