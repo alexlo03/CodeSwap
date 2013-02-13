@@ -91,7 +91,7 @@
   <h4> This assignment has not started yet. You cannot submit files before the assignment has been assigned! </h4>
 <% elsif @assignment.is_over %>
   <h4> This assignment has ended. No more files may be submitted. </h4>
-<% elsif @assignment.is_active %>
+<% elsif @assignment.is_active or (@assignment.has_not_started and @faculty) %>
 
     <%= form_for FileSubmission.new do |f| %>
       <%= f.label :file %>
