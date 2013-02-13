@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 include ApplicationHelper
   rescue_from ActionController::RoutingError, :with => :render_404
 	rescue_from Exception do |e|
-		Emailer.delay.show_error(e)
+		Emailer.delay.show_error(e, current_user.email)
 		raise e
 	end
   protect_from_forgery
