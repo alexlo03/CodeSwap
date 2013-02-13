@@ -23,11 +23,11 @@ include AssignmentHelper
 			  reviewAssignments = ReviewAssignment.find_all_by_assignment_id(studentAssignmentIDs)
 
         studentAssignments.each do |assignment|
-		      if assignment.has_not_started
+		      if assignment.has_not_started && assignment.hidden == false
 			      futureAssignments.unshift assignment
-		      elsif assignment.is_active
+		      elsif assignment.is_active && assignment.hidden == false
 			      currentAssignments.unshift assignment
-		      else
+          elsif assignment.hidden == false 
 			      pastAssignments.unshift assignment
 		      end
         end
@@ -111,7 +111,7 @@ include AssignmentHelper
       name = params[:name]
       description = params[:description]
       hidden = params[:hidden]
-      if(hidden == 'True')
+      if(hidden == 'true')
         hidden = true
       else
         hidden = false
@@ -164,7 +164,7 @@ include AssignmentHelper
       name = params[:name]
       description = params[:description]
       hidden = params[:hidden]
-      if(hidden == 'True')
+      if(hidden == 'true')
         hidden = true
       else
         hidden = false
