@@ -164,16 +164,14 @@ include AssignmentHelper
       name = params[:name]
       description = params[:description]
       hidden = params[:hidden]
-      if(hidden == 'true')
-        hidden = true
-      else
-        hidden = false
-      end
+      startTime = params[:startTime]
+      endTime = params[:endTime]			
+			hidden = (hidden == 'true')
       
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
-      startDate = Date.strptime(startDate, '%m-%d-%Y')
-      endDate = Date.strptime(endDate, '%m-%d-%Y')
+      startDate = DateTime.strptime("#{startDate} #{startTime}", '%m-%d-%Y %H:%M %p')
+      endDate = DateTime.strptime("#{endDate} #{endTime}", '%m-%d-%Y %H:%M %p')
 
 		  #Create a new assignment with startDate, endDate, name, and courseID
       
