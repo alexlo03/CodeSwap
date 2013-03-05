@@ -31,6 +31,8 @@ GEM
     addressable (2.3.2)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    bootstrap-timepicker-rails (0.1.2)
+      railties (>= 3.0)
     builder (3.0.4)
     cancan (1.6.8)
     capybara (1.1.2)
@@ -230,6 +232,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-timepicker-rails
   cancan
   carrierwave
   coffee-rails (~> 3.2.1)
