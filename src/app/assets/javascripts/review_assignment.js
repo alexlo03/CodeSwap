@@ -17,7 +17,8 @@ reviewassignments = {
 
 //        $('input[name="question_1_type"]').change(function(){ reviewassignments.create.radioChanged(1); });
  
-
+				$("#time-start").timepicker();
+				$("#time-end").timepicker();
         reviewassignments.create.addQuestion();
 
         assignment_id = a_id; 
@@ -71,6 +72,8 @@ reviewassignments = {
     submitAssignment: function() {
       var startDate = $('#start-date-value').val();
       var endDate = $('#end-date-value').val();
+      var startTime = $('#time-start').val();
+      var endTime = $('#time-end').val();
       var name = $('#name').val();
 			var prev_id = $('#previous_selection').val();
       
@@ -123,12 +126,15 @@ reviewassignments = {
         errors.show("name","Oh no!  This assignment is nameless. Try giving it a title.");
       }
       else if(questionsOK) {
+				alert(startTime);
         $.post('/reviewassignment/create/'+assignment_id,
           {'startDate':startDate,
           'endDate':endDate,
           'name':name,
           'questions':questions,
-					'previous_id':prev_id
+					'previous_id':prev_id,
+					'startTime':startTime,
+					'endTime':endTime
           }, function() {
             window.location = '/reviewassignment/pairings';
           }          
