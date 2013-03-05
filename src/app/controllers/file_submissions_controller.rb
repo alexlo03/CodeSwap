@@ -6,6 +6,14 @@ class FileSubmissionsController < ApplicationController
     @submission = FileSubmission.new(:assignment_id => assignment.id)
   end
 
+  def view_live
+    id = params[:file_id]
+    submission = File.read(FileSubmission.find(id).full_save_path)
+
+    @contents = submission.split(/\n/)
+    
+  end
+
   def create
     parameters = params[:file_submission]
     assignment = Assignment.find(parameters['assignment_id'])
