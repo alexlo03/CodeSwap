@@ -20,21 +20,27 @@ class FileSubmissionsController < ApplicationController
     definition = AssignmentDefinition.find_by_assignment_id(assignment.id)
     file = parameters['file']
 
-    file.original_filename.gsub!(/[^a-z0-9.]/, '')
+    file.original_filename.gsub!(/[^a-z0-9A-Z.]/, '')
+
+    if assignment.is_over
+      @assignment_over = true    
+    else # Submission occurs before deadline
     
-		if current_user.student? 
-			oldSubmission = FileSubmission.where(:assignment_id => assignment.id,
-						:course_id => assignment.course_id, :user_id => current_user.id)[0]
-			unless oldSubmission.nil?
-				File.delete(oldSubmission.full_save_path)	
-				oldSubmission.destroy
-			end
-		end
-    @submission = FileSubmission.new(:course_id => assignment.course_id, :assignment_id => assignment.id, :assignment_definition_id => definition.id, :user_id => current_user.id, :file => file, :name => file.original_filename)
+		  if current_user.student? 
+			  oldSubmission = FileSubmission.where(:assignment_id => assignment.id,
+						  :course_id => assignment.course_id, :user_id => current_user.id)[0]
+			  unless oldSubmission.nil?
+				  File.delete(oldSubmission.full_save_path)	
+				  oldSubmission.destroy
+			  end
+		  end
 
-    @submission.save
+      @submission = FileSubmission.new(:course_id => assignment.course_id, :assignment_id => assignment.id, :assignment_definition_id => definition.id, :user_id => current_user.id, :file => file, :name => file.original_filename)
+      @submission.save
 
-    course = Course.find(assignment.course_id)
+      course = Course.find(assignment.course_id)
+
+    end 
 
     @faculty = current_user.id == course.user_id
     @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
