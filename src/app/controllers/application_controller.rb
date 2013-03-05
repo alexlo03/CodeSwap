@@ -2,7 +2,9 @@ class ApplicationController < ActionController::Base
 include ApplicationHelper
   rescue_from ActionController::RoutingError, :with => :render_404
 	rescue_from Exception do |e|
-		Emailer.delay.show_error(e, current_user.email)
+    email = '<User Not Signed In>'
+    email = current_user.email unless current_user.nil?
+		Emailer.delay.show_error(e, email)
 		raise e
 	end
   protect_from_forgery

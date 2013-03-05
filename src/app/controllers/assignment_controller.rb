@@ -12,15 +12,14 @@ include AssignmentHelper
       taFutureAssignments = []
       taPastAssignments = []
 
-
       if current_user.student?
-
         # Gathers Student's Assignments based on the AssignmentDefinitionToUser table
-    
         studentAssignmentDefinitionIds = AssignmentDefinitionToUser.find_all_by_user_id(current_user.id).collect(&:assignment_definition_id)
         studentAssignmentIDs = AssignmentDefinition.find_all_by_id(studentAssignmentDefinitionIds).collect(&:assignment_id)
         studentAssignments = Assignment.find_all_by_id(studentAssignmentIDs)
 			  reviewAssignments = ReviewAssignment.find_all_by_assignment_id(studentAssignmentIDs)
+        
+        
 
         studentAssignments.each do |assignment|
 		      if assignment.has_not_started && assignment.hidden == false
@@ -221,7 +220,6 @@ include AssignmentHelper
 		  @id = id
     end
   end
-
 
   #NOTE: Out of date, probably safe to remove. 
 	def upload

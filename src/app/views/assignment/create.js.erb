@@ -6,3 +6,9 @@ $('#assignment_files').empty().append("<%= escape_javascript("#{render '/assignm
 $('#student_submissions').empty().append("<%= escape_javascript("#{render '/assignment/table_layouts/assignment_submission', :file => @submission}").html_safe %>");
 <% end %>
 
+
+<% if @assignment_over %>
+
+  alert("The assignment is now over. Late submissions are not allowed at this time.");
+
+<% end %>

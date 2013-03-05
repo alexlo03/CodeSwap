@@ -1,0 +1,14 @@
+
+<%= @contents %>
+<div class='row'>
+  <div class='span1'>
+    <% @contents.each_with_index do |line, index| %>
+    <div class='row' id="line_<%= index %>_number">Line <%= index +1 %></br></div>
+    <% end %>
+  </div>
+  <div class='span9'>
+    <% @contents.each_with_index do |line, index| %>
+    <div class='row' id="line_<%= index+1%>"><%= line %></div>
+    <% end %>
+  </div>
+</div>
