@@ -257,7 +257,7 @@ include AssignmentHelper
 
     flash[:notice] = "File Submitted Successfully! Well done! A++!" + submission.save_directory
     
-    logger.warn "Student " + User.find(current_user.id) + "has submitted their assignment."
+    logger.warn "Student " + User.find(current_user.id) + " " + User.find(current_user.id).friendly_full_name + " has submitted their assignment."
     
     redirect_to '/assignment/index'
 
