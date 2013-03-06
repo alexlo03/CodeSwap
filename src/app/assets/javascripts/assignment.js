@@ -11,13 +11,16 @@ assignments = {
 
         $('#end-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
 
-        
+        $('#time-start').timepicker();
+        $('#time-end').timepicker();
         course_id = courseId; 
     },
 
     submitAssignment: function() {
       var startDate = $('#start-date-value').val();
       var endDate = $('#end-date-value').val();
+      var startTime = $('#time-start').val();
+      var endTime = $('#time-end').val();
       var name = $('#name').val();
       var desc = $('#description').val();
 	  var hidden = $('input[name="hidden"]:checked').val();
@@ -40,7 +43,9 @@ assignments = {
           'name':name,
           'description':desc,
           'course_id':course_id,
-		  'hidden':hidden
+		  'hidden':hidden,
+					'endTime':endTime,
+					'startTime':startTime
           }, function() {
             window.location = '/course/show/' + course_id;
           }          
@@ -76,17 +81,21 @@ assignments = {
   },
 
   edit:{
-    pageLoad: function(name, startDate, endDate, descr, hidden){
-      // Initializes date pickers
+    pageLoad: function(name, startDate, endDate, descr, hidden,startTime,endTime){
+      // Initializes date and time pickers
       $('#start-date').datepicker({ 'autoClose':true,'data-date':startDate}).on('changeDate', function(ev) { $('#start-date').datepicker('hide'); });
       $('#end-date').datepicker({ 'autoClose':true, 'data-date':endDate}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
-	  
+	  	
+			$('#time-start').timepicker();
+			$('#time-end').timepicker();
 
       // Loads-in assignment data
       $('#start-date-value').val(startDate);
       $('#end-date-value').val(endDate);
       $('#name').val(name);
       $('#description').val(descr);
+			$('#time-start').val(startTime);
+			$('#time-end').val(endTime);
 	  
 	  $('input[value="'+hidden+'"]').attr('checked', true)
 	  

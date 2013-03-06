@@ -6,6 +6,8 @@ include PairingHelper
 		  # Handle post request
      	session[:startDate] = params[:startDate]
 		  session[:endDate] = params[:endDate]
+     	session[:startTime] = params[:startTime]
+		  session[:endTime] = params[:endTime]
 		  session[:name] = params[:name]
 		  session['questions'] = params['questions']
 		  session[:assignment_id] = params[:assignment_id]
@@ -29,8 +31,8 @@ include PairingHelper
 			review_assignment = ReviewAssignment.new
 			pairing = AssignmentPairing.new
 			pairing.seed = session['seed']
-			review_assignment.start_date = Date.strptime(session['startDate'], '%m-%d-%Y')
-			review_assignment.end_date = Date.strptime(session['endDate'], '%m-%d-%Y')
+			review_assignment.start_date = Date.strptime("#{session['startDate']} #{session['startTime']}", '%m-%d-%Y %H:%M %p')
+			review_assignment.end_date = Date.strptime("#{session['endDate']} #{session['endTime']}", '%m-%d-%Y %H:%M %p')
 			review_assignment.assignment_id = session['assignment_id']
 			review_assignment.name = session['name']
 			review_assignment.course_id = review_assignment.assignment.course.id
@@ -84,6 +86,7 @@ include PairingHelper
 	    @student_pairing_hash = create_pairings(@students,@depth,@seed)
 		end
   end
+
 
 	def view
 		@id = params[:id]

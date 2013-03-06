@@ -12,22 +12,21 @@ include AssignmentHelper
       taFutureAssignments = []
       taPastAssignments = []
 
-
       if current_user.student?
-
         # Gathers Student's Assignments based on the AssignmentDefinitionToUser table
-    
         studentAssignmentDefinitionIds = AssignmentDefinitionToUser.find_all_by_user_id(current_user.id).collect(&:assignment_definition_id)
         studentAssignmentIDs = AssignmentDefinition.find_all_by_id(studentAssignmentDefinitionIds).collect(&:assignment_id)
         studentAssignments = Assignment.find_all_by_id(studentAssignmentIDs)
 			  reviewAssignments = ReviewAssignment.find_all_by_assignment_id(studentAssignmentIDs)
+        
+        
 
         studentAssignments.each do |assignment|
 		      if assignment.has_not_started && assignment.hidden == false
 			      futureAssignments.unshift assignment
-		      elsif assignment.is_active && assignment.hidden == false
+		      elsif assignment.is_active
 			      currentAssignments.unshift assignment
-          elsif assignment.hidden == false 
+          elsif assignment.is_over
 			      pastAssignments.unshift assignment
 		      end
         end
@@ -90,8 +89,6 @@ include AssignmentHelper
     assignment_id = params[:assignment_id]
     @assignment = Assignment.find_by_id(assignment_id)
     @course = Course.find_by_id(@assignment.course_id)
-    
-
     requires({'role'=>['admin', 'faculty'], 'course_id' =>@course.id})
     if current_user
 
@@ -108,6 +105,8 @@ include AssignmentHelper
 		  #Get values from the parameters
       startDate = params[:startDate]
       endDate = params[:endDate]
+      startTime = params[:startTime]
+      endTime = params[:endTime]
       name = params[:name]
       description = params[:description]
       hidden = params[:hidden]
@@ -119,8 +118,8 @@ include AssignmentHelper
       
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
-      startDate = Date.strptime(startDate, '%m-%d-%Y')
-      endDate = Date.strptime(endDate, '%m-%d-%Y')
+      startDate = DateTime.strptime("#{startDate} #{startTime}", '%m-%d-%Y %H:%M %p')
+      endDate = DateTime.strptime("#{endDate} #{endTime}", '%m-%d-%Y %H:%M %p')
 
 		  #Create a new assignment with startDate, endDate, name, and courseID
       assignment = Assignment.new
@@ -164,16 +163,14 @@ include AssignmentHelper
       name = params[:name]
       description = params[:description]
       hidden = params[:hidden]
-      if(hidden == 'true')
-        hidden = true
-      else
-        hidden = false
-      end
+      startTime = params[:startTime]
+      endTime = params[:endTime]			
+			hidden = (hidden == 'true')
       
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
-      startDate = Date.strptime(startDate, '%m-%d-%Y')
-      endDate = Date.strptime(endDate, '%m-%d-%Y')
+      startDate = DateTime.strptime("#{startDate} #{startTime}", '%m-%d-%Y %H:%M %p')
+      endDate = DateTime.strptime("#{endDate} #{endTime}", '%m-%d-%Y %H:%M %p')
 
 		  #Create a new assignment with startDate, endDate, name, and courseID
       
@@ -223,7 +220,6 @@ include AssignmentHelper
 		  @id = id
     end
   end
-
 
   #NOTE: Out of date, probably safe to remove. 
 	def upload

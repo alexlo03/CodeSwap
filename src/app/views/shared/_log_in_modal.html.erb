@@ -5,7 +5,9 @@
     <h3 id="myModalLabel">Sign in</h3>
   </div>
   <div class="modal-body">
+		<% if false %>
     <%= render "authentications/links" %>	
+		<% end %>
     <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>    
       <p><%= f.label :email %></p>
       <p><%= f.text_field :email %></p>

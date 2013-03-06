@@ -26,4 +26,37 @@
   </tbody>
 </table>
 </br>
+
+
+<% unless @classes_ta.nil? %>
+<h2>TA Duties</h2>
+<table class='table table-hover'>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Name</th>
+      <th>Term</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @classes_ta.each do |course| %>
+      <tr <% if current_user.id == course.user_id %> class='info' <% end %> >
+        <td><%= course.course_number + ' - ' + course.section.to_s%></td>
+        <td><%= course.name %></td>
+        <td><%= course.term %></td>   
+        <td>
+          <a href=<%= "../course/show/"+course.id.to_s%> class="btn">View</a>
+          <% if current_user.id == course.user_id %>
+            <a href=<%= "../course/edit/"+course.id.to_s%> class="btn">Edit</a>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+</br>
+<% end %>
+<% if current_user.admin? or current_user.faculty? %>
 <p class="btn" id='add_course' onclick="window.location.href='<%= new_course_path %>'">Add Course</p>
+<% end %>

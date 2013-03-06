@@ -2,8 +2,9 @@
 
 <div class="sign_in_form">
 <h2>Sign in</h2>
-
+	<% if false %>
   <%= render "authentications/links" %>	
+	<% end %>
   <br/>
   <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>    
     <div><%= f.label :email %>

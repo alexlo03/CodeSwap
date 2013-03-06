@@ -1,0 +1,7 @@
+<% @contents.each_with_index do |line, index| %>
+<p id="line_<%= index+1 %>">
+<%= line %>
+</p>
+<% end %>
+
+
