@@ -81,7 +81,7 @@ spartans = User.create(:email => '300@spartans.gr', :first_name => 'The 300', :l
 # faculty usernames: nimoy hanks dicaprio locke tzu nitzsche hobbes einstein edison tesla galileo euler obama
 
 snork1 = Course.create(:name => 'The art of Snorkeling', :course_number => 'Snork-104', :section => '1', :term => 'Winter', :user_id => nimoy).id
-snork2 = Course.create(:name => 'The sound of Snorkeling', :course_number => 'Snork-204', :section => '2', :term => 'Winter', :user_id => nimoy).id
+snork2 = Course.create(:name => 'The sound of Snorkeling', :course_number => 'Snork-204', :section => '2', :term => 'Winter', :user_id => einstein).id
 snork3 = Course.create(:name => 'The smell of Snorkeling', :course_number => 'Snork-304', :section => '1', :term => 'Winter', :user_id => hanks).id
 snork4 = Course.create(:name => 'How to breathe underwater', :course_number => 'Snork-704', :section => '1', :term => 'Winter', :user_id => dicaprio).id
 
@@ -92,7 +92,7 @@ sr1 = Course.create(:name => 'Senior Project I', :course_number => 'CSSE-497', :
 sr2 = Course.create(:name => 'Senior Project II', :course_number => 'CSSE-498', :section => '1', :term => 'Winter', :user_id => hobbes).id
 tie = Course.create(:name => 'How to tie a tie', :course_number => 'Tie-532', :section => '1', :term => 'Life', :user_id => nimoy).id
 
-shop1 = Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Summer', :user_id => tesla).id
+shop1 = Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Summer', :user_id => nimoy).id
 shop2 = Course.create(:name => 'More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Fall', :user_id => galileo).id
 shop3 = Course.create(:name => 'Even More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Winter', :user_id => euler).id
 shop4 = Course.create(:name => 'Shopping and dropping', :course_number => 'Shop-208', :section => '1', :term => 'Spring', :user_id => obama).id
