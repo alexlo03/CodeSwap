@@ -90,7 +90,7 @@ cs120 = Course.create(:name => 'Introduction to Software Development', :course_n
 sr1 = Course.create(:name => 'Senior Project I', :course_number => 'CSSE-497', :section => '1', :term => 'Fall', :user_id => tzu).id
 
 sr2 = Course.create(:name => 'Senior Project II', :course_number => 'CSSE-498', :section => '1', :term => 'Winter', :user_id => hobbes).id
-tie = Course.create(:name => 'How to tie a tie', :course_number => 'Tie-532', :section => '1', :term => 'Life', :user_id => einstein).id
+tie = Course.create(:name => 'How to tie a tie', :course_number => 'Tie-532', :section => '1', :term => 'Life', :user_id => nimoy).id
 
 shop1 = Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Summer', :user_id => tesla).id
 shop2 = Course.create(:name => 'More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Fall', :user_id => galileo).id
@@ -119,8 +119,8 @@ snork4_tas = [spartans]
 tie_students = [mandella, jackson, fatalbert, hulk, parker, gandhi, emperor, stark, superman, batman, spartans]
 tie_tas = [poppins]
 
-shop1_students = [poppins, stewart, fatalbert]
-shop1_tas = [batman, fatalbert]
+shop1_students = [poppins, stewart, fatalbert, hulk, parker, gandhi, queen, jackson, mandella, stark, batman, spartans]
+shop1_tas = []
 
 shop2_students = [poppins, stewart, fatalbert]
 shop2_tas = [batman, jackson]
