@@ -2,8 +2,7 @@ class Assignment < ActiveRecord::Base
   # attr_accessible :title, :body
   belongs_to :course
   has_many :assignment_definitions
-
-  attr_accessible :start_date, :end_date, :name, :description, :course_id, :hidden
+  attr_accessible :start_date, :end_date, :name, :description, :course_id, :hidden, :grouped
   
   def course
     Course.find(course_id)
@@ -21,6 +20,9 @@ class Assignment < ActiveRecord::Base
     end_date < Time.now
   end
 
+	def grouped?
+		grouped
+	end
 
 	#Get the faculty file submissions, used to filter out results for downloads
 	def getFacultyFileSubmissions

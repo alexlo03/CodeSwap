@@ -4,6 +4,7 @@ class Course < ActiveRecord::Base
   belongs_to :user
   has_one :studentgroup
   has_one :tagroup
+	has_many :course_groups
   attr_accessible :course_number, :name, :section, :term, :user_id
 
   # Imports Students / TAs from a spreadsheet
@@ -55,5 +56,10 @@ class Course < ActiveRecord::Base
     end
   end
 
+	def get_groups
+		group0 = course_groups.find_all_by_group(0).collect(&:user_id)
+		group1 = course_groups.find_all_by_group(1).collect(&:user_id)
+		[group0,group1]
+	end
 
 end

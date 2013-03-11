@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   ROLES = %w[admin faculty ta student]
 
+	has_many :course_groups
   has_many :authentications
   has_and_belongs_to_many :courses
 

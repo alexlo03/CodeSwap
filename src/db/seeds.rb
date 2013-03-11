@@ -221,3 +221,24 @@ shop4_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definitio
 
 
 
+tie_students1 = [mandella, jackson, fatalbert, hulk, parker, gandhi]
+tie_students2 = [emperor, stark, superman, batman, spartans]
+
+tie_students1.each do |uid|
+	CourseGroup.create(:user_id => uid, :course_id => tie, :group => 0)
+end
+tie_students2.each do |uid|
+	CourseGroup.create(:user_id => uid, :course_id => tie, :group => 1)
+end
+
+shop1_students1 = [poppins, stewart, fatalbert, hulk, parker, gandhi]
+shop1_students2 = [queen, jackson, mandella, stark, batman, spartans]
+
+shop1_students1.each do |uid|
+	CourseGroup.create(:user_id => uid, :course_id => shop1, :group => 0)
+end
+shop1_students2.each do |uid|
+	CourseGroup.create(:user_id => uid, :course_id => shop1, :group => 1)
+end
+
+
