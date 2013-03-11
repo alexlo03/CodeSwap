@@ -18,12 +18,13 @@ class ReviewAssignment < ActiveRecord::Base
 			ReviewMapping.find_by_user_id_and_review_assignment_id(user_id,self.id).other_user
 	end
 
-	def to_csv(students, questions, answers)
+	def to_csv(mappings, questions, answers)
 		CSV.generate do |csv|
 			csv << ["Grader", "Grader Email", "Graded", "Graded Email"] + questions.map{|question| "#{question.content}"}
-			students.each do |student|
-				other = self.find_pair(student.id)
-				csv << ["#{student.friendly_full_name}", "#{student.email}", "#{other.friendly_full_name}", "#{other.email}"] + answers[student.id].map{|answer| "#{answer.answer}"}
+			mappings.each do |mapping|
+				student = mapping.user
+				other = mapping.other_user
+				csv << ["#{student.friendly_full_name}", "#{student.email}", "#{other.friendly_full_name}", "#{other.email}"] + answers[mapping.id].map{|answer| "#{answer.answer}"}
 			end
 		end
 	end

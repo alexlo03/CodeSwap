@@ -160,10 +160,11 @@ include PairingHelper
 		@answers = @answers.reject{|x| x.review_question.review_assignment.id != @review_assignment.id}
 		
 	end
-
+=begin
 	def grades
 
 		id = params[:id]
+
 		@review_assignment = ReviewAssignment.find(id)
 		@students = User.find_all_by_id(@review_assignment.course.get_students)
 		@questions = ReviewQuestion.find_all_by_review_assignment_id(id)
@@ -175,6 +176,23 @@ include PairingHelper
 			format.html
 			format.xls
 			format.csv {send_data @review_assignment.to_csv(@students,@questions,@answers) }
+		end
+	end
+
+=end
+	def grades
+
+		id = params[:id]
+		@mappings = ReviewMapping.find_all_by_review_assignment_id(id)
+		@questions = ReviewQuestion.find_all_by_review_assignment_id(id)
+		@answers = {}
+		@mappings.each do |mapping|
+			@answers[mapping.id] = ReviewAnswer.order(:review_question_id).find_all_by_user_id_and_other_id_and_review_question_id(mapping.user_id,mapping.other_user_id,@questions.collect(&:id))
+		end
+		respond_to do |format|
+			format.html
+			format.xls
+			format.csv {send_data ReviewAssignment.find(id).to_csv(@mappings,@questions,@answers) }
 		end
 		
 	end
