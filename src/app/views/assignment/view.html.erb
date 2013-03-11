@@ -11,6 +11,8 @@
 <h3>Assignment: <%= @assignment.name %></h1>
 <% if @faculty %>
   <%= link_to 'Swap Assignment', '/reviewassignment/create/'+ @assignment.id.to_s, :style => 'color: #EEE;}', :class => 'btn btn-success' %>
+  <%if @assignment.hidden == true %> <h4 style="color:orange"> This assignment is currently hidden!</h4>
+<% end %>
 <% end %>
 
 <div class='row'>
