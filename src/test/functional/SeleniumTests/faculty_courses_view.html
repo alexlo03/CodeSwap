@@ -4,21 +4,46 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="https://codeswap.csse.rose-hulman.edu/" />
-<title>faculty_courses</title>
+<title>faculty_courses_view</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">faculty_courses</td></tr>
+<tr><td rowspan="1" colspan="3">faculty_courses_view</td></tr>
 </thead><tbody>
 <tr>
-	<td>open</td>
-	<td>/</td>
+	<td>clickAndWait</td>
+	<td>link=View</td>
 	<td></td>
 </tr>
 <tr>
-	<td>click</td>
-	<td>css=a.btn.btn-navbar</td>
+	<td>verifyElementPresent</td>
+	<td>link=Edit Course / Roster</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Taught by:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>TAs</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Students</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Assignments</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>class=btn btn-success</td>
 	<td></td>
 </tr>
 <tr>
@@ -26,31 +51,7 @@
 	<td>link=Courses</td>
 	<td></td>
 </tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>Courses</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>Home // Courses</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>Number</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>Name</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>Term</td>
-	<td></td>
-</tr>
+
 </tbody></table>
 </body>
 </html>
