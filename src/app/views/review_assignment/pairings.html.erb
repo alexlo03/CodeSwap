@@ -7,8 +7,12 @@ review the assignemnt for the student in the right column. </p>
 <thead>
 <tr><th>Student Grader</th><th> Whose Assignment</th></tr>
 </thead>
-<% @student_pairing_hash.each do |k,v| %>
+<% @student_pairing_hash.each do |key,val| %>
+<% key.each do |k| %>
+<% val.each do |v| %>
 <tr><td><%= User.find(k).friendly_full_name %></td><td><%= User.find(v).friendly_full_name %></td></tr>
+<% end %>
+<% end %>
 <% end %>
 </table>
 <div class="span6">

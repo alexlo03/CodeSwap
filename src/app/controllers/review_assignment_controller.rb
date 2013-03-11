@@ -56,10 +56,20 @@ include PairingHelper
         review_question.content = content
         review_question.save
       end
-
-			hash = create_pairings(@students,pairing.depth,pairing.seed)
-			hash.each do |user_1_id, user_2_id|
-				ReviewMapping.create(:user_id => user_1_id, :other_user_id => user_2_id, :review_assignment_id => review_assignment.id)
+			
+			if @assignment.grouped?
+				groups = @assignment.course.get_groups
+				#Assuming 2 groups...
+				hash = pair(groups[0],groups[1],pairing.seed,pairing.depth,@assignment.course.user.id)
+			else
+				hash = create_pairings(@students,pairing.depth,pairing.seed)
+			end
+			hash.each do |key, val|
+				key.each do |user_1_id|
+					val.each do |user_2_id|
+						ReviewMapping.create(:user_id => user_1_id, :other_user_id => user_2_id, :review_assignment_id => review_assignment.id)
+					end
+				end
 			end
 			render :nothing => true
 			
@@ -83,7 +93,15 @@ include PairingHelper
 				@seed = session['seed']
 				@depth = session['depth']
 			end
-	    @student_pairing_hash = create_pairings(@students,@depth,@seed)
+			if @assignment.grouped?
+				groups = @assignment.course.get_groups
+				#Assuming 2 groups...
+				@student_pairing_hash = pair(groups[0],groups[1],@seed,@depth,@assignment.course.user.id)
+			else
+	    	@student_pairing_hash = create_pairings(@students,@depth,@seed)
+				logger = Logger.new("pairing.log")
+				logger.info @student_pairing_hash
+			end
 		end
   end
 
@@ -94,15 +112,26 @@ include PairingHelper
 		unless current_user.nil?
 			if current_user.student?
 				@student = true
-				@review_mapping = ReviewMapping.find_by_user_id_and_review_assignment_id(current_user.id,@id)
-				@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
-				@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
-				@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
+				@count = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id).count
+#				@review_mapping = ReviewMapping.find_by_user_id_and_review_assignment_id(current_user.id,@id)
+#				@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
+#				@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
+#				@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
+				
 			elsif current_user.faculty? || current_user.admin? || current_user.ta?
 				@student = false
 				@students = User.find_all_by_id(@review_assignment.course.get_students)
 			end
 		end
+	end
+
+	def answer_forum
+		@id = params[:id]
+		@pos = params[:pos]
+		@review_mapping = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id)[@pos]
+		@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
+		@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
+		@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
 	end
 
 	def student_submit

@@ -81,7 +81,7 @@ spartans = User.create(:email => '300@spartans.gr', :first_name => 'The 300', :l
 # faculty usernames: nimoy hanks dicaprio locke tzu nitzsche hobbes einstein edison tesla galileo euler obama
 
 snork1 = Course.create(:name => 'The art of Snorkeling', :course_number => 'Snork-104', :section => '1', :term => 'Winter', :user_id => nimoy).id
-snork2 = Course.create(:name => 'The sound of Snorkeling', :course_number => 'Snork-204', :section => '2', :term => 'Winter', :user_id => nimoy).id
+snork2 = Course.create(:name => 'The sound of Snorkeling', :course_number => 'Snork-204', :section => '2', :term => 'Winter', :user_id => einstein).id
 snork3 = Course.create(:name => 'The smell of Snorkeling', :course_number => 'Snork-304', :section => '1', :term => 'Winter', :user_id => hanks).id
 snork4 = Course.create(:name => 'How to breathe underwater', :course_number => 'Snork-704', :section => '1', :term => 'Winter', :user_id => dicaprio).id
 
@@ -90,9 +90,9 @@ cs120 = Course.create(:name => 'Introduction to Software Development', :course_n
 sr1 = Course.create(:name => 'Senior Project I', :course_number => 'CSSE-497', :section => '1', :term => 'Fall', :user_id => tzu).id
 
 sr2 = Course.create(:name => 'Senior Project II', :course_number => 'CSSE-498', :section => '1', :term => 'Winter', :user_id => hobbes).id
-tie = Course.create(:name => 'How to tie a tie', :course_number => 'Tie-532', :section => '1', :term => 'Life', :user_id => einstein).id
+tie = Course.create(:name => 'How to tie a tie', :course_number => 'Tie-532', :section => '1', :term => 'Life', :user_id => nimoy).id
 
-shop1 = Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Summer', :user_id => tesla).id
+shop1 = Course.create(:name => 'Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Summer', :user_id => nimoy).id
 shop2 = Course.create(:name => 'More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Fall', :user_id => galileo).id
 shop3 = Course.create(:name => 'Even More Shopping', :course_number => 'Shop-208', :section => '1', :term => 'Winter', :user_id => euler).id
 shop4 = Course.create(:name => 'Shopping and dropping', :course_number => 'Shop-208', :section => '1', :term => 'Spring', :user_id => obama).id
@@ -119,8 +119,8 @@ snork4_tas = [spartans]
 tie_students = [mandella, jackson, fatalbert, hulk, parker, gandhi, emperor, stark, superman, batman, spartans]
 tie_tas = [poppins]
 
-shop1_students = [poppins, stewart, fatalbert]
-shop1_tas = [batman, fatalbert]
+shop1_students = [poppins, stewart, fatalbert, hulk, parker, gandhi, queen, jackson, mandella, stark, batman, spartans]
+shop1_tas = []
 
 shop2_students = [poppins, stewart, fatalbert]
 shop2_tas = [batman, jackson]
@@ -219,5 +219,26 @@ shop3_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definitio
 shop4_students.each{ |s| AssignmentDefinitionToUser.create(:assignment_definition_id => shop4_a_d_1, :user_id => s) }
 
 
+
+
+tie_students1 = [mandella, jackson, fatalbert, hulk, parker, gandhi]
+tie_students2 = [emperor, stark, superman, batman, spartans]
+
+tie_students1.each do |uid|
+	CourseGroup.create(:user_id => uid, :course_id => tie, :group => 0)
+end
+tie_students2.each do |uid|
+	CourseGroup.create(:user_id => uid, :course_id => tie, :group => 1)
+end
+
+shop1_students1 = [poppins, stewart, fatalbert, hulk, parker, gandhi]
+shop1_students2 = [queen, jackson, mandella, stark, batman, spartans]
+
+shop1_students1.each do |uid|
+	CourseGroup.create(:user_id => uid, :course_id => shop1, :group => 0)
+end
+shop1_students2.each do |uid|
+	CourseGroup.create(:user_id => uid, :course_id => shop1, :group => 1)
+end
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130206172256) do
+ActiveRecord::Schema.define(:version => 20130311202807) do
 
   create_table "assignment_definition_to_users", :force => true do |t|
     t.integer  "user_id"
@@ -38,19 +38,28 @@ ActiveRecord::Schema.define(:version => 20130206172256) do
   end
 
   create_table "assignments", :force => true do |t|
-    t.string   "name",       :null => false
-    t.datetime "start_date", :null => false
-    t.datetime "end_date",   :null => false
+    t.string   "name",                          :null => false
+    t.datetime "start_date",                    :null => false
+    t.datetime "end_date",                      :null => false
     t.integer  "course_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.boolean  "hidden"
+    t.boolean  "grouped",    :default => false
   end
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
     t.string   "provider"
     t.string   "uid"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "course_groups", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "group"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -105,6 +114,7 @@ ActiveRecord::Schema.define(:version => 20130206172256) do
     t.integer  "review_question_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "other_id"
   end
 
   create_table "review_assignments", :force => true do |t|
