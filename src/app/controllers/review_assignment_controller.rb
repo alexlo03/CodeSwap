@@ -128,7 +128,9 @@ include PairingHelper
 	def answer_forum
 		@id = params[:id]
 		@pos = params[:pos]
-		@review_mapping = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id)[@pos]
+		@review_assignment = ReviewAssignment.find(@id)
+		@review_mapping = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id)[@pos.to_i]
+		@other_id = @review_mapping.other_user_id
 		@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
 		@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
 		@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
@@ -137,11 +139,12 @@ include PairingHelper
 	def student_submit
 		if request.post?
 			answers = params[:answers]
+			other_id = params[:other_id]
 			review_assignment = ReviewAssignment.find(params[:id])
 			questions = review_assignment.review_questions
 			user_id = current_user.id
 			answers.each_with_index do |answer, i|
-				ReviewAnswer.create(:user_id => user_id, :review_question_id => questions[i].id, :answer => answer)	
+				ReviewAnswer.create(:user_id => user_id, :review_question_id => questions[i].id, :answer => answer, :other_id => other_id)	
 			end			
 			render :nothing => true
 		end

@@ -198,7 +198,7 @@ reviewassignments = {
   },
 
 	view:{
-		submit: function(id){
+		submit: function(id, other_id){
 				var answers = [];
         var answersOK = true;
         $('.question_area').each(function() {
@@ -223,7 +223,7 @@ reviewassignments = {
         });
         if(answersOK) {
 				  $.post('/reviewassignment/studentsubmit',
-					  {'answers':answers, 'id':id},function ()
+					  {'answers':answers, 'id':id, 'other_id':other_id},function ()
 				      {
                   window.location = '/assignment/index';
 				      });
