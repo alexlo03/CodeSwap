@@ -9,8 +9,27 @@
 <table>
 <thead></thead>
 <% @students.each do |student| %>
-<tr>
-<td><a href="<%= "/reviewassignment/viewsubmission/#{student.id}/#{@review_assignment.id}" %>"><%= student.friendly_full_name %></a></td>
-</tr>
+	<tr>
+	<% ReviewMapping.find_all_by_user_id_and_review_assignment_id(student.id,@review_assignment.id).each do |mapping|%>
+		<% other_student = User.find(mapping.other_user_id) %>
+		<td><a href="<%= "/reviewassignment/viewsubmission/#{mapping.id}" %>"><%= "#{student.friendly_full_name} grading #{other_student.friendly_full_name}" %></a></td>
+		
+	<% end %>	
+	</tr>
 <% end %>
+<% unless @teacher_grades.count == 0 %>
+		<tr>
+		<% @teacher_grades.each do |mapping| %>
+			<% other_student = User.find(mapping.other_user_id) %>
+			<td><a href="<%= "/reviewassignment/viewsubmission/#{mapping.id}" %>"><%= "#{current_user.friendly_full_name} grading #{other_student.friendly_full_name}" %></a></td>	
+		<% end %>
+		</tr>
+	<% end %>
 </table>
+
+<% unless @teacher_grades.count == 0 %>
+<h2>You need to grade the following for this assignment:</h2>
+<% @teacher_grades.each_with_index do |mapping,i| %>
+<a href=<%= "/reviewassignment/#{@id}/#{i}/answer_forum"%>>Review <%= mapping.other_user.friendly_full_name %></a></br>
+<% end %>
+<% end %>

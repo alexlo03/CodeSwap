@@ -121,6 +121,7 @@ include PairingHelper
 			elsif current_user.faculty? || current_user.admin? || current_user.ta?
 				@student = false
 				@students = User.find_all_by_id(@review_assignment.course.get_students)
+				@teacher_grades = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@review_assignment.id)
 			end
 		end
 	end
@@ -151,10 +152,11 @@ include PairingHelper
 	end
 
 	def view_submission
-		@student_a = User.find(params["user_id"])
-		@review_assignment = ReviewAssignment.find(params["review_assignment_id"])
-		@student_b = @review_assignment.find_pair(params[:user_id])
-		@answers = ReviewAnswer.find_all_by_user_id(@student_a.id)
+		mapping = ReviewMapping.find(params[:mapping_id])
+		@student_a = mapping.user
+		@review_assignment = mapping.review_assignment
+		@student_b = mapping.other_user
+		@answers = ReviewAnswer.find_all_by_user_id_and_other_id(@student_a.id, @student_b.id)
 		@answers = @answers.reject{|x| x.review_question.review_assignment.id != @review_assignment.id}
 		
 	end
