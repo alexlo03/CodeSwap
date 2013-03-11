@@ -121,6 +121,7 @@ include PairingHelper
 			elsif current_user.faculty? || current_user.admin? || current_user.ta?
 				@student = false
 				@students = User.find_all_by_id(@review_assignment.course.get_students)
+				@teacher_grades = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@review_assignment.id)
 			end
 		end
 	end
@@ -128,7 +129,9 @@ include PairingHelper
 	def answer_forum
 		@id = params[:id]
 		@pos = params[:pos]
-		@review_mapping = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id)[@pos]
+		@review_assignment = ReviewAssignment.find(@id)
+		@review_mapping = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id)[@pos.to_i]
+		@other_id = @review_mapping.other_user_id
 		@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
 		@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
 		@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
@@ -137,21 +140,23 @@ include PairingHelper
 	def student_submit
 		if request.post?
 			answers = params[:answers]
+			other_id = params[:other_id]
 			review_assignment = ReviewAssignment.find(params[:id])
 			questions = review_assignment.review_questions
 			user_id = current_user.id
 			answers.each_with_index do |answer, i|
-				ReviewAnswer.create(:user_id => user_id, :review_question_id => questions[i].id, :answer => answer)	
+				ReviewAnswer.create(:user_id => user_id, :review_question_id => questions[i].id, :answer => answer, :other_id => other_id)	
 			end			
 			render :nothing => true
 		end
 	end
 
 	def view_submission
-		@student_a = User.find(params["user_id"])
-		@review_assignment = ReviewAssignment.find(params["review_assignment_id"])
-		@student_b = @review_assignment.find_pair(params[:user_id])
-		@answers = ReviewAnswer.find_all_by_user_id(@student_a.id)
+		mapping = ReviewMapping.find(params[:mapping_id])
+		@student_a = mapping.user
+		@review_assignment = mapping.review_assignment
+		@student_b = mapping.other_user
+		@answers = ReviewAnswer.find_all_by_user_id_and_other_id(@student_a.id, @student_b.id)
 		@answers = @answers.reject{|x| x.review_question.review_assignment.id != @review_assignment.id}
 		
 	end
