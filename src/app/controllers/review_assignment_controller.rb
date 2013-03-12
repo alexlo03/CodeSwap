@@ -137,7 +137,7 @@ include PairingHelper
 		@other_id = @review_mapping.other_user_id
 		@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
 		@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
-		@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
+		@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id,:other_id => @mapping.other_user_id).count > 0
 	end
 
 	def student_submit
