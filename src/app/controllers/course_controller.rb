@@ -9,7 +9,7 @@ include CourseHelper
     @course = Course.find(id)    
     requires({'role' => ['admin','faculty','student'],'course_id' => id})
 		#if the course is found & and the user is enrolled in the course, retrieve mappings of students and tas to a course.
-      unless (@course.nil? || current_user.nil?)
+    unless (@course.nil? || current_user.nil?)
       @students = Studentgroup.where(:course_id => id)
       @tas = Tagroup.where(:course_id => id)
       @teacher = User.where(:id => @course.user_id).first
@@ -22,6 +22,10 @@ include CourseHelper
       else
         @assignments = Assignment.where(:course_id => id)
       end
+      
+      @group1 = CourseGroup.find_all_by_course_id_and_group(id, 0).collect(&:user_id)
+      @group2 = CourseGroup.find_all_by_course_id_and_group(id, 1).collect(&:user_id)
+      
 			@review_assignments = ReviewAssignment.find_all_by_course_id(id)
     end
   end
