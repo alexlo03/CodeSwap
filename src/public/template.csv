@@ -1,3 +1,4 @@
-first_name,last_name,email,role
-Sam,Student,CodeSwap@rose-hulman.edu,student
+first_name,last_name,email,role,group
+Sam,Student,CodeSwap@rose-hulman.edu,student,1
+Other,Group,DiffGroup@rose-hulman.edu,student,0
 Ple,Assistant,CodeSwap@rose-hulman.edu,ta

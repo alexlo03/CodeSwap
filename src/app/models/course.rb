@@ -29,6 +29,10 @@ class Course < ActiveRecord::Base
 
         if row["role"].downcase == 'student'
           Studentgroup.create(:user_id =>  user.id, :course_id => id)
+					group = row['group']
+					unless(group.nil?)
+						CourseGroup.create(:user_id => user.id, :course_id => id, :group => group)
+					end
         elsif row["role"].downcase == 'ta'
           Tagroup.create(:user_id => user.id, :course_id => id)
         end
