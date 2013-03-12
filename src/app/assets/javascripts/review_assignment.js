@@ -76,7 +76,7 @@ reviewassignments = {
       var endTime = $('#time-end').val();
       var name = $('#name').val();
 			var prev_id = $('#previous_selection').val();
-      
+ 			var grouped = $('input[name="grouped"]:checked').val();
       var questions = [];
       questionsOK = true;
       $('.question').each( function() {
@@ -133,7 +133,8 @@ reviewassignments = {
           'questions':questions,
 					'previous_id':prev_id,
 					'startTime':startTime,
-					'endTime':endTime
+					'endTime':endTime,
+					'grouped':grouped
           }, function() {
             window.location = '/reviewassignment/pairings';
           }          

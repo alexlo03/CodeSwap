@@ -12,6 +12,10 @@ include PairingHelper
 		  session['questions'] = params['questions']
 		  session[:assignment_id] = params[:assignment_id]
 			session[:prev_id] = params[:previous_id].to_i
+			
+      session[:grouped] = (params[:grouped]=='true')
+			
+			
 		  render :nothing => true
     else
 			# Handle get request
@@ -36,6 +40,7 @@ include PairingHelper
 			review_assignment.assignment_id = session['assignment_id']
 			review_assignment.name = session['name']
 			review_assignment.course_id = review_assignment.assignment.course.id
+			review_assignment.grouped = session[:grouped]
 			pairing.depth = session['depth']
       questions = session['questions']
 			pairing.save
@@ -57,7 +62,7 @@ include PairingHelper
         review_question.save
       end
 			
-			if @assignment.grouped?
+			if review_assignment.grouped?
 				groups = @assignment.course.get_groups
 				#Assuming 2 groups...
 				hash = pair(groups[0],groups[1],pairing.seed,pairing.depth,@assignment.course.user.id)
@@ -93,14 +98,12 @@ include PairingHelper
 				@seed = session['seed']
 				@depth = session['depth']
 			end
-			if @assignment.grouped?
+			if session[:grouped]
 				groups = @assignment.course.get_groups
 				#Assuming 2 groups...
 				@student_pairing_hash = pair(groups[0],groups[1],@seed,@depth,@assignment.course.user.id)
 			else
 	    	@student_pairing_hash = create_pairings(@students,@depth,@seed)
-				logger = Logger.new("pairing.log")
-				logger.info @student_pairing_hash
 			end
 		end
   end
@@ -160,26 +163,7 @@ include PairingHelper
 		@answers = @answers.reject{|x| x.review_question.review_assignment.id != @review_assignment.id}
 		
 	end
-=begin
-	def grades
 
-		id = params[:id]
-
-		@review_assignment = ReviewAssignment.find(id)
-		@students = User.find_all_by_id(@review_assignment.course.get_students)
-		@questions = ReviewQuestion.find_all_by_review_assignment_id(id)
-		@answers = {}
-		@students.each do |s|
-			@answers[s.id] = ReviewAnswer.order(:review_question_id).find_all_by_user_id_and_review_question_id(s.id,@questions.collect(&:id))
-		end
-		respond_to do |format|
-			format.html
-			format.xls
-			format.csv {send_data @review_assignment.to_csv(@students,@questions,@answers) }
-		end
-	end
-
-=end
 	def grades
 
 		id = params[:id]

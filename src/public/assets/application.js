@@ -29892,7 +29892,8 @@ assignments = {
       var endTime = $('#time-end').val();
       var name = $('#name').val();
       var desc = $('#description').val();
-	  var hidden = $('input[name="hidden"]:checked').val();
+	  	var hidden = $('input[name="hidden"]:checked').val();
+
       if(!assignments.create.datesFormatOK(startDate, endDate)) {
         assignments.create.flashError("flash","Please verify the dates entered are valid.");  
       }
@@ -29966,8 +29967,8 @@ assignments = {
 			$('#time-start').val(startTime);
 			$('#time-end').val(endTime);
 	  
-	  $('input[value="'+hidden+'"]').attr('checked', true)
-	  
+	    $('input[value="'+hidden+'"]').attr('checked', true)
+	    
     },
 
     submitAssignment: function(assignmentId){
@@ -29978,7 +29979,6 @@ assignments = {
 	  	var hidden = $('input[name="hidden"]:checked').val();
 			var startTime = $('#time-start').val();
 			var endTime = $('#time-end').val();
-	  
       if(!assignments.create.datesFormatOK(startDate, endDate)) {
         assignments.create.flashError("flash","Please verify the dates entered are valid.");  
       }
@@ -30809,7 +30809,7 @@ reviewassignments = {
       var endTime = $('#time-end').val();
       var name = $('#name').val();
 			var prev_id = $('#previous_selection').val();
-      
+ 			var grouped = $('input[name="grouped"]:checked').val();
       var questions = [];
       questionsOK = true;
       $('.question').each( function() {
@@ -30859,6 +30859,7 @@ reviewassignments = {
         errors.show("name","Oh no!  This assignment is nameless. Try giving it a title.");
       }
       else if(questionsOK) {
+				alert(grouped);
         $.post('/reviewassignment/create/'+assignment_id,
           {'startDate':startDate,
           'endDate':endDate,
@@ -30866,7 +30867,8 @@ reviewassignments = {
           'questions':questions,
 					'previous_id':prev_id,
 					'startTime':startTime,
-					'endTime':endTime
+					'endTime':endTime,
+					'grouped':grouped
           }, function() {
             window.location = '/reviewassignment/pairings';
           }          
@@ -30931,7 +30933,7 @@ reviewassignments = {
   },
 
 	view:{
-		submit: function(id){
+		submit: function(id, other_id){
 				var answers = [];
         var answersOK = true;
         $('.question_area').each(function() {
@@ -30956,7 +30958,7 @@ reviewassignments = {
         });
         if(answersOK) {
 				  $.post('/reviewassignment/studentsubmit',
-					  {'answers':answers, 'id':id},function ()
+					  {'answers':answers, 'id':id, 'other_id':other_id},function ()
 				      {
                   window.location = '/assignment/index';
 				      });

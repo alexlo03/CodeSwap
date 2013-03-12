@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130311202807) do
+ActiveRecord::Schema.define(:version => 20130312160955) do
 
   create_table "assignment_definition_to_users", :force => true do |t|
     t.integer  "user_id"
@@ -38,14 +38,13 @@ ActiveRecord::Schema.define(:version => 20130311202807) do
   end
 
   create_table "assignments", :force => true do |t|
-    t.string   "name",                          :null => false
-    t.datetime "start_date",                    :null => false
-    t.datetime "end_date",                      :null => false
+    t.string   "name",       :null => false
+    t.datetime "start_date", :null => false
+    t.datetime "end_date",   :null => false
     t.integer  "course_id"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.boolean  "hidden"
-    t.boolean  "grouped",    :default => false
   end
 
   create_table "authentications", :force => true do |t|
@@ -128,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20130311202807) do
     t.datetime "updated_at",            :null => false
     t.string   "name"
     t.string   "description"
+    t.boolean  "grouped"
   end
 
   create_table "review_mappings", :force => true do |t|

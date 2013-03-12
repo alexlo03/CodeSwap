@@ -5,7 +5,7 @@ class ReviewAssignment < ActiveRecord::Base
 	belongs_to :assignment_pairing
 	has_many :review_questions
 
-  attr_accessible :assignment_id, :assignment_pairing_id, :course_id, :end_date, :start_date, :user_id
+  attr_accessible :assignment_id, :assignment_pairing_id, :course_id, :end_date, :start_date, :user_id, :grouped
 
 
 
@@ -16,6 +16,11 @@ class ReviewAssignment < ActiveRecord::Base
 
 	def find_pair(user_id)
 			ReviewMapping.find_by_user_id_and_review_assignment_id(user_id,self.id).other_user
+	end
+
+
+	def grouped?
+		grouped
 	end
 
 	def to_csv(mappings, questions, answers)

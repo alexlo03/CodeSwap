@@ -111,7 +111,6 @@ include AssignmentHelper
       description = params[:description]
       hidden = params[:hidden]
 			hidden = (hidden == 'true')
-			grouped = (params[:grouped] == 'true')
       
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
@@ -125,7 +124,6 @@ include AssignmentHelper
         assignment.name = name
         assignment.course_id = course_id
         assignment.hidden = hidden
-				assignment.grouped = grouped
       assignment.save
 		
 		  #Create a new Assignment_Definition with the description given
@@ -164,7 +162,6 @@ include AssignmentHelper
       startTime = params[:startTime]
       endTime = params[:endTime]			
 			hidden = (hidden == 'true')
-      grouped = (params[:grouped]=='true')
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
       startDate = DateTime.strptime("#{startDate} #{startTime}", '%m-%d-%Y %H:%M %p')
@@ -176,7 +173,6 @@ include AssignmentHelper
         assignment.end_date = endDate
         assignment.name = name
         assignment.hidden = hidden
-				assignment.grouped = grouped
       assignment.save
 		
 		  #Create a new Assignment_Definition with the description given
