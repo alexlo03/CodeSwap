@@ -134,5 +134,42 @@ include CourseHelper
     end
   
   end
+  
+  
+  def manage_groups
+  
+    if request.get?
+      course_id = params[:id]
+      @course = Course.find(course_id)
+      
+      group_1 = CourseGroup.find_all_by_course_id_and_group(course_id, 0).collect(&:user_id)
+      group_2 = CourseGroup.find_all_by_course_id_and_group(course_id, 1).collect(&:user_id)
+
+      course_students = Studentgroup.find_all_by_course_id(course_id).collect(&:user_id)
+      
+      @ungrouped = User.find_all_by_id(course_students).reject{ |user| user.id.in? group_1 or user.id.in? group_2 }
+      @group_1 = User.find_all_by_id(group_1)
+      @group_2 = User.find_all_by_id(group_2)
+    else #post request
+      course_id = params[:id]
+      group1 = params['group1']
+      group2 = params['group2']
+      ungrouped = params['ungrouped']
+      
+      
+      
+      CourseGroup.destroy_all(:course_id => course_id)
+      group1.each do |user|
+        CourseGroup.create(:course_id => course_id, :user_id => user, :group => 0)
+      end
+      group2.each do |user|
+        CourseGroup.create(:course_id => course_id, :user_id => user, :group => 1)
+      end
+      
+      render :nothing => true
+      flash[:notice] = "Groups updated!"
+    end
+  end
+  
 
 end

@@ -1,0 +1,54 @@
+
+<h2> Managing Groups for <%= @course.name %> </h2>
+
+<strong>Instructions</strong>: Drag and drop students into the desired groupings.</br>
+<strong>IMPORTANT!</strong> The groups must be balanced (or differ by at most one student) if you wish to use this feature when creating swap assignments.
+
+
+<h3> Group One </h3>
+<strong>Note</strong>: During a Swap Assignment, the students in this group will be paired with <strong>Group One</strong> students.
+<table class='table table-hover'>  
+  <tbody id='group1' class='groupTable'>
+  <tr class='sort-disabled' ><td><strong>Name</strong></td></tr>
+<% @group_1.each do |user| %>
+  <tr id = "<%= user.id %>" class='user-row'>
+    <td><%= user.friendly_full_name %><td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<h3> Group Two </h3>
+<strong>Note</strong>: During a Swap Assignment, the students in this group will be paired with <strong>Group One</strong> students.
+<table class='table table-hover'> 
+  <tbody id='group2' class='groupTable'>
+  <tr class='sort-disabled' ><th><strong>Name</strong></th></tr>
+<% @group_2.each do |user| %>
+  <tr id="<%= user.id %>" class='user-row'>
+    <td><%= user.friendly_full_name %><td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+
+<h3> Ungrouped Students </h3>
+<strong>Note</strong>: During a Swap Assignment, these students will be <strong>ignored</strong> if you choose to Swap based on Groups.
+<table class='table table-hover'> 
+  <tbody id='ungrouped' class='groupTable'>
+  <tr class='sort-disabled' ><td><strong>Name</strong></td></tr>
+    <% @ungrouped.each do |user| %>
+    <tr id = "<%= user.id %>" class='user-row'>
+      <td><%= user.friendly_full_name %><td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p class='btn' onclick="courses.groups.submit(<%= @course.id.to_s %>)">Submit Changes</p>
+<a class='btn' href=<%= '/course/show/' + @course.id.to_s %>>Cancel</a>
+
+
+<script>
+  courses.groups.pageLoad();
+</script>

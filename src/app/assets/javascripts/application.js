@@ -16,6 +16,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require twitter/bootstrap
 //= require bootstrap-timepicker
+//= require jquery.ui.all
 //= require_tree .
 
 var button_link = function(href, text) {
@@ -40,7 +41,6 @@ users = {
           courses += '</h5>';
         }
   
-        else {
           if(user.student_in.length > 0) { 
             courses += 'Enrolled in: </br><h5>';
             $.each(user.student_in, function(index, course) {
@@ -56,8 +56,7 @@ users = {
             });
             courses += '</h5>'; 
           }
-        }
-
+        
         $('#viewUserName').html(user.name);
         $('#viewUserEmail').html(user.email);
         $('#viewUserCourses').html(courses);
