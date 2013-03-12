@@ -13,11 +13,12 @@
         <Cell><Data ss:Type="String"><%= question.content.split('@#!$').first %></Data></Cell>
 				<% end %>
       </Row>
-    <% @students.each do |student| %>
+    <% @mappings.each do |mapping| %>
+			<% student = mapping.user %>
       <Row>
         <Cell><Data ss:Type="String"><%= student.friendly_full_name %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= @review_assignment.find_pair(student.id).friendly_full_name %></Data></Cell>
-				<% @answers[student.id].each_with_index do |answer,i| %>
+        <Cell><Data ss:Type="String"><%= mapping.other_user.friendly_full_name %></Data></Cell>
+				<% @answers[mapping.id].each_with_index do |answer,i| %>
 					<% if @questions[i].numerical_answer? %>
         		<Cell><Data ss:Type="Number"><%= answer.answer %></Data></Cell>
 					<% else %>

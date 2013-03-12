@@ -34,7 +34,7 @@ include ApplicationHelper
       u.reset_password_sent_at = Time.now
     if(u.save)
       Emailer.delay.signup_confirmation(u)
-    elsif(User.find_by_email(params[:facultyemail]))
+    elsif(User.find_by_email(params[:email]))
       u["errormessage"] = "Email already in use"
     else
       u["errormessage"] = "Email entered is invalid"
