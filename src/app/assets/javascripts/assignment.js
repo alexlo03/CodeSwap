@@ -24,7 +24,7 @@ assignments = {
       var name = $('#name').val();
       var desc = $('#description').val();
 	  	var hidden = $('input[name="hidden"]:checked').val();
-			var grouped = $('input[name="grouped"]:checked').val();
+
       if(!assignments.create.datesFormatOK(startDate, endDate)) {
         assignments.create.flashError("flash","Please verify the dates entered are valid.");  
       }
@@ -46,8 +46,7 @@ assignments = {
           'course_id':course_id,
 		  'hidden':hidden,
 					'endTime':endTime,
-					'startTime':startTime,
-					'grouped':grouped
+					'startTime':startTime
           }, function() {
             window.location = '/course/show/' + course_id;
           }          
@@ -111,8 +110,6 @@ assignments = {
 	  	var hidden = $('input[name="hidden"]:checked').val();
 			var startTime = $('#time-start').val();
 			var endTime = $('#time-end').val();
-	  	var hidden = $('input[name="grouped"]:checked').val();
-	  
       if(!assignments.create.datesFormatOK(startDate, endDate)) {
         assignments.create.flashError("flash","Please verify the dates entered are valid.");  
       }
@@ -134,8 +131,7 @@ assignments = {
           'assignment_id':assignmentId,
 		  		'hidden':hidden,
 					'startTime':startTime,
-					'endTime':endTime,
-					'grouped':grouped
+					'endTime':endTime
           }, function() {
             window.location = '/assignment/view/' + assignmentId;
           }          
