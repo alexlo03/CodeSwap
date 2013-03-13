@@ -149,7 +149,8 @@ include PairingHelper
 			user_id = current_user.id
 			answers.each_with_index do |answer, i|
 				ReviewAnswer.create(:user_id => user_id, :review_question_id => questions[i].id, :answer => answer, :other_id => other_id)	
-			end			
+			end
+			flash[:notice] = "Thanks for your review!"
 			render :nothing => true
 		end
 	end
