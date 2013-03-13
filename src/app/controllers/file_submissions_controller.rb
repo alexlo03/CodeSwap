@@ -41,11 +41,14 @@ class FileSubmissionsController < ApplicationController
       course = Course.find(assignment.course_id)
 
     end 
+		logger = Logger.new("log/uploads.log")
+    logger.info "Student #{User.find(current_user.id)} #{User.find(current_user.id).friendly_full_name} has submitted #{@submission.name}."
+    
 
     @faculty = current_user.id == course.user_id
     @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
     @student = !Studentgroup.where(:course_id => course.id, :user_id => current_user.id).empty?
-
+		
     render '/assignment/create.js'
   end
 
@@ -56,12 +59,15 @@ class FileSubmissionsController < ApplicationController
     faculty_id = Course.find(Assignment.find(submission.assignment_id).course_id).user_id
 
     if ((current_user.id == submission.user_id) or (current_user.id == faculty_id))
-      File.delete(submission.full_save_path) 
+      File.delete(submission.full_save_path)
+			name = FileSubmission.find(id).name 
       FileSubmission.destroy(id)
       flash[:notice] = "File removed successfully."
     else
       flash[:error] = "You do not have permission to do that."
     end
+    logger = Logger.new("log/uploads.log")
+    logger.info "Student #{User.find(current_user.id)} #{User.find(current_user.id).friendly_full_name} has deleted #{name}."
     
     redirect_to assignment_view_path(submission.assignment_id)
   end

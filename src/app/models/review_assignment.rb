@@ -25,7 +25,7 @@ class ReviewAssignment < ActiveRecord::Base
 
 	def to_csv(mappings, questions, answers)
 		CSV.generate do |csv|
-			csv << ["Grader", "Grader Email", "Graded", "Graded Email"] + questions.map{|question| "#{question.content}"}
+			csv << ["Grader", "Grader Email", "Graded", "Graded Email"] + questions.map{|question| "#{question.content.split("@#!$")[0]}"}
 			mappings.each do |mapping|
 				student = mapping.user
 				other = mapping.other_user
