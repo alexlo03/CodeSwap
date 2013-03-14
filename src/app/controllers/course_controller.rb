@@ -18,7 +18,7 @@ include CourseHelper
       @user_is_student = !@students.find_all_by_user_id(current_user.id).empty?
       @user_is_ta_or_faculty_or_admin = !@tas.find_all_by_user_id(current_user.id).empty? || (current_user.id == @teacher.id unless @teacher.nil?) || (@admin.include?(current_user) unless @admin.nil?)
       if(@user_is_student)
-        @assignments = Assignment.where(:course_id => id && :hidden == false)
+        @assignments = Assignment.where(:course_id => id, :hidden => false)
       else
         @assignments = Assignment.where(:course_id => id)
       end
