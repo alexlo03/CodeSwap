@@ -266,12 +266,25 @@ include AssignmentHelper
   end
 
 	def download
-    unless(current_user.nil?)
-		  file_id = params[:file_id]
-		  file = FileSubmission.find(file_id)
-		  send_file File.join(file.save_directory, file.name)
-	  end
-  end
+		unless(current_user.nil?)
+		        file_id = params[:file_id]
+		        course_id=params[:course_id]
+		        file = FileSubmission.find_by_id(file_id)
+              
+		        course =Course.find_by_id(course_id)
+		        if(file.nil? ||((current_user.role=='student')&&(FileSubmission.find_by_id(file_id).user_id!=current_user.id)&&(not Tagroup.find_all_by_course_id(course_id).collect(&:user_id).include? current_user.id)))
+              redirect_to :root
+              flash[:error] = "Either the file you have requested does not exist, or you do not have permission to access file.  Please contact your professor if your believe this is an error."
+
+		        else
+                	  send_file File.join(file.save_directory, file.name)
+		        end
+		else
+      redirect_to "/users/sign_in"
+      flash[:error] = "Please Sign-in"
+    end
+
+	end
 
 	def downloadAll
     unless(current_user.nil?)
