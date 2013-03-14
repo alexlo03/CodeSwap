@@ -3,6 +3,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+=begin
 
 # # # # # # # # # # # # # # # # # # # # # # #
 
@@ -242,3 +243,4 @@ shop1_students2.each do |uid|
 end
 
 
+=end
