@@ -48,6 +48,9 @@ class Course < ActiveRecord::Base
     Tagroup.where(:course_id => id).collect(&:user_id)
   end
 
+  def is_user_ta(user_id)
+    get_tas.include?(user_id)
+  end
   # Opens CSV / Excel files
   def open_spreadsheet(file)
     case File.extname(file.original_filename)

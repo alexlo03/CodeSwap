@@ -268,11 +268,11 @@ include AssignmentHelper
 	def download
 		unless(current_user.nil?)
 		        file_id = params[:file_id]
-		        course_id=params[:course_id]
+
 		        file = FileSubmission.find_by_id(file_id)
               
-		        course =Course.find_by_id(course_id)
-		        if(file.nil? ||((current_user.role=='student')&&(FileSubmission.find_by_id(file_id).user_id!=current_user.id)&&(not Tagroup.find_all_by_course_id(course_id).collect(&:user_id).include? current_user.id)))
+		        course =Course.find_by_id(file.course_id)
+		        if(file.nil? ||((current_user.role=='student')&&(FileSubmission.find_by_id(file_id).user_id!=current_user.id) &&(not course.is_user_ta(current_user.id))))
               redirect_to :root
               flash[:error] = "Either the file you have requested does not exist, or you do not have permission to access file.  Please contact your professor if your believe this is an error."
 
