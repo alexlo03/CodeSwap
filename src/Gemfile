@@ -21,6 +21,8 @@ end
 
 # Backgrounds emails
 gem 'delayed_job_active_record'
+gem 'daemons'
+
 
 # Testing gems
 gem 'nokogiri', '~> 1.5.1'

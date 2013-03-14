@@ -13,7 +13,6 @@
 </blockquote>
 </br>
 
-
 <% if current_user.id == @course.user_id %>
     <a class='btn' href="<%= edit_course_path @course.id %>">Edit Course / Roster</a>
 <% end %>
@@ -90,7 +89,7 @@
                 <% else %>
                   <tr>
                 <% end %>
-                    <td><%= user.id %></td>
+                    <td><%= user.id.to_s %></td>
                     <td><%= user.email %></td>
                     <td><%= user.friendly_full_name %></td>
                     <td><%= user.last_sign_in_at %></td>
