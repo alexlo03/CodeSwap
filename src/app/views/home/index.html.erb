@@ -1,6 +1,22 @@
 
+<h3>Welcome to <%= image_tag("CodeSwapLogo.png", :width => "300px") %>!</h3>
+
 <% unless current_user %>
   <h4>You should <u data-target="#logInModal" role="button" data-toggle="modal"><%= link_to "Sign in" %></u>!<h4>
+<% else %>
+
+<h4>Glad to have you here, <%= current_user.first_name %>!</h4>
+<p>
+  Our records indicate that you are a <strong><%= current_user.role %></strong>.</br>
+</p>
+  
+<p>
+<strong>Please Note</strong>: This site is a work in progress. What you see here today could still contain a variety of unresolved bugs. If you happen to stumble across anything that seems out of place, or have any questions, comments, concerns or ideas regarding the layout or functionality of a page (or the site as a whole), please do not hesitate to let us know by using the "Contact Us" link at the top of any page.
+</p>
+
+<p>
+Thanks!</br>
+-The CodeSwap Team
+</p>
+
 <% end %>
-
-

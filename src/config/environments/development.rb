@@ -50,7 +50,7 @@ CodeSwap::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.force_ssl = false
+ # config.force_ssl = false
 
   config.action_mailer.default_url_options = { :host => 'codeswap.csse.rose-hulman.edu' }
 

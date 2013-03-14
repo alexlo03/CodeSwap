@@ -30859,7 +30859,6 @@ reviewassignments = {
         errors.show("name","Oh no!  This assignment is nameless. Try giving it a title.");
       }
       else if(questionsOK) {
-				alert(grouped);
         $.post('/reviewassignment/create/'+assignment_id,
           {'startDate':startDate,
           'endDate':endDate,
