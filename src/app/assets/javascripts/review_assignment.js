@@ -17,8 +17,8 @@ reviewassignments = {
 
 //        $('input[name="question_1_type"]').change(function(){ reviewassignments.create.radioChanged(1); });
  
-				$("#time-start").timepicker();
-				$("#time-end").timepicker();
+        $('#time-start').timepicker({minuteStep: 1});
+        $('#time-end').timepicker({minuteStep: 1});
         reviewassignments.create.addQuestion();
 
         assignment_id = a_id; 
