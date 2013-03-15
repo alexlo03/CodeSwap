@@ -3,7 +3,8 @@ class FileSubmission < ActiveRecord::Base
   attr_accessible :name, :user_id, :assignment_definition_id, :course_id, :assignment_id, :file
   
   mount_uploader :file, FileSubmissionUploader
-
+  process_in_background :file
+  
   def full_save_path
     return save_directory + name
   end

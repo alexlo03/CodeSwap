@@ -43,6 +43,7 @@ gem 'omniauth-twitter'
 gem 'sass-rails',   '~> 3.2.3'
 gem 'coffee-rails', '~> 3.2.1'
 gem 'carrierwave'
+gem 'carrierwave_backgrounder'
 
   # Used for jquery file uploads
 gem 'jquery-fileupload-rails'

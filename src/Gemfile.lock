@@ -45,6 +45,8 @@ GEM
     carrierwave (0.7.1)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
+    carrierwave_backgrounder (0.2.0)
+      carrierwave (~> 0.5)
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
     choice (0.1.6)
@@ -239,6 +241,7 @@ DEPENDENCIES
   bootstrap-timepicker-rails
   cancan
   carrierwave
+  carrierwave_backgrounder
   coffee-rails (~> 3.2.1)
   cucumber
   cucumber-rails
