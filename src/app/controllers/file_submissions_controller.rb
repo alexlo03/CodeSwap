@@ -42,7 +42,7 @@ class FileSubmissionsController < ApplicationController
 
     end 
 		logger = Logger.new("log/uploads.log")
-    logger.info "Student #{User.find(current_user.id)} #{User.find(current_user.id).friendly_full_name} has submitted #{@submission.name}."
+    logger.info "Student #{current_user.id} #{current_user.friendly_full_name} has submitted #{@submission.name}."
     
 
     @faculty = current_user.id == course.user_id
@@ -67,8 +67,7 @@ class FileSubmissionsController < ApplicationController
       flash[:error] = "You do not have permission to do that."
     end
     logger = Logger.new("log/uploads.log")
-    logger.info "Student #{User.find(current_user.id)} #{User.find(current_user.id).friendly_full_name} has deleted #{name}."
-    
+    logger.info "Student #{current_user.id} #{current_user.friendly_full_name} has deleted #{name}."    
     redirect_to assignment_view_path(submission.assignment_id)
   end
   
