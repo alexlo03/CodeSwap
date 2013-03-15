@@ -35,8 +35,9 @@ include PairingHelper
 			review_assignment = ReviewAssignment.new
 			pairing = AssignmentPairing.new
 			pairing.seed = session['seed']
-			review_assignment.start_date = Date.strptime("#{session['startDate']} #{session['startTime']}", '%m-%d-%Y %H:%M %p')
-			review_assignment.end_date = Date.strptime("#{session['endDate']} #{session['endTime']}", '%m-%d-%Y %H:%M %p')
+			zone = Time.now.zone
+			review_assignment.start_date = Date.strptime("#{session['startDate']} #{session['startTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+			review_assignment.end_date = Date.strptime("#{session['endDate']} #{session['endTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 			review_assignment.assignment_id = session['assignment_id']
 			review_assignment.name = session['name']
 			review_assignment.course_id = review_assignment.assignment.course.id

@@ -114,8 +114,9 @@ include AssignmentHelper
       
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
-      startDate = DateTime.strptime("#{startDate} #{startTime}", '%m-%d-%Y %H:%M %p')
-      endDate = DateTime.strptime("#{endDate} #{endTime}", '%m-%d-%Y %H:%M %p')
+			zone = Time.now.zone
+      startDate = DateTime.strptime("#{startDate} #{startTime} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+      endDate = DateTime.strptime("#{endDate} #{endTime} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 
 		  #Create a new assignment with startDate, endDate, name, and courseID
       assignment = Assignment.new
@@ -164,8 +165,9 @@ include AssignmentHelper
 			hidden = (hidden == 'true')
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
-      startDate = DateTime.strptime("#{startDate} #{startTime}", '%m-%d-%Y %H:%M %p')
-      endDate = DateTime.strptime("#{endDate} #{endTime}", '%m-%d-%Y %H:%M %p')
+			zone = Time.now.zone
+      startDate = DateTime.strptime("#{startDate} #{startTime} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+      endDate = DateTime.strptime("#{endDate} #{endTime} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 
 		  #Create a new assignment with startDate, endDate, name, and courseID
       
