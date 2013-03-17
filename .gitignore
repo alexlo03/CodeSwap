@@ -29,3 +29,5 @@ schema.rb
 /src/log/*.log
 /src/tmp
 
+# Ignore all precompiled files
+*.gz

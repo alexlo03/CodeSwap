@@ -22,13 +22,16 @@ class FileSubmission < ActiveRecord::Base
     applicable_users += [self.course.user_id]
     applicable_users += User.find_all_by_role("admin").collect(&:id)
 
+    if (user_id == self.course.user_id)
+      applicable_users += self.course.get_students
 
-    review_assignment = ReviewAssignment.find_by_assignment_id(assignment_id)
-    unless(review_assignment.nil?)
-     review_mapping = ReviewMapping.find_all_by_review_assignment_id_and_other_user_id(review_assignment.id, self.user_id)
-     applicable_users += review_mapping.collect(&:user_id)
+    else
+      review_assignment = ReviewAssignment.find_by_assignment_id(assignment_id)
+      unless(review_assignment.nil?)
+       review_mapping = ReviewMapping.find_all_by_review_assignment_id_and_other_user_id(review_assignment.id, self.user_id)
+       applicable_users += review_mapping.collect(&:user_id)
+      end
     end
-
     return current_user_id.in?(applicable_users)
   end
 
