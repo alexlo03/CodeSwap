@@ -268,14 +268,12 @@ include AssignmentHelper
 	def download
 		unless(current_user.nil?)
 		        file_id = params[:file_id]
-
 		        file = FileSubmission.find_by_id(file_id)
-              
-		        course =Course.find_by_id(file.course_id)
-		        if(file.nil? ||((current_user.role=='student')&&(FileSubmission.find_by_id(file_id).user_id!=current_user.id) &&(not course.is_user_ta(current_user.id))))
-              redirect_to :root
-              flash[:error] = "Either the file you have requested does not exist, or you do not have permission to access file.  Please contact your professor if your believe this is an error."
 
+		        if(file.nil? || not file.user_can_download(current_user.id))
+              redirect_to :root
+              flash[:error] = "Either the file you have requested does not exist, or you do not have permission to access file.  Please use the 'Contact Us' form if you believe this is an error."
+              
 		        else
                 	  send_file File.join(file.save_directory, file.name)
 		        end
@@ -287,11 +285,13 @@ include AssignmentHelper
 	end
 
 	def downloadAll
-    unless(current_user.nil?)
+	  assignment_id = params[:assignment_id]
+    assignment = Assignment.find(assignment_id)
+    unless(current_user.nil? || assignment.nil? || not assignment.user_can_download_all(current_user.id))
+
 	    require 'zip/zip'
     	require 'zip/zipfilesystem'
-		  assignment_id = params[:assignment_id]
-		  assignment = Assignment.find(assignment_id)
+
 		  course_id = assignment.course_id
 		  faculty = User.find(current_user.id)
 		  dir = 'Uploads/Assignments/Course ID' + course_id.to_s + '/Assignment ID' + assignment.id.to_s
