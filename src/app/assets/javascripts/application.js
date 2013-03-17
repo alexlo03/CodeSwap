@@ -16,7 +16,7 @@
 //= require jquery-fileupload/vendor/tmpl
 //= require twitter/bootstrap
 //= require bootstrap-timepicker
-//= require jquery.ui.all
+//= require jquery.ui.sortable
 //= require_tree .
 
 var button_link = function(href, text) {

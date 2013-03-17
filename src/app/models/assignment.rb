@@ -25,4 +25,12 @@ class Assignment < ActiveRecord::Base
 		course = Course.find(course_id)
 		FileSubmission.where(:user_id => course.user_id, :assignment_id => id)
 	end
+  
+  def user_can_download_all(current_user_id)
+    applicable_users = []
+    applicable_users += User.find_all_by_role("admin").collect(&:id)
+    applicable_users += [self.course.user_id]
+    applicable_users += self.course.get_tas
+    return applicable_users.include?(current_user_id)
+  end
 end
