@@ -270,7 +270,11 @@ include AssignmentHelper
 		        file_id = params[:file_id]
 		        file = FileSubmission.find_by_id(file_id)
 
-		        if(file.nil? || not file.user_can_download(current_user.id))
+		        if(file.nil? || (not file.user_can_download(current_user.id)))
+              name = "Somebody"
+              name = current_user.friendly_full_name if current_user
+              logger = Logger.new "log/download.log"
+              logger.info "#{name} attempted to download a file with id:  #{file_id}"
               redirect_to :root
               flash[:error] = "Either the file you have requested does not exist, or you do not have permission to access file.  Please use the 'Contact Us' form if you believe this is an error."
               
@@ -278,6 +282,7 @@ include AssignmentHelper
                 	  send_file File.join(file.save_directory, file.name)
 		        end
 		else
+ 
       redirect_to "/users/sign_in"
       flash[:error] = "Please Sign-in"
     end
@@ -287,7 +292,7 @@ include AssignmentHelper
 	def downloadAll
 	  assignment_id = params[:assignment_id]
     assignment = Assignment.find(assignment_id)
-    unless(current_user.nil? || assignment.nil? || not assignment.user_can_download_all(current_user.id))
+    unless(current_user.nil? || assignment.nil? || (not assignment.user_can_download_all(current_user.id)))
 
 	    require 'zip/zip'
     	require 'zip/zipfilesystem'
@@ -297,19 +302,25 @@ include AssignmentHelper
 		  dir = 'Uploads/Assignments/Course ID' + course_id.to_s + '/Assignment ID' + assignment.id.to_s
 		  archive = File.join(dir,File.basename(dir))+'.zip'
     	FileUtils.rm archive, :force=>true
-		  logger = Logger.new("logfile.log")
-		  logger.info archive
+
 		  facultySubmissions = assignment.getFacultyFileSubmissions
-		  logger.info "**NEW**"
 		  facultySubmissions.collect! {|file| file.full_save_path}
+
     	Zip::ZipFile.open(archive, 'w') do |zipfile|
       	Dir["#{dir}/**/**"].reject{|f|f==archive}.reject{|f| facultySubmissions.include? f}.reject{|f| f == "#{dir}/#{faculty.username}"}.each do |file|
-					  logger.info file
      	   		zipfile.add(file.sub(dir+'/',''),file)
      		end
     	end
 		
 		  send_file archive
+
+    else
+      name = "Somebody"
+      name = current_user.friendly_full_name if current_user
+      logger = Logger.new "log/download.log"
+      logger.info "#{name} attempted to download all files from an assignment with id:  #{assignment_id}"
+      redirect_to :root
+      flash[:error] = "Either the files you have requested does not exist, or you do not have permission to access  file.  Please use the 'Contact Us' form if you believe this is an error."
 	  end
   end
 end

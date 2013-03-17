@@ -45,7 +45,7 @@ class Course < ActiveRecord::Base
   end
 
   def get_tas
-    Tagroup.find_by_course_id(id).collect(&:user_id)
+    Tagroup.find_all_by_course_id(id).collect(&:user_id)
   end
 
   def is_user_ta(user_id)
