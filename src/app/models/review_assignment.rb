@@ -22,6 +22,15 @@ class ReviewAssignment < ActiveRecord::Base
 	def grouped?
 		grouped
 	end
+	
+	def pretty_start_date
+    start_date.strftime("%m-%d-%y  %l:%M %P")
+  end
+  
+  def pretty_end_date
+    end_date.strftime("%m-%d-%y  %l:%M %P")
+  end
+	
 
 	def to_csv(mappings, questions, answers)
 		CSV.generate do |csv|

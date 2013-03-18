@@ -13,11 +13,23 @@ class Assignment < ActiveRecord::Base
   end
 
   def is_active
-    (start_date <= Time.now) && (Time.now <= end_date)
+    (start_date <= Time.now) && (Time.now <= end_date_buffered)
   end
 
   def is_over
-    end_date < Time.now
+    end_date_buffered < Time.now
+  end
+  
+  def end_date_buffered
+    end_date + 15.minutes
+  end
+  
+  def pretty_start_date
+    start_date.strftime("%m-%d-%y  %l:%M %P")
+  end
+  
+  def pretty_end_date
+    end_date.strftime("%m-%d-%y  %l:%M %P")
   end
 
 	#Get the faculty file submissions, used to filter out results for downloads
