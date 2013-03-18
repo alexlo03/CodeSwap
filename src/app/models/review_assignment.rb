@@ -24,11 +24,11 @@ class ReviewAssignment < ActiveRecord::Base
 	end
 	
 	def pretty_start_date
-    start_date.strftime("%m-%d-%y  %l:%M %P")
+    start_date.strftime("%m-%d-%y  %l:%M %P %Z")
   end
   
   def pretty_end_date
-    end_date.strftime("%m-%d-%y  %l:%M %P")
+    end_date.strftime("%m-%d-%y  %l:%M %P %Z")
   end
 	
 
