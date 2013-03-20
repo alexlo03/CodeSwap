@@ -16675,7 +16675,6 @@ admin = {
 
 
 }).call(this);
-
 var course_id;
 
 assignments = {
@@ -16808,10 +16807,10 @@ assignments = {
 	  	var hidden = $('input[name="hidden"]:checked').val();
 			var startTime = $('#time-start').val();
 			var endTime = $('#time-end').val();
-      if(!assignments.create.datesFormatOK(startDate, endDate)) {
+      if(!assignments.create.datesFormatOK(startDate,startTime, endDate, endTime)) {
         assignments.create.flashError("flash","Please verify the dates entered are valid.");  
       }
-      else if(!assignments.create.dateTimesOK(startDate, endDate)) {
+      else if(!assignments.create.dateTimesOK(startDate,startTime, endDate,endTime)) {
         assignments.create.flashError("flash","The start date cannot occur after the end date.");
       }
       else if(!name){
