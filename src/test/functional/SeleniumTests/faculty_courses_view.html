@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="https://codeswap.csse.rose-hulman.edu/" />
+<link rel="selenium.base" href="https://codeswap2.csse.rose-hulman.edu/" />
 <title>faculty_courses_view</title>
 </head>
 <body>
@@ -12,6 +12,11 @@
 <tr><td rowspan="1" colspan="3">faculty_courses_view</td></tr>
 </thead><tbody>
 <tr>
+	<td>open</td>
+	<td>/courses</td>
+	<td></td>
+</tr>
+<tr>
 	<td>clickAndWait</td>
 	<td>link=View</td>
 	<td></td>
@@ -19,6 +24,11 @@
 <tr>
 	<td>verifyElementPresent</td>
 	<td>link=Edit Course / Roster</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Course Information</td>
 	<td></td>
 </tr>
 <tr>
@@ -87,6 +97,11 @@
 	<td></td>
 </tr>
 <tr>
+	<td>clickAndWait</td>
+	<td>link=View</td>
+	<td></td>
+</tr>
+<tr>
 	<td>click</td>
 	<td>css=p.btn</td>
 	<td></td>
@@ -128,17 +143,12 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>css=div#viewUserModal div button.close</td>
+	<td>css=#viewUserModal &gt; div.modal-header &gt; button.close</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextNotPresent</td>
-	<td>Viewing</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextNotPresent</td>
-	<td>Info</td>
+	<td>clickAndWait</td>
+	<td>xpath=(//a[contains(text(),'Courses')])[2]</td>
 	<td></td>
 </tr>
 </tbody></table>

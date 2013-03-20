@@ -4,28 +4,59 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="https://codeswap2.csse.rose-hulman.edu/" />
-<title>faculty_logout</title>
+<title>student_courses</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">faculty_logout</td></tr>
+<tr><td rowspan="1" colspan="3">student_courses</td></tr>
 </thead><tbody>
 <tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
 	<td>click</td>
-	<td>class=btn btn-navbar</td>
+	<td>css=a.btn.btn-navbar</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Log out</td>
+	<td>link=My Courses</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>Signed out successfully</td>
+	<td>Home // Courses</td>
 	<td></td>
 </tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Courses</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>TA Duties</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Number</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Name</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Term</td>
+	<td></td>
+</tr>
+
 </tbody></table>
 </body>
 </html>
