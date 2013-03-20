@@ -16,7 +16,7 @@ class FileSubmissionsController < ApplicationController
 
   def create
     parameters = params[:file_submission]
-    assignment = Assignment.find(parameters['assignment_id'])
+    @assignment = Assignment.find(parameters['assignment_id'])
     definition = AssignmentDefinition.find_by_assignment_id(assignment.id)
     file = parameters['file']
 
@@ -45,7 +45,7 @@ class FileSubmissionsController < ApplicationController
     @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
     @student = !Studentgroup.where(:course_id => course.id, :user_id => current_user.id).empty?
 		
-    render '/assignment/create.js'
+    render '/assignment/create.js'  
   end
 
   def delete
