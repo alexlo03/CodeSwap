@@ -14,6 +14,7 @@ include PairingHelper
 		  review_assignment.assignment_id = params[:assignment_id]
 		  review_assignment.user_id = current_user.id
 		  review_assignment.grouped = (params[:grouped]=='true')
+		  review_assignment.course_id = Assignment.find(params[:assignment_id]).course_id
 		  review_assignment.save
 		  
 		  questions = params[:questions]

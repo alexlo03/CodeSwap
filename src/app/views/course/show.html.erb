@@ -148,6 +148,9 @@
             <% @review_assignments.each do |assignment| %>
               <tr>
 							  <td><%= assignment.name %></td>
+							  <td>
+							    <a class='btn' href=<%= "/reviewassignment/view/" + assignment.id.to_s %> >View</a>
+							  </td>
 						  </tr>
             <% end %>
 				  </table>

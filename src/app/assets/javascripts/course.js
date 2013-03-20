@@ -177,8 +177,6 @@ courses = {
         ungrouped_ids.push(row.id);
       });
       
-      alert('Group1: ' + group1_ids + ' Group2: ' + group2_ids + ' Ungrouped: ' + ungrouped_ids);
-      
       $.post('/course/manage_groups/' + id,
       {'group1':group1_ids,
       'group2':group2_ids,
