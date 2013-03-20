@@ -4,26 +4,36 @@
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="selenium.base" href="https://codeswap2.csse.rose-hulman.edu/" />
-<title>faculty_assignments_overview</title>
+<title>student_courses_view</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">faculty_assignments_overview</td></tr>
+<tr><td rowspan="1" colspan="3">student_courses_view</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
-	<td>/</td>
-	<td></td>
-</tr>
-<tr>
-	<td>click</td>
-	<td>css=a.btn.btn-navbar</td>
+	<td>/courses</td>
 	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Assignments Overview</td>
+	<td>link=View</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Course Information</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Taught by:</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>TAs</td>
 	<td></td>
 </tr>
 <tr>
@@ -32,45 +42,51 @@
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextPresent</td>
-	<td>Home // Assignments</td>
+	<td>clickAndWait</td>
+	<td>link=View</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=p.btn</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>Current Assignment</td>
+	<td>Viewing</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>Future Assignments</td>
-	<td></td>
-</tr>
-<tr>
-	<td>verifyTextPresent</td>
-	<td>Old Assignments</td>
+	<td>Info</td>
 	<td></td>
 </tr>
 <tr>
 	<td>verifyElementPresent</td>
-	<td>class=table table-hover</td>
+	<td>id=viewUserModal</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextPresent</td>
-	<td>Name</td>
+	<td>verifyElementPresent</td>
+	<td>id=viewUserLabel</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextPresent</td>
-	<td>Start Date</td>
+	<td>verifyElementPresent</td>
+	<td>id=viewUserName</td>
 	<td></td>
 </tr>
 <tr>
-	<td>verifyTextPresent</td>
-	<td>Due Date</td>
+	<td>verifyElementPresent</td>
+	<td>id=viewUserEmail</td>
 	<td></td>
 </tr>
+<tr>
+	<td>verifyElementPresent</td>
+	<td>id=viewUserCourses</td>
+	<td></td>
+</tr>
+
 </tbody></table>
 </body>
 </html>
