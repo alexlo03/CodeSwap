@@ -4,18 +4,36 @@ include PairingHelper
   def create
     if request.post?
 		  # Handle post request
-     	session[:startDate] = params[:startDate]
-		  session[:endDate] = params[:endDate]
-     	session[:startTime] = params[:startTime]
-		  session[:endTime] = params[:endTime]
-		  session[:name] = params[:name]
-		  session['questions'] = params['questions']
+		  
 		  session[:assignment_id] = params[:assignment_id]
-			session[:prev_id] = params[:previous_id].to_i
+		  zone = Time.now.zone
+		  review_assignment = ReviewAssignment.new
+			review_assignment.start_date = Date.strptime("#{params['startDate']} #{params['startTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+			review_assignment.end_date = Date.strptime("#{params['endDate']} #{params['endTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+		  review_assignment.name = params[:name]
+		  review_assignment.assignment_id = params[:assignment_id]
+		  review_assignment.user_id = current_user.id
+		  review_assignment.grouped = (params[:grouped]=='true')
+		  review_assignment.save
+		  
+		  questions = params[:questions]
+		  
+			split_string = '~`~`~'
+      questions.each do |question|
+        title = question.split(split_string)[0]
+        type = question.split(split_string)[1]
+        content = question.split(split_string)[2]
+        
+        review_question = ReviewQuestion.new
+        review_question.question_title = title
+        review_question.set_type(type)
+        review_question.review_assignment_id = review_assignment.id
+        review_question.content = content
+        review_question.save
+      end
 			
-      session[:grouped] = (params[:grouped]=='true')
-			
-			
+      session[:review_assignment_id] = review_assignment.id		
+      session[:previous_id] = params[:previous_id]
 		  render :nothing => true
     else
 			# Handle get request
@@ -30,38 +48,18 @@ include PairingHelper
 			@assignment = Assignment.find(@assignment_id)
 			@course = @assignment.course
 			@students = @course.get_students
+			@review_assignment_id = session[:review_assignment_id]
 		# Handle post request
 		if request.post?
-			review_assignment = ReviewAssignment.new
+		  review_assignment = ReviewAssignment.find(@review_assignment_id)
 			pairing = AssignmentPairing.new
 			pairing.seed = session['seed']
-			zone = Time.now.zone
-			review_assignment.start_date = Date.strptime("#{session['startDate']} #{session['startTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
-			review_assignment.end_date = Date.strptime("#{session['endDate']} #{session['endTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
-			review_assignment.assignment_id = session['assignment_id']
-			review_assignment.name = session['name']
-			review_assignment.course_id = review_assignment.assignment.course.id
-			review_assignment.grouped = session[:grouped]
 			pairing.depth = session['depth']
-      questions = session['questions']
+		  pairing.previous_id = session[:previous_id].to_i
 			pairing.save
 			review_assignment.assignment_pairing_id = pairing.id
-			review_assignment.user_id = current_user.id
 			review_assignment.save      
-      split_string = '~`~`~'
-      questions.each do |question|
-        title = question.split(split_string)[0]
-        type = question.split(split_string)[1]
-        content = question.split(split_string)[2]
-        
 
-        review_question = ReviewQuestion.new
-        review_question.question_title = title
-        review_question.set_type(type)
-        review_question.review_assignment_id = review_assignment.id
-        review_question.content = content
-        review_question.save
-      end
 			
 			if review_assignment.grouped?
 				groups = @assignment.course.get_groups
