@@ -1,7 +1,13 @@
-<tr>
+<% if file.created_at <= @assignment.end_date + 15.minutes %>
+  <tr class='success'>
+<% elsif file.created_at <= @assignment.end_date + 15.minutes + 24.hours %>
+  <tr class='info'>
+<% else %>
+  <tr class='error'>
+<% end %>
   <td> <%= User.find(file.user_id).friendly_full_name %> </td>
   <td> <%= file.name %> </td>
-  <td> <%= file.created_at.strftime("%m/%d  %k:%M:%S") %> </td>
+  <td> <%= file.created_at.strftime("%m/%d  %k:%M:%S") %></td>
   <td> <a class='btn' href="<%= '/assignment/download/' + file.id.to_s %>">Download</a> </td>
   <td>
       <% if (file.user_id == current_user.id) %>
