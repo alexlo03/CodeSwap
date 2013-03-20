@@ -34,6 +34,7 @@ include PairingHelper
 			
       session[:review_assignment_id] = review_assignment.id		
       session[:previous_id] = params[:previous_id]
+      session[:grouped] = (params[:grouped] =='true')
 		  render :nothing => true
     else
 			# Handle get request
