@@ -98,7 +98,10 @@ include PairingHelper
 				@seed = session['seed']
 				@depth = session['depth']
 			end
-			if session[:grouped]
+			
+			review_assignment = ReviewAssignment.find(@review_assignment_id)
+			
+			if review_assignment.grouped?
 				groups = @assignment.course.get_groups
 				#Assuming 2 groups...
 				@student_pairing_hash = pair(groups[0],groups[1],@seed,@depth,@assignment.course.user.id)
