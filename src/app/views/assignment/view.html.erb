@@ -58,12 +58,16 @@
 
 <% if @faculty or @ta %>
   <h4>Submission Info</h4>
-  <p> The following <%= @unsubmitted_students.count %> students haven't submitted anything for this assignment:</br>
-  <ul class='unstyled'>
-  <% @unsubmitted_students.each do |student| %>
-    <li><%= student.friendly_full_name %></li>
-  <% end %> 
-  </ul>
+  <% unless @unsubmitted_students.empty? %>
+    <p> The following <%= @unsubmitted_students.count %> students haven't submitted anything for this assignment:</br>
+    <ul class='unstyled'>
+    <% @unsubmitted_students.each do |student| %>
+      <li><%= student.friendly_full_name %></li>
+    <% end %> 
+    </ul>
+  <% else %>
+    <p> All students have submitted something for this assignment. </p>
+  <% end %>
 <% end %>
 
 <% if @student %>
