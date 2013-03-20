@@ -128,7 +128,7 @@
 							<td><%= assignment.name %></td>
 							<td>
                 <a class='btn' href=<%= "/assignment/view/" + assignment.id.to_s %> >View</a>
-		<% if false %>
+		<% if @user_is_ta_or_faculty_or_admin %>
                   <a class='btn' href=<%= "/assignment/edit/" + assignment.id.to_s %> >Edit</a>
 		<% end %>
               </td>							

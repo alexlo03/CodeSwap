@@ -191,7 +191,7 @@ include AssignmentHelper
 
 
 	#Populate varibles for use in the view
-	def view
+  def view
     
     id = params[:assignment_id]
     @assignment = Assignment.find(id)
@@ -214,7 +214,9 @@ include AssignmentHelper
       elsif @student
         @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => current_user.id)
       end
-		  @id = id
+     @unsubmitted_students = User.find_all_by_id(courseStudentIds.drop_while{|s| s.in? @files.collect(&:user_id)})
+
+     @id = id
     end
   end
 

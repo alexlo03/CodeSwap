@@ -31,3 +31,8 @@ schema.rb
 
 # Ignore all precompiled files
 *.gz
+
+# Ignore rubymine stuff
+.idea/*
+.idea
+*.idea
