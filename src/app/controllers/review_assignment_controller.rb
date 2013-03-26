@@ -8,8 +8,8 @@ include PairingHelper
 		  session[:assignment_id] = params[:assignment_id]
 		  zone = Time.now.zone
 		  review_assignment = ReviewAssignment.new
-			review_assignment.start_date = Date.strptime("#{params['startDate']} #{params['startTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
-			review_assignment.end_date = Date.strptime("#{params['endDate']} #{params['endTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+			review_assignment.start_date = DateTime.strptime("#{params['startDate']} #{params['startTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+			review_assignment.end_date = DateTime.strptime("#{params['endDate']} #{params['endTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 		  review_assignment.name = params[:name]
 		  review_assignment.assignment_id = params[:assignment_id]
 		  review_assignment.user_id = current_user.id
@@ -18,12 +18,10 @@ include PairingHelper
 		  review_assignment.save
 		  
 		  questions = params[:questions]
-		  
-			split_string = '~`~`~'
-      questions.each do |question|
-        title = question.split(split_string)[0]
-        type = question.split(split_string)[1]
-        content = question.split(split_string)[2]
+      questions.each do |i,question|
+        title = question[0]
+        type = question[1]
+        content = question[2]
         
         review_question = ReviewQuestion.new
         review_question.question_title = title
@@ -31,6 +29,11 @@ include PairingHelper
         review_question.review_assignment_id = review_assignment.id
         review_question.content = content
         review_question.save
+				unless question[4].nil?
+					question.last(question.length-3).each do |extra|
+						QuestionExtra.create(:review_question_id => review_question.id, :extra => extra)
+					end
+				end
       end
 			
       session[:review_assignment_id] = review_assignment.id		
@@ -133,7 +136,7 @@ include PairingHelper
 		end
 	end
 
-	def answer_forum
+	def answer_form
 		@id = params[:id]
 		@pos = params[:pos]
 		@review_assignment = ReviewAssignment.find(@id)
@@ -141,6 +144,10 @@ include PairingHelper
 		@other_id = @review_mapping.other_user_id
 		@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
 		@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
+		@extras_hash = Hash.new
+		@questions.each do |q|
+			@extras_hash[q.id] = q.question_extras
+		end
 		@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id,:other_id => @review_mapping.other_user_id).count > 0
 	end
 

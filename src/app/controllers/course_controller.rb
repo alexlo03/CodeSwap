@@ -5,7 +5,9 @@ include CourseHelper
 	#Show information about a course
   def show
     #Validate
-    id = params[:id]
+    id = params[:c_id]
+		logger = Logger.new('log/course.log')
+		logger.info params.inspect
     @course = Course.find(id)    
     requires({'role' => ['admin','faculty','student'],'course_id' => id})
 		#if the course is found & and the user is enrolled in the course, retrieve mappings of students and tas to a course.
