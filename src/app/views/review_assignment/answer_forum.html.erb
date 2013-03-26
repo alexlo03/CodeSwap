@@ -8,7 +8,7 @@
 <% elsif @file_submission.nil? %>
 	<p>The person you are supposed to be grading has not uploaded a file!!!!</p>
 <% else %>
-	<a href=<%= "/assignment/download/" + @file_submission.id.to_s %>>Download</a>
+	<a class='btn' href=<%= "/assignment/download/" + @file_submission.id.to_s %>>Download</a>
 <p> Please download and review the code above. After you are done, please answer the following questions: </p>
 
 <p id="errors"/>
