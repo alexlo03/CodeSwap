@@ -84,8 +84,10 @@ reviewassignments = {
         type = $('#' + id + ' input[name='+ id + '_type' +']:checked').val();
         question = $('#' + id + '_text').val();
         title = $('#' + id + '_title').text();
-
-        choices = '';
+				var questionArray = new Array();
+				questionArray.push(title);
+				questionArray.push(type);
+				questionArray.push(question);
         choicesOK = true;
         if(type == 'multiple_choice') {
           if($('.' + id + '_choice_text').length == 0) {
@@ -98,7 +100,7 @@ reviewassignments = {
               questionsOK = false;
               choicesOK = false;
             }
-            choices += '@#!$' + $(this).val();
+            questionArray.push($(this).val());
           });
         }
 
@@ -113,10 +115,8 @@ reviewassignments = {
         if(title==''){
           errors.show(id, 'Please enter a valid title for this question!');
           questionsOK = false;
-        }
-
-        s = '~`~`~';
-        questions.push(title+s+type+s+question + choices);
+        }		
+        questions.push(questionArray);
       });
 
       if(!reviewassignments.create.datesFormatOK(startDate, endDate)) {

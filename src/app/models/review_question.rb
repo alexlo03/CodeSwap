@@ -1,5 +1,6 @@
 class ReviewQuestion < ActiveRecord::Base
 	belongs_to :review_assignment
+	has_many :question_extras
 	
   attr_accessible :content, :question_type, :review_assignment_id
 	

@@ -18,12 +18,11 @@
 <% @questions.each_with_index do |question,i| %>
 <div id="question_<%= i %>" class='question_area' value="q<%= i %>" type="<%= question.question_type %>">
 	<tr><h5><strong><%= "#{question.question_title}" %></strong></h5></tr>
-	<tr><%= "#{question.content.split('@#!$').first}" %></tr></br>
+	<tr><%= "#{question.content}" %></tr></br>
 	<% name = "q#{i}" %>
 	<% if question.multiple_choice? %>
-    <% choices = question.content.split('@#!$') %>
-    <% for i in 1..(choices.length - 1) %>
-      <tr><input type='radio' id="<%= 'choice_' + i.to_s %>" value="<%= choices[i] %>" name="<%= name + '_choice' %>"/><%= choices[i] %></tr><br/>
+    <% @extras_hash[question.id].each_with_index do |extra, j| %>
+      <tr><input type='radio' id="<%= 'choice_'+j.to_s %>" value="<%= extra.extra %>" name="<%= name+'_choice' %>"/><%= extra.extra %></tr><br/>
     <% end %>
     </br>
 	<% elsif question.numerical_answer? %>

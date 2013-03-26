@@ -11,6 +11,9 @@ include ApplicationHelper
 		else
 		  raise e
 		end
+
+	logger = Logger.new('log/errors.log')
+	e.backtrace.each{|b| logger.error b}
 	end
   protect_from_forgery
   def not_found
