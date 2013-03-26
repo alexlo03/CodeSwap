@@ -8,8 +8,8 @@ include PairingHelper
 		  session[:assignment_id] = params[:assignment_id]
 		  zone = Time.now.zone
 		  review_assignment = ReviewAssignment.new
-			review_assignment.start_date = Date.strptime("#{params['startDate']} #{params['startTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
-			review_assignment.end_date = Date.strptime("#{params['endDate']} #{params['endTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+			review_assignment.start_date = DateTime.strptime("#{params['startDate']} #{params['startTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+			review_assignment.end_date = DateTime.strptime("#{params['endDate']} #{params['endTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 		  review_assignment.name = params[:name]
 		  review_assignment.assignment_id = params[:assignment_id]
 		  review_assignment.user_id = current_user.id
