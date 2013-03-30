@@ -3,73 +3,44 @@ include AssignmentHelper
   def index
 		requires({'role'=>['admin', 'faculty','student']}) # Validation of login and roles
     unless(current_user.nil?)
-	    pastAssignments = []
-	    currentAssignments = []
-	    futureAssignments = []
-		  reviewAssignments = []
-		
-      taCurrentAssignments = []
-      taFutureAssignments = []
-      taPastAssignments = []
-
+	    studentAssignments = []
+	    studentReviewAssignments = []
+	    
+      taAssignments = []
+      taReviewAssignments = []
+      
+	    facultyAssignments = []
+		  facultyReviewAssignments = []
+		  
+      allAssignments = []
+      allReviewAssignments = []
       if current_user.student?
-        # Gathers Student's Assignments based on the AssignmentDefinitionToUser table
-        studentAssignmentDefinitionIds = AssignmentDefinitionToUser.find_all_by_user_id(current_user.id).collect(&:assignment_definition_id)
-        studentAssignmentIDs = AssignmentDefinition.find_all_by_id(studentAssignmentDefinitionIds).collect(&:assignment_id)
-        studentAssignments = Assignment.find_all_by_id(studentAssignmentIDs)
-			  reviewAssignments = ReviewAssignment.find_all_by_assignment_id(studentAssignmentIDs)
-        
-        
-
-        studentAssignments.each do |assignment|
-		      if assignment.has_not_started && assignment.hidden == false
-			      futureAssignments.unshift assignment
-		      elsif assignment.is_active
-			      currentAssignments.unshift assignment
-          elsif assignment.is_over
-			      pastAssignments.unshift assignment
-		      end
-        end
-
+        studentCourses = Studentgroup.find_all_by_user_id(current_user.id).collect(&:course_id)
+        studentAssignments = Assignment.find_all_by_course_id(studentCourses)
+			  studentReviewAssignments = ReviewAssignment.find_all_by_course_id(studentCourses)
+			  
         taCourseIds = Tagroup.find_all_by_user_id(current_user.id).collect(&:course_id)
-        taAssignments = Assignment.where(:course_id => taCourseIds)
-        
-        taAssignments.each do |assignment|
-	        if assignment.has_not_started
-		        taFutureAssignments.unshift assignment
-	        elsif assignment.is_active
-		        taCurrentAssignments.unshift assignment
-	        else
-		        taPastAssignments.unshift assignment
-	        end
-        end
-
-	    else
+        taAssignments = Assignment.find_all_by_course_id(taCourseIds)
+        taReviewAssignments = ReviewAssignment.find_all_by_course_id(taCourseIds)
+	    elsif current_user.faculty?
         facultyCourses = Course.find_all_by_user_id(current_user.id).collect(&:id)
-        facultyAssignments = Assignment.where(:course_id => facultyCourses)
-			  reviewAssignments = ReviewAssignment.where(:course_id => facultyCourses)
-
-        facultyAssignments.each do |assignment|
-		      if assignment.has_not_started 
-			      futureAssignments.unshift assignment
-		      elsif assignment.is_active
-			      currentAssignments.unshift assignment
-		      else
-			      pastAssignments.unshift assignment
-		      end
-        end
+        facultyAssignments = Assignment.find_all_by_course_id(facultyCourses)
+			  facultyReviewAssignments = ReviewAssignment.find_all_by_course_id(facultyCourses)
+      elsif current_user.admin?
+        allAssignments = Assignment.all
+        allReviewAssignments = ReviewAssignment.all
       end
-
-		  #Set global varibles for use in the view
-	    @pastAssignments = pastAssignments
-	    @futureAssignments = futureAssignments
-	    @currentAssignments = currentAssignments
-
-      @taPastAssignments = taPastAssignments
-      @taFutureAssignments = taFutureAssignments
-      @taCurrentAssignments = taCurrentAssignments
-
-		  @reviewAssignments = reviewAssignments
+      @studentAssignments = studentAssignments
+      @studentReviewAssignments = studentReviewAssignments
+      
+      @facultyAssignments = facultyAssignments
+		  @facultyReviewAssignments = facultyReviewAssignments
+		  
+		  @taAssignments = taAssignments
+		  @taReviewAssignments = taReviewAssignments
+		  
+		  @allAssignments = allAssignments
+		  @allReviewAssignments = allReviewAssignments
     end
   end
 

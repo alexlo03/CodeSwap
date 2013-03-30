@@ -30,7 +30,22 @@ class ReviewAssignment < ActiveRecord::Base
   def pretty_end_date
     end_date.strftime("%m-%d-%y  %l:%M %P %Z")
   end
-	
+  
+	def is_late
+    end_date_buffered < Time.now && (end_date_buffered + 24.hours) > Time.now
+  end
+  
+  def is_over
+    end_date_buffered < Time.now
+  end
+  
+  def is_active
+    (start_date <= Time.now) && (Time.now <= end_date_buffered)
+  end
+  
+  def end_date_buffered
+    end_date + 15.minutes
+  end
 
 	def to_csv(mappings, questions, answers)
 		CSV.generate do |csv|

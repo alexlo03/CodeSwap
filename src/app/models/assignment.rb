@@ -20,6 +20,10 @@ class Assignment < ActiveRecord::Base
     end_date_buffered < Time.now
   end
   
+  def is_late
+    end_date_buffered < Time.now && (end_date_buffered + 24.hours) > Time.now
+  end
+  
   def end_date_buffered
     end_date + 15.minutes
   end

@@ -1,0 +1,38 @@
+<table class='table table-hover'>
+  <thead>
+    <tr>
+    <th>Course</th>
+    <th>Name</th>
+    <th>Start Date</th>
+    <th>Due Date</th>
+    <th></th>
+    </tr>
+  </thead>
+  <% assignments.each do |assignment| %>
+	    <% if assignment.is_late %>
+        <tr class='info'>
+	    <% elsif assignment.is_active %>
+	      <tr class='success'>
+	    <% else %>
+	      <tr class='error'>
+	    <% end %>
+      <td><%= assignment.course.name %></td>
+		  <td><%= assignment.name %></td>
+	    <td><%= assignment.pretty_start_date %></td>
+	    <td><%= assignment.pretty_end_date %></td>
+		  <td>
+		    <% if assignment.is_a? Assignment %>	    
+  		    <t class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</t>
+	        <% if can_edit %>
+	          <t class='btn' onclick="editAssignment('<%= assignment.id %>')">Edit</t>
+	        <% end %>
+  		  <% elsif assignment.is_a? ReviewAssignment %>
+  		    <t class='btn' onclick="viewReviewAssignment('<%= assignment.id %>')">View</t>
+  		    <% if can_edit %>
+	          <t class='btn' onclick="editReviewAssignment('<%= assignment.id %>')">Edit</t>
+	        <% end %>
+  		  <% end %>
+		  </td>
+		  </tr>
+  <% end %>
+</table>

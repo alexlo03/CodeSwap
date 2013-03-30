@@ -4,143 +4,79 @@
 
 <h1>Assignments</h1>
 
-<strong>The below assignments are color-coded based on your status in the course.</strong><br/>
-Green rows signify an assignment for a course you are a member of.<br/>
-Blue rows signify assignments for courses you are either a TA or Faculty member for.
+<strong>The assignments here are color-coded based on its due date.</strong><br/>
+Green rows represent an assignment due sometime in the future.<br/>
+Blue rows represent assignments that were due within the last 24 hours and are still eligible for a late day (if applicable).<br/>
+Red rows represent assignments that are past 24 hours overdue.<br/>
 
-<h2>Current Assignments</h2>
-The below assignments are currently open to submissions. (Note: They are <strong>not</strong> ordered by any means of priority or importance.)
+<% if current_user.student? %>
+  <h2> Your Assignments </h2>
+    <% if @studentAssignments.empty? %>
+        ...Nothing to see here...
+    <% else %>
+      <%= render 'assignment/table_layouts/assignment_details', :assignments => @studentAssignments, :can_edit => false %>
+    <% end %>
 
-<table class='table table-hover'>
-	<thead>
-	  <tr>
-    <th>Course</th>
-		<th>Name</th>
-	  <th>Start Date</th>
-	  <th>Due Date</th>
-		<th></th>
-		</tr>
-	</thead>
-	<% @currentAssignments.each do |assignment| %>
-	  <tr class='success'>
-    <td><%= assignment.course.name %></td>
-		<td><%= assignment.name %></td>
-	  <td><%= assignment.pretty_start_date %></td>
-	  <td><%= assignment.pretty_end_date %></td>
-		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
-		</tr>
-	<% end %>
-	<% @taCurrentAssignments.each do |assignment| %>
-	  <tr class='info'>
-    <td><%= assignment.course.name %></td>
-		<td><%= assignment.name %></td>
-	  <td><%= assignment.pretty_start_date %></td>
-	  <td><%= assignment.pretty_end_date %></td>
-		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
-		</tr>
-	<% end %>
+  <h2> Your Review Assignments </h2>
+    <% if @studentReviewAssignments.empty? %>
+      ...Nothing to see here...
+    <% else %>
+       <%= render 'assignment/table_layouts/assignment_details', :assignments => @studentAssignments, :can_edit => false %>
+    <% end %>
 
-</table>
-
-
-<h2>Future Assignments</h2>
-These assignments have not yet started, and are currently not accepting submissions.
-<table class='table table-hover'>
-	<thead>
-	  <tr>
-    <th>Course</th>
-		<th>Name</th>
-	  <th>Start Date</th>
-	  <th>Due Date</th>
-		<th></th>
-		</tr>
-	</thead>
+  <% unless @taAssignments.empty? %>
+    <h2> (TA) Regular Assignments </h2>
+    <%= render 'assignment/table_layouts/assignment_details', :assignments => @taAssignments, :can_edit => false %>
+  <% end %>
+    
+  <% unless @taReviewAssignments.empty? %>
+    <h2> (TA) Review Assignments </h2>
+    <%= render 'assignment/table_layouts/assignment_details', :assignments => @taReviewAssignments, :can_edit => false %>
+  <% end %>
   
-	<% @futureAssignments.each do |assignment| %>
-	  <tr class='success'>
-    <td><%= assignment.course.name %></td>
-		<td><%= assignment.name %></td>
-	  <td><%= assignment.pretty_start_date %></td>
-	  <td><%= assignment.pretty_end_date %></td>
-		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
-		</tr>
-	<% end %>
-	<% @taFutureAssignments.each do |assignment| %>
-	  <tr class='info'>
-    <td><%= assignment.course.name %></td>
-		<td><%= assignment.name %></td>
-	  <td><%= assignment.pretty_start_date %></td>
-	  <td><%= assignment.pretty_end_date %></td>
-		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
-		</tr>
-	<% end %>
+<% elsif current_user.faculty? %>
+  <h2> Regular Assignments </h2>
+  <% if @facultyAssignments.empty? %>
+    ...Nothing to see here...
+  <% else %>
+    <%= render 'assignment/table_layouts/assignment_details', :assignments => @facultyAssignments, :can_edit => true %>
+  <% end %>
 
-</table>
+  <h2> Review Assignments </h2>
+  <% if @facultyReviewAssignments.empty? %>
+    ...Nothing to see here...
+  <% else %>
+    <%= render 'assignment/table_layouts/assignment_details', :assignments => @facultyReviewAssignments, :can_edit => true %>
+  <% end %>
+  
+<% elsif current_user.admin? %>
+  <h2> Regular Assignments </h2>
+  <% if @allAssignments.empty? %>
+    ...Nothing to see here...
+  <% else %>
+    <%= render 'assignment/table_layouts/assignment_details', :assignments => @allAssignments, :can_edit => true %>
+  <% end %>
 
-<h2>Old Assignments</h2>
-The deadline for the assignments listed below have passed.
-<table class='table table-hover'>
-	<thead>
-	  <tr>
-    <th>Course</th>
-		<th>Name</th>
-	  <th>Start Date</th>
-	  <th>Due Date</th>
-		<th></th>
-		</tr>
-	</thead>
-	<% @pastAssignments.each do |assignment| %>
-	  <tr class='success'>
-    <td><%= assignment.course.name %></td>
-		<td><%= assignment.name %></td>
-	  <td><%= assignment.pretty_start_date %></td>
-	  <td><%= assignment.pretty_end_date %></td>
-		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
-		</tr>
-	<% end %>
-
-	<% @taPastAssignments.each do |assignment| %>
-	  <tr class='info'>
-    <td><%= assignment.course.name %></td>
-		<td><%= assignment.name %></td>
-	  <td><%= assignment.pretty_start_date %></td>
-	  <td><%= assignment.pretty_end_date %></td>
-		<td><p class='btn' onclick="viewAssignment('<%= assignment.id %>')">View</p></td>
-		</tr>
-	<% end %>
-
-</table>
-
-<h2>Review Assignments</h2>
-The assignments below are review assignments;<br/>
-<strong>Green</strong> review assignments are awaiting a review from you.<br/>
-<table class='table table-hover'>
-	<thead>
-	  <tr>
-    <th>Course</th>
-		<th>Name</th>
-	  <th>Start Date</th>
-	  <th>Due Date</th>
-		<th></th>
-		</tr>
-	</thead>
-	<% @reviewAssignments.each do |assignment| %>
-	  <tr class='success'>
-    <td><%= assignment.course.name %></td>
-		<td><%= assignment.name %></td>
-	  <td><%= assignment.pretty_start_date %></td>
-	  <td><%= assignment.pretty_end_date %></td>
-		<td><p class='btn' onclick="viewReviewAssignment('<%= assignment.id %>')">View</p></td>
-		</tr>
-	<% end %>
-</table>
-
+  <h2> Review Assignments </h2>
+  <% if @allReviewAssignments.empty? %>
+    ...Nothing to see here...
+  <% else %>
+    <%= render 'assignment/table_layouts/assignment_details', :assignments => @allReviewAssignments, :can_edit => true %>
+  <% end %>
+  
+<% end %>
 <script type='text/javascript' >
   var viewAssignment = function(number) {
           window.location = '/assignment/view/' + number;
   };
   var viewReviewAssignment = function(number) {
           window.location = '/reviewassignment/view/' + number;
+  };
+  var editAssignment = function(number) {
+          window.location = '/assignment/edit/' + number;
+  };
+  var editReviewAssignment = function(number) {
+          window.location = '/reviewassignment/edit/' + number;
   };
 </script>
 
