@@ -21,7 +21,7 @@ class FileSubmissionsController < ApplicationController
     file = parameters['file']
     
     user_id = current_user.id
-    unless parameters['user_id'] or parameters['user_id'] == ''
+    unless (not parameters['user_id']) or parameters['user_id'] == ''
       user_id = parameters['user_id'] unless parameters['user_id'] && parameters['user_id'] == ''
     end
     
@@ -52,10 +52,9 @@ class FileSubmissionsController < ApplicationController
 
       course = Course.find(assignment.course_id)
 
-    @faculty = current_user.id == course.user_id
-    @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
-    @student = !Studentgroup.where(:course_id => course.id, :user_id => current_user.id).empty?
-		
+    @assignmentFile = user_id == course.user_id
+    @studentFile = !Studentgroup.find_all_by_user_id_and_course_id(user_id, course.id).empty?
+  
 		@assignment = assignment
 		
     render '/assignment/create.js'  
