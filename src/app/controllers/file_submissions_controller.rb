@@ -19,25 +19,31 @@ class FileSubmissionsController < ApplicationController
     assignment = Assignment.find(parameters['assignment_id'])
     definition = AssignmentDefinition.find_by_assignment_id(assignment.id)
     file = parameters['file']
+    
     user_id = current_user.id
-    user_id = parameters['user_id'] unless parameters['user_id'] == ''
+    unless parameters['user_id'] or parameters['user_id'] == ''
+      user_id = parameters['user_id'] unless parameters['user_id'] && parameters['user_id'] == ''
+    end
+    
     file.original_filename.gsub!(/[^a-z0-9A-Z.]/, '')
 
     user = User.find(user_id)
+    
+    logger = Logger.new("log/uploads.log")
+    logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has submitted something for user with ID# #{user_id}."
+    
+    
     
 	  if user.student? 
 	    user_id = current_user.id
 		  oldSubmission = FileSubmission.where(:assignment_id => assignment.id,
 					  :course_id => assignment.course_id, :user_id => user_id)[0]
 		  unless oldSubmission.nil?
-			  File.delete(oldSubmission.full_save_path)	
+			  File.delete(oldSubmission.full_save_path)
 			  oldSubmission.destroy
+			  logger.info "#{Time.now}::\t #{current_user.friendly_full_name} has just overwritten the old submission."
 		  end
 	  end
-
-
-    logger = Logger.new("log/uploads.log")
-    logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has submitted something for user with ID# #{user_id}."
 
       @submission = FileSubmission.new(:course_id => assignment.course_id, :assignment_id => assignment.id, :assignment_definition_id => definition.id, :user_id => user_id, :file => file, :name => file.original_filename, :uploaded_by => current_user.id)
       @submission.save
@@ -56,14 +62,15 @@ class FileSubmissionsController < ApplicationController
   end
 
   def delete
+    logger = Logger.new("log/uploads.log")
+    logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has attempted to delete #{name}."
+
+  
     id = params[:file_id]
     submission = FileSubmission.find(id)
 
     faculty_id = Course.find(Assignment.find(submission.assignment_id).course_id).user_id
-
-    logger = Logger.new("log/uploads.log")
-    logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has attempted to delete #{name}."
-
+    
     if ((current_user.id == submission.user_id) or (current_user.id == faculty_id))
       File.delete(submission.full_save_path)
 			name = FileSubmission.find(id).name 

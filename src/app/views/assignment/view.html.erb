@@ -119,12 +119,14 @@
       <%= f.label :file %>
       <%= f.hidden_field :assignment_id, :value => @assignment.id %>
       <%= f.file_field :file, :multiple => true, :name => "file_submission[file]" %>
-      <% unless @student %>
-      <t class='btn' onclick='$("#upload_as").toggle()'>Upload as another user</t>
-      <t id='upload_as' style='display:none'>
-        Uploading As: 
-        <%= f.select :user_id, @courseStudents.collect{|s| [s.friendly_full_name, s.id ]} %>
-        </t>
+      <% if @student %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      <% else %>
+        <t class='btn' onclick='$("#upload_as").toggle()'>Upload as another user</t>
+        <t id='upload_as' style='display:none'>
+          Uploading As: 
+          <%= f.select :user_id, @courseStudents.collect{|s| [s.friendly_full_name, s.id ]} %>
+          </t>
       <% end %>
     <% end %>
 <% end %>
