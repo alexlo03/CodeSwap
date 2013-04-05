@@ -101,23 +101,32 @@
 	<% end %>
 <% end %>	
 
+
+
 <% if @assignment.has_not_started and @student %>
   <h4> This assignment has not started yet. You cannot submit files before the assignment has been assigned! </h4>
 <% else %>
-  <% if @ta or @faculty %>
+  <% if @faculty %>
     <h3> Upload Assignment Files </h3>
   <% elsif @student %>
     <h3> Submit Your Work </h3>
       <% if @assignment.is_over %>
         <h4> Caution: This assignment is past due. Any further submissions you make to this assignment will be counted as late. </h4>
       <% end %>
-	  <p><strong>Note</strong>: Only one assignment can be uploaded per student. Uploading additional assignments will delete previous assignments. If you need to submit multiple files, please zip them up before submitting.</p>
+    <p><strong>Note</strong>: Only one assignment can be uploaded per student. Uploading additional assignments will delete previous assignments. If you need to submit multiple files, please zip them up before submitting.</p>
   <% end %>
-  <%= form_for FileSubmission.new do |f| %>
-    <%= f.label :file %>
-    <%= f.hidden_field :assignment_id, :value => @assignment.id %>
-    <%= f.file_field :file, :multiple => true, :name => "file_submission[file]" %>
-  <% end %>
+    <%= form_for FileSubmission.new do |f| %>
+      <%= f.label :file %>
+      <%= f.hidden_field :assignment_id, :value => @assignment.id %>
+      <%= f.file_field :file, :multiple => true, :name => "file_submission[file]" %>
+      <% unless @student %>
+      <t class='btn' onclick='$("#upload_as").toggle()'>Upload as another user</t>
+      <t id='upload_as' style='display:none'>
+        Uploading As: 
+        <%= f.select :user_id, @courseStudents.collect{|s| [s.friendly_full_name, s.id ]} %>
+        </t>
+      <% end %>
+    <% end %>
 <% end %>
 
     <script id="template-upload" type="text/x-tmpl">

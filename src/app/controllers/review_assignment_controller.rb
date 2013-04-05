@@ -47,6 +47,17 @@ include PairingHelper
 			@review_assignments = ReviewAssignment.where(:course_id => Assignment.find(params[:assignment_id]).course.id)
     end
   end
+  
+  def edit
+    requires({'role'=>['admin', 'faculty']})
+    reviewAssignment = ReviewAssignment.find(params[:id])
+    
+    if request.get? 
+      @reviewAssignment = reviewAssignment
+    else
+      
+    end
+  end
 
   def pairings
 			@assignment_id = session[:assignment_id]

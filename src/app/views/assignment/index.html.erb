@@ -21,7 +21,7 @@ Red rows represent assignments that are past 24 hours overdue.<br/>
     <% if @studentReviewAssignments.empty? %>
       ...Nothing to see here...
     <% else %>
-       <%= render 'assignment/table_layouts/assignment_details', :assignments => @studentAssignments, :can_edit => false %>
+       <%= render 'assignment/table_layouts/assignment_details', :assignments => @studentReviewAssignments, :can_edit => false %>
     <% end %>
 
   <% unless @taAssignments.empty? %>

@@ -62,7 +62,6 @@ include AssignmentHelper
     @course = Course.find_by_id(@assignment.course_id)
     requires({'role'=>['admin', 'faculty'], 'course_id' =>@course.id})
     if current_user
-
       @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(assignment_id)
     end
   end
@@ -158,78 +157,52 @@ include AssignmentHelper
     end
   end
 
-
-
-
-	#Populate varibles for use in the view
+	# Route: /assignment/view/:id
+	# Params: id
+	# Environment variables: 
+	## assignment - current assignment
+	## assignmentDefinition - definition of assignment
+	## assignmentFiles - List of files submitted by faculty member for this assignment
+	## courseStudents - List of all students in the assignment's course
+	### Empty if current user is a student
+	## faculty - returns whether current user is the faculty member
+	## ta - returns whether the current user is a ta for the assignment's course
+	## student - returns whether the current user is a student for this course
+	## unsubmitted_students - List of students that have no submission linked to them
+	## files - List of files visible to current user
+	### If Student: Only their files are in this list
+	### If Otherwise: All student submissions are in this list
+	## id - ID of the current assignment
   def view
     
     id = params[:assignment_id]
     @assignment = Assignment.find(id)
     @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(id)
-    #Get previous submissions
+    
     course = Course.find(@assignment.course_id)
     requires({'role'=>['admin', 'faculty','student'], 'course_id'=>course.id})
     if(current_user)
-      
+    
       @assignmentFiles = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => course.user_id)
-      
       courseStudentIds = Studentgroup.find_all_by_course_id(course.id).collect(&:user_id)
-
+    
       @faculty = current_user.id == course.user_id
       @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
       @student = !Studentgroup.where(:course_id => course.id, :user_id => current_user.id).empty?
 	
-      if @faculty or @ta
+      @unsubmitted_students = []
+      @courseStudents = []
+      if @faculty or @ta or current_user.admin?
         @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => courseStudentIds)
+        @unsubmitted_students = User.find_all_by_id(courseStudentIds.drop_while{|s| s.in? @files.collect(&:user_id)})
+        @courseStudents = User.find_all_by_id(courseStudentIds)
+        @courseStudents.unshift(User.find(course.user_id))
       elsif @student
         @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => current_user.id)
       end
-     @unsubmitted_students = User.find_all_by_id(courseStudentIds.drop_while{|s| s.in? @files.collect(&:user_id)})
-
      @id = id
     end
   end
-
-  #NOTE: Out of date, probably safe to remove. 
-	def upload
-		# params['datafile'] is a File object stored in the system tmp directories
-    name =  params['datafile'].original_filename
-
-    assignment_definition_id = params['assignment_definition_id']
-    assignment_id = AssignmentDefinition.find(assignment_definition_id).assignment_id
-    course_id = Assignment.find(assignment_id).course_id
-
-
-		if current_user.student? 
-			oldSubmission = FileSubmission.where(:assignment_id => assignment_id,
-						:course_id => course_id, :user_id => current_user.id)[0]
-			unless oldSubmission.nil?
-				File.delete(oldSubmission.full_save_path)	
-				oldSubmission.destroy
-			end
-		end
-
-    # creates and saves a new file submission within the database
-    submission = FileSubmission.new
-      submission.name = name
-      submission.user_id = current_user.id
-      submission.course_id = course_id
-      submission.assignment_id = assignment_id
-      submission.assignment_definition_id = assignment_definition_id
-    submission.save
-		
-
-    FileUtils.mkpath(submission.save_directory)
-    path = File.join(submission.save_directory, name)
-    File.open(path, 'wb') { |f| f.write(params['datafile'].read) }
-    
-
-    flash[:notice] = "File Submitted Successfully! Well done! A++!" + submission.save_directory
-    
-    redirect_to '/assignment/index'
-
-	end
 
 	def adminView
     requires ({'role'=>'admin'})

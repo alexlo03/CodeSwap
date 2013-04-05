@@ -4,7 +4,7 @@ class FileSubmission < ActiveRecord::Base
   belongs_to :user
   belongs_to :assignment_definition
   belongs_to :assignment
-  attr_accessible :name, :user_id, :assignment_definition_id, :course_id, :assignment_id, :file
+  attr_accessible :name, :user_id, :assignment_definition_id, :course_id, :assignment_id, :file, :uploaded_by
   
   mount_uploader :file, FileSubmissionUploader
   process_in_background :file

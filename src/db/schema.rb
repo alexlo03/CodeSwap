@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325211854) do
+ActiveRecord::Schema.define(:version => 20130405062351) do
 
   create_table "assignment_definition_to_users", :force => true do |t|
     t.integer  "user_id"
@@ -105,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20130325211854) do
     t.integer  "course_id"
     t.integer  "assignment_id"
     t.string   "file"
+    t.integer  "uploaded_by"
   end
 
   create_table "question_extras", :force => true do |t|
