@@ -1,12 +1,8 @@
-<% if @done %>
 
-<h3>Thank you for your submission</h3>
+<% if @file_submission.nil? %>
 
-
-
-
-<% elsif @file_submission.nil? %>
 	<p>The person you are supposed to be grading has not uploaded a file!!!!</p>
+
 <% else %>
 	<a class='btn' href=<%= "/assignment/download/" + @file_submission.id.to_s %>>Download</a>
 <p> Please download and review the code above. After you are done, please answer the following questions: </p>
@@ -17,18 +13,22 @@
 <thead></thead>
 <% @questions.each_with_index do |question,i| %>
 <div id="question_<%= i %>" class='question_area' value="q<%= i %>" type="<%= question.question_type %>">
-	<tr><h5><strong><%= "#{question.question_title}" %></strong></h5></tr>
-	<tr><%= "#{question.content}" %></tr></br>
+	<tr>
+	  <h5><strong><%= "#{question.question_title}" %></strong></h5>
+	</tr>
+	<tr>
+	  <%= "#{question.content}" %>
+	</tr></br>
 	<% name = "q#{i}" %>
 	<% if question.multiple_choice? %>
     <% @extras_hash[question.id].each_with_index do |extra, j| %>
-      <tr><input type='radio' id="<%= 'choice_'+j.to_s %>" value="<%= extra.extra %>" name="<%= name+'_choice' %>"/><%= extra.extra %></tr><br/>
+      <tr><input type='radio' id="<%= 'choice_'+j.to_s %>" value="<%= extra.extra %>" name="<%= name+'_choice' %>" checked='<%= @answers_hash[question.id] == extra.extra %>' ><%= extra.extra %></tr><br/>
     <% end %>
     </br>
 	<% elsif question.numerical_answer? %>
-		<tr><input type="number" id="<%= name %>" min="1" max="10" /></tr></br>
+		<tr><input type="number" id="<%= name %>" min="1" max="10" value="<%= @answers_hash[question.id] %>"/></tr></br>
 	<% elsif question.short_answer? %>
-		<tr><input type="text" id="<%= name %>"/></tr></br>
+		<tr><input type="text" id="<%= name %>" value="<%= @answers_hash[question.id] %>"/></tr></br>
 	<% end %>
 </div>
 <% end %>

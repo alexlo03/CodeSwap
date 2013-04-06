@@ -44,7 +44,12 @@ include PairingHelper
 			# Handle get request
       @assignment_id = params[:assignment_id]
       @assignment = Assignment.find(@assignment_id)
-			@review_assignments = ReviewAssignment.where(:course_id => Assignment.find(params[:assignment_id]).course.id)
+			review_assignment = ReviewAssignment.find_by_assignment_id(@assignment_id)
+			if(review_assignment)
+			  flash[:error] = 'A review assignment already exists for this assignment. Redirecting to the existing review assignment. Please contact the system administrator if you are receiving this message in error.'
+			  redirect_to '/reviewassignment/view/' + review_assignment.id.to_s
+			end
+			
     end
   end
   
@@ -150,16 +155,33 @@ include PairingHelper
 	def answer_form
 		@id = params[:id]
 		@pos = params[:pos]
+		
 		@review_assignment = ReviewAssignment.find(@id)
 		@review_mapping = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id)[@pos.to_i]
 		@other_id = @review_mapping.other_user_id
+		
 		@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
 		@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
+		
+		
+		answers = ReviewAnswer.find_all_by_review_question_id_and_user_id_and_other_id(@questions.collect(&:id), current_user.id, @review_mapping.other_user_id)
+		
 		@extras_hash = Hash.new
-		@questions.each do |q|
-			@extras_hash[q.id] = q.question_extras
+		
+		@answers_hash = Hash.new
+		
+		@questions.each do |question|
+			@extras_hash[question.id] = question.question_extras
+		  review_answer = answers.select{|ans| ans.review_question_id.eql? question.id}.first
+		  
+		  if review_answer.nil?
+		    review_answer = ''
+		  else
+		    review_answer = review_answer.answer
+		  end
+		  
+		  @answers_hash[question.id] = review_answer
 		end
-		@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id,:other_id => @review_mapping.other_user_id).count > 0
 	end
 
 	def student_submit

@@ -200,6 +200,9 @@ include AssignmentHelper
       elsif @student
         @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => current_user.id)
       end
+      
+      
+      @has_review_assignment = ReviewAssignment.find_all_by_assignment_id(id).any?
      @id = id
     end
   end

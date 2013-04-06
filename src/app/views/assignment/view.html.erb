@@ -10,7 +10,9 @@
 
 <h3>Assignment: <%= @assignment.name %></h1>
 <% if @faculty %>
+  <% unless @has_review_assignment %>
   <%= link_to 'Swap Assignment', '/reviewassignment/create/'+ @assignment.id.to_s, :style => 'color: #EEE;}', :class => 'btn btn-success' %>
+  <% end %>
   <%if @assignment.hidden == true and @assignment.has_not_started %> 
     <h4>This assignment is currently hidden until <%= @assignment.pretty_start_date %>!</h4>
   <% end %>
