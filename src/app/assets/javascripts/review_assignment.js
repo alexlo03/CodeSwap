@@ -226,7 +226,7 @@ reviewassignments = {
 				  $.post('/reviewassignment/studentsubmit',
 					  {'answers':answers, 'id':id, 'other_id':other_id},function ()
 				      {
-                  window.location = '/assignment/index';
+                  location = '/assignment/index';
 				      });
         }
         else {

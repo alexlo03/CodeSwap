@@ -28,7 +28,7 @@
 	<% elsif question.numerical_answer? %>
 		<tr><input type="number" id="<%= name %>" min="1" max="10" value="<%= @answers_hash[question.id] %>"/></tr></br>
 	<% elsif question.short_answer? %>
-		<tr><input type="text" id="<%= name %>" value="<%= @answers_hash[question.id] %>"/></tr></br>
+		<tr><textarea type="text" id="<%= name %>"><%= @answers_hash[question.id] %></textarea></tr></br>
 	<% end %>
 </div>
 <% end %>

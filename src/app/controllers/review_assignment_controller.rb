@@ -192,9 +192,16 @@ include PairingHelper
 			questions = review_assignment.review_questions
 			user_id = current_user.id
 			answers.each_with_index do |answer, i|
-				ReviewAnswer.create(:user_id => user_id, :review_question_id => questions[i].id, :answer => answer, :other_id => other_id)	
+			  review_question = questions[i]
+			  old_answer = ReviewAnswer.find_by_review_question_id_and_user_id_and_other_id(review_question.id, user_id, other_id)
+			  if(old_answer.nil?)
+				  ReviewAnswer.create(:user_id => user_id, :review_question_id => questions[i].id, :answer => answer, :other_id => other_id)
+			  else	
+			    old_answer.answer = answer
+			    old_answer.save
+			  end
 			end
-			flash[:notice] = "Thanks for your review!"
+			flash[:notice] = "Thanks for your review! Your answers have been saved. You may go back at any time (before #{review_assignment.pretty_end_date}) to change your answers."
 			render :nothing => true
 		end
 	end
