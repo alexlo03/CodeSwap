@@ -44,24 +44,62 @@ include PairingHelper
 			# Handle get request
       @assignment_id = params[:assignment_id]
       @assignment = Assignment.find(@assignment_id)
-			review_assignment = ReviewAssignment.find_by_assignment_id(@assignment_id)
-			if(review_assignment)
+			review_assignment_already_exists = ReviewAssignment.find_by_assignment_id(@assignment_id)
+			if(review_assignment_already_exists)
 			  flash[:error] = 'A review assignment already exists for this assignment. Redirecting to the existing review assignment. Please contact the system administrator if you are receiving this message in error.'
 			  redirect_to '/reviewassignment/view/' + review_assignment.id.to_s
 			end
-			
+			@review_assignments = ReviewAssignment.all.keep_if{ |r| r.assignment_id != @assignment_id }
     end
   end
   
   def edit
     requires({'role'=>['admin', 'faculty']})
-    reviewAssignment = ReviewAssignment.find(params[:id])
+    review_assignment = ReviewAssignment.find(params[:id])
+    @course = review_assignment.course
+    
     
     if request.get? 
-      @reviewAssignment = reviewAssignment
+      @review_assignment = review_assignment
+      @review_questions = ReviewQuestion.find_all_by_review_assignment_id(review_assignment.id)
+      @review_question_choices = []
+      @review_questions.each do |r|
+        @review_question_choices.push(QuestionExtra.find_all_by_review_question_id(r.id).collect(&:extra))
+      end
     else
+    # Handle post request
+		  zone = Time.now.zone
+			review_assignment.start_date = DateTime.strptime("#{params['startDate']} #{params['startTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+			review_assignment.end_date = DateTime.strptime("#{params['endDate']} #{params['endTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+		  review_assignment.name = params[:name]
+		  review_assignment.grouped = (params[:grouped]=='true')
+		  review_assignment.save
+		  
+		  old_questions = ReviewQuestion.find_all_by_review_assignment_id(review_assignment.id)
+		  old_questions.each{|q| q.destroy }
+		  
+		  questions = params[:questions]
+      questions.each do |i,question|
+        title = question[0]
+        type = question[1]
+        content = question[2]
+        review_question = ReviewQuestion.new
+        review_question.question_title = title
+        review_question.set_type(type)
+        review_question.review_assignment_id = review_assignment.id
+        review_question.content = content
+        review_question.save
+				unless question[4].nil?
+					question.last(question.length-3).each do |extra|
+						QuestionExtra.create(:review_question_id => review_question.id, :extra => extra)
+					end
+        end
+      end
+      flash[:notice] = "Review Assignment Updated Successfully!"
       
     end
+    @review_assignment = review_assignment
+    
   end
 
   def pairings

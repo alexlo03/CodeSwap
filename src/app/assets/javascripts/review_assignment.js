@@ -233,7 +233,146 @@ reviewassignments = {
           errors.show("errors", 'Please answer all questions.');
         }
 		}
-	}
+	},
+	edit:{
+	  pageLoad:function(id, name, startDate, endDate, startTime, endTime, grouped, questions, choices) {
+	    // Initializes date and time pickers
+      $('#start-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#start-date').datepicker('hide'); });
+      $('#end-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
+      $('#time-start').timepicker({minuteStep: 1});
+      $('#time-end').timepicker({minuteStep: 1});
+      // Loads-in assignment data
+      $('#start-date-value').val(startDate);
+      $('#end-date-value').val(endDate);
+      $('#name').val(name);
+			$('#time-start').val(startTime);
+			$('#time-end').val(endTime);
+			assignment_id = id;
+		  $('input[value="'+grouped+'"]').attr('checked', true);
+		  questions = $.parseJSON(questions);
+		  choices = $.parseJSON(choices);
+      $.each(questions, function(index, question) {
+        reviewassignments.edit.addQuestion(index, question);
+        reviewassignments.create.radioChanged(index);
+        question_choices = choices[index];
+        $.each(question_choices, function(i, choice) {
+          reviewassignments.edit.addMultipleChoice(index, choice);
+        });
+      });
+			
+			},
+	  addMultipleChoice: function(id, choice) {
+          new_question_field = " \
+          <div class='"+id+"_choice'> \
+            <input type='text' class='"+id+"_choice_text' value='"+ choice +"'/> <p class='btn' onclick='$(this).parent().remove();'>Remove Choice</p> \
+          </div>";
+          $('#' + id + '_new_choice').before(new_question_field);
+      },
+    addQuestion : function(id, question) {
+      $('#add_questions_here').before("\
+        <div id='" + id +"' class='question'>\
+          <p>\
+          <strong id='" + id + "_title' class='question_title'>"+ question.question_title +"</strong>\
+            <d class='btn btn-danger' onclick='$(this).parent().parent().remove();'>Remove Question</d>\
+            <p><strong>Type:</strong>\
+              <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='instruction'/>Instruction\
+              <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='short_answer'/>Short Answer\
+              <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='numerical_answer'/>Numerical Answer\
+              <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='multiple_choice'/>Multiple Choice\
+            </p>\
+        </p>\
+        <p id='" + id + "_content_area'>\
+          <textarea class='span2' id='" + id + "_text' name='" + id + "_text' rows='3'>"+question.content+"</textarea>\
+          <div id='" + id + "_choices' style='display:none'>\
+            <p><strong>Choices:</strong></p>\
+            <d id='" + id + "_new_choice'/>\
+            <p class='btn' onclick='reviewassignments.create.addMultipleChoice(\"" + id + "\")'>Add Choice</p>\
+          </div>\
+        <p>\
+        </div>");
+        var $radios = $('input:radio[name='+id+'_type]');
+        if(parseInt(question.question_type) == 0) {
+          $radios.filter('[value=instruction]').attr('checked',true);
+        } else if(parseInt(question.question_type) == 1) {
+          $radios.filter('[value=multiple_choice]').attr('checked',true);
+        } else if(parseInt(question.question_type) == 2) {
+          $radios.filter('[value=numerical_answer]').attr('checked',true);
+        } else if(parseInt(question.question_type) == 3) {
+          $radios.filter('[value=short_answer]').attr('checked',true);
+        }
+    },
+    
+    submitChanges: function() {
+      var startDate = $('#start-date-value').val();
+      var endDate = $('#end-date-value').val();
+      var startTime = $('#time-start').val();
+      var endTime = $('#time-end').val();
+      var name = $('#name').val();
+ 			var grouped = $('input[name="grouped"]:checked').val();
+      var questions = [];
+      questionsOK = true;
+      $('.question').each( function() {
+        id = this.id;
+        type = $('#' + id + ' input[name='+ id + '_type' +']:checked').val();
+        question = $('#' + id + '_text').val();
+        title = $('#' + id + '_title').text();
+				var questionArray = new Array();
+				questionArray.push(title);
+				questionArray.push(type);
+				questionArray.push(question);
+        choicesOK = true;
+        if(type == 'multiple_choice') {
+          if($('.' + id + '_choice_text').length == 0) {
+            choicesOK = false;
+            errors.show(id, 'Please add at least one choice for this question.');
+          }
+          $('.' + id + '_choice_text').each(function() {
+            if($(this).val() == '' && choicesOK) {
+              errors.show(id, 'Please ensure all choices are filled out.');
+              questionsOK = false;
+              choicesOK = false;
+            }
+            questionArray.push($(this).val());
+          });
+        }
+
+        if(typeof type==undefined) {
+          errors.show(id, 'Please select a question type for this question!');
+          questionsOK = false;
+        }
+        if(question==''){
+          errors.show(id, 'Please enter content for this question or delete it!');
+          questionsOK = false;
+        }
+        if(title==''){
+          errors.show(id, 'Please enter a valid title for this question!');
+          questionsOK = false;
+        }		
+        questions.push(questionArray);
+      });
+
+      if(!reviewassignments.create.datesFormatOK(startDate, endDate)) {
+        errors.show("end-date","Please verify the dates entered are valid.");  
+      }
+      else if(!name){
+        errors.show("name","Oh no! Try giving the assignment a Title.");
+      }
+      else if(questionsOK) {
+        $.post('/reviewassignment/edit/'+assignment_id,
+          {'startDate':startDate,
+          'endDate':endDate,
+          'name':name,
+          'id':assignment_id,
+          'questions':questions,
+					'startTime':startTime,
+					'endTime':endTime,
+					'grouped':grouped
+          }, function() {
+            window.location = "/reviewassignment/view/" + assignment_id;
+          }          
+        ); 
+      }
+    },
+  }
 }
 
-  

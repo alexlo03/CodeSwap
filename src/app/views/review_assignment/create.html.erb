@@ -8,6 +8,16 @@
 
 <%=render 'review_assignment_form' %>
 
+<div>
+  <h5>Previous Assignment:</h5>
+  <select id='previous_selection'>
+  <option value="-1">None</option>
+  <% @review_assignments.each do |review_assignment| %>
+    <option value="<%= review_assignment.id %>"><%= review_assignment.name %></option>
+  <% end %>
+  </select>
+</div>
+
 <p class='btn' onClick='reviewassignments.create.submitAssignment();'>Submit</p>
 <%= link_to 'Cancel', '#', :class => 'btn' %>
 
