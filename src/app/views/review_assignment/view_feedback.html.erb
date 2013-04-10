@@ -1,0 +1,16 @@
+
+
+<p>This is the feedback given by your peers</p>
+<% if @past_due %>
+	<% @questions.each do |question| %>
+		<h2><%= question.content %></h2>
+		<ul>
+			<% @answers[question.id].each do |answer| %>
+			<li> <%= answer.answer %> </li>
+			<% end %>
+		</ul>
+		</br>
+	<% end %>
+<% else %>
+	<h2>The assignment is not over yet. You can not see info for an assignment that is not past due </h2>
+<% end %>

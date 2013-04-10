@@ -232,4 +232,19 @@ include PairingHelper
 		end
 		
 	end
+	
+
+	def view_feedback
+		unless current_user.nil?
+			review_assignment_id = params[:id]
+			@review_assignment = ReviewAssignment.find(review_assignment_id)
+			@past_due = @review_assignment.end_date <= DateTime.now
+			@questions = ReviewQuestion.find_all_by_review_assignment_id(params[:id])
+			@answers = Hash.new
+			user_id = current_user.id
+			@questions.each do |question|
+				@answers[question.id] = ReviewAnswer.find_all_by_review_question_id_and_other_id(question.lid,user_id,user_id)
+			end
+		end
+	end
 end

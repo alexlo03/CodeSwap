@@ -10,3 +10,7 @@
 </dd>
 <% end %>
 </dl>
+
+<% if @review_assignment.end_date < DateTime.now %>
+	<a class='btn' href=<%= "/reviewassignment/view_feedback/#{@review_assignment.id}"%>>Click here to view the feedback</a>
+<% end %>
