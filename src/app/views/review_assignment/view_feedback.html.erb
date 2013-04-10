@@ -3,7 +3,8 @@
 <p>This is the feedback given by your peers</p>
 <% if @past_due %>
 	<% @questions.each do |question| %>
-		<h2><%= question.content %></h2>
+		<h2><%= question.question_title %></h2>
+		<p><%= question.content %></p>
 		<ul>
 			<% @answers[question.id].each do |answer| %>
 			<li> <%= answer.answer %> </li>
