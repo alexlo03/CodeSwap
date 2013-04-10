@@ -16,7 +16,11 @@ class User < ActiveRecord::Base
 
   Devise.reset_password_within = 2.days
   def destroy
-    update_attribute(:deleted_at, Time.current)
+    if(deleted_at == nil)
+      update_attribute(:deleted_at, Time.current)
+    else
+      super
+    end
   end
 
   def active_for_authentication?

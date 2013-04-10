@@ -10,7 +10,7 @@ CodeSwap::Application.configure do
   config.whiny_nils = true
 
   config.log_level = :info
-  config.logger = Logger.new("log/DevelopmentLog.rb")
+  config.logger = Logger.new("log/DevelopmentLog.log")
   
 
   # Show full error reports and disable caching
