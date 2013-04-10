@@ -22,7 +22,7 @@ class FileSubmissionsController < ApplicationController
     
     user_id = current_user.id
     unless (not parameters['user_id']) or parameters['user_id'] == ''
-      user_id = parameters['user_id'] unless parameters['user_id'] && parameters['user_id'] == ''
+      user_id = parameters['user_id']
     end
     
     file.original_filename.gsub!(/[^a-z0-9A-Z.]/, '')
@@ -35,7 +35,7 @@ class FileSubmissionsController < ApplicationController
     
     
 	  if user.student? 
-	    user_id = current_user.id
+	    user_id = current_user.id if current_user.student?
 		  oldSubmission = FileSubmission.where(:assignment_id => assignment.id,
 					  :course_id => assignment.course_id, :user_id => user_id)[0]
 		  unless oldSubmission.nil?
