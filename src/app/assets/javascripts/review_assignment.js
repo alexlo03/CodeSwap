@@ -17,8 +17,8 @@ reviewassignments = {
 
 //        $('input[name="question_1_type"]').change(function(){ reviewassignments.create.radioChanged(1); });
  
-				$("#time-start").timepicker();
-				$("#time-end").timepicker();
+        $('#time-start').timepicker({minuteStep: 1});
+        $('#time-end').timepicker({minuteStep: 1});
         reviewassignments.create.addQuestion();
 
         assignment_id = a_id; 
@@ -76,7 +76,7 @@ reviewassignments = {
       var endTime = $('#time-end').val();
       var name = $('#name').val();
 			var prev_id = $('#previous_selection').val();
-      
+ 			var grouped = $('input[name="grouped"]:checked').val();
       var questions = [];
       questionsOK = true;
       $('.question').each( function() {
@@ -84,8 +84,10 @@ reviewassignments = {
         type = $('#' + id + ' input[name='+ id + '_type' +']:checked').val();
         question = $('#' + id + '_text').val();
         title = $('#' + id + '_title').text();
-
-        choices = '';
+				var questionArray = new Array();
+				questionArray.push(title);
+				questionArray.push(type);
+				questionArray.push(question);
         choicesOK = true;
         if(type == 'multiple_choice') {
           if($('.' + id + '_choice_text').length == 0) {
@@ -98,7 +100,7 @@ reviewassignments = {
               questionsOK = false;
               choicesOK = false;
             }
-            choices += '@#!$' + $(this).val();
+            questionArray.push($(this).val());
           });
         }
 
@@ -113,10 +115,8 @@ reviewassignments = {
         if(title==''){
           errors.show(id, 'Please enter a valid title for this question!');
           questionsOK = false;
-        }
-
-        s = '~`~`~';
-        questions.push(title+s+type+s+question + choices);
+        }		
+        questions.push(questionArray);
       });
 
       if(!reviewassignments.create.datesFormatOK(startDate, endDate)) {
@@ -133,7 +133,8 @@ reviewassignments = {
           'questions':questions,
 					'previous_id':prev_id,
 					'startTime':startTime,
-					'endTime':endTime
+					'endTime':endTime,
+					'grouped':grouped
           }, function() {
             window.location = '/reviewassignment/pairings';
           }          
@@ -225,7 +226,7 @@ reviewassignments = {
 				  $.post('/reviewassignment/studentsubmit',
 					  {'answers':answers, 'id':id, 'other_id':other_id},function ()
 				      {
-                  window.location = '/assignment/index';
+                  location = '/assignment/index';
 				      });
         }
         else {

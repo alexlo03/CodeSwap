@@ -29,3 +29,10 @@ schema.rb
 /src/log/*.log
 /src/tmp
 
+# Ignore all precompiled files
+*.gz
+
+# Ignore rubymine stuff
+.idea/*
+.idea
+*.idea

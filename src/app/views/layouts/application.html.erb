@@ -2,6 +2,8 @@
 <html>
 <head>
   <title>CodeSwap</title>
+  <link rel="shortcut icon" href="/CodeSwap.ico?" />
+  
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -21,7 +23,7 @@
         </a>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><%= link_to "Code Swap Application", root_path, :class => 'brand' %></li>
+            <li><%= link_to image_tag("CodeSwapLogo.png", :width => "120px"), root_path, :class => 'brand' %></li>
             <li><%= link_to "Wiki", "https://github.com/alexlo03/CodeSwap/wiki" %></li>
             <li><%= link_to "Contact Us", contact_us_path %></li>
             <% if current_user %>

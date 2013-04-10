@@ -32,9 +32,10 @@ CodeSwap::Application.routes.draw do
   # Faculty // Course Routes
 
   match 'faculty/add_course', :controller => 'faculty', :action => 'add_course', :as => 'add_course'
-  match 'course/show/:id', :controller => 'course', :action=>'show', :as => 'show_course'
+  match 'course/show/:c_id', :controller => 'course', :action=>'show', :as => 'show_course'
   match 'course/edit/:id', :controller => 'course', :action => 'edit', :as => 'edit_course'
   match 'course/submit_edit', :controller => 'course', :action => 'submit_edit'
+  match 'course/manage_groups/:id', :controller => 'course', :action => 'manage_groups'
   get "faculty/index"
   match 'faculty/index', :controller => 'faculty', :action => 'index', :as => 'faculty_index'
   match '/courses', :controller => 'faculty', :action => 'index', :as => 'course_index'
@@ -43,8 +44,8 @@ CodeSwap::Application.routes.draw do
   match 'course/new', :controller => 'course', :action => 'new', :as => 'new_course'
   match 'course/create', :controller => 'course', :action => 'create', :as => 'create_course'
   match 'course/add_student', :controller => 'course', :action => 'add_student'
+  
   # Assignment Routes
-
   get "assignment/index"
   match 'assignment', :controller => 'assignment', :action=> 'index'
   match 'assignments', :controller => 'assignment', :action=> 'index'
@@ -66,10 +67,10 @@ CodeSwap::Application.routes.draw do
   match 'reviewassignment/studentsubmit',:controller => 'review_assignment', :action => 'student_submit'
   match 'reviewassignment/viewsubmission/:mapping_id',:controller => 'review_assignment', :action => 'view_submission'
 	match 'reviewassignment/:id/grades',:controller => 'review_assignment', :action => 'grades'
-	match 'reviewassignment/:id/:pos/answer_forum',:controller => 'review_assignment', :action => 'answer_forum'
-
+	match 'reviewassignment/:id/:pos/answer_form',:controller => 'review_assignment', :action => 'answer_form'
+  match 'reviewassignment/edit/:id', :controller => 'review_assignment', :action => 'edit'
+  
   # File Routes
-
   match 'files/delete/:file_id', :controller => 'file_submissions', :action => 'delete', :as => 'remove_file'
   match 'view_live/:file_id', :controller => 'file_submissions', :action => 'view_live', :as => 'view_live'
 

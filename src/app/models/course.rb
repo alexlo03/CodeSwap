@@ -13,7 +13,7 @@ class Course < ActiveRecord::Base
       header = spreadsheet.row(1)
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        user = User.find_by_email(row["email"])
+        user = User.find_by_email(row["email"].downcase)
         # Create random password, requires members to respond to email before using the system.
         unless user
           o =[('a'..'z'),('A'..'Z'),('0'..'9')].map{|i| i.to_a}.flatten
@@ -29,6 +29,10 @@ class Course < ActiveRecord::Base
 
         if row["role"].downcase == 'student'
           Studentgroup.create(:user_id =>  user.id, :course_id => id)
+					group = row['group']
+					unless(group.nil?)
+						CourseGroup.create(:user_id => user.id, :course_id => id, :group => group)
+					end
         elsif row["role"].downcase == 'ta'
           Tagroup.create(:user_id => user.id, :course_id => id)
         end
@@ -41,9 +45,12 @@ class Course < ActiveRecord::Base
   end
 
   def get_tas
-    Tagroup.where(:course_id => id).collect(&:user_id)
+    Tagroup.find_all_by_course_id(id).collect(&:user_id)
   end
 
+  def is_user_ta(user_id)
+    get_tas.include?(user_id)
+  end
   # Opens CSV / Excel files
   def open_spreadsheet(file)
     case File.extname(file.original_filename)

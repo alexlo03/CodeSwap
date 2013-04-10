@@ -21,6 +21,8 @@ end
 
 # Backgrounds emails
 gem 'delayed_job_active_record'
+gem 'daemons'
+
 
 # Testing gems
 gem 'nokogiri', '~> 1.5.1'
@@ -38,24 +40,23 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-twitter'
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'carrierwave'
+gem 'sass-rails',   '~> 3.2.3'
+gem 'coffee-rails', '~> 3.2.1'
+gem 'carrierwave'
+gem 'carrierwave_backgrounder'
+
 
   # Used for jquery file uploads
-  gem 'jquery-fileupload-rails'
+gem 'jquery-fileupload-rails'
 
-	gem 'bootstrap-timepicker-rails'
-  gem 'twitter-bootstrap-rails'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'jquery-fileupload-rails'
-end
+gem 'twitter-bootstrap-rails'
+gem 'bootstrap-timepicker-rails'
+gem 'uglifier', '>= 1.0.3'
+gem 'jquery-fileupload-rails'
+
 
 gem 'jquery-rails'
-gem 'ruby-filemagic'
+gem 'jquery-ui-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

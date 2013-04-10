@@ -149,5 +149,45 @@ courses = {
             location.reload();
         });
     }
+  },
+  groups: {
+    pageLoad : function() {
+      $('#group1, #group2, #ungrouped').sortable({
+      connectWith: ".groupTable",
+      items: ">*:not(.sort-disabled)"
+    }).disableSelection();
+    },
+    
+    submit: function(id) {
+      $group1_rows = $('#group1 tr[class="user-row"]')
+      $group2_rows = $('#group2 tr[class="user-row"]')
+      $ungrouped_rows = $('#ungrouped tr[class="user-row"]')
+      
+      group1_ids = []
+      group2_ids = []
+      ungrouped_ids = []
+      
+      $.each($group1_rows, function(index, row) {
+        group1_ids.push(row.id);
+      });
+      $.each($group2_rows, function(index, row) {
+        group2_ids.push(row.id);
+      });
+      $.each($ungrouped_rows, function(index, row) {
+        ungrouped_ids.push(row.id);
+      });
+      
+      $.post('/course/manage_groups/' + id,
+      {'group1':group1_ids,
+      'group2':group2_ids,
+      'ungrouped':ungrouped_ids
+      },
+      function() {
+        location.reload();
+      });
+      
+    }
+    
   }
+  
 }

@@ -30,8 +30,8 @@ CodeSwap::Application.configure do
     :domain =>  "rose-hulman.edu",
     :authentication => "plain",
     :enable_starttls_auto => true,
-    :user_name => ENV["GMAIL_USERNAME"],
-    :password => ENV["GMAIL_PASSWORD"]
+    :user_name => "rosehulman.codeswap",
+    :password => "alexlosaidso"
   }
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -49,9 +49,11 @@ CodeSwap::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
+  config.force_ssl = true
+
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => 'codeswap.csse.rose-hulman.edu' }
   
 end

@@ -4,6 +4,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+
 # # # # # # # # # # # # # # # # # # # # # # #
 
 # # # # # # # # USERS # # # # # # # # # # # #
@@ -240,5 +241,6 @@ end
 shop1_students2.each do |uid|
 	CourseGroup.create(:user_id => uid, :course_id => shop1, :group => 1)
 end
+
 
 

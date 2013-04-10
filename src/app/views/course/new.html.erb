@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-<p><%= link_to "Home", root_url %> // <%= link_to "Faculty", faculty_index_path %> // Add Course</p>
+<p><%= link_to "Home", root_url %> // <%= link_to "Courses", faculty_index_path %> // Add Course</p>
 
 
 
@@ -20,7 +20,7 @@
                 <%= text_field_tag 'course_term', @term, :class => 'input-medium search-query' %><p id='course_term_errors'/>
 <br/>
 
-    <p>Upload a .csv file with student and TA information here. New student accounts will be created automatically if the student is not already registered on CodeSwap. (Please follow <%= link_to 'This Provided Template', '/template.csv' %> for formatting.)</p>
+    <p>Upload a .csv file with student and TA information here. New student accounts will be created automatically if the student is not already registered on CodeSwap. (Please follow <%= link_to 'This Provided Template', '/template.csv' %> for formatting. Groups are 0 and 1. )</p>
     
     <%= file_field_tag :students_csv %>
     <p id='csv_errors'/>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 
-<p>Download all as<a type="xls" href="<%= "/reviewassignment/#{@review_assignment.id}/grades.xls" %>"> XLS </a>
+<p>Download answers as<a type="xls" href="<%= "/reviewassignment/#{@review_assignment.id}/grades.xls" %>"> XLS </a>
 | <a type="csv" href="<%= "/reviewassignment/#{@review_assignment.id}/grades.csv" %>">CSV </a></p>
 
 <p>Click a students name to view his or her answers</p>
@@ -30,6 +30,6 @@
 <% unless @teacher_grades.count == 0 %>
 <h2>You need to grade the following for this assignment:</h2>
 <% @teacher_grades.each_with_index do |mapping,i| %>
-<a href=<%= "/reviewassignment/#{@id}/#{i}/answer_forum"%>>Review <%= mapping.other_user.friendly_full_name %></a></br>
+<a href=<%= "/reviewassignment/#{@id}/#{i}/answer_form"%>>Review <%= mapping.other_user.friendly_full_name %></a></br>
 <% end %>
 <% end %>

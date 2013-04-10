@@ -5,11 +5,13 @@ include CourseHelper
 	#Show information about a course
   def show
     #Validate
-    id = params[:id]
+    id = params[:c_id]
+		logger = Logger.new('log/course.log')
+		logger.info params.inspect
     @course = Course.find(id)    
     requires({'role' => ['admin','faculty','student'],'course_id' => id})
 		#if the course is found & and the user is enrolled in the course, retrieve mappings of students and tas to a course.
-      unless (@course.nil? || current_user.nil?)
+    unless (@course.nil? || current_user.nil?)
       @students = Studentgroup.where(:course_id => id)
       @tas = Tagroup.where(:course_id => id)
       @teacher = User.where(:id => @course.user_id).first
@@ -18,10 +20,14 @@ include CourseHelper
       @user_is_student = !@students.find_all_by_user_id(current_user.id).empty?
       @user_is_ta_or_faculty_or_admin = !@tas.find_all_by_user_id(current_user.id).empty? || (current_user.id == @teacher.id unless @teacher.nil?) || (@admin.include?(current_user) unless @admin.nil?)
       if(@user_is_student)
-        @assignments = Assignment.where(:course_id => id && :hidden == false)
+        @assignments = Assignment.where(:course_id => id, :hidden => false)
       else
         @assignments = Assignment.where(:course_id => id)
       end
+      
+      @group1 = CourseGroup.find_all_by_course_id_and_group(id, 0).collect(&:user_id)
+      @group2 = CourseGroup.find_all_by_course_id_and_group(id, 1).collect(&:user_id)
+      
 			@review_assignments = ReviewAssignment.find_all_by_course_id(id)
     end
   end
@@ -134,5 +140,42 @@ include CourseHelper
     end
   
   end
+  
+  
+  def manage_groups
+  
+    if request.get?
+      course_id = params[:id]
+      @course = Course.find(course_id)
+      
+      group_1 = CourseGroup.find_all_by_course_id_and_group(course_id, 0).collect(&:user_id)
+      group_2 = CourseGroup.find_all_by_course_id_and_group(course_id, 1).collect(&:user_id)
+
+      course_students = Studentgroup.find_all_by_course_id(course_id).collect(&:user_id)
+      
+      @ungrouped = User.find_all_by_id(course_students).reject{ |user| user.id.in? group_1 or user.id.in? group_2 }
+      @group_1 = User.find_all_by_id(group_1)
+      @group_2 = User.find_all_by_id(group_2)
+    else #post request
+      course_id = params[:id]
+      group1 = params['group1']
+      group2 = params['group2']
+      ungrouped = params['ungrouped']
+      
+      
+      
+      CourseGroup.destroy_all(:course_id => course_id)
+      group1.each do |user|
+        CourseGroup.create(:course_id => course_id, :user_id => user, :group => 0)
+      end
+      group2.each do |user|
+        CourseGroup.create(:course_id => course_id, :user_id => user, :group => 1)
+      end
+      
+      render :nothing => true
+      flash[:notice] = "Groups updated!"
+    end
+  end
+  
 
 end

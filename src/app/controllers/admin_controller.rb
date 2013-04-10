@@ -95,7 +95,6 @@ include ApplicationHelper
     
     currentUsers = User.where('current_sign_in_at not null').order(:current_sign_in_at).reverse
     
-    currentUsers['bs'] = 'bs' 
 
     render :json => currentUsers.to_json
   end

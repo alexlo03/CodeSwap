@@ -5,7 +5,15 @@ include ApplicationHelper
     email = '<User Not Signed In>'
     email = current_user.email unless current_user.nil?
 		Emailer.delay.show_error(e, email)
-		raise e
+		if Rails.env.production?
+		  flash[:error] = "Something has gone wrong. A notice has been sent to the CodeSwap team. If you continue to experience this issue, please file a complaint on the Contact Us page."
+                  redirect_to(root_path)
+		else
+		  raise e
+		end
+
+	logger = Logger.new('log/errors.log')
+	e.backtrace.each{|b| logger.error b}
 	end
   protect_from_forgery
   def not_found

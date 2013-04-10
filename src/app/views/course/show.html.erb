@@ -5,9 +5,13 @@
 
 <h1><%= @course.name %></h1>
 </br>
-<h3><%= @course.course_number.concat(" - ").concat(@course.section.to_s) %> <%= @course.term %></h3>
+<h3>Course Information:</h3>
+<blockquote>
+<h4 style='display:inline'>Course Number:</h4> <%= @course.course_number %></br>
+<h4 style='display:inline'>Course Section:</h4> <%= @course.section.to_s %></br>
+<h4 style='display:inline'>Course Term:</h4> <%= @course.term %></br>
+</blockquote>
 </br>
-
 
 <% if current_user.id == @course.user_id %>
     <a class='btn' href="<%= edit_course_path @course.id %>">Edit Course / Roster</a>
@@ -16,16 +20,18 @@
 <div class="container">
   <div class="row">
     <div class="span6">
-      <h3>Taught by:</h3>
+      <h3 style='display:inline'>Taught by:</h3>
       <% if @teacher.nil? %>
-      <h2>No teacher</h2>
+      <h3>Nobody.</h3>
       <% else %>
-      <h2><%= @teacher.friendly_full_name %></h2>
+      <h3 style='display:inline'><%= @teacher.friendly_full_name %></h3>
       <% end %>
       </br>
 
-      <% unless @tas.nil? %>
+      <% unless @tas.nil? or @tas.empty? %>
       <h3>TAs</h3>
+      <strong>Note</strong>: The following users are teaching assistants for "<%= @course.name %>".</br>
+      These users have special access to the student's submissions and reviews.
         <table class='table table-hover'>
           <thead>
             <tr>
@@ -54,9 +60,13 @@
       <% end %>
       </br>
 
-      <% unless @students.nil? %>
+      <% unless @students.nil? or @students.empty? %>
 	  <% if @user_is_ta_or_faculty_or_admin %>
       <h3>Students</h3>
+      <strong>Note</strong>: The students below are color-coded by group:</br>
+      Students in group one are colored <strong>blue</strong>. 
+      Students in group two are colored <strong>red</strong>.</br>
+      Students that do not belong in either group remain white.
         <table class='table table-hover'>
           <thead>
             <tr>
@@ -64,61 +74,86 @@
               <th>Email</th>
               <th>Name</th>
               <th>Last online</th>
+              <th>Group</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
             <% @students.each do |student| %>
             <% user = User.where(:id => student.user_id)[0] %>
-            <% if !user.nil? %>
-              <tr>
-                <td><%= user.id %></td>
-                <td><%= user.email %></td>
-                <td><%= user.friendly_full_name %></td>
-                <td><%= user.last_sign_in_at %></td>
-                <td>
-                  <p class='btn' onclick="users.viewUser('<%= user.id %>')">View</p>
-                </td>  
-              </tr>
-            <% else %>
-              <tr>
-                <td>ERROR</td>
-              </tr>
-            <% end %>
+              <% unless user.nil? %>
+                <% if user.id.in? @group1 %>
+                  <tr class="info">
+                <% elsif user.id.in? @group2 %>
+                  <tr class="error">
+                <% else %>
+                  <tr>
+                <% end %>
+                    <td><%= user.id.to_s %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.friendly_full_name %></td>
+                    <td><%= user.last_sign_in_at %></td>
+                    <td><%= (user.id.in? @group1) ? "One" : (user.id.in? @group2) ? "Two" : "None" %></td>
+                    <td>
+                      <p class='btn' onclick="users.viewUser('<%= user.id %>')">View</p>
+                    </td>
+                  </tr>
+              <% end %>
             <% end %>
           </tbody>
         </table>
+      <p><a class='btn' href=<%= "/course/manage_groups/" + @course.id.to_s %> >Change/Manage Groups</a></p>
+      
       <% end %>
 	  <% end %>
     </div>
     <div class= "span6" >
       
         <h3>Assignments: </h3>
+<% if @user_is_ta_or_faculty_or_admin %>
+		  <p>
+				  <%= button_to 'Create New Assignment', {:action => 'create', :controller => 'assignment', :course_id => @course.id}, :class => 'btn btn-success', :style => 'padding:5px 5px 5px;' %>
+			<% end %>
+			</p>
+
 					<table class='table table-hover'>
+					<% if @assignments.empty? %>
+					  <tr>
+					    <td>There are no assignments for this course.</td>
+					  </tr>
+					<% end %>
+					
           <% @assignments.each do |assignment| %>
             <tr>
 							<td><%= assignment.name %></td>
 							<td>
                 <a class='btn' href=<%= "/assignment/view/" + assignment.id.to_s %> >View</a>
-                <a class='btn' href=<%= "/assignment/edit/" + assignment.id.to_s %> >Edit</a>
+		<% if @user_is_ta_or_faculty_or_admin %>
+                  <a class='btn' href=<%= "/assignment/edit/" + assignment.id.to_s %> >Edit</a>
+		<% end %>
               </td>							
 						</tr>
           <% end %>
-		  <% if @user_is_ta_or_faculty_or_admin %>
-				  <%= button_to 'New Assignment', {:action => 'create', :controller => 'assignment', :course_id => @course.id}, :class => 'btn btn-success', :style => '
-padding:5px 5px 5px;' %>
-			<% end %>
+		  
         </table>
         
         <h3>Review Assignments: </h3>
+        <% if @review_assignments.empty? %>
+					  <tr>
+					    <td>There are no review assignments for this course.</td>
+					  </tr>
+				<% end %>
+        
 					<table class='table table-hover'>
-          <% @review_assignments.each do |assignment| %>
-            <tr>
-							<td><%= assignment.name %></td>
-						</tr>
-          <% end %>
-				</table>
-      
+            <% @review_assignments.each do |assignment| %>
+              <tr>
+							  <td><%= assignment.name %></td>
+							  <td>
+							    <a class='btn' href=<%= "/reviewassignment/view/" + assignment.id.to_s %> >View</a>
+							  </td>
+						  </tr>
+            <% end %>
+				  </table>
     </div>
   </div>
 </div>

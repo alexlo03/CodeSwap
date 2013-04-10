@@ -1,11 +1,33 @@
 <p id="course_id" style="display:none"><%= @course.id %></p>
+<p><%= link_to "Home", root_url %> // <%= link_to "Courses", faculty_index_path %> // Edit Course</p>
+<h1>Editing Course Information</h1>
+<h4>Instructions:</h4>
+<div class='well'>
+<h5>Changing Course Information:</h5>
+Click on any of the <strong>bold</strong> text below to edit the value.</br>
+Be sure to click "Save Changes" when finished!</br>
+
+<h5>Changing Course Roster:</h5>
+<strong>Removing a student or TA</strong>
+<ul>
+  <li>Click show/hide roster</li>
+  <li>Click "Remove" on the desired user's row</li>
+  <li>Click "Save Changes" at the bottom of the page!</li>
+</ul>
+<strong>Adding a student or TA</strong>
+<ul>
+  <li>Click add student/TA</li>
+  <li>Fill out relevant fields</li>
+  <li>Be sure to specify Role field!</li>
+  <li>Click Add when finished</li>
+</ul>
+</div>
 
 <p>Editing Course: <strong id='course_name'><%= @course.name %></strong></p>
 
 <p class='edit_course_info'>
-
   <ul>
-    General Info: 
+    General Info:</br>
     <ul>
     <li>
       Section: <strong id='course_section'><%= @course.section %></strong>

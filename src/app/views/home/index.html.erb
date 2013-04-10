@@ -1,20 +1,22 @@
 
+<h3>Welcome to <%= image_tag("CodeSwapLogo.png", :width => "300px") %>!</h3>
+
 <% unless current_user %>
-  You should <u data-target="#logInModal" role="button" data-toggle="modal"><%= link_to "Sign in" %></u>!
+  <h4>You should <u data-target="#logInModal" role="button" data-toggle="modal"><%= link_to "Sign in" %></u>!<h4>
 <% else %>
-  <% if current_user.admin? %>
-    You are logged in as an administrator!
-    <%= render '/home/admin_home' %>
-  <% elsif current_user.faculty? %>
-    You are logged in as faculty!
-    <%= render '/home/faculty_home' %>
-  <% elsif current_user.student? %>
-    You are a student.
-    <%= render '/home/student_home' %>
-  <% end %>
-  <% if current_user.ta? %>
-    You have TA access for some courses!
-  <% end %>
+
+<h4>Glad to have you here, <%= current_user.first_name %>!</h4>
+<p>
+  Our records indicate that you are a <strong><%= current_user.role %></strong>.</br>
+</p>
+  
+<p>
+<strong>Please Note</strong>: This site is a work in progress. What you see here today could still contain a variety of unresolved bugs. If you happen to stumble across anything that seems out of place, or have any questions, comments, concerns or ideas regarding the layout or functionality of a page (or the site as a whole), please do not hesitate to let us know by using the "Contact Us" link at the top of any page.
+</p>
+
+<p>
+Thanks!</br>
+-The CodeSwap Team
+</p>
+
 <% end %>
-
-

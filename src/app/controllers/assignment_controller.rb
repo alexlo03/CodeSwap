@@ -3,73 +3,44 @@ include AssignmentHelper
   def index
 		requires({'role'=>['admin', 'faculty','student']}) # Validation of login and roles
     unless(current_user.nil?)
-	    pastAssignments = []
-	    currentAssignments = []
-	    futureAssignments = []
-		  reviewAssignments = []
-		
-      taCurrentAssignments = []
-      taFutureAssignments = []
-      taPastAssignments = []
-
+	    studentAssignments = []
+	    studentReviewAssignments = []
+	    
+      taAssignments = []
+      taReviewAssignments = []
+      
+	    facultyAssignments = []
+		  facultyReviewAssignments = []
+		  
+      allAssignments = []
+      allReviewAssignments = []
       if current_user.student?
-        # Gathers Student's Assignments based on the AssignmentDefinitionToUser table
-        studentAssignmentDefinitionIds = AssignmentDefinitionToUser.find_all_by_user_id(current_user.id).collect(&:assignment_definition_id)
-        studentAssignmentIDs = AssignmentDefinition.find_all_by_id(studentAssignmentDefinitionIds).collect(&:assignment_id)
-        studentAssignments = Assignment.find_all_by_id(studentAssignmentIDs)
-			  reviewAssignments = ReviewAssignment.find_all_by_assignment_id(studentAssignmentIDs)
-        
-        
-
-        studentAssignments.each do |assignment|
-		      if assignment.has_not_started && assignment.hidden == false
-			      futureAssignments.unshift assignment
-		      elsif assignment.is_active
-			      currentAssignments.unshift assignment
-          elsif assignment.is_over
-			      pastAssignments.unshift assignment
-		      end
-        end
-
+        studentCourses = Studentgroup.find_all_by_user_id(current_user.id).collect(&:course_id)
+        studentAssignments = Assignment.find_all_by_course_id(studentCourses)
+			  studentReviewAssignments = ReviewAssignment.find_all_by_course_id(studentCourses)
+			  
         taCourseIds = Tagroup.find_all_by_user_id(current_user.id).collect(&:course_id)
-        taAssignments = Assignment.where(:course_id => taCourseIds)
-        
-        taAssignments.each do |assignment|
-	        if assignment.has_not_started
-		        taFutureAssignments.unshift assignment
-	        elsif assignment.is_active
-		        taCurrentAssignments.unshift assignment
-	        else
-		        taPastAssignments.unshift assignment
-	        end
-        end
-
-	    else
+        taAssignments = Assignment.find_all_by_course_id(taCourseIds)
+        taReviewAssignments = ReviewAssignment.find_all_by_course_id(taCourseIds)
+	    elsif current_user.faculty?
         facultyCourses = Course.find_all_by_user_id(current_user.id).collect(&:id)
-        facultyAssignments = Assignment.where(:course_id => facultyCourses)
-			  reviewAssignments = ReviewAssignment.where(:course_id => facultyCourses)
-
-        facultyAssignments.each do |assignment|
-		      if assignment.has_not_started 
-			      futureAssignments.unshift assignment
-		      elsif assignment.is_active
-			      currentAssignments.unshift assignment
-		      else
-			      pastAssignments.unshift assignment
-		      end
-        end
+        facultyAssignments = Assignment.find_all_by_course_id(facultyCourses)
+			  facultyReviewAssignments = ReviewAssignment.find_all_by_course_id(facultyCourses)
+      elsif current_user.admin?
+        allAssignments = Assignment.all
+        allReviewAssignments = ReviewAssignment.all
       end
-
-		  #Set global varibles for use in the view
-	    @pastAssignments = pastAssignments
-	    @futureAssignments = futureAssignments
-	    @currentAssignments = currentAssignments
-
-      @taPastAssignments = taPastAssignments
-      @taFutureAssignments = taFutureAssignments
-      @taCurrentAssignments = taCurrentAssignments
-
-		  @reviewAssignments = reviewAssignments
+      @studentAssignments = studentAssignments
+      @studentReviewAssignments = studentReviewAssignments
+      
+      @facultyAssignments = facultyAssignments
+		  @facultyReviewAssignments = facultyReviewAssignments
+		  
+		  @taAssignments = taAssignments
+		  @taReviewAssignments = taReviewAssignments
+		  
+		  @allAssignments = allAssignments
+		  @allReviewAssignments = allReviewAssignments
     end
   end
 
@@ -91,7 +62,6 @@ include AssignmentHelper
     @course = Course.find_by_id(@assignment.course_id)
     requires({'role'=>['admin', 'faculty'], 'course_id' =>@course.id})
     if current_user
-
       @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(assignment_id)
     end
   end
@@ -110,16 +80,13 @@ include AssignmentHelper
       name = params[:name]
       description = params[:description]
       hidden = params[:hidden]
-      if(hidden == 'true')
-        hidden = true
-      else
-        hidden = false
-      end
+			hidden = (hidden == 'true')
       
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
-      startDate = DateTime.strptime("#{startDate} #{startTime}", '%m-%d-%Y %H:%M %p')
-      endDate = DateTime.strptime("#{endDate} #{endTime}", '%m-%d-%Y %H:%M %p')
+			zone = Time.now.zone
+      startDate = DateTime.strptime("#{startDate} #{startTime} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+      endDate = DateTime.strptime("#{endDate} #{endTime} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 
 		  #Create a new assignment with startDate, endDate, name, and courseID
       assignment = Assignment.new
@@ -166,11 +133,11 @@ include AssignmentHelper
       startTime = params[:startTime]
       endTime = params[:endTime]			
 			hidden = (hidden == 'true')
-      
 
 		  #Convert strings to Date objects using format MM/DD/YYYY
-      startDate = DateTime.strptime("#{startDate} #{startTime}", '%m-%d-%Y %H:%M %p')
-      endDate = DateTime.strptime("#{endDate} #{endTime}", '%m-%d-%Y %H:%M %p')
+			zone = Time.now.zone
+      startDate = DateTime.strptime("#{startDate} #{startTime} #{zone}", '%m-%d-%Y %H:%M %p %Z')
+      endDate = DateTime.strptime("#{endDate} #{endTime} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 
 		  #Create a new assignment with startDate, endDate, name, and courseID
       
@@ -190,78 +157,55 @@ include AssignmentHelper
     end
   end
 
-
-
-
-	#Populate varibles for use in the view
-	def view
+	# Route: /assignment/view/:id
+	# Params: id
+	# Environment variables: 
+	## assignment - current assignment
+	## assignmentDefinition - definition of assignment
+	## assignmentFiles - List of files submitted by faculty member for this assignment
+	## courseStudents - List of all students in the assignment's course
+	### Empty if current user is a student
+	## faculty - returns whether current user is the faculty member
+	## ta - returns whether the current user is a ta for the assignment's course
+	## student - returns whether the current user is a student for this course
+	## unsubmitted_students - List of students that have no submission linked to them
+	## files - List of files visible to current user
+	### If Student: Only their files are in this list
+	### If Otherwise: All student submissions are in this list
+	## id - ID of the current assignment
+  def view
     
     id = params[:assignment_id]
     @assignment = Assignment.find(id)
     @assignmentDefinition = AssignmentDefinition.find_by_assignment_id(id)
-    #Get previous submissions
+    
     course = Course.find(@assignment.course_id)
     requires({'role'=>['admin', 'faculty','student'], 'course_id'=>course.id})
     if(current_user)
-      
+    
       @assignmentFiles = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => course.user_id)
-      
       courseStudentIds = Studentgroup.find_all_by_course_id(course.id).collect(&:user_id)
-
+    
       @faculty = current_user.id == course.user_id
       @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
       @student = !Studentgroup.where(:course_id => course.id, :user_id => current_user.id).empty?
 	
-      if @faculty or @ta
+      @unsubmitted_students = []
+      @courseStudents = []
+      if @faculty or @ta or current_user.admin?
         @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => courseStudentIds)
+        @unsubmitted_students = User.find_all_by_id(courseStudentIds.drop_while{|s| s.in? @files.collect(&:user_id)})
+        @courseStudents = User.find_all_by_id(courseStudentIds)
+        @courseStudents.unshift(User.find(course.user_id))
       elsif @student
         @files = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => current_user.id)
       end
-		  @id = id
+      
+      
+      @has_review_assignment = ReviewAssignment.find_all_by_assignment_id(id).any?
+     @id = id
     end
   end
-
-  #NOTE: Out of date, probably safe to remove. 
-	def upload
-		# params['datafile'] is a File object stored in the system tmp directories
-    name =  params['datafile'].original_filename
-
-    assignment_definition_id = params['assignment_definition_id']
-    assignment_id = AssignmentDefinition.find(assignment_definition_id).assignment_id
-    course_id = Assignment.find(assignment_id).course_id
-
-
-		if current_user.student? 
-			oldSubmission = FileSubmission.where(:assignment_id => assignment_id,
-						:course_id => course_id, :user_id => current_user.id)[0]
-			unless oldSubmission.nil?
-				File.delete(oldSubmission.full_save_path)	
-				oldSubmission.destroy
-			end
-		end
-
-    # creates and saves a new file submission within the database
-    submission = FileSubmission.new
-      submission.name = name
-      submission.user_id = current_user.id
-      submission.course_id = course_id
-      submission.assignment_id = assignment_id
-      submission.assignment_definition_id = assignment_definition_id
-    submission.save
-		
-
-    FileUtils.mkpath(submission.save_directory)
-    path = File.join(submission.save_directory, name)
-    File.open(path, 'wb') { |f| f.write(params['datafile'].read) }
-    
-
-    flash[:notice] = "File Submitted Successfully! Well done! A++!" + submission.save_directory
-    
-    logger.warn "Student " + User.find(current_user.id) + " " + User.find(current_user.id).friendly_full_name + " has submitted their assignment."
-    
-    redirect_to '/assignment/index'
-
-	end
 
 	def adminView
     requires ({'role'=>'admin'})
@@ -273,37 +217,61 @@ include AssignmentHelper
   end
 
 	def download
-    unless(current_user.nil?)
-		  file_id = params[:file_id]
-		  file = FileSubmission.find(file_id)
-		  send_file File.join(file.save_directory, file.name)
-	  end
-  end
+		unless(current_user.nil?)
+		        file_id = params[:file_id]
+		        file = FileSubmission.find_by_id(file_id)
+
+		        if(file.nil? || (not file.user_can_download(current_user.id)))
+              name = "Somebody"
+              name = current_user.friendly_full_name if current_user
+              logger = Logger.new "log/download.log"
+              logger.info "#{name} attempted to download a file with id:  #{file_id}"
+              redirect_to :root
+              flash[:error] = "Either the file you have requested does not exist, or you do not have permission to access file.  Please use the 'Contact Us' form if you believe this is an error."
+              
+		        else
+                	  send_file File.join(file.save_directory, file.name)
+		        end
+		else
+ 
+      redirect_to "/users/sign_in"
+      flash[:error] = "Please Sign-in"
+    end
+
+	end
 
 	def downloadAll
-    unless(current_user.nil?)
+	  assignment_id = params[:assignment_id]
+    assignment = Assignment.find(assignment_id)
+    unless(current_user.nil? || assignment.nil? || (not assignment.user_can_download_all(current_user.id)))
+
 	    require 'zip/zip'
     	require 'zip/zipfilesystem'
-		  assignment_id = params[:assignment_id]
-		  assignment = Assignment.find(assignment_id)
+
 		  course_id = assignment.course_id
 		  faculty = User.find(current_user.id)
 		  dir = 'Uploads/Assignments/Course ID' + course_id.to_s + '/Assignment ID' + assignment.id.to_s
 		  archive = File.join(dir,File.basename(dir))+'.zip'
     	FileUtils.rm archive, :force=>true
-		  logger = Logger.new("logfile.log")
-		  logger.info archive
+
 		  facultySubmissions = assignment.getFacultyFileSubmissions
-		  logger.info "**NEW**"
 		  facultySubmissions.collect! {|file| file.full_save_path}
+
     	Zip::ZipFile.open(archive, 'w') do |zipfile|
       	Dir["#{dir}/**/**"].reject{|f|f==archive}.reject{|f| facultySubmissions.include? f}.reject{|f| f == "#{dir}/#{faculty.username}"}.each do |file|
-					  logger.info file
      	   		zipfile.add(file.sub(dir+'/',''),file)
      		end
     	end
 		
 		  send_file archive
+
+    else
+      name = "Somebody"
+      name = current_user.friendly_full_name if current_user
+      logger = Logger.new "log/download.log"
+      logger.info "#{name} attempted to download all files from an assignment with id:  #{assignment_id}"
+      redirect_to :root
+      flash[:error] = "Either the files you have requested does not exist, or you do not have permission to access  file.  Please use the 'Contact Us' form if you believe this is an error."
 	  end
   end
 end

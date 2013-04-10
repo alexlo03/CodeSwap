@@ -10,9 +10,14 @@
 
 <h3>Assignment: <%= @assignment.name %></h1>
 <% if @faculty %>
+  <% unless @has_review_assignment %>
   <%= link_to 'Swap Assignment', '/reviewassignment/create/'+ @assignment.id.to_s, :style => 'color: #EEE;}', :class => 'btn btn-success' %>
-  <%if @assignment.hidden == true %> <h4 style="color:orange"> This assignment is currently hidden!</h4>
-<% end %>
+  <% end %>
+  <%if @assignment.hidden == true and @assignment.has_not_started %> 
+    <h4>This assignment is currently hidden until <%= @assignment.pretty_start_date %>!</h4>
+  <% end %>
+  <%= link_to 'Edit Assignment', '/assignment/edit/' + @assignment.id.to_s, :class => 'btn btn-info' %>
+
 <% end %>
 
 <div class='row'>
@@ -24,12 +29,12 @@
 
   <div class='span4'>
     <h3>Start Date</h3>
-    <%= @assignment.start_date.to_date %>
+    <%= @assignment.pretty_start_date%>
   </div>
 
   <div class='span4'>
     <h3>End Date</h3>
-    <%= @assignment.end_date.to_date %>
+    <%= @assignment.pretty_end_date %>
   </div>
 </div>
 
@@ -53,12 +58,29 @@
     </table>
   <% end %>
 
+<% if @faculty or @ta %>
+  <h4>Submission Info</h4>
+  <% unless @unsubmitted_students.empty? %>
+    <p> The following <%= @unsubmitted_students.count %> students haven't submitted anything for this assignment:</br>
+    <ul class='unstyled'>
+    <% @unsubmitted_students.each do |student| %>
+      <li><%= student.friendly_full_name %></li>
+    <% end %> 
+    </ul>
+  <% else %>
+    <p> All students have submitted something for this assignment. </p>
+  <% end %>
+<% end %>
 
 <% if @student %>
   <h3>My Previous Submissions</h3>
 <% elsif @ta or @faculty %>
   <h3>Student Submissions</h3>
 <% end %>
+  <p><strong>Note</strong>: This table is color-coded based on submission time.</br>
+    <strong>Green</strong> submissions have been submitted on time.</br>
+    <strong>Blue</strong> submissions have been submitted within 24 hours after the dealine.</br>
+    <strong>Red</strong> submissions have been submitted laster than 24 hours after the deadline.</p>
 
 <% if @student or @ta or @faculty %>
   <table class='table table-hover'>
@@ -77,29 +99,38 @@
     </tbody>
   </table>
 	<% if (@ta or @faculty) && (@files.length > 0) %>
-	<a href=<%= "/assignment/downloadAll/" + @id.to_s %>>Download All</a>
+	<a  class='btn' href=<%= "/assignment/downloadAll/" + @id.to_s %>>Download All Submissions</a>
 	<% end %>
 <% end %>	
 
-<% if @ta or @faculty %>
-  <h3> Upload Additional Assignment Files </h3>
-<% elsif @student %>
-  <h3> Submit Your Work </h3>
-	<p>Note: Only one assignment can be uploaded. Uploading additional assignments will delete previous assignments.</p>
-<% end %>
+
 
 <% if @assignment.has_not_started and @student %>
   <h4> This assignment has not started yet. You cannot submit files before the assignment has been assigned! </h4>
-<% elsif @assignment.is_over %>
-  <h4> This assignment has ended. No more files may be submitted. </h4>
-<% elsif @assignment.is_active or (@assignment.has_not_started and @faculty) %>
-
+<% else %>
+  <% if @faculty %>
+    <h3> Upload Assignment Files </h3>
+  <% elsif @student %>
+    <h3> Submit Your Work </h3>
+      <% if @assignment.is_over %>
+        <h4> Caution: This assignment is past due. Any further submissions you make to this assignment will be counted as late. </h4>
+      <% end %>
+    <p><strong>Note</strong>: Only one assignment can be uploaded per student. Uploading additional assignments will delete previous assignments. If you need to submit multiple files, please zip them up before submitting.</p>
+  <% end %>
     <%= form_for FileSubmission.new do |f| %>
       <%= f.label :file %>
       <%= f.hidden_field :assignment_id, :value => @assignment.id %>
       <%= f.file_field :file, :multiple => true, :name => "file_submission[file]" %>
+      <% if @student %>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+      <% else %>
+        <t class='btn' onclick='$("#upload_as").toggle()'>Upload as another user</t>
+        <t id='upload_as' style='display:none'>
+          Uploading As: 
+          <%= f.select :user_id, @courseStudents.collect{|s| [s.friendly_full_name, s.id ]} %>
+          </t>
+      <% end %>
     <% end %>
-
 <% end %>
 
     <script id="template-upload" type="text/x-tmpl">
