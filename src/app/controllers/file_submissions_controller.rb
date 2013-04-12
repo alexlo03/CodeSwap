@@ -61,12 +61,12 @@ class FileSubmissionsController < ApplicationController
   end
 
   def delete
-    logger = Logger.new("log/uploads.log")
-    logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has attempted to delete #{name}."
-
   
     id = params[:file_id]
     submission = FileSubmission.find(id)
+    logger = Logger.new("log/uploads.log")
+    logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has attempted to delete #{submission.name}."
+
 
     faculty_id = Course.find(Assignment.find(submission.assignment_id).course_id).user_id
     
