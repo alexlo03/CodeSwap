@@ -1,5 +1,15 @@
 class AssignmentController < ApplicationController
 include AssignmentHelper
+  # Route(s): /assignments OR /assignment/index OR /faculty/index
+  # Purpose: Viewing all assignments
+  # Params: None
+  # Environment Variables:
+  ## [role]Assignments - Assignments for the courses in which the current user has the [role]
+  ## [role]ReviewAssignments - ReviewAssignments for the courses in which the current user fulfills [role]
+  ## allAssignments - All assignments in the database
+  ### Populated if current user is an admin
+  ## allReviewAssignments - All review assignments in the database
+  ### Populated if current user is an admin
   def index
 		requires({'role'=>['admin', 'faculty','student']}) # Validation of login and roles
     unless(current_user.nil?)
@@ -44,8 +54,13 @@ include AssignmentHelper
     end
   end
 
-
-  # Get course id for creating an assignment
+  # Route: /assignment/create/:course_id
+  # Purpose: Used to create an assignment for the course with matching id
+  # NOTE: Only used for GET request. Populates a view containing the assignment creation form.
+  # Params: 
+  ## course_id - Used to access the course to link it to the assignment
+  # Environment Variables:
+  ## course - Course that matches the given course_id
   def create
     course_id = params[:course_id]
     #Validate
@@ -56,6 +71,14 @@ include AssignmentHelper
   end
 
   # Get data for editing an assignment
+  # Route: /assignment/edit/:assignment_id
+  # Purpose: Used to populate a view containing an edit form for the assignment.
+  # Params:
+  ## assignment_id - Used to find the assignment with this assignment_id
+  # Environment Variables:
+  ## assignment - 
+  ## course - 
+  ## assignmentDefinition - 
   def edit
     assignment_id = params[:assignment_id]
     @assignment = Assignment.find_by_id(assignment_id)
