@@ -9,9 +9,7 @@ class FileSubmissionsController < ApplicationController
   def view_live
     id = params[:file_id]
     submission = File.read(FileSubmission.find(id).full_save_path)
-
     @contents = submission.split(/\n/)
-    
   end
 
   def create
@@ -31,8 +29,6 @@ class FileSubmissionsController < ApplicationController
     
     logger = Logger.new("log/uploads.log")
     logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has submitted something for user with ID# #{user_id}."
-    
-    
     
 	  if user.student? 
 	    user_id = current_user.id

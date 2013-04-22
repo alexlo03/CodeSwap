@@ -369,7 +369,7 @@ reviewassignments = {
 					'grouped':grouped
           }, function() {
             window.location = "/reviewassignment/view/" + assignment_id;
-          }          
+          }   
         ); 
       }
     },
