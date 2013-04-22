@@ -9,9 +9,9 @@
     </tr>
   </thead>
   <% assignments.each do |assignment| %>
-	    <% if assignment.is_late %>
+	    <% if assignment.is_late? %>
         <tr class='info'>
-	    <% elsif assignment.is_active %>
+	    <% elsif assignment.is_active? %>
 	      <tr class='success'>
 	    <% else %>
 	      <tr class='error'>
