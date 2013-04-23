@@ -6,9 +6,7 @@ class Assignment < ActiveRecord::Base
   has_many :assignment_definitions
   attr_accessible :start_date, :end_date, :name, :description, :course_id, :hidden
 
-  def course
-    Course.find(course_id)
-  end
+  
     
   def has_not_started
       

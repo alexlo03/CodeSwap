@@ -142,9 +142,13 @@ include PairingHelper
 				session['depth'] = nil
 			end
 			#Handle get request
-			@prev_id = session[:previous_id]
-			
-			if @prev_id.nil? or (@prev_id == -1)
+			@prev_id = session[:previous_id].to_i
+			log = Logger.new("testin2.log")
+			log.warn @prev_id
+			log.warn @prev_id.nil? 
+			log.warn @prev_id == -1
+			if ((@prev_id.nil?) or (@prev_id == -1))
+				log.warn "made it"
 				@prev_id = nil
 			end
 			if session['seed'].nil?
