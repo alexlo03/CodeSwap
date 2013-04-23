@@ -25,7 +25,11 @@
 	<% name = "q#{i}" %>
 	<% if question.multiple_choice? %>
     <% @extras_hash[question.id].each_with_index do |extra, j| %>
-      <tr><input type='radio' id="<%= 'choice_'+j.to_s %>" value="<%= extra.extra %>" name="<%= name+'_choice' %>" checked='<%= @answers_hash[question.id] == extra.extra %>' ><%= extra.extra %></tr><br/>
+			<% if @answers_hash[question.id] == extra.extra %>
+      <tr><input type='radio' id="<%= 'choice_'+j.to_s %>" value="<%= extra.extra %>" name="<%= name+'_choice' %>" checked><%= extra.extra %></tr><br/>
+			<% else %>
+			<tr><input type='radio' id="<%= 'choice_'+j.to_s %>" value="<%= extra.extra %>" name="<%= name+'_choice' %>" ><%= extra.extra %></tr><br/>
+			<% end %>
     <% end %>
     </br>
 	<% elsif question.numerical_answer? %>

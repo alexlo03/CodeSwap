@@ -6,11 +6,16 @@
 
 <p>Click a students name to view his or her answers</p>
 
+<% if ReviewMapping.find_all_by_review_assignment_id(@review_assignment.id).count == 0 %>
+	<p>No pairings found for this class! Something happened in creation!</p>
+<% end %>
+
 <table>
 <thead></thead>
 <% @students.each do |student| %>
 	<tr>
-	<% ReviewMapping.find_all_by_user_id_and_review_assignment_id(student.id,@review_assignment.id).each do |mapping|%>
+	<% mappings = ReviewMapping.find_all_by_user_id_and_review_assignment_id(student.id,@review_assignment.id) %>
+	<% mappings.each do |mapping|%>
 		<% other_student = User.find(mapping.other_user_id) %>
 		<td><a href="<%= "/reviewassignment/viewsubmission/#{mapping.id}" %>"><%= "#{student.friendly_full_name} grading #{other_student.friendly_full_name}" %></a></td>
 		
@@ -32,4 +37,8 @@
 <% @teacher_grades.each_with_index do |mapping,i| %>
 <a href=<%= "/reviewassignment/#{@id}/#{i}/answer_form"%>>Review <%= mapping.other_user.friendly_full_name %></a></br>
 <% end %>
+<% end %>
+
+<% unless @review_assignment.start_date < DateTime.now %>
+	<%= link_to 'Reassign', '/reviewassignment/pairings/1', :class => 'btn' %>
 <% end %>

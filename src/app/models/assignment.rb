@@ -1,6 +1,7 @@
 class Assignment < ActiveRecord::Base
     #Find deprecated methods at the bottom of this class!
   # attr_accessible :title, :body
+	extend Deprecated
   belongs_to :course
   has_many :assignment_definitions
   attr_accessible :start_date, :end_date, :name, :description, :course_id, :hidden
@@ -67,6 +68,15 @@ class Assignment < ActiveRecord::Base
 		FileSubmission.where(:user_id => course.user_id, :assignment_id => id)
 	end
   
+	def assignment_pairings
+		ret = []
+			defs = assignment_definitions
+			defs.each do |assignment_definition|
+				ret += AssignmentPairing.find_all_by_assignment_definition_id[assignment_definition.id]
+			end
+		return ret
+	end
+
   def user_can_download_all(current_user_id)
     applicable_users = []
     applicable_users += User.find_all_by_role("admin").collect(&:id)
