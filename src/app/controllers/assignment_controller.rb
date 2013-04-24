@@ -1,3 +1,4 @@
+## Handles Assignments
 class AssignmentController < ApplicationController
 include AssignmentHelper
   ## Gets and displays list of all relevant assignments

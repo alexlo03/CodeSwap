@@ -1,3 +1,4 @@
+## Handles OpenAuth Integration
 class AuthenticationsController < ApplicationController
 
   ## TODO DOCUMENT

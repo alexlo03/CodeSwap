@@ -214,6 +214,8 @@
 
   <div id="description" class="description">
     
+<p>Handles Review Assignments</p>
+
   </div><!-- description -->
 
   
@@ -245,12 +247,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="answer_form-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 195</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 240</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">answer_form</span>
         <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
         <span class="ruby-ivar">@pos</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:pos</span>]
@@ -303,12 +319,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 4</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
                 <span class="ruby-comment"># Handle post request</span>
@@ -381,12 +411,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 56</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span>[<span class="ruby-string">'admin'</span>, <span class="ruby-string">'faculty'</span>]})
   <span class="ruby-identifier">review_assignment</span> = <span class="ruby-constant">ReviewAssignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
@@ -456,14 +500,27 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="grades-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 259</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 329</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">grades</span>
-
         <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
         <span class="ruby-ivar">@mappings</span> = <span class="ruby-constant">ReviewMapping</span>.<span class="ruby-identifier">find_all_by_review_assignment_id</span>(<span class="ruby-identifier">id</span>)
         <span class="ruby-ivar">@questions</span> = <span class="ruby-constant">ReviewQuestion</span>.<span class="ruby-identifier">find_all_by_review_assignment_id</span>(<span class="ruby-identifier">id</span>)
@@ -499,12 +556,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="pairings-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 105</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">pairings</span>
                       <span class="ruby-ivar">@assignment_id</span> = <span class="ruby-identifier">session</span>[<span class="ruby-value">:assignment_id</span>]
                       <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@assignment_id</span>)
@@ -596,12 +667,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="student_submit-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 227</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 281</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">student_submit</span>
         <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">post?</span>
                 <span class="ruby-identifier">answers</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:answers</span>]
@@ -644,12 +729,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="view-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 177</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 213</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view</span>
         <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
         <span class="ruby-ivar">@review_assignment</span> = <span class="ruby-constant">ReviewAssignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@id</span>)
@@ -688,12 +787,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="view_feedback-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 277</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 353</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view_feedback</span>
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>
                 <span class="ruby-identifier">review_assignment_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
@@ -728,12 +841,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="view_submission-source">
-            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 249</span>
+            <pre><span class="ruby-comment"># File app/controllers/review_assignment_controller.rb, line 311</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view_submission</span>
         <span class="ruby-identifier">mapping</span> = <span class="ruby-constant">ReviewMapping</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:mapping_id</span>])
         <span class="ruby-ivar">@student_a</span> = <span class="ruby-identifier">mapping</span>.<span class="ruby-identifier">user</span>

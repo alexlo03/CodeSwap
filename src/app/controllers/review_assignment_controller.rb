@@ -1,3 +1,4 @@
+## Handles Review Assignments
 class ReviewAssignmentController < ApplicationController
 include PairingHelper
 

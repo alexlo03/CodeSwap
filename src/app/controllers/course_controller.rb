@@ -1,4 +1,5 @@
 # TODO: Email Notifications for Administrators
+## Handles Course Views
 class CourseController < ApplicationController
 include CourseHelper
 

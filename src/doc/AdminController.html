@@ -249,12 +249,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="add_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 20</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_user</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">'admin'</span>})
   <span class="ruby-identifier">name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>].<span class="ruby-identifier">chomp</span>.<span class="ruby-identifier">split</span>
@@ -300,12 +314,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="create_faculty-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 14</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_faculty</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">'admin'</span>})
   <span class="ruby-ivar">@faculty</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
@@ -331,12 +359,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="delete_user-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 45</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete_user</span>
               <span class="ruby-comment">#Removes user from the database</span>
               <span class="ruby-comment">#TODO Cascading deletes?</span>
@@ -367,13 +409,26 @@
 
         <div class="method-description">
           
-          <p>requires({‘role’=&gt;‘admin’}) List 5 oldest students, admins, and faculty
-members (teachers)</p>
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 5</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">'admin'</span>})
   
@@ -403,13 +458,26 @@ members (teachers)</p>
 
         <div class="method-description">
           
-          <p>Searches through users for partial matches of first name, last name, role,
-and emails.</p>
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="search_users-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 103</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 199</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_users</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">'admin'</span>})
   <span class="ruby-identifier">email</span> = <span class="ruby-string">'%'</span>
@@ -457,12 +525,26 @@ and emails.</p>
 
         <div class="method-description">
           
-          <p>View all admins</p>
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="view_admin-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 63</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 115</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view_admin</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">'admin'</span>})
   <span class="ruby-ivar">@admins</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_role_and_deleted_at</span>(<span class="ruby-value">:admin</span>, <span class="ruby-keyword">nil</span>)
@@ -488,12 +570,26 @@ and emails.</p>
 
         <div class="method-description">
           
-          <p>View all faculty members</p>
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="view_faculty-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 57</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view_faculty</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">'admin'</span>})
   <span class="ruby-ivar">@faculty</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_role_and_deleted_at</span>(<span class="ruby-value">:faculty</span>, <span class="ruby-keyword">nil</span>)
@@ -519,12 +615,26 @@ and emails.</p>
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="view_recent_activity-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 93</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 180</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view_recent_activity</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">'admin'</span>})
   
@@ -554,12 +664,26 @@ and emails.</p>
 
         <div class="method-description">
           
-          <p>View all students</p>
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="view_students-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 69</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 130</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view_students</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">'admin'</span>})
   <span class="ruby-ivar">@students</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_role_and_deleted_at</span>(<span class="ruby-value">:student</span>, <span class="ruby-keyword">nil</span>)
@@ -585,12 +709,21 @@ and emails.</p>
 
         <div class="method-description">
           
-          <p>View all TAs TODO Delete if safe to remove</p>
+          <pre> TODO DOCUMENT
+ PURPOSE
+[Route(s)]
+ * TODO define routes
+[Params]
+ * TODO define params
+[Environment Variables]
+ * TODO define environment variables</pre>
+
+<p>TODO Delete if safe to remove</p>
           
 
           
           <div class="method-source-code" id="view_tas-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 77</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 147</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view_tas</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-string">'admin'</span>})
   <span class="ruby-ivar">@tas</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_role_and_deleted_at</span>(<span class="ruby-value">:ta</span>, <span class="ruby-keyword">nil</span>)
@@ -616,12 +749,26 @@ and emails.</p>
 
         <div class="method-description">
           
-          <p>view for a specific user</p>
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="view_user_info-source">
-            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 83</span>
+            <pre><span class="ruby-comment"># File app/controllers/admin_controller.rb, line 162</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view_user_info</span>
   <span class="ruby-identifier">requires</span> ({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span>[<span class="ruby-string">'admin'</span>, <span class="ruby-string">'faculty'</span>]})
   <span class="ruby-identifier">u</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])

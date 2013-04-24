@@ -1,3 +1,4 @@
+## Handles High-Level Application issues
 class ApplicationController < ActionController::Base
 include ApplicationHelper
   rescue_from ActionController::RoutingError, :with => :render_404

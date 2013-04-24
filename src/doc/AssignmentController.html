@@ -212,6 +212,8 @@
 
   <div id="description" class="description">
     
+<p>Handles Assignments</p>
+
   </div><!-- description -->
 
   
@@ -265,7 +267,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 81</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_id</span>]
   <span class="ruby-comment">#Validate</span>
@@ -313,7 +315,7 @@
 
           
           <div class="method-source-code" id="download-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 282</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 283</span>
     <span class="ruby-keyword">def</span> <span class="ruby-identifier">download</span>
             <span class="ruby-keyword">unless</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>)
                     <span class="ruby-identifier">file_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:file_id</span>]
@@ -376,7 +378,7 @@
 
           
           <div class="method-source-code" id="downloadAll-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 314</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 315</span>
       <span class="ruby-keyword">def</span> <span class="ruby-identifier">downloadAll</span>
         <span class="ruby-identifier">assignment_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>]
   <span class="ruby-identifier">assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignment_id</span>)
@@ -454,7 +456,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 99</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-identifier">assignment_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>]
   <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">assignment_id</span>)
@@ -540,7 +542,7 @@
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 28</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
               <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span>[<span class="ruby-string">'admin'</span>, <span class="ruby-string">'faculty'</span>,<span class="ruby-string">'student'</span>]}) <span class="ruby-comment"># Validation of login and roles</span>
   <span class="ruby-keyword">unless</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>)
@@ -635,7 +637,7 @@ date</p>
 
           
           <div class="method-source-code" id="submit_new-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 122</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">submit_new</span>
   <span class="ruby-keyword">unless</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>)
     <span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_id</span>].<span class="ruby-identifier">to_i</span>
@@ -732,7 +734,7 @@ date</p>
 
           
           <div class="method-source-code" id="submitchanges-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 182</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 183</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">submitchanges</span>
   <span class="ruby-identifier">assignment_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>].<span class="ruby-identifier">to_i</span>
   <span class="ruby-identifier">assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignment_id</span>)
@@ -837,7 +839,7 @@ them</p>
 
           
           <div class="method-source-code" id="view-source">
-            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 241</span>
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 242</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view</span>
   
   <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>]

@@ -212,6 +212,8 @@
     
 <p>TODO: Email Notifications for Administrators</p>
 
+<pre>Handles Course Views</pre>
+
   </div><!-- description -->
 
   
@@ -243,12 +245,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="add_student-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 138</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 176</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_student</span>
   <span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_id</span>]
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>],<span class="ruby-string">'course_id'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">course_id</span>})
@@ -299,14 +315,27 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 114</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>]})
   <span class="ruby-identifier">course_name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_name</span>]
   <span class="ruby-identifier">course_term</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_term</span>]
@@ -349,12 +378,26 @@
 
         <div class="method-description">
           
-          <p>GET</p>
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 61</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-comment">#Validate</span>
   <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
@@ -391,12 +434,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="manage_groups-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 169</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 214</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">manage_groups</span>
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">get?</span>
@@ -452,12 +509,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 106</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 129</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>]})
   <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>]
@@ -540,7 +611,7 @@
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 31</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
   <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:c_id</span>]
               <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">'log/course.log'</span>)
@@ -589,12 +660,26 @@
 
         <div class="method-description">
           
-          <p>POST</p>
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="submit_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 78</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">submit_edit</span>
   <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_id</span>]
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>],<span class="ruby-string">'course_id'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">id</span>})

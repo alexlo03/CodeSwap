@@ -192,6 +192,8 @@
 
   <div id="description" class="description">
     
+<p>Handles File Submission objects</p>
+
   </div><!-- description -->
 
   
@@ -223,12 +225,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/file_submissions_controller.rb, line 15</span>
+            <pre><span class="ruby-comment"># File app/controllers/file_submissions_controller.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">parameters</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:file_submission</span>]
   <span class="ruby-identifier">assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">parameters</span>[<span class="ruby-string">'assignment_id'</span>])
@@ -293,12 +309,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="delete-source">
-            <pre><span class="ruby-comment"># File app/controllers/file_submissions_controller.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/controllers/file_submissions_controller.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">delete</span>
 
   <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:file_id</span>]
@@ -341,12 +371,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/file_submissions_controller.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/controllers/file_submissions_controller.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-identifier">assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>])
   
@@ -373,12 +417,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="view_live-source">
-            <pre><span class="ruby-comment"># File app/controllers/file_submissions_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/file_submissions_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">view_live</span>
   <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:file_id</span>]
   <span class="ruby-identifier">submission</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-constant">FileSubmission</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>).<span class="ruby-identifier">full_save_path</span>)

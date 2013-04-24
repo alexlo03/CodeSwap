@@ -190,6 +190,8 @@
 
   <div id="description" class="description">
     
+<p>Handles OpenAuth Integration</p>
+
   </div><!-- description -->
 
   
@@ -221,12 +223,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
   <span class="ruby-identifier">omniauth</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-string">&quot;omniauth.auth&quot;</span>]
   <span class="ruby-identifier">authentication</span> = <span class="ruby-constant">Authentication</span>.<span class="ruby-identifier">find_by_provider_and_uid</span>(<span class="ruby-identifier">omniauth</span>[<span class="ruby-string">'provider'</span>], <span class="ruby-identifier">omniauth</span>[<span class="ruby-string">'uid'</span>])
@@ -265,12 +281,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@authentication</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentications</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@authentication</span>.<span class="ruby-identifier">destroy</span>
@@ -298,12 +328,26 @@
 
         <div class="method-description">
           
-          
+          <pre>TODO DOCUMENT
+PURPOSE</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>TODO define routes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>TODO define params</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>TODO define environment variables</p>
+</li></ul>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 2</span>
+            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
   <span class="ruby-ivar">@authentications</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentications</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
 <span class="ruby-keyword">end</span></pre>
