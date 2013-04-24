@@ -87,9 +87,9 @@ class FileSubmissionsController < ApplicationController
   # [Route(s)]
   ## * TODO define routes
   # [Params]
-  ## * TODO define params
+  ## * file_id
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * None
   def delete
   
     id = params[:file_id]

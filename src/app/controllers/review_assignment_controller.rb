@@ -2,13 +2,11 @@
 class ReviewAssignmentController < ApplicationController
 include PairingHelper
 
-
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Used to create assignments
   # [Route(s)]
-  ## * TODO define routes
+  ## * /reviewassignments/create/:assignment_id
   # [Params]
-  ## * TODO define params
+  ## *
   # [Environment Variables]
   ## * TODO define environment variables
   def create
