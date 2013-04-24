@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class AssignmentController - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/assignment_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="AssignmentHelper.html">AssignmentHelper</a>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-download">#download</a>
+    
+    <li><a href="#method-i-downloadAll">#downloadAll</a>
+    
+    <li><a href="#method-i-edit">#edit</a>
+    
+    <li><a href="#method-i-index">#index</a>
+    
+    <li><a href="#method-i-submit_new">#submit_new</a>
+    
+    <li><a href="#method-i-submitchanges">#submitchanges</a>
+    
+    <li><a href="#method-i-view">#view</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./app/views/assignment/example_txt.html">example</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Assignment.html">Assignment</a>
+  
+    <li><a href="./AssignmentController.html">AssignmentController</a>
+  
+    <li><a href="./AssignmentDefinition.html">AssignmentDefinition</a>
+  
+    <li><a href="./AssignmentDefinitionToUser.html">AssignmentDefinitionToUser</a>
+  
+    <li><a href="./AssignmentHelper.html">AssignmentHelper</a>
+  
+    <li><a href="./AssignmentPairing.html">AssignmentPairing</a>
+  
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
+  
+    <li><a href="./AuthenticationsHelper.html">AuthenticationsHelper</a>
+  
+    <li><a href="./Course.html">Course</a>
+  
+    <li><a href="./CourseController.html">CourseController</a>
+  
+    <li><a href="./CourseGroup.html">CourseGroup</a>
+  
+    <li><a href="./CourseHelper.html">CourseHelper</a>
+  
+    <li><a href="./Deprecated.html">Deprecated</a>
+  
+    <li><a href="./Emailer.html">Emailer</a>
+  
+    <li><a href="./ErrorsController.html">ErrorsController</a>
+  
+    <li><a href="./FacultyController.html">FacultyController</a>
+  
+    <li><a href="./FacultyHelper.html">FacultyHelper</a>
+  
+    <li><a href="./FileSubmission.html">FileSubmission</a>
+  
+    <li><a href="./FileSubmissionUploader.html">FileSubmissionUploader</a>
+  
+    <li><a href="./FileSubmissionsController.html">FileSubmissionsController</a>
+  
+    <li><a href="./FileSubmissionsHelper.html">FileSubmissionsHelper</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./PairingHelper.html">PairingHelper</a>
+  
+    <li><a href="./QuestionExtra.html">QuestionExtra</a>
+  
+    <li><a href="./RegistrationsController.html">RegistrationsController</a>
+  
+    <li><a href="./ReviewAnswer.html">ReviewAnswer</a>
+  
+    <li><a href="./ReviewAssignment.html">ReviewAssignment</a>
+  
+    <li><a href="./ReviewAssignmentController.html">ReviewAssignmentController</a>
+  
+    <li><a href="./ReviewAssignmentHelper.html">ReviewAssignmentHelper</a>
+  
+    <li><a href="./ReviewMapping.html">ReviewMapping</a>
+  
+    <li><a href="./ReviewQuestion.html">ReviewQuestion</a>
+  
+    <li><a href="./StudentInCourse.html">StudentInCourse</a>
+  
+    <li><a href="./TaForCourse.html">TaForCourse</a>
+  
+    <li><a href="./User.html">User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class AssignmentController</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Used to create an assignment for the course with matching id
+(GET)</pre>
+<dl class="rdoc-list label-list"><dt>Route
+<dd>
+<p>/assignment/create/:course_id</p>
+</dd><dt>Purpose
+<dd><ul><li>
+<p>Populates a view containing the assignment creation form.</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>course_id - Used to access the course to link it to the assignment</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>course - <a href="Course.html">Course</a> that matches the given course_id</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_id</span>]
+  <span class="ruby-comment">#Validate</span>
+  <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span>[<span class="ruby-string">'admin'</span>, <span class="ruby-string">'faculty'</span>], <span class="ruby-string">'course_id'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">course_id</span>})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+    <span class="ruby-ivar">@course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">course_id</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-download" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">download</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Pushes the selected file to the user</pre>
+<dl class="rdoc-list label-list"><dt>Route
+<dd><ul><li>
+<p>assignment/download/:file_id</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>file_id - the id for the file submission</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>none</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="download-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 282</span>
+    <span class="ruby-keyword">def</span> <span class="ruby-identifier">download</span>
+            <span class="ruby-keyword">unless</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>)
+                    <span class="ruby-identifier">file_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:file_id</span>]
+                    <span class="ruby-identifier">file</span> = <span class="ruby-constant">FileSubmission</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">file_id</span>)
+
+                    <span class="ruby-keyword">if</span>(<span class="ruby-identifier">file</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> (<span class="ruby-keyword">not</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">user_can_download</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)))
+          <span class="ruby-identifier">name</span> = <span class="ruby-string">&quot;Somebody&quot;</span>
+          <span class="ruby-identifier">name</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">friendly_full_name</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+          <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&quot;log/download.log&quot;</span>
+          <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;#{name} attempted to download a file with id:  #{file_id}&quot;</span>
+          <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:root</span>
+          <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = <span class="ruby-string">&quot;Either the file you have requested does not exist, or you do not have permission to access file.  Please use the 'Contact Us' form if you believe this is an error.&quot;</span>
+          
+                    <span class="ruby-keyword">else</span>
+                      <span class="ruby-identifier">send_file</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">file</span>.<span class="ruby-identifier">save_directory</span>, <span class="ruby-identifier">file</span>.<span class="ruby-identifier">name</span>)
+                    <span class="ruby-keyword">end</span>
+            <span class="ruby-keyword">else</span>
+ 
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-string">&quot;/users/sign_in&quot;</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = <span class="ruby-string">&quot;Please Sign-in&quot;</span>
+<span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">end</span></pre>
+          </div><!-- download-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- download-method -->
+
+    
+      <div id="method-i-downloadAll" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">downloadAll</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Pushes all the files for the selected assignment to the user in a .zip</pre>
+<dl class="rdoc-list label-list"><dt>Route
+<dd><ul><li>
+<p>assignment/download_all/:assignment_id</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>assignment_id - the id for the assignment</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>none</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="downloadAll-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 314</span>
+      <span class="ruby-keyword">def</span> <span class="ruby-identifier">downloadAll</span>
+        <span class="ruby-identifier">assignment_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>]
+  <span class="ruby-identifier">assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-keyword">unless</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> (<span class="ruby-keyword">not</span> <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">user_can_download_all</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)))
+
+          <span class="ruby-identifier">require</span> <span class="ruby-string">'zip/zip'</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-string">'zip/zipfilesystem'</span>
+
+                <span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">course_id</span>
+                <span class="ruby-identifier">faculty</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+                <span class="ruby-identifier">dir</span> = <span class="ruby-string">'Uploads/Assignments/Course ID'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">course_id</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/Assignment ID'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">to_s</span>
+                <span class="ruby-identifier">archive</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">dir</span>,<span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-identifier">dir</span>))<span class="ruby-operator">+</span><span class="ruby-string">'.zip'</span>
+      <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">rm</span> <span class="ruby-identifier">archive</span>, <span class="ruby-value">:force=</span><span class="ruby-operator">&gt;</span><span class="ruby-keyword">true</span>
+
+                <span class="ruby-identifier">facultySubmissions</span> = <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">getFacultyFileSubmissions</span>
+                <span class="ruby-identifier">facultySubmissions</span>.<span class="ruby-identifier">collect!</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">full_save_path</span>}
+
+      <span class="ruby-constant">Zip</span><span class="ruby-operator">::</span><span class="ruby-constant">ZipFile</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">archive</span>, <span class="ruby-string">'w'</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">zipfile</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">Dir</span>[<span class="ruby-node">&quot;#{dir}/**/**&quot;</span>].<span class="ruby-identifier">reject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">==</span><span class="ruby-identifier">archive</span>}.<span class="ruby-identifier">reject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">facultySubmissions</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">f</span>}.<span class="ruby-identifier">reject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span> <span class="ruby-operator">==</span> <span class="ruby-node">&quot;#{dir}/#{faculty.username}&quot;</span>}.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">zipfile</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">file</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-identifier">dir</span><span class="ruby-operator">+</span><span class="ruby-string">'/'</span>,<span class="ruby-string">''</span>),<span class="ruby-identifier">file</span>)
+              <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+              
+                <span class="ruby-identifier">send_file</span> <span class="ruby-identifier">archive</span>
+
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-string">&quot;Somebody&quot;</span>
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">friendly_full_name</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+    <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span> <span class="ruby-string">&quot;log/download.log&quot;</span>
+    <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;#{name} attempted to download all files from an assignment with id:  #{assignment_id}&quot;</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-value">:root</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = <span class="ruby-string">&quot;Either the files you have requested does not exist, or you do not have permission to access  file.  Please use the 'Contact Us' form if you believe this is an error.&quot;</span>
+        <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- downloadAll-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- downloadAll-method -->
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Used to populate a view containing an edit form for the assignment. (GET)</pre>
+<dl class="rdoc-list label-list"><dt>Route
+<dd><ul><li>
+<p>/assignment/edit/:assignment_id</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>assignment_id - Used to find the assignment with this assignment_id</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>assignment - current assignment matching :assignment_id</p>
+</li><li>
+<p>course - course the assignment belongs to</p>
+</li><li>
+<p>assignmentDefinition - assignmentDefinition object matching the assignment</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-identifier">assignment_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>]
+  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-ivar">@course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_by_id</span>(<span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">course_id</span>)
+  <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span>[<span class="ruby-string">'admin'</span>, <span class="ruby-string">'faculty'</span>], <span class="ruby-string">'course_id'</span> =<span class="ruby-operator">&gt;</span><span class="ruby-ivar">@course</span>.<span class="ruby-identifier">id</span>})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+    <span class="ruby-ivar">@assignmentDefinition</span> = <span class="ruby-constant">AssignmentDefinition</span>.<span class="ruby-identifier">find_by_assignment_id</span>(<span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- edit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- edit-method -->
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Gets and displays list of all relevant assignments</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>/assignments</p>
+</li><li>
+<p>/assignment/index</p>
+</li><li>
+<p>/faculty/index</p>
+</li></ul>
+</dd><dt>Params
+<dd>
+<p>None</p>
+</dd><dt>Environment Variables
+<dd><dl class="rdoc-list label-list"><dt>studentAssignments
+<dd><ul><li>
+<p>Assignments for the courses in which the current user is a student</p>
+</li></ul>
+</dd><dt>taAssignments
+<dd><ul><li>
+<p>Assignments for the courses in which the current user is a ta</p>
+</li></ul>
+</dd><dt>facultyAssignments
+<dd><ul><li>
+<p>Assignments for the courses in which the current user is the faculty</p>
+</li></ul>
+</dd><dt>studentReviewAssignments
+<dd><ul><li>
+<p>ReviewAssignments for the courses in which the current user is a student</p>
+</li></ul>
+</dd><dt>taReviewAssignments
+<dd><ul><li>
+<p>ReviewAssignments for the courses in which the current user is a ta</p>
+</li></ul>
+</dd><dt>facultyReviewAssignments
+<dd>
+<p>*ReviewAssignments for the courses in which the current user is faculty</p>
+</dd><dt>allAssignments
+<dd><ul><li>
+<p>All assignments in the database</p>
+</li><li>
+<p>Populated only if current user is an admin</p>
+</li></ul>
+</dd><dt>allReviewAssignments
+<dd><ul><li>
+<p>All review assignments in the database</p>
+</li><li>
+<p>Populated only if current user is an admin</p>
+</li></ul>
+</dd></dl>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+              <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span>[<span class="ruby-string">'admin'</span>, <span class="ruby-string">'faculty'</span>,<span class="ruby-string">'student'</span>]}) <span class="ruby-comment"># Validation of login and roles</span>
+  <span class="ruby-keyword">unless</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>)
+          <span class="ruby-identifier">studentAssignments</span> = []
+          <span class="ruby-identifier">studentReviewAssignments</span> = []
+          
+    <span class="ruby-identifier">taAssignments</span> = []
+    <span class="ruby-identifier">taReviewAssignments</span> = []
+    
+          <span class="ruby-identifier">facultyAssignments</span> = []
+                <span class="ruby-identifier">facultyReviewAssignments</span> = []
+                
+    <span class="ruby-identifier">allAssignments</span> = []
+    <span class="ruby-identifier">allReviewAssignments</span> = []
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">student?</span>
+      <span class="ruby-identifier">studentCourses</span> = <span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">find_all_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:course_id</span>)
+      <span class="ruby-identifier">studentAssignments</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find_all_by_course_id</span>(<span class="ruby-identifier">studentCourses</span>)
+                        <span class="ruby-identifier">studentReviewAssignments</span> = <span class="ruby-constant">ReviewAssignment</span>.<span class="ruby-identifier">find_all_by_course_id</span>(<span class="ruby-identifier">studentCourses</span>)
+                        
+      <span class="ruby-identifier">taCourseIds</span> = <span class="ruby-constant">TaForCourse</span>.<span class="ruby-identifier">find_all_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:course_id</span>)
+      <span class="ruby-identifier">taAssignments</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find_all_by_course_id</span>(<span class="ruby-identifier">taCourseIds</span>)
+      <span class="ruby-identifier">taReviewAssignments</span> = <span class="ruby-constant">ReviewAssignment</span>.<span class="ruby-identifier">find_all_by_course_id</span>(<span class="ruby-identifier">taCourseIds</span>)
+          <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">faculty?</span>
+      <span class="ruby-identifier">facultyCourses</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_all_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:id</span>)
+      <span class="ruby-identifier">facultyAssignments</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find_all_by_course_id</span>(<span class="ruby-identifier">facultyCourses</span>)
+                        <span class="ruby-identifier">facultyReviewAssignments</span> = <span class="ruby-constant">ReviewAssignment</span>.<span class="ruby-identifier">find_all_by_course_id</span>(<span class="ruby-identifier">facultyCourses</span>)
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">admin?</span>
+      <span class="ruby-identifier">allAssignments</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">all</span>
+      <span class="ruby-identifier">allReviewAssignments</span> = <span class="ruby-constant">ReviewAssignment</span>.<span class="ruby-identifier">all</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@studentAssignments</span> = <span class="ruby-identifier">studentAssignments</span>
+    <span class="ruby-ivar">@studentReviewAssignments</span> = <span class="ruby-identifier">studentReviewAssignments</span>
+    
+    <span class="ruby-ivar">@facultyAssignments</span> = <span class="ruby-identifier">facultyAssignments</span>
+                <span class="ruby-ivar">@facultyReviewAssignments</span> = <span class="ruby-identifier">facultyReviewAssignments</span>
+                
+                <span class="ruby-ivar">@taAssignments</span> = <span class="ruby-identifier">taAssignments</span>
+                <span class="ruby-ivar">@taReviewAssignments</span> = <span class="ruby-identifier">taReviewAssignments</span>
+                
+                <span class="ruby-ivar">@allAssignments</span> = <span class="ruby-identifier">allAssignments</span>
+                <span class="ruby-ivar">@allReviewAssignments</span> = <span class="ruby-identifier">allReviewAssignments</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- index-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- index-method -->
+
+    
+      <div id="method-i-submit_new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">submit_new</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Used to create a new assignment for a course
+(POST)</pre>
+<dl class="rdoc-list label-list"><dt>Route
+<dd><ul><li>
+<p>/assignment/submit_new</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>course_id - Used to find course</p>
+</li><li>
+<p>startDate - start date of the assignment</p>
+</li><li>
+<p>startTime - start time of the assignment</p>
+</li><li>
+<p>endDate - end date of the assignment</p>
+</li><li>
+<p>endTime - end time of the assignment</p>
+</li><li>
+<p>name - name of the assignment</p>
+</li><li>
+<p>description - short paragraph describing the assignment</p>
+</li><li>
+<p>hidden - tells whether the assignment is hidden from students before start
+date</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="submit_new-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">submit_new</span>
+  <span class="ruby-keyword">unless</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_id</span>].<span class="ruby-identifier">to_i</span>
+    <span class="ruby-comment">#Validate</span>
+    <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span>[<span class="ruby-string">'admin'</span>, <span class="ruby-string">'faculty'</span>],<span class="ruby-string">'course_id'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">course_id</span>})
+                <span class="ruby-comment">#Get values from the parameters</span>
+    <span class="ruby-identifier">startDate</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:startDate</span>]
+    <span class="ruby-identifier">endDate</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:endDate</span>]
+    <span class="ruby-identifier">startTime</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:startTime</span>]
+    <span class="ruby-identifier">endTime</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:endTime</span>]
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>]
+    <span class="ruby-identifier">description</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
+    <span class="ruby-identifier">hidden</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:hidden</span>]
+                      <span class="ruby-identifier">hidden</span> = (<span class="ruby-identifier">hidden</span> <span class="ruby-operator">==</span> <span class="ruby-string">'true'</span>)
+    
+
+                <span class="ruby-comment">#Convert strings to Date objects using format MM/DD/YYYY</span>
+                      <span class="ruby-identifier">zone</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">zone</span>
+    <span class="ruby-identifier">startDate</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">strptime</span>(<span class="ruby-node">&quot;#{startDate} #{startTime} #{zone}&quot;</span>, <span class="ruby-string">'%m-%d-%Y %H:%M %p %Z'</span>)
+    <span class="ruby-identifier">endDate</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">strptime</span>(<span class="ruby-node">&quot;#{endDate} #{endTime} #{zone}&quot;</span>, <span class="ruby-string">'%m-%d-%Y %H:%M %p %Z'</span>)
+
+                <span class="ruby-comment">#Create a new assignment with startDate, endDate, name, and courseID</span>
+    <span class="ruby-identifier">assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">start_date</span> = <span class="ruby-identifier">startDate</span>
+      <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">end_date</span> = <span class="ruby-identifier">endDate</span>
+      <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>
+      <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">course_id</span>
+      <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">hidden</span> = <span class="ruby-identifier">hidden</span>
+    <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">save</span>
+              
+                <span class="ruby-comment">#Create a new Assignment_Definition with the description given</span>
+                <span class="ruby-comment">#TODO: Allow multiple definitions per assignment</span>
+    <span class="ruby-identifier">definition</span> = <span class="ruby-constant">AssignmentDefinition</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">definition</span>.<span class="ruby-identifier">assignment_id</span> = <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">id</span>
+      <span class="ruby-identifier">definition</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">description</span>
+    <span class="ruby-identifier">definition</span>.<span class="ruby-identifier">save</span>
+    
+                <span class="ruby-comment">#Create mappings of students to assignment_definition</span>
+    <span class="ruby-identifier">students</span> = <span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_id</span>)
+    <span class="ruby-identifier">students</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">student</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">AssignmentDefinitionToUser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:assignment_definition_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">definition</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">student</span>.<span class="ruby-identifier">user_id</span>).<span class="ruby-identifier">save</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'What a neat assignment.'</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- submit_new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- submit_new-method -->
+
+    
+      <div id="method-i-submitchanges" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">submitchanges</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Edits an existing assignment (POST)</pre>
+<dl class="rdoc-list label-list"><dt>Route
+<dd><ul><li>
+<p>/assignment/submit_changes</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>course_id - Used to find course</p>
+</li><li>
+<p>startDate - start date of the assignment</p>
+</li><li>
+<p>startTime - start time of the assignment</p>
+</li><li>
+<p>endDate - end date of the assignment</p>
+</li><li>
+<p>endTime - end time of the assignment</p>
+</li><li>
+<p>name - name of the assignment</p>
+</li><li>
+<p>description - short paragraph describing the assignment</p>
+</li><li>
+<p>hidden - tells whether the assignment is hidden from students before start
+date</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="submitchanges-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 182</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">submitchanges</span>
+  <span class="ruby-identifier">assignment_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>].<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-identifier">course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">course_id</span>)
+  <span class="ruby-comment">#Validate</span>
+  <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span>[<span class="ruby-string">'admin'</span>, <span class="ruby-string">'faculty'</span>],<span class="ruby-string">'course_id'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">course</span>.<span class="ruby-identifier">id</span>})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+                <span class="ruby-comment">#Get values from the parameters</span>
+    <span class="ruby-identifier">startDate</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:startDate</span>]
+    <span class="ruby-identifier">endDate</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:endDate</span>]
+    <span class="ruby-identifier">name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>]
+    <span class="ruby-identifier">description</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:description</span>]
+    <span class="ruby-identifier">hidden</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:hidden</span>]
+    <span class="ruby-identifier">startTime</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:startTime</span>]
+    <span class="ruby-identifier">endTime</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:endTime</span>]                        
+                      <span class="ruby-identifier">hidden</span> = (<span class="ruby-identifier">hidden</span> <span class="ruby-operator">==</span> <span class="ruby-string">'true'</span>)
+
+                <span class="ruby-comment">#Convert strings to Date objects using format MM/DD/YYYY</span>
+                      <span class="ruby-identifier">zone</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">zone</span>
+    <span class="ruby-identifier">startDate</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">strptime</span>(<span class="ruby-node">&quot;#{startDate} #{startTime} #{zone}&quot;</span>, <span class="ruby-string">'%m-%d-%Y %H:%M %p %Z'</span>)
+    <span class="ruby-identifier">endDate</span> = <span class="ruby-constant">DateTime</span>.<span class="ruby-identifier">strptime</span>(<span class="ruby-node">&quot;#{endDate} #{endTime} #{zone}&quot;</span>, <span class="ruby-string">'%m-%d-%Y %H:%M %p %Z'</span>)
+
+                <span class="ruby-comment">#Create a new assignment with startDate, endDate, name, and courseID</span>
+    
+      <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">start_date</span> = <span class="ruby-identifier">startDate</span>
+      <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">end_date</span> = <span class="ruby-identifier">endDate</span>
+      <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>
+      <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">hidden</span> = <span class="ruby-identifier">hidden</span>
+    <span class="ruby-identifier">assignment</span>.<span class="ruby-identifier">save</span>
+              
+                <span class="ruby-comment">#Create a new Assignment_Definition with the description given</span>
+                <span class="ruby-comment">#TODO: Allow multiple definitions per assignment</span>
+    <span class="ruby-identifier">definition</span> = <span class="ruby-constant">AssignmentDefinition</span>.<span class="ruby-identifier">find_by_assignment_id</span>(<span class="ruby-identifier">assignment_id</span>)
+      <span class="ruby-identifier">definition</span>.<span class="ruby-identifier">description</span> = <span class="ruby-identifier">description</span>
+    <span class="ruby-identifier">definition</span>.<span class="ruby-identifier">save</span>
+    
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Those changes are GRRRREAT!  Like Frosted Flakes.'</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- submitchanges-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- submitchanges-method -->
+
+    
+      <div id="method-i-view" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">view</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>View assignment information</pre>
+<dl class="rdoc-list label-list"><dt>Route
+<dd><ul><li>
+<p>/assignment/view/:id</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>id</p>
+</li></ul>
+</dd><dt>Environment variables
+<dd><ul><li>
+<p>assignment - current assignment</p>
+</li><li>
+<p>assignmentDefinition - definition of assignment</p>
+</li><li>
+<p>assignmentFiles - List of files submitted by faculty member for this
+assignment</p>
+</li><li>
+<p>courseStudents - List of all students in the assignment’s course</p>
+</li><li>
+<p>Empty if current user is a student</p>
+</li><li>
+<p>faculty - returns whether current user is the faculty member</p>
+</li><li>
+<p>ta - returns whether the current user is a ta for the assignment’s course</p>
+</li><li>
+<p>student - returns whether the current user is a student for this course</p>
+</li><li>
+<p>unsubmitted_students - List of students that have no submission linked to
+them</p>
+</li><li>
+<p>files - List of files visible to current user</p>
+</li><li>
+<p>If Student: Only their files are in this list</p>
+</li><li>
+<p>If Otherwise: All student submissions are in this list</p>
+</li><li>
+<p>id - ID of the current assignment</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="view-source">
+            <pre><span class="ruby-comment"># File app/controllers/assignment_controller.rb, line 241</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">view</span>
+  
+  <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:assignment_id</span>]
+  <span class="ruby-ivar">@assignment</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-ivar">@assignmentDefinition</span> = <span class="ruby-constant">AssignmentDefinition</span>.<span class="ruby-identifier">find_by_assignment_id</span>(<span class="ruby-identifier">id</span>)
+  
+  <span class="ruby-identifier">course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@assignment</span>.<span class="ruby-identifier">course_id</span>)
+  <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span>=<span class="ruby-operator">&gt;</span>[<span class="ruby-string">'admin'</span>, <span class="ruby-string">'faculty'</span>,<span class="ruby-string">'student'</span>], <span class="ruby-string">'course_id'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">course</span>.<span class="ruby-identifier">id</span>})
+  <span class="ruby-keyword">if</span>(<span class="ruby-identifier">current_user</span>)
+  
+    <span class="ruby-ivar">@assignmentFiles</span> = <span class="ruby-constant">FileSubmission</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:assignment_definition_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@assignmentDefinition</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">user_id</span>)
+    <span class="ruby-identifier">courseStudentIds</span> = <span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">find_all_by_course_id</span>(<span class="ruby-identifier">course</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:user_id</span>)
+  
+    <span class="ruby-ivar">@faculty</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">user_id</span>
+    <span class="ruby-ivar">@ta</span> = <span class="ruby-operator">!</span><span class="ruby-constant">TaForCourse</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@student</span> = <span class="ruby-operator">!</span><span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span>
+      
+    <span class="ruby-ivar">@unsubmitted_students</span> = []
+    <span class="ruby-ivar">@courseStudents</span> = []
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@faculty</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@ta</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">admin?</span>
+      <span class="ruby-ivar">@files</span> = <span class="ruby-constant">FileSubmission</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:assignment_definition_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@assignmentDefinition</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">courseStudentIds</span>)
+      <span class="ruby-ivar">@unsubmitted_students</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">courseStudentIds</span>.<span class="ruby-identifier">drop_while</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-identifier">s</span>.<span class="ruby-identifier">in?</span> <span class="ruby-ivar">@files</span>.<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:user_id</span>)})
+      <span class="ruby-ivar">@courseStudents</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">courseStudentIds</span>)
+      <span class="ruby-ivar">@courseStudents</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-constant">User</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">course</span>.<span class="ruby-identifier">user_id</span>))
+    <span class="ruby-keyword">elsif</span> <span class="ruby-ivar">@student</span>
+      <span class="ruby-ivar">@files</span> = <span class="ruby-constant">FileSubmission</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:assignment_definition_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@assignmentDefinition</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">end</span>
+    
+    
+    <span class="ruby-ivar">@has_review_assignment</span> = <span class="ruby-constant">ReviewAssignment</span>.<span class="ruby-identifier">find_all_by_assignment_id</span>(<span class="ruby-identifier">id</span>).<span class="ruby-identifier">any?</span>
+   <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- view-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- view-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

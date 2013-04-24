@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class User - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/models/user.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link">ActiveRecord::Base
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-c-search">::search</a>
+    
+    <li><a href="#method-i-active_for_authentication-3F">#active_for_authentication?</a>
+    
+    <li><a href="#method-i-admin-3F">#admin?</a>
+    
+    <li><a href="#method-i-destroy">#destroy</a>
+    
+    <li><a href="#method-i-faculty-3F">#faculty?</a>
+    
+    <li><a href="#method-i-friendly_full_name">#friendly_full_name</a>
+    
+    <li><a href="#method-i-full_name">#full_name</a>
+    
+    <li><a href="#method-i-professor_of">#professor_of</a>
+    
+    <li><a href="#method-i-student-3F">#student?</a>
+    
+    <li><a href="#method-i-student_in">#student_in</a>
+    
+    <li><a href="#method-i-ta-3F">#ta?</a>
+    
+    <li><a href="#method-i-ta_in">#ta_in</a>
+    
+    <li><a href="#method-i-username">#username</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./app/views/assignment/example_txt.html">example</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Assignment.html">Assignment</a>
+  
+    <li><a href="./AssignmentController.html">AssignmentController</a>
+  
+    <li><a href="./AssignmentDefinition.html">AssignmentDefinition</a>
+  
+    <li><a href="./AssignmentDefinitionToUser.html">AssignmentDefinitionToUser</a>
+  
+    <li><a href="./AssignmentHelper.html">AssignmentHelper</a>
+  
+    <li><a href="./AssignmentPairing.html">AssignmentPairing</a>
+  
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
+  
+    <li><a href="./AuthenticationsHelper.html">AuthenticationsHelper</a>
+  
+    <li><a href="./Course.html">Course</a>
+  
+    <li><a href="./CourseController.html">CourseController</a>
+  
+    <li><a href="./CourseGroup.html">CourseGroup</a>
+  
+    <li><a href="./CourseHelper.html">CourseHelper</a>
+  
+    <li><a href="./Deprecated.html">Deprecated</a>
+  
+    <li><a href="./Emailer.html">Emailer</a>
+  
+    <li><a href="./ErrorsController.html">ErrorsController</a>
+  
+    <li><a href="./FacultyController.html">FacultyController</a>
+  
+    <li><a href="./FacultyHelper.html">FacultyHelper</a>
+  
+    <li><a href="./FileSubmission.html">FileSubmission</a>
+  
+    <li><a href="./FileSubmissionUploader.html">FileSubmissionUploader</a>
+  
+    <li><a href="./FileSubmissionsController.html">FileSubmissionsController</a>
+  
+    <li><a href="./FileSubmissionsHelper.html">FileSubmissionsHelper</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./PairingHelper.html">PairingHelper</a>
+  
+    <li><a href="./QuestionExtra.html">QuestionExtra</a>
+  
+    <li><a href="./RegistrationsController.html">RegistrationsController</a>
+  
+    <li><a href="./ReviewAnswer.html">ReviewAnswer</a>
+  
+    <li><a href="./ReviewAssignment.html">ReviewAssignment</a>
+  
+    <li><a href="./ReviewAssignmentController.html">ReviewAssignmentController</a>
+  
+    <li><a href="./ReviewAssignmentHelper.html">ReviewAssignmentHelper</a>
+  
+    <li><a href="./ReviewMapping.html">ReviewMapping</a>
+  
+    <li><a href="./ReviewQuestion.html">ReviewQuestion</a>
+  
+    <li><a href="./StudentInCourse.html">StudentInCourse</a>
+  
+    <li><a href="./TaForCourse.html">TaForCourse</a>
+  
+    <li><a href="./User.html">User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class User</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="ROLES">ROLES
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-search" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">search</span><span
+            class="method-args">(search)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="search-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 74</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">search</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">search</span>
+    <span class="ruby-identifier">where</span>(<span class="ruby-string">'email LIKE ?'</span>, <span class="ruby-node">&quot;%#{search}%&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">scoped</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- search-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- search-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-active_for_authentication-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">active_for_authentication?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="active_for_authentication-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 26</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">active_for_authentication?</span>
+  <span class="ruby-keyword">super</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">deleted_at</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- active_for_authentication-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- active_for_authentication-3F-method -->
+
+    
+      <div id="method-i-admin-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">admin?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="admin-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">admin?</span>
+  <span class="ruby-identifier">role</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-string">&quot;admin&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- admin-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- admin-3F-method -->
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  <span class="ruby-keyword">if</span>(<span class="ruby-identifier">deleted_at</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>)
+    <span class="ruby-identifier">update_attribute</span>(<span class="ruby-value">:deleted_at</span>, <span class="ruby-constant">Time</span>.<span class="ruby-identifier">current</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">super</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- destroy-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- destroy-method -->
+
+    
+      <div id="method-i-faculty-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">faculty?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="faculty-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">faculty?</span>
+  <span class="ruby-identifier">role</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-string">&quot;faculty&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- faculty-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- faculty-3F-method -->
+
+    
+      <div id="method-i-friendly_full_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">friendly_full_name</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="friendly_full_name-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">friendly_full_name</span>
+              <span class="ruby-identifier">ret</span> = <span class="ruby-string">&quot;NO FIRST OR LAST NAME&quot;</span>
+              <span class="ruby-keyword">unless</span> <span class="ruby-identifier">first_name</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">last_name</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">ret</span> = <span class="ruby-identifier">first_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">last_name</span>
+              <span class="ruby-keyword">end</span>
+              <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- friendly_full_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- friendly_full_name-method -->
+
+    
+      <div id="method-i-full_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">full_name</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="full_name-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">full_name</span>
+  <span class="ruby-identifier">last_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;, &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">first_name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- full_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- full_name-method -->
+
+    
+      <div id="method-i-professor_of" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">professor_of</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="professor_of-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">professor_of</span>
+  <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_all_by_user_id</span>(<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- professor_of-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- professor_of-method -->
+
+    
+      <div id="method-i-student-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">student?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="student-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 42</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">student?</span>
+  <span class="ruby-identifier">role</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-string">&quot;student&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- student-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- student-3F-method -->
+
+    
+      <div id="method-i-student_in" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">student_in</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="student_in-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">student_in</span>
+  <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">find_all_by_user_id</span>(<span class="ruby-identifier">id</span>).<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:course_id</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- student_in-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- student_in-method -->
+
+    
+      <div id="method-i-ta-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ta?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ta-3F-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ta?</span>
+  <span class="ruby-identifier">role</span>.<span class="ruby-identifier">eql?</span> <span class="ruby-string">&quot;ta&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- ta-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- ta-3F-method -->
+
+    
+      <div id="method-i-ta_in" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">ta_in</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="ta_in-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">ta_in</span>
+  <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-constant">TaForCourse</span>.<span class="ruby-identifier">find_all_by_user_id</span>(<span class="ruby-identifier">id</span>).<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:course_id</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- ta_in-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- ta_in-method -->
+
+    
+      <div id="method-i-username" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">username</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="username-source">
+            <pre><span class="ruby-comment"># File app/models/user.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">username</span>
+  <span class="ruby-identifier">email</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">&quot;@&quot;</span>)[<span class="ruby-value">0</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- username-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- username-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

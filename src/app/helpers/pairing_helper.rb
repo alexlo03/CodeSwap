@@ -1,17 +1,15 @@
 module PairingHelper
 
-	# Method takes an array and creates a mapping of pairings	
-	# list is an array
-	# num_of_previous_pairings is the number of times the 
-	# same seed has been used to randomize a list
-	# seed is a random int
-	#
-	# Returns a hash of pairings
-	#
-	#	Example:
-	# 
-	# create_pairings([1,2,3],0,123) 
-	# => {[2]=>[1], [1]=>[3], [3]=>[2]} 
+	## Creates a mapping of pairings from array
+	# [Params]
+  ## * list - an array [1, 2, 3]
+	## * num_of_previous_pairings - number of times the same seed has been used to randomize a list
+	## * seed is a random int
+	# [Result]
+	# Hash of pairings
+	#	[Example]
+	## * create_pairings([1,2,3],0,123)
+	## * => {[2]=>[1], [1]=>[3], [3]=>[2]}
 	def create_pairings(list, shift_amount, seed)
 			randomized_list = list.shuffle(random:Random.new(seed))
 			double_randomized_list = randomized_list * 2
@@ -26,14 +24,6 @@ module PairingHelper
 			end
 			new_pairings
 	end
-	
-  # Probably will be killed...
-	def pair_assignment(assignment_definition_id, previous_assignment_id)	
-		assignment_pairing, list = get_latest_assignment_pairing(assignment_definition_id, previous_assignment_id)
-		assignment_pairing.save
-		create_pairings(list, assignment_pairing.depth,assignment_pairing.seed)
-	end
-
 
   def create_pairings_mk_2(list, shift_amount, seed, graders)
     shuffled_list = list.shuffle(random:Random.new(seed))

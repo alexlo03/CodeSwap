@@ -16,6 +16,8 @@ include ApplicationHelper
 	e.backtrace.each{|b| logger.error b}
 	end
   protect_from_forgery
+
+
   def not_found
     raise ActionController::RoutingError.new('Page Not Found. Please contact the system administrator.')
   end

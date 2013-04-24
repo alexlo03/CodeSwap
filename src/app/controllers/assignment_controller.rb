@@ -1,15 +1,30 @@
 class AssignmentController < ApplicationController
 include AssignmentHelper
-  # Route(s): /assignments OR /assignment/index OR /faculty/index
-  # Purpose: Viewing all assignments
-  # Params: None
-  # Environment Variables:
-  ## [role]Assignments - Assignments for the courses in which the current user has the [role]
-  ## [role]ReviewAssignments - ReviewAssignments for the courses in which the current user fulfills [role]
-  ## allAssignments - All assignments in the database
-  ### Populated if current user is an admin
-  ## allReviewAssignments - All review assignments in the database
-  ### Populated if current user is an admin
+  ## Gets and displays list of all relevant assignments
+  # [Route(s)]
+  ## * /assignments
+  ## * /assignment/index
+  ## * /faculty/index
+  # [Params] None
+  # [Environment Variables]
+  ## [studentAssignments]
+  ### * Assignments for the courses in which the current user is a student
+  ## [taAssignments]
+  ### * Assignments for the courses in which the current user is a ta
+  ## [facultyAssignments]
+  ### * Assignments for the courses in which the current user is the faculty
+  ## [studentReviewAssignments]
+  ### * ReviewAssignments for the courses in which the current user is a student
+  ## [taReviewAssignments]
+  ### * ReviewAssignments for the courses in which the current user is a ta
+  ## [facultyReviewAssignments]
+  ### * ReviewAssignments for the courses in which the current user is faculty
+  ## [allAssignments]
+  ### * All assignments in the database
+  ### * Populated only if current user is an admin
+  ## [allReviewAssignments]
+  ### * All review assignments in the database
+  ### * Populated only if current user is an admin
   def index
 		requires({'role'=>['admin', 'faculty','student']}) # Validation of login and roles
     unless(current_user.nil?)
@@ -53,14 +68,16 @@ include AssignmentHelper
 		  @allReviewAssignments = allReviewAssignments
     end
   end
-
-  # Route: /assignment/create/:course_id
-  # Purpose: Used to create an assignment for the course with matching id
-  # NOTE: Only used for GET request. Populates a view containing the assignment creation form.
-  # Params: 
-  ## course_id - Used to access the course to link it to the assignment
-  # Environment Variables:
-  ## course - Course that matches the given course_id
+  ## Used to create an assignment for the course with matching id
+  ## (GET)
+  # [Route]
+  ## /assignment/create/:course_id
+  # [Purpose]
+  ## * Populates a view containing the assignment creation form.
+  # [Params]
+  ## * course_id - Used to access the course to link it to the assignment
+  # [Environment Variables]
+  ## * course - Course that matches the given course_id
   def create
     course_id = params[:course_id]
     #Validate
@@ -70,15 +87,15 @@ include AssignmentHelper
     end
   end
 
-  # Get data for editing an assignment
-  # Route: /assignment/edit/:assignment_id
-  # Purpose: Used to populate a view containing an edit form for the assignment.
-  # Params:
-  ## assignment_id - Used to find the assignment with this assignment_id
-  # Environment Variables:
-  ## assignment - 
-  ## course - 
-  ## assignmentDefinition - 
+  ## Used to populate a view containing an edit form for the assignment. (GET)
+  # [Route]
+  ## * /assignment/edit/:assignment_id
+  # [Params]
+  ## * assignment_id - Used to find the assignment with this assignment_id
+  # [Environment Variables]
+  ## * assignment - current assignment matching :assignment_id
+  ## * course - course the assignment belongs to
+  ## * assignmentDefinition - assignmentDefinition object matching the assignment
   def edit
     assignment_id = params[:assignment_id]
     @assignment = Assignment.find_by_id(assignment_id)
@@ -89,19 +106,19 @@ include AssignmentHelper
     end
   end
 
-  # Create a new assignment
-  # Route: /assignment/submit_new
-  # Purpose: Used to create a new assignment for a course
-  # Note: Only used for POST requests
-  # Params:
-  ## course_id - Used to find course
-  ## startDate - start date of the assignment
-  ## startTime - start time of the assignment
-  ## endDate - end date of the assignment
-  ## endTime - end time of the assignment
-  ## name - name of the assignment
-  ## description - short paragraph describing the assignment
-  ## hidden - tells whether the assignment is hidden from students before start date
+  ## Used to create a new assignment for a course
+  ## (POST)
+  # [Route]
+  ## * /assignment/submit_new
+  # [Params]
+  ## * course_id - Used to find course
+  ## * startDate - start date of the assignment
+  ## * startTime - start time of the assignment
+  ## * endDate - end date of the assignment
+  ## * endTime - end time of the assignment
+  ## * name - name of the assignment
+  ## * description - short paragraph describing the assignment
+  ## * hidden - tells whether the assignment is hidden from students before start date
   def submit_new
     unless(current_user.nil?)
       course_id = params[:course_id].to_i
@@ -150,21 +167,19 @@ include AssignmentHelper
   end
 
 
-  # Edits an existing assignment
-  # Route: /assignment/submit_changes
-  # Purpose: Used to change assignment for a course
-  # Note: Only used for POST requests
-  # Params:
-  ## course_id - Used to find course
-  ## startDate - start date of the assignment
-  ## startTime - start time of the assignment
-  ## endDate - end date of the assignment
-  ## endTime - end time of the assignment
-  ## name - name of the assignment
-  ## description - short paragraph describing the assignment
-  ## hidden - tells whether the assignment is hidden from students before start date
+  ## Edits an existing assignment (POST)
+  # [Route]
+  ## * /assignment/submit_changes
+  # [Params]
+  ## * course_id - Used to find course
+  ## * startDate - start date of the assignment
+  ## * startTime - start time of the assignment
+  ## * endDate - end date of the assignment
+  ## * endTime - end time of the assignment
+  ## * name - name of the assignment
+  ## * description - short paragraph describing the assignment
+  ## * hidden - tells whether the assignment is hidden from students before start date
   def submitchanges
-   
     assignment_id = params[:assignment_id].to_i
     assignment = Assignment.find(assignment_id)
     course = Course.find(assignment.course_id)
@@ -204,22 +219,25 @@ include AssignmentHelper
     end
   end
 
-	# Route: /assignment/view/:id
-	# Params: id
-	# Environment variables: 
-	## assignment - current assignment
-	## assignmentDefinition - definition of assignment
-	## assignmentFiles - List of files submitted by faculty member for this assignment
-	## courseStudents - List of all students in the assignment's course
-	### Empty if current user is a student
-	## faculty - returns whether current user is the faculty member
-	## ta - returns whether the current user is a ta for the assignment's course
-	## student - returns whether the current user is a student for this course
-	## unsubmitted_students - List of students that have no submission linked to them
-	## files - List of files visible to current user
-	### If Student: Only their files are in this list
-	### If Otherwise: All student submissions are in this list
-	## id - ID of the current assignment
+  ## View assignment information
+	# [Route]
+  ## * /assignment/view/:id
+	# [Params]
+  ## * id
+	# [Environment variables]
+	## * assignment - current assignment
+	## * assignmentDefinition - definition of assignment
+	## * assignmentFiles - List of files submitted by faculty member for this assignment
+	## * courseStudents - List of all students in the assignment's course
+	### * Empty if current user is a student
+	## * faculty - returns whether current user is the faculty member
+	## * ta - returns whether the current user is a ta for the assignment's course
+	## * student - returns whether the current user is a student for this course
+	## * unsubmitted_students - List of students that have no submission linked to them
+	## * files - List of files visible to current user
+	### * If Student: Only their files are in this list
+	### * If Otherwise: All student submissions are in this list
+	## * id - ID of the current assignment
   def view
     
     id = params[:assignment_id]
@@ -253,25 +271,14 @@ include AssignmentHelper
      @id = id
     end
   end
-  
-  ## Deprecated (?) 
-  ## TODO - REMOVE
-	def adminView
-    requires ({'role'=>'admin'})
-    if(current_user)
-  		assignment_id = params[:assignment_id]
-	  	@assignment = Assignment.find(assignment_id)
-	  	@fileSubmissions = FileSubmission.where(:assignment_id => assignment_id)
-	  end
-  end
 
-  # Pushes the selected file to the user
-  # route: assignment/download/:file_id
-  # Params:
-  ## file_id - the id for the file submission
-  # Environment Variables
-  ## none
-  # Returns a file (any type)
+  ## Pushes the selected file to the user
+  # [Route]
+  ## * assignment/download/:file_id
+  # [Params]
+  ## * file_id - the id for the file submission
+  # [Environment Variables]
+  ## * none
 	def download
 		unless(current_user.nil?)
 		        file_id = params[:file_id]
@@ -297,14 +304,13 @@ include AssignmentHelper
 	end
 
 
-  # Pushes all the files for the selected assignment to the user
-  # route: assignment/download_all/:assignment_id
-  # Params:
-  ## assignment_id - the id for the assignment
-  # Environment Variables
-  ## none
-  # Returns a zip file of all of the files in a class
-  # NOTE: ignores the professors uploads
+  ## Pushes all the files for the selected assignment to the user in a .zip
+  # [Route]
+  ## * assignment/download_all/:assignment_id
+  # [Params]
+  ## * assignment_id - the id for the assignment
+  # [Environment Variables]
+  ## * none
 	def downloadAll
 	  assignment_id = params[:assignment_id]
     assignment = Assignment.find(assignment_id)

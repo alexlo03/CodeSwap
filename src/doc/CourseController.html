@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class CourseController - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/course_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
+    <!-- Included Modules -->
+<nav id="includes-section" class="section">
+  <h3 class="section-header">Included Modules</h3>
+
+  <ul class="link-list">
+  
+  
+    <li><a class="include" href="CourseHelper.html">CourseHelper</a>
+  
+  
+  </ul>
+</nav>
+
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-add_student">#add_student</a>
+    
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-edit">#edit</a>
+    
+    <li><a href="#method-i-manage_groups">#manage_groups</a>
+    
+    <li><a href="#method-i-new">#new</a>
+    
+    <li><a href="#method-i-show">#show</a>
+    
+    <li><a href="#method-i-submit_edit">#submit_edit</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./app/views/assignment/example_txt.html">example</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Assignment.html">Assignment</a>
+  
+    <li><a href="./AssignmentController.html">AssignmentController</a>
+  
+    <li><a href="./AssignmentDefinition.html">AssignmentDefinition</a>
+  
+    <li><a href="./AssignmentDefinitionToUser.html">AssignmentDefinitionToUser</a>
+  
+    <li><a href="./AssignmentHelper.html">AssignmentHelper</a>
+  
+    <li><a href="./AssignmentPairing.html">AssignmentPairing</a>
+  
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
+  
+    <li><a href="./AuthenticationsHelper.html">AuthenticationsHelper</a>
+  
+    <li><a href="./Course.html">Course</a>
+  
+    <li><a href="./CourseController.html">CourseController</a>
+  
+    <li><a href="./CourseGroup.html">CourseGroup</a>
+  
+    <li><a href="./CourseHelper.html">CourseHelper</a>
+  
+    <li><a href="./Deprecated.html">Deprecated</a>
+  
+    <li><a href="./Emailer.html">Emailer</a>
+  
+    <li><a href="./ErrorsController.html">ErrorsController</a>
+  
+    <li><a href="./FacultyController.html">FacultyController</a>
+  
+    <li><a href="./FacultyHelper.html">FacultyHelper</a>
+  
+    <li><a href="./FileSubmission.html">FileSubmission</a>
+  
+    <li><a href="./FileSubmissionUploader.html">FileSubmissionUploader</a>
+  
+    <li><a href="./FileSubmissionsController.html">FileSubmissionsController</a>
+  
+    <li><a href="./FileSubmissionsHelper.html">FileSubmissionsHelper</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./PairingHelper.html">PairingHelper</a>
+  
+    <li><a href="./QuestionExtra.html">QuestionExtra</a>
+  
+    <li><a href="./RegistrationsController.html">RegistrationsController</a>
+  
+    <li><a href="./ReviewAnswer.html">ReviewAnswer</a>
+  
+    <li><a href="./ReviewAssignment.html">ReviewAssignment</a>
+  
+    <li><a href="./ReviewAssignmentController.html">ReviewAssignmentController</a>
+  
+    <li><a href="./ReviewAssignmentHelper.html">ReviewAssignmentHelper</a>
+  
+    <li><a href="./ReviewMapping.html">ReviewMapping</a>
+  
+    <li><a href="./ReviewQuestion.html">ReviewQuestion</a>
+  
+    <li><a href="./StudentInCourse.html">StudentInCourse</a>
+  
+    <li><a href="./TaForCourse.html">TaForCourse</a>
+  
+    <li><a href="./User.html">User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class CourseController</h1>
+
+  <div id="description" class="description">
+    
+<p>TODO: Email Notifications for Administrators</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-add_student" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">add_student</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="add_student-source">
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 114</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">add_student</span>
+  <span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_id</span>]
+  <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>],<span class="ruby-string">'course_id'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">course_id</span>})
+  <span class="ruby-identifier">first</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:first</span>]
+  <span class="ruby-identifier">last</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:last</span>]
+  <span class="ruby-identifier">email</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:email</span>]
+  <span class="ruby-identifier">role</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:role</span>]
+  
+  
+  <span class="ruby-identifier">course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">course_id</span>)
+
+  <span class="ruby-identifier">student</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_by_email</span>(<span class="ruby-identifier">email</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">student</span>
+    <span class="ruby-identifier">student</span> = <span class="ruby-identifier">create_and_invite_user</span>(<span class="ruby-identifier">first</span>, <span class="ruby-identifier">last</span>, <span class="ruby-identifier">email</span>, <span class="ruby-string">'student'</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">student</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Error adding student.'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-string">'student'</span>
+      <span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">student</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">render</span> <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'Student added successfully.'</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">role</span> <span class="ruby-operator">==</span> <span class="ruby-string">'ta'</span>
+      <span class="ruby-constant">TaForCourse</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">student</span>.<span class="ruby-identifier">id</span>, <span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">id</span>)
+      <span class="ruby-identifier">render</span> <span class="ruby-value">:text</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'TA added successfully.'</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- add_student-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- add_student-method -->
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+
+  <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>]})
+  <span class="ruby-identifier">course_name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_name</span>]
+  <span class="ruby-identifier">course_term</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_term</span>]
+  <span class="ruby-identifier">course_number</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_number</span>]
+  <span class="ruby-identifier">course_section</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_section</span>]
+
+  <span class="ruby-identifier">course_exists</span> = <span class="ruby-operator">!</span>(<span class="ruby-constant">Course</span>.<span class="ruby-identifier">find_all_by_name_and_course_number_and_section_and_term</span>(<span class="ruby-identifier">course_name</span>, <span class="ruby-identifier">course_number</span>, <span class="ruby-identifier">course_section</span>, <span class="ruby-identifier">course_term</span>).<span class="ruby-identifier">empty?</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">course_exists</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = <span class="ruby-string">'A course already exists with that information. Please try again with new info or contact a system administrator.'</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">new_course_path</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_name</span>, <span class="ruby-value">:term</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_term</span>, <span class="ruby-value">:number</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_number</span>, <span class="ruby-value">:section</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_section</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_name</span>, <span class="ruby-value">:course_number</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_number</span>, <span class="ruby-value">:section</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_section</span>, <span class="ruby-value">:term</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_term</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>)
+
+    
+    <span class="ruby-identifier">course</span>.<span class="ruby-identifier">import_students_and_tas</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:students_csv</span>])
+                      <span class="ruby-identifier">course</span>.<span class="ruby-identifier">save</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">'Course created successfully!'</span>
+    <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">show_course_path</span> <span class="ruby-identifier">course</span>.<span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">edit</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET</p>
+          
+
+          
+          <div class="method-source-code" id="edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 37</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
+  <span class="ruby-comment">#Validate</span>
+  <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
+  <span class="ruby-ivar">@course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>],<span class="ruby-string">'course_id'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>})
+  <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@course</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = <span class="ruby-string">'Something has gone horribly wrong. A system administrator has been contacted.'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">student_ids</span> = <span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:user_id</span>)
+    <span class="ruby-identifier">ta_ids</span> = <span class="ruby-constant">TaForCourse</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:user_id</span>)
+    
+    <span class="ruby-ivar">@students</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">student_ids</span>)
+    <span class="ruby-ivar">@tas</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">ta_ids</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- edit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- edit-method -->
+
+    
+      <div id="method-i-manage_groups" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">manage_groups</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="manage_groups-source">
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 145</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">manage_groups</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">get?</span>
+    <span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
+    <span class="ruby-ivar">@course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">course_id</span>)
+    
+    <span class="ruby-identifier">group_1</span> = <span class="ruby-constant">CourseGroup</span>.<span class="ruby-identifier">find_all_by_course_id_and_group</span>(<span class="ruby-identifier">course_id</span>, <span class="ruby-value">0</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:user_id</span>)
+    <span class="ruby-identifier">group_2</span> = <span class="ruby-constant">CourseGroup</span>.<span class="ruby-identifier">find_all_by_course_id_and_group</span>(<span class="ruby-identifier">course_id</span>, <span class="ruby-value">1</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:user_id</span>)
+
+    <span class="ruby-identifier">course_students</span> = <span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">find_all_by_course_id</span>(<span class="ruby-identifier">course_id</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:user_id</span>)
+    
+    <span class="ruby-ivar">@ungrouped</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">course_students</span>).<span class="ruby-identifier">reject</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">in?</span> <span class="ruby-identifier">group_1</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">user</span>.<span class="ruby-identifier">id</span>.<span class="ruby-identifier">in?</span> <span class="ruby-identifier">group_2</span> }
+    <span class="ruby-ivar">@group_1</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">group_1</span>)
+    <span class="ruby-ivar">@group_2</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">find_all_by_id</span>(<span class="ruby-identifier">group_2</span>)
+  <span class="ruby-keyword">else</span> <span class="ruby-comment">#post request</span>
+    <span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
+    <span class="ruby-identifier">group1</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">'group1'</span>]
+    <span class="ruby-identifier">group2</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">'group2'</span>]
+    <span class="ruby-identifier">ungrouped</span> = <span class="ruby-identifier">params</span>[<span class="ruby-string">'ungrouped'</span>]
+    
+    
+    
+    <span class="ruby-constant">CourseGroup</span>.<span class="ruby-identifier">destroy_all</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_id</span>)
+    <span class="ruby-identifier">group1</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">CourseGroup</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>, <span class="ruby-value">:group</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">group2</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">user</span><span class="ruby-operator">|</span>
+      <span class="ruby-constant">CourseGroup</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">course_id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">user</span>, <span class="ruby-value">:group</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>)
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:nothing</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Groups updated!&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- manage_groups-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- manage_groups-method -->
+
+    
+      <div id="method-i-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 82</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>]})
+  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>]
+  <span class="ruby-ivar">@term</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:term</span>]
+  <span class="ruby-ivar">@number</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:number</span>]
+  <span class="ruby-ivar">@section</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:section</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+      <div id="method-i-show" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Show information about a course</p>
+          
+
+          
+          <div class="method-source-code" id="show-source">
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-comment">#Validate</span>
+  <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:c_id</span>]
+              <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">'log/course.log'</span>)
+              <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">inspect</span>
+  <span class="ruby-ivar">@course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)    
+  <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>,<span class="ruby-string">'student'</span>],<span class="ruby-string">'course_id'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>})
+              <span class="ruby-comment">#if the course is found &amp; and the user is enrolled in the course, retrieve mappings of students and tas to a course.</span>
+  <span class="ruby-keyword">unless</span> (<span class="ruby-ivar">@course</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-ivar">@students</span> = <span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>)
+    <span class="ruby-ivar">@tas</span> = <span class="ruby-constant">TaForCourse</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>)
+    <span class="ruby-ivar">@teacher</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@course</span>.<span class="ruby-identifier">user_id</span>).<span class="ruby-identifier">first</span>
+    <span class="ruby-ivar">@admin</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:role</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'admin'</span>)
+                      <span class="ruby-comment">#Detect whether user is student or faculty for this given course (can't use roles due to TAs)</span>
+    <span class="ruby-ivar">@user_is_student</span> = <span class="ruby-operator">!</span><span class="ruby-ivar">@students</span>.<span class="ruby-identifier">find_all_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span>
+    <span class="ruby-ivar">@user_is_ta_or_faculty_or_admin</span> = <span class="ruby-operator">!</span><span class="ruby-ivar">@tas</span>.<span class="ruby-identifier">find_all_by_user_id</span>(<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@teacher</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@teacher</span>.<span class="ruby-identifier">nil?</span>) <span class="ruby-operator">||</span> (<span class="ruby-ivar">@admin</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">current_user</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@admin</span>.<span class="ruby-identifier">nil?</span>)
+    <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@user_is_student</span>)
+      <span class="ruby-ivar">@assignments</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>, <span class="ruby-value">:hidden</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@assignments</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>)
+    <span class="ruby-keyword">end</span>
+    
+    <span class="ruby-ivar">@group1</span> = <span class="ruby-constant">CourseGroup</span>.<span class="ruby-identifier">find_all_by_course_id_and_group</span>(<span class="ruby-identifier">id</span>, <span class="ruby-value">0</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:user_id</span>)
+    <span class="ruby-ivar">@group2</span> = <span class="ruby-constant">CourseGroup</span>.<span class="ruby-identifier">find_all_by_course_id_and_group</span>(<span class="ruby-identifier">id</span>, <span class="ruby-value">1</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:user_id</span>)
+    
+                      <span class="ruby-ivar">@review_assignments</span> = <span class="ruby-constant">ReviewAssignment</span>.<span class="ruby-identifier">find_all_by_course_id</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- show-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- show-method -->
+
+    
+      <div id="method-i-submit_edit" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">submit_edit</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>POST</p>
+          
+
+          
+          <div class="method-source-code" id="submit_edit-source">
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 54</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">submit_edit</span>
+  <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_id</span>]
+  <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>],<span class="ruby-string">'course_id'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">id</span>})
+  <span class="ruby-identifier">course_number</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:number</span>]
+  <span class="ruby-identifier">course_term</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:term</span>]
+  <span class="ruby-identifier">course_name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>]
+  <span class="ruby-identifier">course_section</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:section</span>]
+
+  <span class="ruby-identifier">studentsToRemove</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:students_to_remove</span>]
+  <span class="ruby-identifier">tasToRemove</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:tas_to_remove</span>]
+
+  <span class="ruby-identifier">course</span> = <span class="ruby-constant">Course</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">id</span>)
+  
+
+
+  <span class="ruby-identifier">course</span>.<span class="ruby-identifier">course_number</span> = <span class="ruby-identifier">course_number</span>
+  <span class="ruby-identifier">course</span>.<span class="ruby-identifier">term</span> = <span class="ruby-identifier">course_term</span>
+  <span class="ruby-identifier">course</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">course_name</span>
+  <span class="ruby-identifier">course</span>.<span class="ruby-identifier">section</span> = <span class="ruby-identifier">course_section</span>
+  <span class="ruby-identifier">course</span>.<span class="ruby-identifier">save</span>
+  
+  <span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">delete_all</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">studentsToRemove</span>)
+  <span class="ruby-constant">TaForCourse</span>.<span class="ruby-identifier">delete_all</span>(<span class="ruby-value">:course_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">id</span>, <span class="ruby-value">:user_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">tasToRemove</span>)
+
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Changes saved.&quot;</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- submit_edit-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- submit_edit-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
