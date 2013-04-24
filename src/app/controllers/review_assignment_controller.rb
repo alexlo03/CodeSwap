@@ -142,9 +142,13 @@ include PairingHelper
 				session['depth'] = nil
 			end
 			#Handle get request
-			@prev_id = session[:prev_id]
-			
-			if @prev_id.nil? or (@prev_id == -1)
+			@prev_id = session[:previous_id].to_i
+			log = Logger.new("testin2.log")
+			log.warn @prev_id
+			log.warn @prev_id.nil? 
+			log.warn @prev_id == -1
+			if ((@prev_id.nil?) or (@prev_id == -1))
+				log.warn "made it"
 				@prev_id = nil
 			end
 			if session['seed'].nil?
@@ -177,12 +181,10 @@ include PairingHelper
 			if current_user.student?
 				@student = true
 				@count = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id).count
-#				@review_mapping = ReviewMapping.find_by_user_id_and_review_assignment_id(current_user.id,@id)
-#				@file_submission = @review_assignment.find_file_submission(@review_mapping.other_user_id)
-#				@questions = ReviewQuestion.find_all_by_review_assignment_id(@id)
-#				@done = ReviewAnswer.where(:review_question_id => @questions.collect(&:id),:user_id => current_user.id).count > 0
-				
+
 			elsif current_user.faculty? || current_user.admin? || current_user.ta?
+				session['assignment_id'] = @review_assignment.assignment.id
+				session['review_assignment_id'] = @review_assignment.id
 				@student = false
 				@students = User.find_all_by_id(@review_assignment.course.get_students)
 				@teacher_grades = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@review_assignment.id)
@@ -281,7 +283,7 @@ include PairingHelper
 			@answers = Hash.new
 			user_id = current_user.id
 			@questions.each do |question|
-				@answers[question.id] = ReviewAnswer.find_all_by_review_question_id_and_other_id(question.lid,user_id,user_id)
+				@answers[question.id] = ReviewAnswer.find_all_by_review_question_id_and_other_id(question.id,user_id,user_id)
 			end
 		end
 	end

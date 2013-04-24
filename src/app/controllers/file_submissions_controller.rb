@@ -20,7 +20,7 @@ class FileSubmissionsController < ApplicationController
     
     user_id = current_user.id
     unless (not parameters['user_id']) or parameters['user_id'] == ''
-      user_id = parameters['user_id'] unless parameters['user_id'] && parameters['user_id'] == ''
+      user_id = parameters['user_id']
     end
     
     file.original_filename.gsub!(/[^a-z0-9A-Z.]/, '')
@@ -31,7 +31,7 @@ class FileSubmissionsController < ApplicationController
     logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has submitted something for user with ID# #{user_id}."
     
 	  if user.student? 
-	    user_id = current_user.id
+	    user_id = current_user.id if current_user.student?
 		  oldSubmission = FileSubmission.where(:assignment_id => assignment.id,
 					  :course_id => assignment.course_id, :user_id => user_id)[0]
 		  unless oldSubmission.nil?
@@ -57,12 +57,12 @@ class FileSubmissionsController < ApplicationController
   end
 
   def delete
-    logger = Logger.new("log/uploads.log")
-    logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has attempted to delete #{name}."
-
   
     id = params[:file_id]
     submission = FileSubmission.find(id)
+    logger = Logger.new("log/uploads.log")
+    logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has attempted to delete #{submission.name}."
+
 
     faculty_id = Course.find(Assignment.find(submission.assignment_id).course_id).user_id
     

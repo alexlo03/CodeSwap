@@ -21,6 +21,9 @@ schema.rb
 *.*~
 *~
 
+# Ignore .DS_Store from mac
+*.DS_Store
+
 # Ignore merge files
 *.orig
 

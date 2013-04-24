@@ -1,4 +1,5 @@
 class ReviewAssignment < ActiveRecord::Base
+	extend Deprecated
 	belongs_to :user
 	belongs_to :assignment
 	belongs_to :course
@@ -32,14 +33,21 @@ class ReviewAssignment < ActiveRecord::Base
   end
   
 	def is_late
-    end_date_buffered < Time.now && (end_date_buffered + 24.hours) > Time.now
   end
   
   def is_over
+  end
+	def is_late?
+    end_date_buffered < Time.now && (end_date_buffered + 24.hours) > Time.now
+  end
+  
+  def is_over?
     end_date_buffered < Time.now
   end
   
   def is_active
+  end
+  def is_active?
     (start_date <= Time.now) && (Time.now <= end_date_buffered)
   end
   
@@ -57,4 +65,9 @@ class ReviewAssignment < ActiveRecord::Base
 			end
 		end
 	end
+
+	    #DEPRECATED METHODS:
+ deprecated :is_over, :is_over?
+ deprecated :is_late, :is_late?
+ deprecated :is_active, :is_active?
 end
