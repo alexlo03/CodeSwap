@@ -1,16 +1,17 @@
+## Contains admin-only actions
 class AdminController < ApplicationController
 include ApplicationHelper
-  #requires({'role'=>'admin'})
-	#List 5 oldest students, admins, and faculty members (teachers)
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Displays user index, with list of first 5 admin, faculty, and students
   # [Route(s)]
-  ## * TODO define routes
+  ## * /admin
+  ## * /admin/index
   # [Params]
-  ## * TODO define params
+  ## * None
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * students - List of all students
+  ## * faculty - List of all faculty
+  ## * admins - List of all admins
   def index
     requires({'role'=>'admin'})
     
@@ -20,28 +21,15 @@ include ApplicationHelper
     
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Adds a user to the database
   # [Route(s)]
-  ## * TODO define routes
+  ## * /admin/add_user
   # [Params]
-  ## * TODO define params
+  ## * name - Name of the new user
+  ## * email - email of the new user
+  ## * role - role of the new user
   # [Environment Variables]
-  ## * TODO define environment variables
-  def create_faculty
-    requires({'role'=>'admin'})
-    @faculty = User.new
-  end
-
-
-  ## TODO DOCUMENT
-  ## PURPOSE
-  # [Route(s)]
-  ## * TODO define routes
-  # [Params]
-  ## * TODO define params
-  # [Environment Variables]
-  ## * TODO define environment variables
+  ## * None
   def add_user
     requires({'role'=>'admin'})
     name = params[:name].chomp.split
@@ -68,14 +56,13 @@ include ApplicationHelper
   end
 
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Used to soft/hard delete a user
   # [Route(s)]
-  ## * TODO define routes
+  ## * /admin/delete_user/:email
   # [Params]
-  ## * TODO define params
+  ## * email - email of the user to delete
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * none
   def delete_user
 		#Removes user from the database
 		#TODO Cascading deletes?
@@ -83,82 +70,52 @@ include ApplicationHelper
     u = User.find_by_email(params[:email])
     u.destroy
     render :json => u.to_json
-    
   end
 
 
-	#View all faculty members
-
-  ## TODO DOCUMENT
-  ## PURPOSE
+	## View all faculty
   # [Route(s)]
-  ## * TODO define routes
+  ## * /admin/view_faculty
   # [Params]
-  ## * TODO define params
+  ## * none
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * faculty - List of all faculty
   def view_faculty
     requires({'role'=>'admin'})
     @faculty = User.find_all_by_role_and_deleted_at(:faculty, nil)
   end
 
-	#View all admins
-
-  ## TODO DOCUMENT
-  ## PURPOSE
+	## View all admins
   # [Route(s)]
-  ## * TODO define routes
+  ## * /admin/view_admin
   # [Params]
-  ## * TODO define params
+  ## * none
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * admins - List of all users with 'admin' role
   def view_admin
     requires({'role'=>'admin'})
     @admins = User.find_all_by_role_and_deleted_at(:admin, nil)
   end
 
-	#View all students
-
-  ## TODO DOCUMENT
-  ## PURPOSE
+	## View all students
   # [Route(s)]
-  ## * TODO define routes
+  ## * /admin/view_students
   # [Params]
-  ## * TODO define params
+  ## * none
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * students - List of all users with 'student' role
   def view_students
     requires({'role'=>'admin'})
     @students = User.find_all_by_role_and_deleted_at(:student, nil)
   end
 
-
-	#View all TAs
-
-  ## TODO DOCUMENT
-  ## PURPOSE
+	## View for a specific user
   # [Route(s)]
-  ## * TODO define routes
+  ## * /admin/view_user_info/:id
   # [Params]
-  ## * TODO define params
+  ## * id - id of user to view
   # [Environment Variables]
-  ## * TODO define environment variables
-	#TODO Delete if safe to remove
-  def view_tas
-    requires({'role'=>'admin'})
-    @tas = User.find_all_by_role_and_deleted_at(:ta, nil)
-  end
-
-	#view for a specific user
-
-  ## TODO DOCUMENT
-  ## PURPOSE
-  # [Route(s)]
-  ## * TODO define routes
-  # [Params]
-  ## * TODO define params
-  # [Environment Variables]
-  ## * TODO define environment variables
+  ## * none
   def view_user_info
     requires ({'role'=>['admin', 'faculty']})
     u = User.find_by_id(params[:id])
@@ -169,19 +126,17 @@ include ApplicationHelper
     render :json => u.to_json
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Displays a list of the recently logged in users
   # [Route(s)]
-  ## * TODO define routes
+  ## * /admin/view_recent_activity
   # [Params]
-  ## * TODO define params
+  ## * none
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * none
   def view_recent_activity
     requires({'role'=>'admin'})
     
     currentUsers = User.where('current_sign_in_at not null').order(:current_sign_in_at).reverse
-    
 
     render :json => currentUsers.to_json
   end
