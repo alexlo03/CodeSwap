@@ -2,42 +2,45 @@
 class FileSubmissionsController < ApplicationController
 
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Creates a new file submission
   # [Route(s)]
-  ## * TODO define routes
+  ## * /files/new/:assignment_id
   # [Params]
-  ## * TODO define params
+  ## * assignment_id - ID of the assignment the file belongs to.
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * submission - The newly instantiated FileSubmission object
   def new
     assignment = Assignment.find(params[:assignment_id])
     
     @submission = FileSubmission.new(:assignment_id => assignment.id)
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## View contents of the file in the browser
   # [Route(s)]
-  ## * TODO define routes
+  ## * /file/view_live/:file_id
   # [Params]
-  ## * TODO define params
+  ## * file_id - ID of the FileSubmission object
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * contents - Contents of the file
   def view_live
     id = params[:file_id]
     submission = File.read(FileSubmission.find(id).full_save_path)
     @contents = submission.split(/\n/)
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Creates a new FileSubmission object
   # [Route(s)]
-  ## * TODO define routes
+  ## * /file/create/
   # [Params]
-  ## * TODO define params
+  ## * file_submission - Block of parameters
+  ###   1. user_id - id of user to set user_id field to
+  ###   2. assignment_id - id of assignment the file is uploaded for
+  ###   3. file - file object
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * submission - newly created filesubmission object
+  ## * assignmentFile - true if the file should be uploaded as an assignment file
+  ## * studentFile - true if the file should be uploaded as an assignment submission file
+  ## * assignment - assignment associated with the file
   def create
     parameters = params[:file_submission]
     assignment = Assignment.find(parameters['assignment_id'])
@@ -82,12 +85,11 @@ class FileSubmissionsController < ApplicationController
     render '/assignment/create.js'  
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Deletes the file matching :file_id
   # [Route(s)]
-  ## * TODO define routes
+  ## * /file/delete/:file_id
   # [Params]
-  ## * file_id
+  ## * file_id - ID of the file to delete
   # [Environment Variables]
   ## * None
   def delete
