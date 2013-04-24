@@ -18,10 +18,15 @@
   </select>
 </div>
 
-<p class='btn' onClick='reviewassignments.create.submitAssignment();'>Submit</p>
+<button id='submitter' class='btn' onClick="reviewassignments.create.submitAssignment(); disableElement('submitter');">Submit</button>
 <%= link_to 'Cancel', '#', :class => 'btn' %>
 
 <script type='text/javascript' >
   reviewassignments.create.pageLoad(<%= @assignment_id %>);
+  /*function disableElement(){
+	document.getElementById("submitter").disabled = true
+	window.setTimeout(function(){document.getElementById("submitter").disabled = false}, 4000);
+	alert(document.getElementById("submitter").disabled);
+  };*/
 </script>
 

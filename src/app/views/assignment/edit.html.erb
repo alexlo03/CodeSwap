@@ -10,7 +10,7 @@ Editing assignment for <%= @course.name %>
 
 <%=render '/assignment/assignment_form' %>
 
-<p class='btn' onClick="assignments.edit.submitAssignment('<%= @assignment.id %>');">Submit</p>
+<button id='submitter' class='btn' onClick="assignments.edit.submitAssignment('<%= @assignment.id %>'); disableElement('submitter');">Submit</button>
 
 <%= link_to 'Cancel', :back, :class => 'btn' %>
 

@@ -17928,7 +17928,7 @@ reviewassignments = {
 					'grouped':grouped
           }, function() {
             window.location = "/reviewassignment/view/" + assignment_id;
-          }          
+          }   
         ); 
       }
     },
@@ -17964,6 +17964,11 @@ reviewassignments = {
 
 var button_link = function(href, text) {
   return '<a class="btn" href="' + href + '">' + text + '</a></br>'
+}
+
+disableElement = function(id){
+	document.getElementById(id).disabled = true
+	window.setTimeout(function(){document.getElementById(id).disabled = false}, 4000);
 }
 
 users = {
