@@ -2,9 +2,33 @@
 class CourseController < ApplicationController
 include CourseHelper
 
-	#Show information about a course
+  ## Displays information about the course
+  # [Route(s)]
+  ## * /course/show/:c_id
+  # [Params]
+  ## * c_id - id for the course
+  # [Environment Variables]
+  ## [course]
+  ### * Current course to be viewed
+  ## [students]
+  ### * List of students in the course
+  ## [tas]
+  ### * List of tas in the course
+  ## [teacher]
+  ### * Faculty member for the course
+  ## [admin]
+  ### * List of all admins
+  ## [user_is_student]
+  ## [user_is_ta_or_faculty_or_admin]
+  ## [group1]
+  ### * Users belonging to Group 1 for the course
+  ## [group2]
+  ### * Users belonging to Group 2 for the course
+  ## [assignments]
+  ### * All regular assignments for the course
+  ## [review_assignments]
+  ### * All review assignments for the course
   def show
-    #Validate
     id = params[:c_id]
 		logger = Logger.new('log/course.log')
 		logger.info params.inspect
@@ -33,7 +57,14 @@ include CourseHelper
   end
 
   
-  # GET
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def edit
     #Validate
     id = params[:id]
@@ -50,7 +81,14 @@ include CourseHelper
     end
   end
 
-  # POST
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def submit_edit
     id = params[:course_id]
     requires({'role' => ['admin','faculty'],'course_id'=>id})
@@ -77,8 +115,16 @@ include CourseHelper
 
     flash[:notice] = "Changes saved."
   
-  end 
+  end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def new
     requires({'role' => ['admin','faculty']})
     @name = params[:name]
@@ -87,8 +133,15 @@ include CourseHelper
     @section = params[:section]
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def create
-  
     requires({'role' => ['admin','faculty']})
     course_name = params[:course_name]
     course_term = params[:course_term]
@@ -111,6 +164,14 @@ include CourseHelper
     end
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def add_student
     course_id = params[:course_id]
     requires({'role' => ['admin','faculty'],'course_id'=>course_id})
@@ -140,8 +201,15 @@ include CourseHelper
     end
   
   end
-  
-  
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def manage_groups
   
     if request.get?

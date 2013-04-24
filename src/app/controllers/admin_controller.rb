@@ -1,7 +1,16 @@
 class AdminController < ApplicationController
 include ApplicationHelper
-#requires({'role'=>'admin'})
+  #requires({'role'=>'admin'})
 	#List 5 oldest students, admins, and faculty members (teachers)
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def index
     requires({'role'=>'admin'})
     
@@ -11,12 +20,28 @@ include ApplicationHelper
     
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def create_faculty
     requires({'role'=>'admin'})
     @faculty = User.new
   end
 
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def add_user
     requires({'role'=>'admin'})
     name = params[:name].chomp.split
@@ -42,6 +67,15 @@ include ApplicationHelper
     render :json => u.to_json
   end
 
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def delete_user
 		#Removes user from the database
 		#TODO Cascading deletes?
@@ -54,18 +88,45 @@ include ApplicationHelper
 
 
 	#View all faculty members
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def view_faculty
     requires({'role'=>'admin'})
     @faculty = User.find_all_by_role_and_deleted_at(:faculty, nil)
   end
 
 	#View all admins
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def view_admin
     requires({'role'=>'admin'})
     @admins = User.find_all_by_role_and_deleted_at(:admin, nil)
   end
 
 	#View all students
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def view_students
     requires({'role'=>'admin'})
     @students = User.find_all_by_role_and_deleted_at(:student, nil)
@@ -73,6 +134,15 @@ include ApplicationHelper
 
 
 	#View all TAs
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
 	#TODO Delete if safe to remove
   def view_tas
     requires({'role'=>'admin'})
@@ -80,6 +150,15 @@ include ApplicationHelper
   end
 
 	#view for a specific user
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def view_user_info
     requires ({'role'=>['admin', 'faculty']})
     u = User.find_by_id(params[:id])
@@ -90,6 +169,14 @@ include ApplicationHelper
     render :json => u.to_json
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def view_recent_activity
     requires({'role'=>'admin'})
     
@@ -99,7 +186,16 @@ include ApplicationHelper
     render :json => currentUsers.to_json
   end
 
-	#Searches through users for partial matches of first name, last name, role, and emails. 
+	#Searches through users for partial matches of first name, last name, role, and emails.
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def search_users
     requires({'role'=>'admin'})
     email = '%'

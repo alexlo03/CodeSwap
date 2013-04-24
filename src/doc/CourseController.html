@@ -248,7 +248,7 @@
 
           
           <div class="method-source-code" id="add_student-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 114</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 138</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_student</span>
   <span class="ruby-identifier">course_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_id</span>]
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>],<span class="ruby-string">'course_id'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">course_id</span>})
@@ -304,7 +304,7 @@
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 90</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 114</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
 
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>]})
@@ -354,7 +354,7 @@
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 37</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
   <span class="ruby-comment">#Validate</span>
   <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]
@@ -396,7 +396,7 @@
 
           
           <div class="method-source-code" id="manage_groups-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 145</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 169</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">manage_groups</span>
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">get?</span>
@@ -457,7 +457,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 82</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>]})
   <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:name</span>]
@@ -486,14 +486,62 @@
 
         <div class="method-description">
           
-          <p>Show information about a course</p>
+          <pre>Displays information about the course</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>/course/show/:c_id</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>c_id - id for the course</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><dl class="rdoc-list label-list"><dt>course
+<dd><ul><li>
+<p>Current course to be viewed</p>
+</li></ul>
+</dd><dt>students
+<dd><ul><li>
+<p>List of students in the course</p>
+</li></ul>
+</dd><dt>tas
+<dd><ul><li>
+<p>List of tas in the course</p>
+</li></ul>
+</dd><dt>teacher
+<dd><ul><li>
+<p>Faculty member for the course</p>
+</li></ul>
+</dd><dt>admin
+<dd><ul><li>
+<p>List of all admins</p>
+</li></ul>
+</dd><dt>user_is_student
+<dd></dd><dt>user_is_ta_or_faculty_or_admin
+<dd></dd><dt>group1
+<dd><ul><li>
+<p>Users belonging to Group 1 for the course</p>
+</li></ul>
+</dd><dt>group2
+<dd><ul><li>
+<p>Users belonging to Group 2 for the course</p>
+</li></ul>
+</dd><dt>assignments
+<dd><ul><li>
+<p>All regular assignments for the course</p>
+</li></ul>
+</dd><dt>review_assignments
+<dd><ul><li>
+<p>All review assignments for the course</p>
+</li></ul>
+</dd></dl>
+</dd></dl>
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 31</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
-  <span class="ruby-comment">#Validate</span>
   <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:c_id</span>]
               <span class="ruby-identifier">logger</span> = <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">'log/course.log'</span>)
               <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">info</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">inspect</span>
@@ -546,7 +594,7 @@
 
           
           <div class="method-source-code" id="submit_edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 54</span>
+            <pre><span class="ruby-comment"># File app/controllers/course_controller.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">submit_edit</span>
   <span class="ruby-identifier">id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:course_id</span>]
   <span class="ruby-identifier">requires</span>({<span class="ruby-string">'role'</span> =<span class="ruby-operator">&gt;</span> [<span class="ruby-string">'admin'</span>,<span class="ruby-string">'faculty'</span>],<span class="ruby-string">'course_id'</span>=<span class="ruby-operator">&gt;</span><span class="ruby-identifier">id</span>})

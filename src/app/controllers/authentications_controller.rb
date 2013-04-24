@@ -1,8 +1,25 @@
 class AuthenticationsController < ApplicationController
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def index
     @authentications = current_user.authentications if current_user
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def create
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
@@ -21,6 +38,14 @@ class AuthenticationsController < ApplicationController
     end
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def destroy
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy

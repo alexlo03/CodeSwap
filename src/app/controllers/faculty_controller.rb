@@ -1,5 +1,14 @@
 class FacultyController < ApplicationController
 include ApplicationHelper
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def index
 		# List all of the courses
     requires({'role'=>['admin', 'faculty', 'student']})
@@ -15,12 +24,28 @@ include ApplicationHelper
     end
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def new_course
 		#Create a new Course
     requires({'role'=>['admin', 'faculty']})
     @course = Course.new
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def add_course
     requires({'role'=>['admin', 'faculty']})
 		#Get all of the parameters

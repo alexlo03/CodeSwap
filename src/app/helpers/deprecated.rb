@@ -1,6 +1,6 @@
+# Adapted from John Crepezzi
+# Visit seejohncode.com for more information
 module Deprecated
-# Adapted from http://www.seejohncode.com/
-# NOTE: Does not work with Ruby Versions <= 1.8.7
 
 def deprecated(name, replacement = nil)
     old_name =:"#{name}_without_deprecation"

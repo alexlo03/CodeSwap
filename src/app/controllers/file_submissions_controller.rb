@@ -1,17 +1,42 @@
 class FileSubmissionsController < ApplicationController
 
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def new
     assignment = Assignment.find(params[:assignment_id])
     
     @submission = FileSubmission.new(:assignment_id => assignment.id)
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def view_live
     id = params[:file_id]
     submission = File.read(FileSubmission.find(id).full_save_path)
     @contents = submission.split(/\n/)
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def create
     parameters = params[:file_submission]
     assignment = Assignment.find(parameters['assignment_id'])
@@ -56,6 +81,14 @@ class FileSubmissionsController < ApplicationController
     render '/assignment/create.js'  
   end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def delete
   
     id = params[:file_id]

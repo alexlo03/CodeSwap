@@ -1,6 +1,15 @@
 class ReviewAssignmentController < ApplicationController
 include PairingHelper
-  
+
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def create
     if request.post?
 		  # Handle post request
@@ -52,7 +61,16 @@ include PairingHelper
 			@review_assignments = ReviewAssignment.all.keep_if{ |r| r.assignment_id != @assignment_id }
     end
   end
-  
+
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def edit
     requires({'role'=>['admin', 'faculty']})
     review_assignment = ReviewAssignment.find(params[:id])
@@ -102,6 +120,15 @@ include PairingHelper
     
   end
 
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
   def pairings
 			@assignment_id = session[:assignment_id]
 			@assignment = Assignment.find(@assignment_id)
@@ -174,6 +201,14 @@ include PairingHelper
   end
 
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
 	def view
 		@id = params[:id]
 		@review_assignment = ReviewAssignment.find(@id)
@@ -192,6 +227,15 @@ include PairingHelper
 		end
 	end
 
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
 	def answer_form
 		@id = params[:id]
 		@pos = params[:pos]
@@ -224,6 +268,15 @@ include PairingHelper
 		end
 	end
 
+
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
 	def student_submit
 		if request.post?
 			answers = params[:answers]
@@ -246,6 +299,14 @@ include PairingHelper
 		end
 	end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
 	def view_submission
 		mapping = ReviewMapping.find(params[:mapping_id])
 		@student_a = mapping.user
@@ -256,8 +317,15 @@ include PairingHelper
 		
 	end
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
 	def grades
-
 		id = params[:id]
 		@mappings = ReviewMapping.find_all_by_review_assignment_id(id)
 		@questions = ReviewQuestion.find_all_by_review_assignment_id(id)
@@ -272,8 +340,15 @@ include PairingHelper
 		end
 		
 	end
-	
 
+  ## TODO DOCUMENT
+  ## PURPOSE
+  # [Route(s)]
+  ## * TODO define routes
+  # [Params]
+  ## * TODO define params
+  # [Environment Variables]
+  ## * TODO define environment variables
 	def view_feedback
 		unless current_user.nil?
 			review_assignment_id = params[:id]
