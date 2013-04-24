@@ -219,12 +219,12 @@
 
         <div class="method-description">
           
-          
+          <p>Used to redirect on 404 error.</p>
           
 
           
           <div class="method-source-code" id="routing-source">
-            <pre><span class="ruby-comment"># File app/controllers/errors_controller.rb, line 3</span>
+            <pre><span class="ruby-comment"># File app/controllers/errors_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">routing</span>
  <span class="ruby-identifier">render</span> <span class="ruby-value">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{Rails.root}/public/404.html&quot;</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">404</span>, <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>

@@ -19,6 +19,7 @@ include ApplicationHelper
   protect_from_forgery
 
 
+  ## Used to redirect on a 404 error.
   def not_found
     raise ActionController::RoutingError.new('Page Not Found. Please contact the system administrator.')
   end

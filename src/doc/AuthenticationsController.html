@@ -223,19 +223,19 @@
 
         <div class="method-description">
           
-          <pre>TODO DOCUMENT
-PURPOSE</pre>
+          <pre>Associates an open auth account with the user.
+Magic.</pre>
 <dl class="rdoc-list label-list"><dt>Route(s)
 <dd><ul><li>
-<p>TODO define routes</p>
+<p>/authentications/create</p>
 </li></ul>
 </dd><dt>Params
 <dd><ul><li>
-<p>TODO define params</p>
+<p>None</p>
 </li></ul>
 </dd><dt>Environment Variables
 <dd><ul><li>
-<p>TODO define environment variables</p>
+<p>None</p>
 </li></ul>
 </dd></dl>
           
@@ -281,26 +281,25 @@ PURPOSE</pre>
 
         <div class="method-description">
           
-          <pre>TODO DOCUMENT
-PURPOSE</pre>
+          <pre>Disassociates an open authentication account with the current user.</pre>
 <dl class="rdoc-list label-list"><dt>Route(s)
 <dd><ul><li>
-<p>TODO define routes</p>
+<p>/authentications/destroy/:id</p>
 </li></ul>
 </dd><dt>Params
 <dd><ul><li>
-<p>TODO define params</p>
+<p>id - ID of the authentication to destroy</p>
 </li></ul>
 </dd><dt>Environment Variables
 <dd><ul><li>
-<p>TODO define environment variables</p>
+<p>authentication - instance of the destroyed authentication</p>
 </li></ul>
 </dd></dl>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 50</span>
+            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
   <span class="ruby-ivar">@authentication</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentications</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
   <span class="ruby-ivar">@authentication</span>.<span class="ruby-identifier">destroy</span>
@@ -328,19 +327,20 @@ PURPOSE</pre>
 
         <div class="method-description">
           
-          <pre>TODO DOCUMENT
-PURPOSE</pre>
+          <pre>Used to view all open authentications</pre>
 <dl class="rdoc-list label-list"><dt>Route(s)
 <dd><ul><li>
-<p>TODO define routes</p>
+<p>/authentications</p>
+</li><li>
+<p>/authentications/index</p>
 </li></ul>
 </dd><dt>Params
 <dd><ul><li>
-<p>TODO define params</p>
+<p>None</p>
 </li></ul>
 </dd><dt>Environment Variables
 <dd><ul><li>
-<p>TODO define environment variables</p>
+<p>authentications - All authentications authorized by the current user</p>
 </li></ul>
 </dd></dl>
           

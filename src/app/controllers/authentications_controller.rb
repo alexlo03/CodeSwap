@@ -1,26 +1,26 @@
 ## Handles OpenAuth Integration
 class AuthenticationsController < ApplicationController
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Used to view all open authentications
   # [Route(s)]
-  ## * TODO define routes
+  ## * /authentications
+  ## * /authentications/index
   # [Params]
-  ## * TODO define params
+  ## * None
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * authentications - All authentications authorized by the current user
   def index
     @authentications = current_user.authentications if current_user
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Associates an open auth account with the user.
+  ## Magic.
   # [Route(s)]
-  ## * TODO define routes
+  ## * /authentications/create
   # [Params]
-  ## * TODO define params
+  ## * None
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * None
   def create
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
@@ -39,14 +39,13 @@ class AuthenticationsController < ApplicationController
     end
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Disassociates an open authentication account with the current user.
   # [Route(s)]
-  ## * TODO define routes
+  ## * /authentications/destroy/:id
   # [Params]
-  ## * TODO define params
+  ## * id - ID of the authentication to destroy
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * authentication - instance of the destroyed authentication
   def destroy
     @authentication = current_user.authentications.find(params[:id])
     @authentication.destroy
