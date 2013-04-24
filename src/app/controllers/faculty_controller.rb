@@ -1,14 +1,16 @@
+## Handles faculty views
+## Deprecated?
 class FacultyController < ApplicationController
 include ApplicationHelper
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Lists all of the courses the user has access to
   # [Route(s)]
-  ## * TODO define routes
+  ## * /courses
   # [Params]
-  ## * TODO define params
+  ## * None
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * classes - Courses the user has access to (as a student or faculty)
+  ## * classes_ta - Courses the user is a ta for.
   def index
 		# List all of the courses
     requires({'role'=>['admin', 'faculty', 'student']})
@@ -24,28 +26,32 @@ include ApplicationHelper
     end
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Creates a new course instance
+  ## Deprecated?
   # [Route(s)]
-  ## * TODO define routes
+  ## * /faculty/new_course
   # [Params]
-  ## * TODO define params
+  ## * None
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * Course - A new course object
   def new_course
 		#Create a new Course
     requires({'role'=>['admin', 'faculty']})
     @course = Course.new
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Creates a course with the supplied users
   # [Route(s)]
-  ## * TODO define routes
+  ## * /faculty/add_course
   # [Params]
-  ## * TODO define params
+  ## * cname - name of the course to add
+  ## * cterm - term of the course to add
+  ## * cnumber - number of the course to add
+  ## * csection - section of the course to add
+  ## * students - comma separated value of all the students to add to the course
+  ## * tas - comma separated value of all the tas to add to the course
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * None
   def add_course
     requires({'role'=>['admin', 'faculty']})
 		#Get all of the parameters
