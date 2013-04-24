@@ -5,12 +5,17 @@ sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl 
 #Install and run rvm
 source ~/.rvm/scripts/rvm
 
+type rvm | head -n 1
+
+rvm autolibs enable
+rvm requirements
 #Use rvm to install ruby version 1.9.3
 rvm install 1.9.3
 
 #Make rvm use 1.9.3 as the default version
 rvm use 1.9.3 --default
 
+rvm requirements
 #Update rubygems with rvm
 rvm rubygems current
 
