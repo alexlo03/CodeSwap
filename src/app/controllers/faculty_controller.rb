@@ -9,8 +9,8 @@ include ApplicationHelper
       elsif(current_user.role == 'faculty')
         @classes = Course.find_all_by_user_id(current_user.id)
       else
-        @classes = Course.find_all_by_id(Studentgroup.find_all_by_user_id(current_user.id).collect(&:course_id))
-        @classes_ta = Course.find_all_by_id(Tagroup.find_all_by_user_id(current_user.id).collect(&:course_id))
+        @classes = Course.find_all_by_id(StudentInCourse.find_all_by_user_id(current_user.id).collect(&:course_id))
+        @classes_ta = Course.find_all_by_id(TaForCourse.find_all_by_user_id(current_user.id).collect(&:course_id))
       end
     end
   end
@@ -44,7 +44,7 @@ include ApplicationHelper
     taCount = ((tas.count)/3) - 1
     if(count == 0 && c.save)
       for i in (0..studentCount)
-        studentGroup = Studentgroup.new
+        studentGroup = StudentInCourse.new
         studentGroup.course_id = c.id
         first = students[3*i]
         last = students[3*i + 1]
@@ -64,7 +64,7 @@ include ApplicationHelper
       end
       unless (tas == "")
         for i in (0..taCount)
-          taGroup = Tagroup.new
+          taGroup = TaForCourse.new
           taGroup.course_id = c.id
           first = tas[3*i]
           last = tas[3*i + 1]

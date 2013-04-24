@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405062351) do
+ActiveRecord::Schema.define(:version => 20130424045312) do
 
   create_table "assignment_definition_to_users", :force => true do |t|
     t.integer  "user_id"
@@ -155,14 +155,14 @@ ActiveRecord::Schema.define(:version => 20130405062351) do
     t.string   "question_title"
   end
 
-  create_table "studentgroups", :force => true do |t|
+  create_table "student_in_courses", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"
     t.integer  "course_id"
   end
 
-  create_table "tagroups", :force => true do |t|
+  create_table "ta_for_courses", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.integer  "user_id"

@@ -133,32 +133,32 @@ shop4_students = [hulk, parker, superman]
 shop4_tas = [batman, stark, spartans]
 
 
-snork1_students.each{ |s| Studentgroup.create(:course_id => snork1, :user_id => s)}
-snork1_tas.each{ |t| Tagroup.create(:course_id => snork1, :user_id => t)} 
+snork1_students.each{ |s| StudentInCourse.create(:course_id => snork1, :user_id => s)}
+snork1_tas.each{ |t| TaForCourse.create(:course_id => snork1, :user_id => t)}
 
-snork2_students.each{ |s| Studentgroup.create(:course_id => snork2, :user_id => s)}
-snork2_tas.each{ |t| Tagroup.create(:course_id => snork2, :user_id => t)}
+snork2_students.each{ |s| StudentInCourse.create(:course_id => snork2, :user_id => s)}
+snork2_tas.each{ |t| TaForCourse.create(:course_id => snork2, :user_id => t)}
 
-snork3_students.each{ |s| Studentgroup.create(:course_id => snork3, :user_id => s)}
-snork3_tas.each{ |t| Tagroup.create(:course_id => snork3, :user_id => t)}
+snork3_students.each{ |s| StudentInCourse.create(:course_id => snork3, :user_id => s)}
+snork3_tas.each{ |t| TaForCourse.create(:course_id => snork3, :user_id => t)}
 
-snork4_students.each{ |s| Studentgroup.create(:course_id => snork4, :user_id => s)}
-snork4_tas.each{ |t| Tagroup.create(:course_id => snork4, :user_id => t)}
+snork4_students.each{ |s| StudentInCourse.create(:course_id => snork4, :user_id => s)}
+snork4_tas.each{ |t| TaForCourse.create(:course_id => snork4, :user_id => t)}
 
-tie_students.each{ |s| Studentgroup.create(:course_id => tie, :user_id => s)}
-tie_tas.each{ |t| Tagroup.create(:course_id => tie, :user_id => t)}
+tie_students.each{ |s| StudentInCourse.create(:course_id => tie, :user_id => s)}
+tie_tas.each{ |t| TaForCourse.create(:course_id => tie, :user_id => t)}
 
-shop1_students.each{ |s| Studentgroup.create(:course_id => shop1, :user_id => s)}
-shop1_tas.each{ |t| Tagroup.create(:course_id => shop1, :user_id => t)}
+shop1_students.each{ |s| StudentInCourse.create(:course_id => shop1, :user_id => s)}
+shop1_tas.each{ |t| TaForCourse.create(:course_id => shop1, :user_id => t)}
 
-shop2_students.each{ |s| Studentgroup.create(:course_id => shop2, :user_id => s)}
-shop2_tas.each{ |t| Tagroup.create(:course_id => shop2, :user_id => t)}
+shop2_students.each{ |s| StudentInCourse.create(:course_id => shop2, :user_id => s)}
+shop2_tas.each{ |t| TaForCourse.create(:course_id => shop2, :user_id => t)}
 
-shop3_students.each{ |s| Studentgroup.create(:course_id => shop3, :user_id => s)}
-shop3_tas.each{ |t| Tagroup.create(:course_id => shop3, :user_id => t)}
+shop3_students.each{ |s| StudentInCourse.create(:course_id => shop3, :user_id => s)}
+shop3_tas.each{ |t| TaForCourse.create(:course_id => shop3, :user_id => t)}
 
-shop4_students.each{ |s| Studentgroup.create(:course_id => shop4, :user_id => s)}
-shop4_tas.each{ |t| Tagroup.create(:course_id => shop4, :user_id => t)}
+shop4_students.each{ |s| StudentInCourse.create(:course_id => shop4, :user_id => s)}
+shop4_tas.each{ |t| TaForCourse.create(:course_id => shop4, :user_id => t)}
 
 
 # # # # # # # # # # # # # # # # # # # # # # #

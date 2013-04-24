@@ -87,7 +87,7 @@ module PairingHelper
     assignment_pairing.previous_id = old_pairing.id
 
 		course = Assignment.find(assignment_id).course
-		list = Studentgroup.find_all_by_course_id(course.id).collect(&:user_id)
+		list = StudentInCourse.find_all_by_course_id(course.id).collect(&:user_id)
 
 		if assignment_pairing.depth == list.length - 1
 			assignment_pairing.seed = rand(200000000)

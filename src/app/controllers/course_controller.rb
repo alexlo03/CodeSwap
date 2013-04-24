@@ -12,8 +12,8 @@ include CourseHelper
     requires({'role' => ['admin','faculty','student'],'course_id' => id})
 		#if the course is found & and the user is enrolled in the course, retrieve mappings of students and tas to a course.
     unless (@course.nil? || current_user.nil?)
-      @students = Studentgroup.where(:course_id => id)
-      @tas = Tagroup.where(:course_id => id)
+      @students = StudentInCourse.where(:course_id => id)
+      @tas = TaForCourse.where(:course_id => id)
       @teacher = User.where(:id => @course.user_id).first
       @admin = User.where(:role => 'admin')
 			#Detect whether user is student or faculty for this given course (can't use roles due to TAs)
@@ -42,8 +42,8 @@ include CourseHelper
     if(@course.nil?)
       flash[:error] = 'Something has gone horribly wrong. A system administrator has been contacted.'
     else
-      student_ids = Studentgroup.where(:course_id => id).collect(&:user_id)
-      ta_ids = Tagroup.where(:course_id => id).collect(&:user_id)
+      student_ids = StudentInCourse.where(:course_id => id).collect(&:user_id)
+      ta_ids = TaForCourse.where(:course_id => id).collect(&:user_id)
       
       @students = User.find_all_by_id(student_ids)
       @tas = User.find_all_by_id(ta_ids)
@@ -72,8 +72,8 @@ include CourseHelper
     course.section = course_section
     course.save
     
-    Studentgroup.delete_all(:course_id => id, :user_id => studentsToRemove)
-    Tagroup.delete_all(:course_id => id, :user_id => tasToRemove)
+    StudentInCourse.delete_all(:course_id => id, :user_id => studentsToRemove)
+    TaForCourse.delete_all(:course_id => id, :user_id => tasToRemove)
 
     flash[:notice] = "Changes saved."
   
@@ -131,10 +131,10 @@ include CourseHelper
       render :text => 'Error adding student.'
     else
       if role == 'student'
-        Studentgroup.create(:user_id => student.id, :course_id => course.id)
+        StudentInCourse.create(:user_id => student.id, :course_id => course.id)
         render :text => 'Student added successfully.'
       elsif role == 'ta'
-        Tagroup.create(:user_id => student.id, :course_id => course.id)
+        TaForCourse.create(:user_id => student.id, :course_id => course.id)
         render :text => 'TA added successfully.'
       end
     end
@@ -151,7 +151,7 @@ include CourseHelper
       group_1 = CourseGroup.find_all_by_course_id_and_group(course_id, 0).collect(&:user_id)
       group_2 = CourseGroup.find_all_by_course_id_and_group(course_id, 1).collect(&:user_id)
 
-      course_students = Studentgroup.find_all_by_course_id(course_id).collect(&:user_id)
+      course_students = StudentInCourse.find_all_by_course_id(course_id).collect(&:user_id)
       
       @ungrouped = User.find_all_by_id(course_students).reject{ |user| user.id.in? group_1 or user.id.in? group_2 }
       @group_1 = User.find_all_by_id(group_1)

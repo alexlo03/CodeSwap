@@ -49,7 +49,7 @@ class FileSubmissionsController < ApplicationController
       course = Course.find(assignment.course_id)
 
     @assignmentFile = user_id == course.user_id
-    @studentFile = !Studentgroup.find_all_by_user_id_and_course_id(user_id, course.id).empty?
+    @studentFile = !StudentInCourse.find_all_by_user_id_and_course_id(user_id, course.id).empty?
   
 		@assignment = assignment
 		
@@ -68,7 +68,6 @@ class FileSubmissionsController < ApplicationController
     
     if ((current_user.id == submission.user_id) or (current_user.id == faculty_id))
       File.delete(submission.full_save_path)
-			name = FileSubmission.find(id).name 
       FileSubmission.destroy(id)
       flash[:notice] = "File removed successfully."
       logger.info "Delete permitted."

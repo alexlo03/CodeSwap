@@ -60,11 +60,11 @@ class User < ActiveRecord::Base
   end
 
   def student_in
-    Course.find_all_by_id(Studentgroup.find_all_by_user_id(id).map(&:course_id))
+    Course.find_all_by_id(StudentInCourse.find_all_by_user_id(id).map(&:course_id))
   end 
   
   def ta_in
-    Course.find_all_by_id(Tagroup.find_all_by_user_id(id).map(&:course_id))
+    Course.find_all_by_id(TaForCourse.find_all_by_user_id(id).map(&:course_id))
   end
 
   def professor_of

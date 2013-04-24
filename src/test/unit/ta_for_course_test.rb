@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TagroupTest < ActiveSupport::TestCase
+class TaForCourseTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

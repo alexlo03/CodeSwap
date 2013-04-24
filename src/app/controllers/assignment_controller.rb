@@ -25,11 +25,11 @@ include AssignmentHelper
       allAssignments = []
       allReviewAssignments = []
       if current_user.student?
-        studentCourses = Studentgroup.find_all_by_user_id(current_user.id).collect(&:course_id)
+        studentCourses = StudentInCourse.find_all_by_user_id(current_user.id).collect(&:course_id)
         studentAssignments = Assignment.find_all_by_course_id(studentCourses)
 			  studentReviewAssignments = ReviewAssignment.find_all_by_course_id(studentCourses)
 			  
-        taCourseIds = Tagroup.find_all_by_user_id(current_user.id).collect(&:course_id)
+        taCourseIds = TaForCourse.find_all_by_user_id(current_user.id).collect(&:course_id)
         taAssignments = Assignment.find_all_by_course_id(taCourseIds)
         taReviewAssignments = ReviewAssignment.find_all_by_course_id(taCourseIds)
 	    elsif current_user.faculty?
@@ -140,7 +140,7 @@ include AssignmentHelper
       definition.save
       
 		  #Create mappings of students to assignment_definition
-      students = Studentgroup.where(:course_id => course_id)
+      students = StudentInCourse.where(:course_id => course_id)
       students.each do |student|
         AssignmentDefinitionToUser.new(:assignment_definition_id => definition.id, :user_id => student.user_id).save
       end
@@ -231,11 +231,11 @@ include AssignmentHelper
     if(current_user)
     
       @assignmentFiles = FileSubmission.where(:assignment_definition_id => @assignmentDefinition.id, :user_id => course.user_id)
-      courseStudentIds = Studentgroup.find_all_by_course_id(course.id).collect(&:user_id)
+      courseStudentIds = StudentInCourse.find_all_by_course_id(course.id).collect(&:user_id)
     
       @faculty = current_user.id == course.user_id
-      @ta = !Tagroup.where(:course_id => course.id, :user_id => current_user.id).empty?
-      @student = !Studentgroup.where(:course_id => course.id, :user_id => current_user.id).empty?
+      @ta = !TaForCourse.where(:course_id => course.id, :user_id => current_user.id).empty?
+      @student = !StudentInCourse.where(:course_id => course.id, :user_id => current_user.id).empty?
 	
       @unsubmitted_students = []
       @courseStudents = []

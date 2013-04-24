@@ -2,8 +2,8 @@ class Course < ActiveRecord::Base
   require 'csv'
 
   belongs_to :user
-  has_one :studentgroup
-  has_one :tagroup
+  has_one :student_in_course
+  has_one :ta_for_course
 	has_many :course_groups
   attr_accessible :course_number, :name, :section, :term, :user_id
 
@@ -28,24 +28,24 @@ class Course < ActiveRecord::Base
         end
 
         if row["role"].downcase == 'student'
-          Studentgroup.create(:user_id =>  user.id, :course_id => id)
+          StudentInCourse.create(:user_id =>  user.id, :course_id => id)
 					group = row['group']
 					unless(group.nil?)
 						CourseGroup.create(:user_id => user.id, :course_id => id, :group => group)
 					end
         elsif row["role"].downcase == 'ta'
-          Tagroup.create(:user_id => user.id, :course_id => id)
+          TaForCourse.create(:user_id => user.id, :course_id => id)
         end
       end
   end
 
   # Fetches students within a course
   def get_students
-    Studentgroup.where(:course_id => id).collect(&:user_id)
+    StudentInCourse.where(:course_id => id).collect(&:user_id)
   end
 
   def get_tas
-    Tagroup.find_all_by_course_id(id).collect(&:user_id)
+    TaForCourse.find_all_by_course_id(id).collect(&:user_id)
   end
 
   def is_user_ta(user_id)
