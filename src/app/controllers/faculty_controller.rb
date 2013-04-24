@@ -29,67 +29,67 @@ include ApplicationHelper
     cNumber = params[:cnumber]
     cSection = params[:csection] && params[:csection].to_i
 
-		#Students and Tas is a comma seperated list in form of First Name, Last Name, email,...
+		#Students and Tas is a comma separated list in form of First Name, Last Name, email,...
     students = params[:students]
     tas = params[:tas]
 
 		#Check to see if a course exists with the same unique values
-    count = Course.where(:name => cName, :term => cTerm, :course_number => cNumber, :section => cSection).count    
-    c = Course.new(:name => cName, :term => cTerm, :course_number => cNumber, :section => cSection)
+    numCourses = Course.where(:name => cName, :term => cTerm, :course_number => cNumber, :section => cSection).count
+    course = Course.new(:name => cName, :term => cTerm, :course_number => cNumber, :section => cSection)
 
 		#Split the student and ta strings, remove whitespace
     students = students.gsub(/\s+/, "").split(",")
     tas = tas.gsub(/\s+/, "").split(",")
     studentCount = ((students.count)/3) - 1
     taCount = ((tas.count)/3) - 1
-    if(count == 0 && c.save)
+    if(numCourses == 0 && course.save)
       for i in (0..studentCount)
         studentGroup = StudentInCourse.new
-        studentGroup.course_id = c.id
+        studentGroup.course_id = course.id
         first = students[3*i]
         last = students[3*i + 1]
         email = students[3*i + 2].downcase
 				#Check to see if user exists with the same email. If not, create new
-        u = User.where(:email => email).first
-        if u.nil?
-          u = User.new(:email=>email, :first_name => first, :last_name => last)
-          u.role = "student"
-          u.password ||= "password"
-          u.password_confirmation ||="password"
-          bool = u.save
+        user = User.find_by_email(email)
+        if user.nil?
+          user = User.new(:email=>email, :first_name => first, :last_name => last)
+          user.role = "student"
+          user.password ||= "password"
+          user.password_confirmation ||="password"
+          user.save
         end
 				#Save studentGroup (mapping of students to class)
-        studentGroup.user_id = u.id
+        studentGroup.user_id = user.id
         studentGroup.save  
       end
       unless (tas == "")
         for i in (0..taCount)
           taGroup = TaForCourse.new
-          taGroup.course_id = c.id
+          taGroup.course_id = course.id
           first = tas[3*i]
           last = tas[3*i + 1]
           email = tas[3*i + 2].downcase
-          u = User.where(:email => email).first
+          user = User.find_by_email(email)
 					#Check to see if user exists with the same email. If not, create new
-          if u.nil?
-            u = User.new(:email=>email, :first_name => first, :last_name => last)
-            u.role = "student"
-            u.password ||= "password"
-            u.password_confirmation ||="password"
-            bool = u.save
+          if user.nil?
+            user = User.new(:email=>email, :first_name => first, :last_name => last)
+            user.role = "student"
+            user.password ||= "password"
+            user.password_confirmation ||="password"
+            user.save
           end
 					#Save taGroup (mapping of TAs to class)
-          taGroup.user_id = u.id
+          taGroup.user_id = user.id
           taGroup.save 
         end
-        c.user_id = current_user.id
-        c.save
+        course.user_id = current_user.id
+        course.save
       end
     else
 			#If course exists, raise error, new page is not loaded (yay ajax)
-      c["error"] = "Course Already Exists"
+      course["error"] = "Course Already Exists"
     end
-    render :json => c.to_json
+    render :json => course.to_json
   end
     
 end
