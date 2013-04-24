@@ -12,7 +12,7 @@ Editing assignment for <%= @course.name %>
 
 <br/>
 
-<p class='btn' onClick="reviewassignments.edit.submitChanges();">Submit</p>
+<button id = 'submitter' class='btn' onClick="reviewassignments.edit.submitChanges(); disableElement('submitter');">Submit</button>
 
 <%= link_to 'Cancel', :back, :class => 'btn' %>
 

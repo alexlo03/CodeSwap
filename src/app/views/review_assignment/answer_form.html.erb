@@ -41,6 +41,6 @@
 <% end %>
 </table>
 
-<p class='btn' onClick="reviewassignments.view.submit(<%= @id %>,<%= @other_id %>);">Save/Submit Grade</p>
+<button id='submitter' class='btn' onClick="reviewassignments.view.submit(<%= @id %>,<%= @other_id %>); disableElement('submitter');">Save/Submit Grade</button>
 <strong>Note:</strong> Your answers will be saved and can be edited up to the due date of this review.
 <% end %>

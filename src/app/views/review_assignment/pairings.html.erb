@@ -16,7 +16,7 @@ review the assignemnt for the student in the right column. </p>
 <% end %>
 </table>
 <div class="span6">
-<p class='btn' onClick='reviewassignments.create.submitPairing();'>Submit</p>
+<button id = 'submitter' class='btn' onClick="reviewassignments.create.submitPairing(); disableElement('submitter');">Submit</button>
 <% if @prev_id.nil? %>
 <%= link_to 'Reassign', '/reviewassignment/pairings/1', :class => 'btn' %>
 <% end %>
