@@ -8,6 +8,16 @@ class Course < ActiveRecord::Base
   attr_accessible :course_number, :name, :section, :term, :user_id
 
   # Imports Students / TAs from a spreadsheet
+	# [Input]
+	## * file -- a file in CSV format that contains the following information (with headers)
+	##     1. first_name
+	##     2. last_name
+	##     3. email
+	##     4. role (student,ta)
+	##     5. group (1,2)
+	# [Note]
+	## * Creates accounts for users that were not in the database, sends them a registration email
+	## * Groups should be even in size (if possible)
   def import_students_and_tas(file)
       spreadsheet = open_spreadsheet(file)
       header = spreadsheet.row(1)
@@ -40,18 +50,34 @@ class Course < ActiveRecord::Base
   end
 
   # Fetches students within a course
+	# [Return]
+	## * Array of user_ids
   def get_students
     StudentInCourse.where(:course_id => id).collect(&:user_id)
   end
 
+
+  # Fetches teaching assistants within a course
+	# [Return]
+	## * Array of user_id
   def get_tas
     TaForCourse.find_all_by_course_id(id).collect(&:user_id)
   end
-
+	
+	# Checks if a user is a TA for the course
+	# [Input]
+	## * user_id -- user_id to check
+	# [Return]
+	## * True if the user is a ta, false otherwise
   def is_user_ta(user_id)
     get_tas.include?(user_id)
   end
-  # Opens CSV / Excel files
+
+  # Helper used to open CSV / Excel files
+	# [Input]
+	## * file -- file to be opened
+	# [Return]
+	## * Readable file object if the file is a csv, xls, or xlsx, redirects otherwise
   def open_spreadsheet(file)
     case File.extname(file.original_filename)
     when ".csv" then Csv.new(file.path, nil, :ignore)
@@ -63,6 +89,9 @@ class Course < ActiveRecord::Base
     end
   end
 
+  # Get the different student groups (group 1 and 2)
+	# [Return]
+	## * 2D array of user_ids
 	def get_groups
 		group0 = course_groups.find_all_by_group(0).collect(&:user_id)
 		group1 = course_groups.find_all_by_group(1).collect(&:user_id)

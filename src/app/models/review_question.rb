@@ -11,10 +11,14 @@ class ReviewQuestion < ActiveRecord::Base
 	#short_answer = 3
 	TYPES = %w{instruction multiple_choice numerical_answer short_answer}
 
+	# Metaprogramming magic to create the different type checking boolean methods
 	TYPES.each_with_index do |name,i|
 		define_method("#{name}?") {question_type == i}
 	end
 
+	# Sets the question type
+	## [Params]
+	## * type_string -- Question type as a string
 	def set_type(type_string)
 		TYPES.each_with_index do |name,i|
 			if name == type_string
