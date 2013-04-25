@@ -2,13 +2,20 @@
 class ReviewAssignmentController < ApplicationController
 include PairingHelper
 
-  ## Used to create assignments
+  ## Create review (swap) assignments
   # [Route(s)]
-  ## * /reviewassignments/create/:assignment_id
+  ## * /reviewassignment/create/:assignment_id
   # [Params]
-  ## *
+  ## * assignment_id - ID of review assignment
+  ## * name - Name of the review assignment
+  ## * grouped - Flag whether groupings are to be used
+  ## * questions - Mapping of questions for the reviewer to answer
+  ## * previous_id - Previous assignment's ID
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * assignment_id - ID of the Assignment being linked to the Review
+  ## * assignment - Assignment for which this review is being created
+  ## * review_assignments - List of active review assignments
+
   def create
     if request.post?
 		  # Handle post request
@@ -62,14 +69,23 @@ include PairingHelper
   end
 
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Edit review (swap) assignments
   # [Route(s)]
-  ## * TODO define routes
+  ## * /reviewassignment/edit/:assignment_id
   # [Params]
-  ## * TODO define params
+  ## * startDate - Date which the review assignment will start
+  ## * startTime - Time which the review assignment will start
+  ## * endDate - Date which the review assignment will end
+  ## * endTime - Time which the review assignment will start
+  ## * name - Name of the review assignment
+  ## * grouped - Whether or not the review assignment is using
+  ## * question - Mapping of questions for the reviewers to answer
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * course - The course to which the review assignment under review belongs
+  ## * review_assignment - The review assignment being edited
+  ## * review_questions - Collection of questions currently part of the review assignment
+  ## * review_question_choices - Collection of available answers for questions (i.e. multiple choice options {a, b, c, ....})
+
   def edit
     requires({'role'=>['admin', 'faculty']})
     review_assignment = ReviewAssignment.find(params[:id])
@@ -120,14 +136,29 @@ include PairingHelper
   end
 
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Match users to reviewers
   # [Route(s)]
-  ## * TODO define routes
+  ## /reviewassignment/pairings/
+  ## /reviewassignment/pairings/1
   # [Params]
-  ## * TODO define params
+  ## * redo - flag for reassigning pairings
+  # [Session Variables]
+  ## * assignment_id - ID of the assignment linked to the review being created
+  ## * review_assignment_id - The ID of the review assignment for which pairings are being generated
+  ## * seed - seed used for randomization of pairings on this assignment
+  ## * depth - number of assignments in the "assignment link" chain
+  ## * student_pairing_hash - 
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * assignment_id - ID of assignment to which the review is linked.
+  ## * assignment - Assignment to which the review is link
+  ## * course - The course to which the review assignment under review belongs
+  ## * students - Collection of all students in course
+  ## * review_assignment_id - current review assignment's as
+  ## * prev_id - ID of previous assignment (most recelinked assignment)
+  ## * seed - seed used for randomization of pairings on this assignment
+  ## * depth - number of assignments in the "assignment link" chain
+  ## * student_pairing_hash - hash of student pairing informa
+
   def pairings
 			@assignment_id = session[:assignment_id]
 			@assignment = Assignment.find(@assignment_id)
@@ -200,14 +231,21 @@ include PairingHelper
   end
 
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Display reviews todo / feedback for the current review assignment
   # [Route(s)]
-  ## * TODO define routes
+  ## * /reviewassignment/view/
   # [Params]
-  ## * TODO define params
+  ## * id - current review assignment's id
+  # [Session Variables]
+  ## * assignment_id - assignment to which the review assignment is linked
+  ## * review_assignment_id - ID of the review assignment
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * id - ID of the review assignment
+  ## * review_assignment - the current review assignment
+  ## * student - flag signifying if the user is a student
+  ## * count - number of pairings a user has for the review assignment
+  ## * students - collection of students with the review assignment
+  ## * teacher_grades - collection of each user's reviews for the review assignment
 	def view
 		@id = params[:id]
 		@review_assignment = ReviewAssignment.find(@id)
