@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 
 	has_many :course_groups
   has_many :authentications
+	has_many :student_in_courses
+	has_many :ta_for_courses
   has_and_belongs_to_many :courses
 	
   # Include default devise modules. Others available are:
@@ -74,14 +76,14 @@ class User < ActiveRecord::Base
 	# [Return]
 	## * Array of courses
   def student_in
-    Course.find_all_by_id(StudentInCourse.find_all_by_user_id(id).map(&:course_id))
+    student_in_courses.collect(&:course)
   end 
   
 	# All courses that the user is a ta for
 	# [Return]
 	## * Array of courses
-  def ta_in
-    Course.find_all_by_id(TaForCourse.find_all_by_user_id(id).map(&:course_id))
+	def ta_in
+		ta_for_courses.collect(&:course)
   end
 
 	
