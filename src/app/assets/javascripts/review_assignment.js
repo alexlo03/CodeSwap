@@ -11,12 +11,6 @@ reviewassignments = {
         $('#start-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#start-date').datepicker('hide'); });
 
         $('#end-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
-
-//        $('#question_1_title').tooltip({'title':'Click to Edit', 'placement':'right'});
-//        $('#question_1_title').popover({'title':'Enter Question Title', 'content':reviewassignments.create.textForEditPopover('1')});
-
-//        $('input[name="question_1_type"]').change(function(){ reviewassignments.create.radioChanged(1); });
- 
         $('#time-start').timepicker({minuteStep: 1});
         $('#time-end').timepicker({minuteStep: 1});
         reviewassignments.create.addQuestion();
@@ -210,17 +204,12 @@ reviewassignments = {
           if(type == '1'){
             answer = $('input[name="'+ val +'_choice"]:checked').val();
            } else if(type=='0') {
-             answer = ' '; 
+             answer = '';
            }
            else {
             answer = $('#' + val).val();
            }
-          if(typeof answer == 'undefined' || answer == '') {
-            answersOK = false;
-
-          } else { 
-          answers.push(answer); 
-          }
+          answers.push(answer);
         });
         if(answersOK) {
 				  $.post('/reviewassignment/studentsubmit',
