@@ -58,14 +58,15 @@ include CourseHelper
   end
 
   
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Populates view with modifiable course information
   # [Route(s)]
-  ## * TODO define routes
+  ## * /course/edit/:id
   # [Params]
-  ## * TODO define params
+  ## * id - ID of the course to modify
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * course - Course being modified
+  ## * students - List of students in the course
+  ## * tas - List of teaching assistants for the course
   def edit
     #Validate
     id = params[:id]
@@ -82,14 +83,17 @@ include CourseHelper
     end
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Updates course information
   # [Route(s)]
-  ## * TODO define routes
+  ## * /course/submit_edit/
   # [Params]
-  ## * TODO define params
+  ## * course_id - ID of course being modified
+  ## * number - New Course Number of the course
+  ## * term - New term of the course
+  ## * section - New section of the course
+  ## * name - New name of the course
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * None
   def submit_edit
     id = params[:course_id]
     requires({'role' => ['admin','faculty'],'course_id'=>id})
@@ -118,30 +122,27 @@ include CourseHelper
   
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Populates a view for creating a new course
   # [Route(s)]
-  ## * TODO define routes
+  ## * /course/new
   # [Params]
-  ## * TODO define params
+  ## * None
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * None
   def new
     requires({'role' => ['admin','faculty']})
-    @name = params[:name]
-    @term = params[:term]
-    @number = params[:number]
-    @section = params[:section]
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Creates a new course with info from /new page
   # [Route(s)]
-  ## * TODO define routes
+  ## * /course/create
   # [Params]
-  ## * TODO define params
+  ## * course_name - Name of the course
+  ## * course_term - Term of the course
+  ## * course_number - Course Number of the course
+  ## * students_csv - .csv of the students file
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * None
   def create
     requires({'role' => ['admin','faculty']})
     course_name = params[:course_name]
@@ -206,11 +207,16 @@ include CourseHelper
   ## TODO DOCUMENT
   ## PURPOSE
   # [Route(s)]
-  ## * TODO define routes
+  ## * /course/manage_groups/id
   # [Params]
-  ## * TODO define params
+  ## * (GET) id - ID of the course
+  ## * (POST) group1 - List of students in group 1
+  ## * (POST) group2 - List of students in group 2
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * (GET) ungrouped - List of students that do not belong to a group
+  ## * (GET) group_1 - List of students belonging to group 1
+  ## * (GET) group_2 - List of students belonging to group 2
+  ## * (POST) None
   def manage_groups
   
     if request.get?
