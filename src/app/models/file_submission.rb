@@ -9,12 +9,18 @@ class FileSubmission < ActiveRecord::Base
   mount_uploader :file, FileSubmissionUploader
   process_in_background :file
   
+	# Full save path for a file
+	## [Return]
+	## * The full save path
   def full_save_path
     return save_directory + name
   end
-
-  # user = grader
-  # other_user = gradee
+	
+	# Checks if a user can download a file
+	## [Params]
+	## * user_id -- the user to check
+	## [Return]
+	## * True if a user has permission to download the file, otherwise false
   def user_can_download (current_user_id)
     applicable_users = []
     applicable_users += [self.user_id]
@@ -34,7 +40,10 @@ class FileSubmission < ActiveRecord::Base
     return current_user_id.in?(applicable_users)
   end
 
+	# Full save directory
+	## [Return]
+	## * Returns the full save directory
   def save_directory
-    return 'Uploads/Assignments/Course ID' + course_id.to_s + '/Assignment ID' + assignment_id.to_s + '/' + User.find(user_id).username + '/'
+    return 'Uploads/Assignments/Course ID#{course_id.to_s}/Assignment ID#{assignment_id.to_s}/#{User.find(user_id).username}/'
   end
 end
