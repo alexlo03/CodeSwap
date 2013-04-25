@@ -166,14 +166,17 @@ include CourseHelper
     end
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Adds student (creates new user if it doesn't exist) to the course
   # [Route(s)]
-  ## * TODO define routes
+  ## * /course/add_student
   # [Params]
-  ## * TODO define params
+  ## * course_id - ID of course the user is being added to
+  ## * first - First name of the user
+  ## * last - Last name of the user
+  ## * email - Email address of the user
+  ## * role - Role the
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## *
   def add_student
     course_id = params[:course_id]
     requires({'role' => ['admin','faculty'],'course_id'=>course_id})
@@ -204,8 +207,7 @@ include CourseHelper
   
   end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Manages student groups for the given course
   # [Route(s)]
   ## * /course/manage_groups/id
   # [Params]

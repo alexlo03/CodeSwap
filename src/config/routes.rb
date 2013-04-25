@@ -31,7 +31,6 @@ CodeSwap::Application.routes.draw do
 
   # Faculty // Course Routes
 
-  match 'faculty/add_course', :controller => 'faculty', :action => 'add_course', :as => 'add_course'
   match 'course/show/:c_id', :controller => 'course', :action=>'show', :as => 'show_course'
   match 'course/edit/:id', :controller => 'course', :action => 'edit', :as => 'edit_course'
   match 'course/submit_edit', :controller => 'course', :action => 'submit_edit'
@@ -39,8 +38,6 @@ CodeSwap::Application.routes.draw do
   get "faculty/index"
   match 'faculty/index', :controller => 'faculty', :action => 'index', :as => 'faculty_index'
   match '/courses', :controller => 'faculty', :action => 'index', :as => 'course_index'
-  get "faculty/new_course" 
-  get "faculty/add_course" 
   match 'course/new', :controller => 'course', :action => 'new', :as => 'new_course'
   match 'course/create', :controller => 'course', :action => 'create', :as => 'create_course'
   match 'course/add_student', :controller => 'course', :action => 'add_student'
