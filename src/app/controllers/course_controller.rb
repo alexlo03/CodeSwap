@@ -174,9 +174,9 @@ include CourseHelper
   ## * first - First name of the user
   ## * last - Last name of the user
   ## * email - Email address of the user
-  ## * role - Role the
+  ## * role - Role the user will have in the course (ta/student)
   # [Environment Variables]
-  ## *
+  ## * None
   def add_student
     course_id = params[:course_id]
     requires({'role' => ['admin','faculty'],'course_id'=>course_id})
@@ -204,7 +204,6 @@ include CourseHelper
         render :text => 'TA added successfully.'
       end
     end
-  
   end
 
   ## Manages student groups for the given course
@@ -214,6 +213,7 @@ include CourseHelper
   ## * (GET) id - ID of the course
   ## * (POST) group1 - List of students in group 1
   ## * (POST) group2 - List of students in group 2
+  ## * (POST) ungrouped - unused.
   # [Environment Variables]
   ## * (GET) ungrouped - List of students that do not belong to a group
   ## * (GET) group_1 - List of students belonging to group 1
