@@ -163,7 +163,7 @@ include AssignmentHelper
         AssignmentDefinitionToUser.new(:assignment_definition_id => definition.id, :user_id => student.user_id).save
       end
 
-      flash[:notice] = 'What a neat assignment.'
+      flash[:notice] = 'Assignment created successfully.'
     end
   end
 
@@ -216,7 +216,7 @@ include AssignmentHelper
         definition.description = description
       definition.save
       
-      flash[:notice] = 'Those changes are GRRRREAT!  Like Frosted Flakes.'
+      flash[:notice] = 'Changes made successfully.'
     end
   end
 
