@@ -11,22 +11,39 @@ module ApplicationHelper
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+	# Total number of active users with faculty role
+	# [RETURN]
+	## * number of faculty members
   def faculty_count
     User.where(:role => :faculty, :deleted_at => nil).count
   end
 
+	# Total number of active users with admin role
+	# [RETURN]
+	## * number of admins
   def admin_count
     User.where(:role => :admin, :deleted_at => nil).count
   end
 
+	# Total number of active users with TA role
+	# [RETURN]
+	## * number of TAs
   def ta_count
     User.where(:role => :ta, :deleted_at => nil).count
   end
   
+	# Total number of active users with students role
+	# [RETURN]
+	## * number of students
   def student_count
     User.where(:role => :student, :deleted_at => nil).count
   end
 
+	# Creates a user, then emails them with a way to activate and authenticate their new account
+	# [RETURN]
+	## * The created user
+	# [NOTE]
+	## * Without backgrounding the emailer, this can take a long time
   def create_and_invite_user(first, last, email, role)
   	#Create random password, requires members to respond to email before using the system.
     o =[('a'..'z'),('A'..'Z'),('0'..'9')].map{|i| i.to_a}.flatten
@@ -45,9 +62,12 @@ module ApplicationHelper
     
   end
 
+	
+	# Used for permission control. Accepts a role and a course_id in a hash
+	# [PARAMS]
+  ## * args is a Hash (example: args = {'role' => [], 'course_id'=>[]})
   def requires(args)
-    #args is a Hash
-    #args == {'role' => [], 'course_id'=>[]
+
     
     unless (current_user && current_user.role=='admin')
       if current_user && args['role'].include?(current_user.role)
