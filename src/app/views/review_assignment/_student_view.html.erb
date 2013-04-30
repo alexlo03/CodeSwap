@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 
 <dl>
-<% for i in 0..@count-1 %>
+<% @reviews.each_with_index do |r, i| %>
 <dt>
-  <h3>Review #<%= i + 1 %>:</h3>
+  <h3>Review #<%= i + 1 %>:
+    <% if r.completed? %>
+      Answers Saved
+    <% else %>
+      Not Started
+    <% end %>
+  </h3>
 </dt>
 <dd>
-  <a class='btn' href=<%= "/reviewassignment/#{@id}/#{i}/answer_form"%>>Click here to start/resume</a>
+  <% unless @review_assignment.is_over %>
+    <h4>This review assignment is over.<h4>
+  <% else %>
+    <a class='btn' href=<%= "/reviewassignment/#{@id}/#{i}/answer_form"%>>
+      <% if r.completed? %>
+        Click here to resume
+      <% else %>
+        Click here to start
+      <% end %>
+    </a>
+  <% end %>
 </dd>
 <% end %>
 </dl>

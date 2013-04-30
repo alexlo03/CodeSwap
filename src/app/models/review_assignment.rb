@@ -52,13 +52,6 @@ class ReviewAssignment < ActiveRecord::Base
   def pretty_end_date
     end_date.strftime("%m-%d-%y  %l:%M %P %Z")
   end
-  # Checks if the current time is between the start date and end date
-	# [Return]
-	## * True if Time.now between start_date and end_date, false otherwise
-	# [Note]
-	## * DEPRECATED: Use is_active? instead
-  def is_active
-  end
 
   # Checks if the current time is between the start date and end date
 	# [Return]
@@ -66,33 +59,12 @@ class ReviewAssignment < ActiveRecord::Base
   def is_active?
       (start_date <= Time.now) && (Time.now <= end_date_buffered)
   end
-
-   
-  # Checks if Time.now is greater than the end_date for the assignment  
-	# [Return]
-	## * True if Time.now greater than end_date, false otherwise   
-	# [Note]
-	## * DEPRECATED: Use is_over? instead
-  def is_over
     
-  end
-       
   # Checks if Time.now is greater than the end_date for the assignment  
 	# [Return]
 	## * True if Time.now greater than end_date, false otherwise
   def is_over?
       end_date_buffered < Time.now
-  end
-    
-    
-  # Checks if Time.now is between the end date and the late assignment buffer
-	# [Return]
-	## * True if Time.now greater than end_date and less than end_date + buffer, false otherwise 
-	# [Note]
-	## * DEPRECATED: Use is_late? instead
-	## * Late window is 24 hours. Used to color tables in view so professor knows how late assignment was.
-  def is_late
-    
   end
 
   # Checks if Time.now is between the end date and the late assignment buffer
