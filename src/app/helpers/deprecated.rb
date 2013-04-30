@@ -2,17 +2,11 @@
 # Visit seejohncode.com for more information
 module Deprecated
 
-def deprecated(name, replacement = nil)
-    old_name =:"#{name}_without_deprecation"
-    alias_method old_name, name
-    
+# Used to denote deprecated methods with a warning. Allows for easier refactoring
+def deprecated(name, replacement)
     define_method(name) do |*args, &block|
-        if replacement
-            warn "DEPRECATED ##{name} deprecated (please use ##{replacement})"
-            else
-            warn "DEPRECATED ##{name} deprecated"
-        end
-        send old_name, *args, &block
+        warn "DEPRECATED ##{name} is deprecated (use ##{replacement} instead)"
+        send replacement, *args, &block
     end
 end
 end
