@@ -2,6 +2,7 @@
 # Visit seejohncode.com for more information
 module Deprecated
 
+# Used to denote deprecated methods with a warning. Allows for easier refactoring
 def deprecated(name, replacement = nil)
     old_name =:"#{name}_without_deprecation"
     alias_method old_name, name

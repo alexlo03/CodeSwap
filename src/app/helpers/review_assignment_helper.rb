@@ -1,2 +1,3 @@
+# EMPTY
 module ReviewAssignmentHelper
 end
