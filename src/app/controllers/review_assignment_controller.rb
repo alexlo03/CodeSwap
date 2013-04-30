@@ -265,14 +265,23 @@ include PairingHelper
 	end
 
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Renders the current state of a user's answer form for the current review assignment
   # [Route(s)]
-  ## * TODO define routes
+  ## * /reviewassignment/<review assignment ID>/<mapping_id>/answer_form
   # [Params]
-  ## * TODO define params
+  ## * id - the current review assignment's id
+  ## * pos- question order
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * id - the current review assignment's id
+  ## * pos - question order
+  ## * review_assignment - the current review assignment
+  ## * review_mapping - mapping of reviewers to reviewees
+  ## * other_id - ID of user under review
+  ## * file_submission - files submitted by the reviewee
+  ## * questions - questions associated with the current review assignment
+  ## * extras_hash - hash of question components, such as multiple-choice options.  (sorted by key value pairs, the id is the association with a particular question)
+  ## * answers_hash - answers for each question
+
 	def answer_form
 		@id = params[:id]
 		@pos = params[:pos]
@@ -306,14 +315,15 @@ include PairingHelper
 	end
 
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Submits a student's review
   # [Route(s)]
-  ## * TODO define routes
+  ## * Post Request Page
   # [Params]
-  ## * TODO define params
+  ## * answers - user's answers to review questions
+  ## * other_id - reviewee's ID
+  ## * id - current review assignment's ID
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * NONE
 	def student_submit
 		if request.post?
 			answers = params[:answers]
@@ -336,14 +346,16 @@ include PairingHelper
 		end
 	end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Allows faculty to view reviews of students
   # [Route(s)]
-  ## * TODO define routes
+  ## * /reviewassignment/viewsubmission/<mapping id>
   # [Params]
-  ## * TODO define params
+  ## * mapping_id - ID of the currently mapped review
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * student_a - reviewer
+  ## * student_b - reviewee
+  ## * review_assignment - mapping of reviewers to reviewees for current review assignment
+  ## * answers - student_a's reviews (answers) of student_b
 	def view_submission
 		mapping = ReviewMapping.find(params[:mapping_id])
 		@student_a = mapping.user
@@ -354,14 +366,15 @@ include PairingHelper
 		
 	end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Generates a grade report for the review assignment.
   # [Route(s)]
-  ## * TODO define routes
+  ## * /reviewassignment/1/grades.<html, xls, csv>
   # [Params]
-  ## * TODO define params
+  ## * id - the current review assignment's ID
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * mappings - all review mappings for the review assignment
+  ## * questions - all questions for the review assignment
+  ## * answers - all reviews submitted for the review assignment
 	def grades
 		id = params[:id]
 		@mappings = ReviewMapping.find_all_by_review_assignment_id(id)
@@ -378,20 +391,22 @@ include PairingHelper
 		
 	end
 
-  ## TODO DOCUMENT
-  ## PURPOSE
+  ## Allows a reviewee to see its reviews.
   # [Route(s)]
-  ## * TODO define routes
+  ## * /reviewassignment/view_feedback/<review_assignment.id>
   # [Params]
-  ## * TODO define params
+  ## * id - the current review assignment's ID
   # [Environment Variables]
-  ## * TODO define environment variables
+  ## * review assignment - the current review assignment
+  ## * past_due - whether the Review was submitted past the due date
+  ## * questions - all questions for the review assignment
+  ## * answers -  all reviews of the current user's for the current review assignment
 	def view_feedback
 		unless current_user.nil?
 			review_assignment_id = params[:id]
 			@review_assignment = ReviewAssignment.find(review_assignment_id)
 			@past_due = @review_assignment.end_date <= DateTime.now
-			@questions = ReviewQuestion.find_all_by_review_assignment_id(params[:id])
+			@questions = ReviewQuestion.find_all_by_review_assignment_id(review_assignment_id)
 			@answers = Hash.new
 			user_id = current_user.id
 			@questions.each do |question|
