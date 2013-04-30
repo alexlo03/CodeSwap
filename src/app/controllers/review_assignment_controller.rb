@@ -252,8 +252,9 @@ include PairingHelper
 		unless current_user.nil?
 			if current_user.student?
 				@student = true
-				@count = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id).count
-
+				
+				@reviews = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id)
+        
 			elsif current_user.faculty? || current_user.admin? || current_user.ta?
 				session['assignment_id'] = @review_assignment.assignment.id
 				session['review_assignment_id'] = @review_assignment.id
