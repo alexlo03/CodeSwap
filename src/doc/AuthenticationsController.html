@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class AuthenticationsController - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/controllers/authentications_controller.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="ApplicationController.html">ApplicationController</a>
+  
+</nav>
+
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-create">#create</a>
+    
+    <li><a href="#method-i-destroy">#destroy</a>
+    
+    <li><a href="#method-i-index">#index</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./app/views/assignment/example_txt.html">example</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Assignment.html">Assignment</a>
+  
+    <li><a href="./AssignmentController.html">AssignmentController</a>
+  
+    <li><a href="./AssignmentDefinition.html">AssignmentDefinition</a>
+  
+    <li><a href="./AssignmentDefinitionToUser.html">AssignmentDefinitionToUser</a>
+  
+    <li><a href="./AssignmentHelper.html">AssignmentHelper</a>
+  
+    <li><a href="./AssignmentPairing.html">AssignmentPairing</a>
+  
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
+  
+    <li><a href="./AuthenticationsHelper.html">AuthenticationsHelper</a>
+  
+    <li><a href="./Course.html">Course</a>
+  
+    <li><a href="./CourseController.html">CourseController</a>
+  
+    <li><a href="./CourseGroup.html">CourseGroup</a>
+  
+    <li><a href="./CourseHelper.html">CourseHelper</a>
+  
+    <li><a href="./Deprecated.html">Deprecated</a>
+  
+    <li><a href="./Emailer.html">Emailer</a>
+  
+    <li><a href="./ErrorsController.html">ErrorsController</a>
+  
+    <li><a href="./FacultyController.html">FacultyController</a>
+  
+    <li><a href="./FacultyHelper.html">FacultyHelper</a>
+  
+    <li><a href="./FileSubmission.html">FileSubmission</a>
+  
+    <li><a href="./FileSubmissionUploader.html">FileSubmissionUploader</a>
+  
+    <li><a href="./FileSubmissionsController.html">FileSubmissionsController</a>
+  
+    <li><a href="./FileSubmissionsHelper.html">FileSubmissionsHelper</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./PairingHelper.html">PairingHelper</a>
+  
+    <li><a href="./QuestionExtra.html">QuestionExtra</a>
+  
+    <li><a href="./RegistrationsController.html">RegistrationsController</a>
+  
+    <li><a href="./ReviewAnswer.html">ReviewAnswer</a>
+  
+    <li><a href="./ReviewAssignment.html">ReviewAssignment</a>
+  
+    <li><a href="./ReviewAssignmentController.html">ReviewAssignmentController</a>
+  
+    <li><a href="./ReviewAssignmentHelper.html">ReviewAssignmentHelper</a>
+  
+    <li><a href="./ReviewMapping.html">ReviewMapping</a>
+  
+    <li><a href="./ReviewQuestion.html">ReviewQuestion</a>
+  
+    <li><a href="./StudentInCourse.html">StudentInCourse</a>
+  
+    <li><a href="./TaForCourse.html">TaForCourse</a>
+  
+    <li><a href="./User.html">User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class AuthenticationsController</h1>
+
+  <div id="description" class="description">
+    
+<p>Handles OpenAuth Integration</p>
+
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-create" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Associates an open auth account with the user.
+Magic.</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>/authentications/create</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>None</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>None</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="create-source">
+            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
+  <span class="ruby-identifier">omniauth</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-string">&quot;omniauth.auth&quot;</span>]
+  <span class="ruby-identifier">authentication</span> = <span class="ruby-constant">Authentication</span>.<span class="ruby-identifier">find_by_provider_and_uid</span>(<span class="ruby-identifier">omniauth</span>[<span class="ruby-string">'provider'</span>], <span class="ruby-identifier">omniauth</span>[<span class="ruby-string">'uid'</span>])
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">authentication</span>
+    <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Signed in successfully.&quot;</span>
+    <span class="ruby-identifier">sign_in_and_redirect</span>(<span class="ruby-value">:user</span>, <span class="ruby-identifier">authentication</span>.<span class="ruby-identifier">user</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+      <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentications</span>.<span class="ruby-identifier">create</span>(<span class="ruby-value">:provider</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">omniauth</span>[<span class="ruby-string">'provider'</span>], <span class="ruby-value">:uid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">omniauth</span>[<span class="ruby-string">'uid'</span>])
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Authentication successful.&quot;</span>
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">root_path</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">flash</span>[<span class="ruby-value">:error</span>] = <span class="ruby-string">&quot;This &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">omniauth</span>[<span class="ruby-string">'provider'</span>] <span class="ruby-operator">+</span> <span class="ruby-string">&quot; account is not linked yet. Please log in and link the account.&quot;</span>
+      <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_session_path</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create-method -->
+
+    
+      <div id="method-i-destroy" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">destroy</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Disassociates an open authentication account with the current user.</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>/authentications/destroy/:id</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>id - ID of the authentication to destroy</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>authentication - instance of the destroyed authentication</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="destroy-source">
+            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
+  <span class="ruby-ivar">@authentication</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentications</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-ivar">@authentication</span>.<span class="ruby-identifier">destroy</span>
+  <span class="ruby-identifier">flash</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;Successfully destroyed authentication.&quot;</span>
+  <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_session_path</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- destroy-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- destroy-method -->
+
+    
+      <div id="method-i-index" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">index</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Used to view all open authentications</pre>
+<dl class="rdoc-list label-list"><dt>Route(s)
+<dd><ul><li>
+<p>/authentications</p>
+</li><li>
+<p>/authentications/index</p>
+</li></ul>
+</dd><dt>Params
+<dd><ul><li>
+<p>None</p>
+</li></ul>
+</dd><dt>Environment Variables
+<dd><ul><li>
+<p>authentications - All authentications authorized by the current user</p>
+</li></ul>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="index-source">
+            <pre><span class="ruby-comment"># File app/controllers/authentications_controller.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
+  <span class="ruby-ivar">@authentications</span> = <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">authentications</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- index-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- index-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
