@@ -28,8 +28,14 @@ include PairingHelper
 		  review_assignment.name = params[:name]
 		  review_assignment.assignment_id = params[:assignment_id]
 		  review_assignment.user_id = current_user.id
-		  review_assignment.grouped = (params[:grouped]=='true')
 		  review_assignment.course_id = Assignment.find(params[:assignment_id]).course_id
+		  
+		  if(params[:previous_id] != '-1')
+		    review_assignment.grouped = ReviewAssignment.find(params[:previous_id]).grouped
+		  else
+		    review_assignment.grouped = (params[:grouped] == 'true')
+		  end
+		  
 		  review_assignment.save
 		  
 		  questions = params[:questions]
@@ -64,7 +70,9 @@ include PairingHelper
 			  flash[:error] = 'A review assignment already exists for this assignment. Redirecting to the existing review assignment. Please contact the system administrator if you are receiving this message in error.'
 			  redirect_to '/reviewassignment/view/' + review_assignment.id.to_s
 			end
-			@review_assignments = ReviewAssignment.all.keep_if{ |r| r.assignment_id != @assignment_id }
+			review_assignments = ReviewAssignment.find_all_by_course_id(@assignment.course_id)
+			ignored_assignment_pairings = review_assignments.collect(&:assignment_pairing).collect(&:previous_id)
+			@review_assignments = review_assignments.drop_while{|x| x.assignment_pairing_id.in?(ignored_assignment_pairings)}
     end
   end
 

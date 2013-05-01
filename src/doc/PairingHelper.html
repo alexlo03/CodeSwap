@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>module PairingHelper - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/helpers/pairing_helper.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-create_pairings">#create_pairings</a>
+    
+    <li><a href="#method-i-create_pairings_mk_2">#create_pairings_mk_2</a>
+    
+    <li><a href="#method-i-get_depth">#get_depth</a>
+    
+    <li><a href="#method-i-get_latest_assignment_pairing">#get_latest_assignment_pairing</a>
+    
+    <li><a href="#method-i-get_seed">#get_seed</a>
+    
+    <li><a href="#method-i-group">#group</a>
+    
+    <li><a href="#method-i-pair">#pair</a>
+    
+    <li><a href="#method-i-pair_assignment_mk_2">#pair_assignment_mk_2</a>
+    
+    <li><a href="#method-i-zip_and_flatten">#zip_and_flatten</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./app/views/assignment/example_txt.html">example</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Ability.html">Ability</a>
+  
+    <li><a href="./AdminController.html">AdminController</a>
+  
+    <li><a href="./AdminHelper.html">AdminHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Assignment.html">Assignment</a>
+  
+    <li><a href="./AssignmentController.html">AssignmentController</a>
+  
+    <li><a href="./AssignmentDefinition.html">AssignmentDefinition</a>
+  
+    <li><a href="./AssignmentDefinitionToUser.html">AssignmentDefinitionToUser</a>
+  
+    <li><a href="./AssignmentHelper.html">AssignmentHelper</a>
+  
+    <li><a href="./AssignmentPairing.html">AssignmentPairing</a>
+  
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
+  
+    <li><a href="./AuthenticationsHelper.html">AuthenticationsHelper</a>
+  
+    <li><a href="./Course.html">Course</a>
+  
+    <li><a href="./CourseController.html">CourseController</a>
+  
+    <li><a href="./CourseGroup.html">CourseGroup</a>
+  
+    <li><a href="./CourseHelper.html">CourseHelper</a>
+  
+    <li><a href="./Deprecated.html">Deprecated</a>
+  
+    <li><a href="./Emailer.html">Emailer</a>
+  
+    <li><a href="./ErrorsController.html">ErrorsController</a>
+  
+    <li><a href="./FacultyController.html">FacultyController</a>
+  
+    <li><a href="./FacultyHelper.html">FacultyHelper</a>
+  
+    <li><a href="./FileSubmission.html">FileSubmission</a>
+  
+    <li><a href="./FileSubmissionUploader.html">FileSubmissionUploader</a>
+  
+    <li><a href="./FileSubmissionsController.html">FileSubmissionsController</a>
+  
+    <li><a href="./FileSubmissionsHelper.html">FileSubmissionsHelper</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./PairingHelper.html">PairingHelper</a>
+  
+    <li><a href="./QuestionExtra.html">QuestionExtra</a>
+  
+    <li><a href="./RegistrationsController.html">RegistrationsController</a>
+  
+    <li><a href="./ReviewAnswer.html">ReviewAnswer</a>
+  
+    <li><a href="./ReviewAssignment.html">ReviewAssignment</a>
+  
+    <li><a href="./ReviewAssignmentController.html">ReviewAssignmentController</a>
+  
+    <li><a href="./ReviewAssignmentHelper.html">ReviewAssignmentHelper</a>
+  
+    <li><a href="./ReviewMapping.html">ReviewMapping</a>
+  
+    <li><a href="./ReviewQuestion.html">ReviewQuestion</a>
+  
+    <li><a href="./StudentInCourse.html">StudentInCourse</a>
+  
+    <li><a href="./TaForCourse.html">TaForCourse</a>
+  
+    <li><a href="./User.html">User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module PairingHelper</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-create_pairings" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_pairings</span><span
+            class="method-args">(list, shift_amount, seed)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Creates a mapping of pairings from array</pre>
+<dl class="rdoc-list label-list"><dt>Params
+<dd><ul><li>
+<p>list - an array [1, 2, 3]</p>
+</li><li>
+<p>num_of_previous_pairings - number of times the same seed has been used to
+randomize a list</p>
+</li><li>
+<p>seed is a random int</p>
+</li></ul>
+</dd><dt>Result
+<dd>
+<p>Hash of pairings</p>
+
+<pre class="ruby">    [<span class="ruby-constant">Example</span>]
+* <span class="ruby-identifier">create_pairings</span>([<span class="ruby-value">1</span>,<span class="ruby-value">2</span>,<span class="ruby-value">3</span>],<span class="ruby-value">0</span>,<span class="ruby-value">123</span>)
+* =<span class="ruby-operator">&gt;</span> {[<span class="ruby-value">2</span>]=<span class="ruby-operator">&gt;</span>[<span class="ruby-value">1</span>], [<span class="ruby-value">1</span>]=<span class="ruby-operator">&gt;</span>[<span class="ruby-value">3</span>], [<span class="ruby-value">3</span>]=<span class="ruby-operator">&gt;</span>[<span class="ruby-value">2</span>]}
+</pre>
+</dd></dl>
+          
+
+          
+          <div class="method-source-code" id="create_pairings-source">
+            <pre><span class="ruby-comment"># File app/helpers/pairing_helper.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_pairings</span>(<span class="ruby-identifier">list</span>, <span class="ruby-identifier">shift_amount</span>, <span class="ruby-identifier">seed</span>)
+                <span class="ruby-identifier">randomized_list</span> = <span class="ruby-identifier">list</span>.<span class="ruby-identifier">shuffle</span>(<span class="ruby-identifier">random</span><span class="ruby-value">:Random</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">seed</span>))
+                <span class="ruby-identifier">double_randomized_list</span> = <span class="ruby-identifier">randomized_list</span> * <span class="ruby-value">2</span>
+                <span class="ruby-identifier">pairings</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+                <span class="ruby-identifier">size</span> = <span class="ruby-identifier">randomized_list</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>
+                <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">size</span>
+                        <span class="ruby-identifier">pairings</span>[<span class="ruby-identifier">randomized_list</span>[<span class="ruby-identifier">i</span>]] = <span class="ruby-identifier">double_randomized_list</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span><span class="ruby-operator">+</span><span class="ruby-identifier">shift_amount</span>]
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-identifier">new_pairings</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+                <span class="ruby-identifier">pairings</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">new_pairings</span>[[<span class="ruby-identifier">k</span>]] = [<span class="ruby-identifier">v</span>]
+                <span class="ruby-keyword">end</span>
+                <span class="ruby-identifier">new_pairings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_pairings-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_pairings-method -->
+
+    
+      <div id="method-i-create_pairings_mk_2" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_pairings_mk_2</span><span
+            class="method-args">(list, shift_amount, seed, graders)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="create_pairings_mk_2-source">
+            <pre><span class="ruby-comment"># File app/helpers/pairing_helper.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_pairings_mk_2</span>(<span class="ruby-identifier">list</span>, <span class="ruby-identifier">shift_amount</span>, <span class="ruby-identifier">seed</span>, <span class="ruby-identifier">graders</span>)
+  <span class="ruby-identifier">shuffled_list</span> = <span class="ruby-identifier">list</span>.<span class="ruby-identifier">shuffle</span>(<span class="ruby-identifier">random</span><span class="ruby-value">:Random</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">seed</span>))
+  <span class="ruby-identifier">size</span> = <span class="ruby-identifier">shuffled_list</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+  <span class="ruby-identifier">doubled_shuffled_list</span> = <span class="ruby-identifier">shuffled_list</span> * <span class="ruby-value">2</span>
+  <span class="ruby-identifier">pairings</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-identifier">graders</span> = <span class="ruby-value">2</span>
+
+  <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">size</span>).<span class="ruby-identifier">step</span>(<span class="ruby-identifier">graders</span>)
+    <span class="ruby-identifier">shift</span> = <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-identifier">graders</span><span class="ruby-operator">+</span><span class="ruby-identifier">shift_amount</span>
+    <span class="ruby-identifier">list</span> = []
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">j</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">graders</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">list</span> = <span class="ruby-identifier">list</span> <span class="ruby-operator">+</span> [<span class="ruby-identifier">doubled_shuffled_list</span>[<span class="ruby-identifier">shift</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">j</span>]]
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">for</span> <span class="ruby-identifier">j</span> <span class="ruby-keyword">in</span> <span class="ruby-identifier">i</span><span class="ruby-operator">..</span><span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">graders</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">pairings</span>[<span class="ruby-identifier">shuffled_list</span>[<span class="ruby-identifier">j</span>]] = <span class="ruby-identifier">list</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">size</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>).<span class="ruby-identifier">odd?</span>
+    <span class="ruby-identifier">unpaired_student</span> = <span class="ruby-identifier">pairings</span>[<span class="ruby-identifier">shuffled_list</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-identifier">graders</span><span class="ruby-operator">+</span><span class="ruby-identifier">shift_amount</span>]].<span class="ruby-identifier">first</span>
+    <span class="ruby-identifier">pairings</span>[<span class="ruby-identifier">shuffled_list</span>[<span class="ruby-identifier">shift_amount</span>]] <span class="ruby-operator">+=</span> [<span class="ruby-identifier">unpaired_student</span>]
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">pairings</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">pairings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_pairings_mk_2-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_pairings_mk_2-method -->
+
+    
+      <div id="method-i-get_depth" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_depth</span><span
+            class="method-args">(previous_assignment_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the depth from the previous assignment, 0 if no previous assignment
+given</p>
+          
+
+          
+          <div class="method-source-code" id="get_depth-source">
+            <pre><span class="ruby-comment"># File app/helpers/pairing_helper.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_depth</span>(<span class="ruby-identifier">previous_assignment_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">previous_assignment_id</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">old_pairing</span> = <span class="ruby-constant">AssignmentPairing</span>.<span class="ruby-identifier">find_by_assignment_id</span>(<span class="ruby-identifier">previous_assignment_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">old_pairing</span>.<span class="ruby-identifier">nil?</span> 
+    <span class="ruby-keyword">return</span> <span class="ruby-value">0</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">old_pairing</span>.<span class="ruby-identifier">depth</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_depth-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_depth-method -->
+
+    
+      <div id="method-i-get_latest_assignment_pairing" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_latest_assignment_pairing</span><span
+            class="method-args">(assignment_id, previous_assignment_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Method takes an assignment definition ID and previous assignment ID both
+inputs are integers corresponding to a matching database entity</p>
+
+<p>Returns two things: an assignment pairing entity, and a list</p>
+
+<p>list contains the students in the course containing the assignment the
+assignment pairing is assigned values of seed, depth, and previous ID.</p>
+
+<pre>Example:</pre>
+
+<p>pairing, list = <a
+href="PairingHelper.html#method-i-get_latest_assignment_pairing">#get_latest_assignment_pairing</a>(1,
+nil)</p>
+
+<h1 id="method-i-get_latest_assignment_pairing-label-%3E+%5B%23%3CAssignmentPairing+assignment_definition_id%3A+1%2C+seed%3A+32554653%2C+previous_id%3A+nil%2C+depth%3A+0%2C+number_of_graders%3A+nil%3E%2C+%5B25%2C+26%2C+27%5D%5D+">&gt; [#&lt;<a href="AssignmentPairing.html">AssignmentPairing</a> assignment_definition_id: 1, seed: 32554653, previous_id: nil, depth: 0, number_of_graders: nil&gt;, [25, 26, 27]] </h1>
+          
+
+          
+          <div class="method-source-code" id="get_latest_assignment_pairing-source">
+            <pre><span class="ruby-comment"># File app/helpers/pairing_helper.rb, line 69</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_latest_assignment_pairing</span>(<span class="ruby-identifier">assignment_id</span>, <span class="ruby-identifier">previous_assignment_id</span>)
+  <span class="ruby-identifier">assignment_pairing</span> = <span class="ruby-constant">AssignmentPairing</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:assignment_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">assignment_id</span>)
+  <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">number_of_graders</span> = <span class="ruby-value">2</span>
+
+  <span class="ruby-identifier">old_pairing</span> = <span class="ruby-constant">AssignmentPairing</span>.<span class="ruby-identifier">find_by_assignment_id</span>(<span class="ruby-identifier">previous_assignment_id</span>)
+
+  <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">seed</span> = <span class="ruby-identifier">get_seed</span>(<span class="ruby-identifier">old_pairing</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">depth</span> = <span class="ruby-identifier">get_depth</span>(<span class="ruby-identifier">old_pairing</span>.<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">previous_id</span> = <span class="ruby-identifier">old_pairing</span>.<span class="ruby-identifier">id</span>
+
+              <span class="ruby-identifier">course</span> = <span class="ruby-constant">Assignment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">assignment_id</span>).<span class="ruby-identifier">course</span>
+              <span class="ruby-identifier">list</span> = <span class="ruby-constant">StudentInCourse</span>.<span class="ruby-identifier">find_all_by_course_id</span>(<span class="ruby-identifier">course</span>.<span class="ruby-identifier">id</span>).<span class="ruby-identifier">collect</span>(&amp;<span class="ruby-value">:user_id</span>)
+
+              <span class="ruby-keyword">if</span> <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">depth</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">list</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+                      <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">seed</span> = <span class="ruby-identifier">rand</span>(<span class="ruby-value">200000000</span>)
+                      <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">depth</span> = <span class="ruby-value">0</span> 
+              <span class="ruby-keyword">end</span>
+
+  [<span class="ruby-identifier">assignment_pairing</span>, <span class="ruby-identifier">list</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_latest_assignment_pairing-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_latest_assignment_pairing-method -->
+
+    
+      <div id="method-i-get_seed" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_seed</span><span
+            class="method-args">(previous_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the seed from the previous review assignment, random if no previous
+assignment given</p>
+          
+
+          
+          <div class="method-source-code" id="get_seed-source">
+            <pre><span class="ruby-comment"># File app/helpers/pairing_helper.rb, line 110</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_seed</span>(<span class="ruby-identifier">previous_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">previous_id</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">200000000</span>)
+  <span class="ruby-keyword">end</span>
+  
+  <span class="ruby-identifier">old_pairing</span> = <span class="ruby-constant">AssignmentPairing</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">previous_id</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">old_pairing</span>.<span class="ruby-identifier">nil?</span> 
+    <span class="ruby-keyword">return</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">200000000</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">old_pairing</span>.<span class="ruby-identifier">seed</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_seed-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_seed-method -->
+
+    
+      <div id="method-i-group" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">group</span><span
+            class="method-args">(array)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="group-source">
+            <pre><span class="ruby-comment"># File app/helpers/pairing_helper.rb, line 189</span>
+        <span class="ruby-keyword">def</span> <span class="ruby-identifier">group</span>(<span class="ruby-identifier">array</span>)
+                <span class="ruby-keyword">if</span> (<span class="ruby-identifier">array</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">%</span><span class="ruby-value">2</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span> 
+                        <span class="ruby-identifier">array2</span>=<span class="ruby-identifier">array</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span>(<span class="ruby-identifier">array</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)<span class="ruby-operator">/</span><span class="ruby-value">2</span>]
+                        <span class="ruby-identifier">array</span>=<span class="ruby-identifier">array</span>[(<span class="ruby-identifier">array</span>.<span class="ruby-identifier">length</span>)<span class="ruby-operator">/</span><span class="ruby-value">2</span><span class="ruby-operator">..</span><span class="ruby-identifier">array</span>.<span class="ruby-identifier">length</span>]
+                        <span class="ruby-keyword">return</span> <span class="ruby-identifier">array</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">array2</span>)
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">odd_man</span> = <span class="ruby-identifier">array</span>[<span class="ruby-value">-1</span>]
+                        <span class="ruby-identifier">array</span> = <span class="ruby-identifier">array</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">array</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">2</span>]
+                        <span class="ruby-identifier">grouped</span> = <span class="ruby-identifier">group</span>(<span class="ruby-identifier">array</span>)
+                        <span class="ruby-identifier">grouped</span>[<span class="ruby-value">-1</span>] = <span class="ruby-identifier">grouped</span>[<span class="ruby-value">-1</span>].<span class="ruby-identifier">push</span>(<span class="ruby-identifier">odd_man</span>)
+                        <span class="ruby-identifier">grouped</span>
+                <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- group-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- group-method -->
+
+    
+      <div id="method-i-pair" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pair</span><span
+            class="method-args">(student_group_1, student_group_2,seed,depth,prof_id = nil)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Pairing Algorithm v 3.0 Takes in 2 arrays of student IDs, a seed, number of
+swaps and a Professor ID to be used with odd cases</p>
+          
+
+          
+          <div class="method-source-code" id="pair-source">
+            <pre><span class="ruby-comment"># File app/helpers/pairing_helper.rb, line 141</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pair</span>(<span class="ruby-identifier">student_group_1</span>, <span class="ruby-identifier">student_group_2</span>,<span class="ruby-identifier">seed</span>,<span class="ruby-identifier">depth</span>,<span class="ruby-identifier">prof_id</span> = <span class="ruby-keyword">nil</span>)
+        <span class="ruby-identifier">student_group_1</span> = <span class="ruby-identifier">student_group_1</span>.<span class="ruby-identifier">shuffle</span>(<span class="ruby-value">:random</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">seed</span>)).<span class="ruby-identifier">rotate</span>(<span class="ruby-identifier">depth</span>)
+        <span class="ruby-identifier">student_group_2</span> = <span class="ruby-identifier">student_group_2</span>.<span class="ruby-identifier">shuffle</span>(<span class="ruby-value">:random</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">Random</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">seed</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>)).<span class="ruby-identifier">rotate</span>(<span class="ruby-identifier">depth</span>)
+
+        <span class="ruby-identifier">oddman1</span> = <span class="ruby-keyword">nil</span>
+        <span class="ruby-identifier">oddman2</span> = <span class="ruby-keyword">nil</span> 
+        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">student_group_1</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">%</span><span class="ruby-value">2</span>)<span class="ruby-operator">!=</span><span class="ruby-value">0</span>
+                <span class="ruby-identifier">oddman1</span> = <span class="ruby-identifier">student_group_1</span>.<span class="ruby-identifier">last</span>
+                <span class="ruby-identifier">student_group_1</span> = <span class="ruby-identifier">student_group_1</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">student_group_1</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">2</span>]
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">if</span> (<span class="ruby-identifier">student_group_2</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">%</span><span class="ruby-value">2</span>)<span class="ruby-operator">!=</span><span class="ruby-value">0</span>
+                <span class="ruby-identifier">oddman2</span> = <span class="ruby-identifier">student_group_2</span>.<span class="ruby-identifier">last</span>
+                <span class="ruby-identifier">student_group_2</span> = <span class="ruby-identifier">student_group_2</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">student_group_2</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">2</span>]
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">student_group_1</span> = <span class="ruby-identifier">group</span>(<span class="ruby-identifier">student_group_1</span>)
+        <span class="ruby-identifier">student_group_2</span> = <span class="ruby-identifier">group</span>(<span class="ruby-identifier">student_group_2</span>)
+
+        <span class="ruby-identifier">zipped_list</span> = <span class="ruby-identifier">zip_and_flatten</span>(<span class="ruby-identifier">student_group_1</span>,<span class="ruby-identifier">student_group_2</span>)
+        <span class="ruby-identifier">double</span> = <span class="ruby-identifier">zipped_list</span> *<span class="ruby-value">2</span>       
+        <span class="ruby-identifier">pairings</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">size</span> = <span class="ruby-identifier">zipped_list</span>.<span class="ruby-identifier">length</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>
+        <span class="ruby-keyword">for</span> <span class="ruby-identifier">i</span> <span class="ruby-keyword">in</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">size</span>
+                <span class="ruby-identifier">pairings</span>[<span class="ruby-identifier">zipped_list</span>[<span class="ruby-identifier">i</span>]] = <span class="ruby-identifier">double</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span><span class="ruby-operator">+</span><span class="ruby-identifier">depth</span>].<span class="ruby-identifier">clone</span>
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-identifier">prof_grades</span> = []
+
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">oddman1</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-identifier">pairings</span>.<span class="ruby-identifier">keys</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">push</span>(<span class="ruby-identifier">oddman1</span>)
+                <span class="ruby-identifier">prof_grades</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">oddman1</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">oddman2</span>.<span class="ruby-identifier">nil?</span>
+                <span class="ruby-identifier">pairings</span>.<span class="ruby-identifier">keys</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">push</span>(<span class="ruby-identifier">oddman2</span>)
+                <span class="ruby-identifier">prof_grades</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">oddman2</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">unless</span> <span class="ruby-identifier">prof_grades</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-identifier">pairings</span>[[<span class="ruby-identifier">prof_id</span>]] = <span class="ruby-identifier">prof_grades</span>
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">pairings</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- pair-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- pair-method -->
+
+    
+      <div id="method-i-pair_assignment_mk_2" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">pair_assignment_mk_2</span><span
+            class="method-args">(assignment_definition_id, previous_assignment_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Method takes an array of EVEN LENGTH and creates a mapping of pairings list
+is an array of even length num_of_previous_pairings is the number of times
+the  same seed has been used to randomize a list seed is a random int</p>
+
+<p>Returns a hash of pairings</p>
+
+<pre>Example:</pre>
+
+<p><a href="http://1,2,3,4">create_pairings_mk_2(</a>,0,123)</p>
+
+<h1 id="method-i-pair_assignment_mk_2-label-%3E+%7B1%3D%3E%5B3%2C+4%5D%2C+2%3D%3E%5B3%2C+4%5D%2C+3%3D%3E%5B1%2C+2%5D%2C+4%3D%3E%5B1%2C+2%5D%7D">&gt; {1=&gt;[3, 4], 2=&gt;[3, 4], 3=&gt;[1, 2], 4=&gt;[1, 2]}</h1>
+          
+
+          
+          <div class="method-source-code" id="pair_assignment_mk_2-source">
+            <pre><span class="ruby-comment"># File app/helpers/pairing_helper.rb, line 103</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">pair_assignment_mk_2</span>(<span class="ruby-identifier">assignment_definition_id</span>, <span class="ruby-identifier">previous_assignment_id</span>)
+  <span class="ruby-identifier">assignment_pairing</span>, <span class="ruby-identifier">list</span> = <span class="ruby-identifier">get_latest_assignment_pairing</span>(<span class="ruby-identifier">assignment_definition_id</span>, <span class="ruby-identifier">previous_assignment_id</span>)          
+  <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">save</span>
+  <span class="ruby-identifier">create_pairings_mk_2</span>(<span class="ruby-identifier">list</span>, <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">depth</span>, <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">seed</span>, <span class="ruby-identifier">assignment_pairing</span>.<span class="ruby-identifier">number_of_graders</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- pair_assignment_mk_2-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- pair_assignment_mk_2-method -->
+
+    
+      <div id="method-i-zip_and_flatten" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">zip_and_flatten</span><span
+            class="method-args">(array1,array2)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="zip_and_flatten-source">
+            <pre><span class="ruby-comment"># File app/helpers/pairing_helper.rb, line 185</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">zip_and_flatten</span>(<span class="ruby-identifier">array1</span>,<span class="ruby-identifier">array2</span>)     
+        (<span class="ruby-identifier">array1</span>.<span class="ruby-identifier">zip</span>(<span class="ruby-identifier">array2</span>)).<span class="ruby-identifier">flatten</span>(<span class="ruby-value">1</span>).<span class="ruby-identifier">reject</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">nil?</span>}
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- zip_and_flatten-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- zip_and_flatten-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
