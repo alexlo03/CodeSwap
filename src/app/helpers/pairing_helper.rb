@@ -1,15 +1,14 @@
 module PairingHelper
 
 	## Creates a mapping of pairings from array
-	# [Params]
+	# [PARMS]
   ## * list - an array [1, 2, 3]
 	## * num_of_previous_pairings - number of times the same seed has been used to randomize a list
 	## * seed is a random int
-	# [Result]
-	# Hash of pairings
-	#	[Example]
-	## * create_pairings([1,2,3],0,123)
-	## * => {[2]=>[1], [1]=>[3], [3]=>[2]}
+	# [RETURN]
+	## *  Hash of pairings
+	#	[EXAMPLE]
+	## * create_pairings([1,2,3],0,123) => {[2]=>[1], [1]=>[3], [3]=>[2]}
 	def create_pairings(list, shift_amount, seed)
 			randomized_list = list.shuffle(random:Random.new(seed))
 			double_randomized_list = randomized_list * 2
@@ -25,47 +24,14 @@ module PairingHelper
 			new_pairings
 	end
 
-  def create_pairings_mk_2(list, shift_amount, seed, graders)
-    shuffled_list = list.shuffle(random:Random.new(seed))
-    size = shuffled_list.length - 1
-    doubled_shuffled_list = shuffled_list * 2
-    pairings = Hash.new
-
-    graders = 2
-
-    for i in (0..size).step(graders)
-      shift = i+graders+shift_amount
-      list = []
-      for j in 0..graders - 1
-        list = list + [doubled_shuffled_list[shift + j]]
-      end
-      for j in i..i + graders - 1
-        pairings[shuffled_list[j]] = list
-      end
-    end
-
-    if (size + 1).odd?
-      unpaired_student = pairings[shuffled_list[i+graders+shift_amount]].first
-      pairings[shuffled_list[shift_amount]] += [unpaired_student]
-    end
-
-    pairings.delete(nil)
-    pairings
-  end
-
-	# Method takes an assignment definition ID and previous assignment ID
-	# both inputs are integers corresponding to a matching database entity
-	#
-	# Returns two things: an assignment pairing entity, and a list
-	#
+	# Method takes an assignment definition ID and previous assignment ID both inputs are integers corresponding to a matching database entity
+	# [PARAMS]
+	## * assignment_id - id of the assignment
+	## * previous_assignment_id - ID of the linked assignment
+	# [RETURN]
+	## * list of: an assignment pairing entity, and a list of student IDs
   # list contains the students in the course containing the assignment
   # the assignment pairing is assigned values of seed, depth, and previous ID.
-  # 
-	#	Example:
-	# 
-	# pairing, list = get_latest_assignment_pairing(1, nil)
-	# => [#<AssignmentPairing assignment_definition_id: 1, seed: 32554653, previous_id: nil, depth: 0, number_of_graders: nil>, [25, 26, 27]] 
-
   def get_latest_assignment_pairing(assignment_id, previous_assignment_id)
     assignment_pairing = AssignmentPairing.new(:assignment_id => assignment_id)
     assignment_pairing.number_of_graders = 2
@@ -87,47 +53,36 @@ module PairingHelper
     [assignment_pairing, list]
   end
 
-
-  # Method takes an array of EVEN LENGTH and creates a mapping of pairings
-	# list is an array of even length
-	# num_of_previous_pairings is the number of times the 
-	# same seed has been used to randomize a list
-	# seed is a random int
-	#
-	# Returns a hash of pairings
-	#
-	#	Example:
-	# 
-	# create_pairings_mk_2([1,2,3,4],0,123) 
-	# => {1=>[3, 4], 2=>[3, 4], 3=>[1, 2], 4=>[1, 2]}
-  def pair_assignment_mk_2(assignment_definition_id, previous_assignment_id)
-    assignment_pairing, list = get_latest_assignment_pairing(assignment_definition_id, previous_assignment_id)		
-    assignment_pairing.save
-    create_pairings_mk_2(list, assignment_pairing.depth, assignment_pairing.seed, assignment_pairing.number_of_graders)
-  end
-
   # Gets the seed from the previous review assignment, random if no previous assignment given
-  def get_seed(previous_id)
-    if previous_id.nil?
+	# [PARAMS]
+	## * id - AssignmentPairing id
+	# [RETURN]
+	## * random int from 1 to 200000000 if id is nil or does not map to an assignment_pairing
+	## * the seed for the assignment pairing otherwise
+  def get_seed(id)
+    if id.nil?
       return rand(200000000)
     end
-    
-    old_pairing = AssignmentPairing.find(previous_id)
+    old_pairing = AssignmentPairing.find(id)
     if old_pairing.nil? 
       return rand(200000000)
     end
-
     old_pairing.seed
   end
 
 
-  # Gets the depth from the previous assignment, 0 if no previous assignment given
-  def get_depth(previous_assignment_id)
-    if previous_assignment_id.nil?
+  # Increments the depth of the assignment_pairing with id \"id\""
+	# [PARAMS]
+	## * id - AssignmentPairing id
+	# [RETURN]
+	## * 0 if id is nil or does not map to an assignment_pairing
+	## * the depth for the assignment pairing +1
+  def get_depth(id)
+    if id.nil?
       return 0
     end
     
-    old_pairing = AssignmentPairing.find_by_assignment_id(previous_assignment_id)
+    old_pairing = AssignmentPairing.find_by_assignment_id(id)
     if old_pairing.nil? 
       return 0
     end
@@ -135,9 +90,19 @@ module PairingHelper
     old_pairing.depth + 1
   end
 
-	# Pairing Algorithm v 3.0
-	# Takes in 2 arrays of student IDs, a seed, number of swaps and a Professor ID to be used with odd cases
-	#
+	## Creates a mapping of pairings from array, uses two arrays (groups of students)
+	# [PARMS]
+	## * student_group_1 - array of user_ids
+	## * student_group_2 - array of user_ids
+  ## * list - an array [1, 2, 3]
+	## * seed - int used to 'randomized' the arrays
+	## * depth - number of times a seed has been used
+	## * prof_id - user id to use with odd student groups
+	# [RETURN]
+	## * Hash of pairings
+	# [NOTE]
+	## * Returns a 1 to 2 mapping, not 1 to 1
+	## * Returns a mapping of professor to student if one of the lists is odd in size 
 	def pair(student_group_1, student_group_2,seed,depth,prof_id = nil)
 		student_group_1 = student_group_1.shuffle(:random => Random.new(seed)).rotate(depth)
 		student_group_2 = student_group_2.shuffle(:random => Random.new(seed-1)).rotate(depth)
@@ -181,11 +146,23 @@ module PairingHelper
 	end
 
 
-
+	# Zips two arrays, then flattens the result
+	# [PARMS]
+	## * array1 - an array
+	## * array2 - an array
+	# [RETURN]
+	## * array1 and array2 zipped and flattened by one
 	def zip_and_flatten(array1,array2)	
 		(array1.zip(array2)).flatten(1).reject{|x| x.nil?}
 	end
 
+	# Groups elements of an array into tuples
+	# [PARMS]
+	## * array - an array
+	# [RETURN]
+	## * The array with elements grouped together
+	# [NOTE]
+	## * Odd sized arrays will look like [1,2,3,4,5,6,7] => [(1,4),(2,5),(3,6,7)]
 	def group(array)
 		if (array.length%2) == 0 
 			array2=array[0..(array.length-1)/2]

@@ -42,8 +42,7 @@ include ApplicationHelper
         :role => params[:role],
         :id =>  User.last.id + 1)
 			#Create random password, requires members to respond to email before using the system.
-      o =[('a'..'z'),('A'..'Z'),('0'..'9')].map{|i| i.to_a}.flatten
-      u.reset_password_token = (0...12).map{ o[rand(o.length)] }.join
+      u.reset_password_token = User.reset_password_token
       u.reset_password_sent_at = Time.now
     if(u.save)
       Emailer.delay.signup_confirmation(u)
