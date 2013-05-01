@@ -30,7 +30,7 @@ include PairingHelper
 		  review_assignment.user_id = current_user.id
 		  review_assignment.course_id = Assignment.find(params[:assignment_id]).course_id
 		  
-		  if(params[:previous_id] != '')
+		  if(params[:previous_id] != '-1')
 		    review_assignment.grouped = ReviewAssignment.find(params[:previous_id]).grouped
 		  else
 		    review_assignment.grouped = (params[:grouped] == 'true')
