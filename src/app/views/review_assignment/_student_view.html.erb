@@ -12,7 +12,7 @@
   </h3>
 </dt>
 <dd>
-  <% unless @review_assignment.is_over %>
+  <% if @review_assignment.is_over %>
     <h4>This review assignment is over.<h4>
   <% else %>
     <a class='btn' href=<%= "/reviewassignment/#{@id}/#{i}/answer_form"%>>

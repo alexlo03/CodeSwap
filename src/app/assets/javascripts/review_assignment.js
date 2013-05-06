@@ -224,7 +224,7 @@ reviewassignments = {
 		}
 	},
 	edit:{
-	  pageLoad:function(id, name, startDate, endDate, startTime, endTime, grouped, questions, choices) {
+	  pageLoad:function(id, name, startDate, endDate, startTime, endTime, grouped, questions, choices, started) {
 	    // Initializes date and time pickers
       $('#start-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#start-date').datepicker('hide'); });
       $('#end-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
@@ -248,7 +248,13 @@ reviewassignments = {
           reviewassignments.edit.addMultipleChoice(index, choice);
         });
       });
-			
+			if(started){
+				$('#name').attr("disabled","disabled");
+				$('#grouped');
+				$('#radio-button').attr('disabled','disabled');
+				$("#questions").hide();
+				
+			};
 			},
 	  addMultipleChoice: function(id, choice) {
           new_question_field = " \

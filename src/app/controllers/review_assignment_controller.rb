@@ -113,7 +113,11 @@ include PairingHelper
 			review_assignment.start_date = DateTime.strptime("#{params['startDate']} #{params['startTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 			review_assignment.end_date = DateTime.strptime("#{params['endDate']} #{params['endTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 		  review_assignment.name = params[:name]
-		  review_assignment.grouped = (params[:grouped]=='true')
+		  grouped = params[:grouped]=='true'
+			if grouped != review_assignment.grouped
+				review_assignment.grouped = grouped
+				ReviewMapping.find_all_by_review_assignment_id(review_assignment.id).each{|r| r.destroy}
+			end
 		  review_assignment.save
 		  
 		  old_questions = ReviewQuestion.find_all_by_review_assignment_id(review_assignment.id)
@@ -137,7 +141,6 @@ include PairingHelper
         end
       end
       flash[:notice] = "Review Assignment Updated Successfully!"
-      
     end
     @review_assignment = review_assignment
     
@@ -145,7 +148,7 @@ include PairingHelper
 
 
   ## Match users to reviewers
-  # [Route(s)]
+  # [Route(s)]	
   ## /reviewassignment/pairings/
   ## /reviewassignment/pairings/1
   # [Params]
