@@ -258,12 +258,12 @@ include PairingHelper
 		@id = params[:id]
 		@review_assignment = ReviewAssignment.find(@id)
 		unless current_user.nil?
-			if current_user.student?
+			if @review_assignment.course.is_user_student(current_user.id)
 				@student = true
 				
 				@reviews = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id)
         
-			elsif current_user.faculty? || current_user.admin? || current_user.ta?
+			elsif current_user.faculty? || current_user.admin? || @review_assignment.course.is_user_ta(current_user.id)
 				session['assignment_id'] = @review_assignment.assignment.id
 				session['review_assignment_id'] = @review_assignment.id
 				@student = false

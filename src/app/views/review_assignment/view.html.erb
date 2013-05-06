@@ -3,7 +3,7 @@
 <h2>Reviewing Peers for <%= @review_assignment.name %></h2>
 
 
-<% if @student %>
+<% if @review_assignment.course.is_user_student(@current_user.id) %>
 
 <%= render 'student_view' %>
 
