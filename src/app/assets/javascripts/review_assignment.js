@@ -166,7 +166,7 @@ reviewassignments = {
         <strong id='" + id + "_title' class='question_title'>Question " + num_questions +"</strong>\
           <d class='btn btn-danger' onclick='$(this).parent().parent().remove();'>Remove Question</d>\
           <p><strong>Type:</strong>\
-            <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='instruction'/>Instruction\
+            <input name='" + id + "_type' checked='checked' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='instruction'/>Instruction\
             <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='short_answer'/>Short Answer\
             <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='numerical_answer'/>Numerical Answer\
             <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='multiple_choice'/>Multiple Choice\
