@@ -17,7 +17,7 @@ class FileSubmissionsController < ApplicationController
 
   ## View contents of the file in the browser
   # [Route(s)]
-  ## * /file/view_live/:file_id
+  ## * /files/view_live/:file_id
   # [Params]
   ## * file_id - ID of the FileSubmission object
   # [Environment Variables]
@@ -30,7 +30,7 @@ class FileSubmissionsController < ApplicationController
 
   ## Creates a new FileSubmission object
   # [Route(s)]
-  ## * /file/create/
+  ## * /files/create/
   # [Params]
   ## * file_submission - Block of parameters
   ###   1. user_id - id of user to set user_id field to
@@ -87,31 +87,42 @@ class FileSubmissionsController < ApplicationController
 
   ## Deletes the file matching :file_id
   # [Route(s)]
-  ## * /file/delete/:file_id
+  ## * /files/delete/:file_id
   # [Params]
   ## * file_id - ID of the file to delete
   # [Environment Variables]
   ## * None
   def delete
-  
-    id = params[:file_id]
-    submission = FileSubmission.find(id)
-    logger = Logger.new("log/uploads.log")
-    logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has attempted to delete #{submission.name}."
+    if(current_user)
+	user_id = current_user.id
 
+	id = params['file_id']
+		submission = FileSubmission.find_by_id(id)
+	if(submission)
+		logger = Logger.new("log/uploads.log")
+		logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has attempted to delete #{submission.name}."
 
-    faculty_id = Course.find(Assignment.find(submission.assignment_id).course_id).user_id
-    
-    if ((current_user.id == submission.user_id) or (current_user.id == faculty_id))
-      File.delete(submission.full_save_path)
-      FileSubmission.destroy(id)
-      flash[:notice] = "File removed successfully."
-      logger.info "Delete permitted."
-    else
-      flash[:error] = "You do not have permission to do that."
-      logger.info "Request denied."
-    end
-    redirect_to assignment_view_path(submission.assignment_id)
+		if(submission && submission.user_can_delete(user_id))
+			faculty_id = Course.find(Assignment.find(submission.assignment_id).course_id).user_id
+
+			File.delete(submission.full_save_path)
+			FileSubmission.destroy(id)
+			flash[:notice] = "File removed successfully."
+			logger.info "Delete permitted."
+		else
+			flash[:error] = "You do not have permission to do that."
+			logger.info "Request denied."
+		end
+		redirect_to assignment_view_path(submission.assignment_id)
+	else
+		flash[:error] = "File does not exist"
+		redirect_to root_path
+	end
+
+   else
+   flash[:error] = 'You do not have permission to delete this item. Please login.'
+   redirect_to root_path
+   end
   end
   
 

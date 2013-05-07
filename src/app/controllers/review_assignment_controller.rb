@@ -70,7 +70,9 @@ include PairingHelper
 			  flash[:error] = 'Our records indicate that a review already exists for this assignment. Redirecting you to the edit page for this review assignment. Please contact the system administrator if you think are receiving this message in error.'
 			  redirect_to '/reviewassignment/edit/' + review_assignment.id.to_s
 			end
-			@review_assignments = ReviewAssignment.all.keep_if{ |r| r.assignment_id != @assignment_id }
+			review_assignments = ReviewAssignment.find_all_by_course_id(@assignment.course_id)
+			ignored_assignment_pairings = review_assignments.collect(&:assignment_pairing).collect(&:previous_id)
+			@review_assignments = review_assignments.drop_while{|x| x.assignment_pairing_id.in?(ignored_assignment_pairings)}
     end
   end
 
@@ -111,7 +113,11 @@ include PairingHelper
 			review_assignment.start_date = DateTime.strptime("#{params['startDate']} #{params['startTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 			review_assignment.end_date = DateTime.strptime("#{params['endDate']} #{params['endTime']} #{zone}", '%m-%d-%Y %H:%M %p %Z')
 		  review_assignment.name = params[:name]
-		  review_assignment.grouped = (params[:grouped]=='true')
+		  grouped = params[:grouped]=='true'
+			if grouped != review_assignment.grouped
+				review_assignment.grouped = grouped
+				ReviewMapping.find_all_by_review_assignment_id(review_assignment.id).each{|r| r.destroy}
+			end
 		  review_assignment.save
 		  
 		  old_questions = ReviewQuestion.find_all_by_review_assignment_id(review_assignment.id)
@@ -135,7 +141,6 @@ include PairingHelper
         end
       end
       flash[:notice] = "Review Assignment Updated Successfully!"
-      
     end
     @review_assignment = review_assignment
     
@@ -143,7 +148,7 @@ include PairingHelper
 
 
   ## Match users to reviewers
-  # [Route(s)]
+  # [Route(s)]	
   ## /reviewassignment/pairings/
   ## /reviewassignment/pairings/1
   # [Params]
@@ -256,12 +261,12 @@ include PairingHelper
 		@id = params[:id]
 		@review_assignment = ReviewAssignment.find(@id)
 		unless current_user.nil?
-			if current_user.student?
+			if @review_assignment.course.is_user_student(current_user.id)
 				@student = true
 				
 				@reviews = ReviewMapping.find_all_by_user_id_and_review_assignment_id(current_user.id,@id)
         
-			elsif current_user.faculty? || current_user.admin? || current_user.ta?
+			elsif current_user.faculty? || current_user.admin? || @review_assignment.course.is_user_ta(current_user.id)
 				session['assignment_id'] = @review_assignment.assignment.id
 				session['review_assignment_id'] = @review_assignment.id
 				@student = false

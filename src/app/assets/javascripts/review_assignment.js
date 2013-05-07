@@ -166,7 +166,7 @@ reviewassignments = {
         <strong id='" + id + "_title' class='question_title'>Question " + num_questions +"</strong>\
           <d class='btn btn-danger' onclick='$(this).parent().parent().remove();'>Remove Question</d>\
           <p><strong>Type:</strong>\
-            <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='instruction'/>Instruction\
+            <input name='" + id + "_type' checked='checked' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='instruction'/>Instruction\
             <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='short_answer'/>Short Answer\
             <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='numerical_answer'/>Numerical Answer\
             <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='multiple_choice'/>Multiple Choice\
@@ -224,7 +224,7 @@ reviewassignments = {
 		}
 	},
 	edit:{
-	  pageLoad:function(id, name, startDate, endDate, startTime, endTime, grouped, questions, choices) {
+	  pageLoad:function(id, name, startDate, endDate, startTime, endTime, grouped, questions, choices, started) {
 	    // Initializes date and time pickers
       $('#start-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#start-date').datepicker('hide'); });
       $('#end-date').datepicker({ 'autoClose':true}).on('changeDate', function(ev) { $('#end-date').datepicker('hide'); });
@@ -248,7 +248,13 @@ reviewassignments = {
           reviewassignments.edit.addMultipleChoice(index, choice);
         });
       });
-			
+			if(started){
+				$('#name').attr("disabled","disabled");
+				$('#grouped');
+				$('#radio-button').attr('disabled','disabled');
+				$("#questions").hide();
+				
+			};
 			},
 	  addMultipleChoice: function(id, choice) {
           new_question_field = " \

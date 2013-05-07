@@ -72,6 +72,10 @@ class Course < ActiveRecord::Base
   def is_user_ta(user_id)
     get_tas.include?(user_id)
   end
+    
+  def is_user_student(user_id)
+    get_students.include?(user_id)
+  end
 
   # Helper used to open CSV / Excel files
 	# [Input]
