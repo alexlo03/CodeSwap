@@ -17921,7 +17921,19 @@ reviewassignments = {
         ); 
       }
     },
-  }
+  },
+  view_submission : {
+    submit : function(review_mapping_id) {
+      alert(review_mapping_id);
+      $.post('/reviewassignment/submit_faculty_review/',
+      { 'mapping_id' : review_mapping_id,
+        'content' : $('#feedback').text()
+         },
+        function(review_assignment_id) {
+          window.location = '/reviewassignment/view/' + review_assignment_id;
+        });
+    }
+  },
 }
 
 ;
