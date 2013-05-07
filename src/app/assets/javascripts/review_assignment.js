@@ -364,7 +364,7 @@ reviewassignments = {
 					'grouped':grouped
           }, function() {
             window.location = "/reviewassignment/view/" + assignment_id;
-          }   
+          }
         ); 
       }
     },
@@ -372,7 +372,6 @@ reviewassignments = {
   view_submission : {
     submit : function(review_mapping_id) {
       content = $('#feedback').val();
-      alert(content);
       $.post('/reviewassignment/submit_faculty_review/',
       { 'mapping_id' : review_mapping_id,
         'content' : content

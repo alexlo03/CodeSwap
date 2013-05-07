@@ -427,7 +427,7 @@ include PairingHelper
 			@answers = Hash.new
 			user_id = current_user.id
 			@questions.each do |question|
-				@answers[question.id] = ReviewAnswer.find_all_by_review_question_id_and_other_id(question.id,user_id,user_id)
+				@answers[question.id] = ReviewAnswer.find_all_by_review_question_id_and_other_id(question.id,user_id)
 			end
 		end
 	end
