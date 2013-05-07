@@ -376,9 +376,9 @@ include PairingHelper
 		@answers = ReviewAnswer.find_all_by_user_id_and_other_id(@student_a.id, @student_b.id)
 		@answers = @answers.reject{|x| x.review_question.review_assignment.id != @review_assignment.id}
 		
-		faculty_review = FacultyReview.find_or_create_by_review_mapping_id(mapping.id)
-		
-		@faculty_review_content = faculty_review.content
+		faculty_review = FacultyReview.find_by_review_mapping_id(mapping.id)
+		@faculty_review_content = "Review Acceptable."
+		@faculty_review_content = faculty_review.content unless faculty_review.nil?
 		
 		@mapping_id = mapping.id
 	end
@@ -441,9 +441,8 @@ include PairingHelper
     review_mapping_id = params[:mapping_id]
 	  review_assignment = ReviewMapping.find(review_mapping_id).review_assignment
 	  
-    review = FacultyReview.find_or_create_by_review_mapping_id(review_mapping_id)
-	  review.content = params[:content]
-	  review.save
+	  FacultyReview.where(:review_mapping_id => review_mapping_id).destroy_all
+    review = FacultyReview.create(:review_mapping_id => review_mapping_id, :content => params[:content])
 	  
 	  flash[:notice] = "Comment added successfully to the review."
 	  render :text => review_assignment.id

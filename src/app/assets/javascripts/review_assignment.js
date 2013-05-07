@@ -371,9 +371,11 @@ reviewassignments = {
   },
   view_submission : {
     submit : function(review_mapping_id) {
+      content = $('#feedback').val();
+      alert(content);
       $.post('/reviewassignment/submit_faculty_review/',
       { 'mapping_id' : review_mapping_id,
-        'content' : $('#feedback').text()
+        'content' : content
          },
         function(review_assignment_id) {
           window.location = '/reviewassignment/view/' + review_assignment_id;

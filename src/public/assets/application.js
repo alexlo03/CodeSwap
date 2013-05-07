@@ -17725,7 +17725,7 @@ reviewassignments = {
         <strong id='" + id + "_title' class='question_title'>Question " + num_questions +"</strong>\
           <d class='btn btn-danger' onclick='$(this).parent().parent().remove();'>Remove Question</d>\
           <p><strong>Type:</strong>\
-            <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='instruction'/>Instruction\
+            <input name='" + id + "_type' checked='checked' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='instruction'/>Instruction\
             <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='short_answer'/>Short Answer\
             <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='numerical_answer'/>Numerical Answer\
             <input name='" + id + "_type' onchange='reviewassignments.create.radioChanged(\""+id+"\");' type='radio' value='multiple_choice'/>Multiple Choice\
@@ -17930,10 +17930,11 @@ reviewassignments = {
   },
   view_submission : {
     submit : function(review_mapping_id) {
-      alert(review_mapping_id);
+      content = $('#feedback').val();
+      alert(content);
       $.post('/reviewassignment/submit_faculty_review/',
       { 'mapping_id' : review_mapping_id,
-        'content' : $('#feedback').text()
+        'content' : content
          },
         function(review_assignment_id) {
           window.location = '/reviewassignment/view/' + review_assignment_id;
