@@ -67,6 +67,8 @@ CodeSwap::Application.routes.draw do
 	match 'reviewassignment/:id/:pos/answer_form',:controller => 'review_assignment', :action => 'answer_form'
   match 'reviewassignment/edit/:id', :controller => 'review_assignment', :action => 'edit'
   match 'reviewassignment/view_feedback/:id' => 'review_assignment#view_feedback'
+  match 'reviewassignment/submit_faculty_review/' => 'review_assignment#submit_faculty_review'
+  
   # File Routes
   match 'files/delete/:file_id', :controller => 'file_submissions', :action => 'delete', :as => 'remove_file'
   match 'view_live/:file_id', :controller => 'file_submissions', :action => 'view_live', :as => 'view_live'

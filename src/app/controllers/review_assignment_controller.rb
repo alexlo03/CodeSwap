@@ -65,10 +65,10 @@ include PairingHelper
 			# Handle get request
       @assignment_id = params[:assignment_id]
       @assignment = Assignment.find(@assignment_id)
-			review_assignment_already_exists = ReviewAssignment.find_by_assignment_id(@assignment_id)
-			if(review_assignment_already_exists)
-			  flash[:error] = 'A review assignment already exists for this assignment. Redirecting to the existing review assignment. Please contact the system administrator if you are receiving this message in error.'
-			  redirect_to '/reviewassignment/view/' + review_assignment.id.to_s
+			review_assignment = ReviewAssignment.find_by_assignment_id(@assignment_id)
+			if(review_assignment)
+			  flash[:error] = 'Our records indicate that a review already exists for this assignment. Redirecting you to the edit page for this review assignment. Please contact the system administrator if you think are receiving this message in error.'
+			  redirect_to '/reviewassignment/edit/' + review_assignment.id.to_s
 			end
 			review_assignments = ReviewAssignment.find_all_by_course_id(@assignment.course_id)
 			ignored_assignment_pairings = review_assignments.collect(&:assignment_pairing).collect(&:previous_id)
@@ -376,6 +376,11 @@ include PairingHelper
 		@answers = ReviewAnswer.find_all_by_user_id_and_other_id(@student_a.id, @student_b.id)
 		@answers = @answers.reject{|x| x.review_question.review_assignment.id != @review_assignment.id}
 		
+		faculty_review = FacultyReview.find_by_review_mapping_id(mapping.id)
+		@faculty_review_content = "Review Acceptable."
+		@faculty_review_content = faculty_review.content unless faculty_review.nil?
+		
+		@mapping_id = mapping.id
 	end
 
   ## Generates a grade report for the review assignment.
@@ -422,8 +427,25 @@ include PairingHelper
 			@answers = Hash.new
 			user_id = current_user.id
 			@questions.each do |question|
-				@answers[question.id] = ReviewAnswer.find_all_by_review_question_id_and_other_id(question.id,user_id,user_id)
+				@answers[question.id] = ReviewAnswer.find_all_by_review_question_id_and_other_id(question.id,user_id)
 			end
 		end
 	end
+	
+	
+	## Allows faculty or TA to submit some comments about a particular review
+	# [Route(s)]
+  ## * /reviewassignments/submit_faculty_review/<review_assignment.id>
+	
+	def submit_faculty_review
+    review_mapping_id = params[:mapping_id]
+	  review_assignment = ReviewMapping.find(review_mapping_id).review_assignment
+	  
+	  FacultyReview.where(:review_mapping_id => review_mapping_id).destroy_all
+    review = FacultyReview.create(:review_mapping_id => review_mapping_id, :content => params[:content])
+	  
+	  flash[:notice] = "Comment added successfully to the review."
+	  render :text => review_assignment.id
+  end
+	
 end

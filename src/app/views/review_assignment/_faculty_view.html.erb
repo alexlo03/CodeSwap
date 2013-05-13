@@ -17,7 +17,21 @@
 	<% mappings = ReviewMapping.find_all_by_user_id_and_review_assignment_id(student.id,@review_assignment.id) %>
 	<% mappings.each do |mapping|%>
 		<% other_student = User.find(mapping.other_user_id) %>
-		<td><a href="<%= "/reviewassignment/viewsubmission/#{mapping.id}" %>"><%= "#{student.friendly_full_name} grading #{other_student.friendly_full_name}" %></a></td>
+		<% faculty_review = FacultyReview.find_by_review_mapping_id(mapping.id) %>
+		<td>
+		  <% if faculty_review %>
+		    <strong>(Review Verified)</strong>
+		  <% end %>
+		  
+		  <a href="<%= "/reviewassignment/viewsubmission/#{mapping.id}" %>"><%= "#{student.friendly_full_name} grading #{other_student.friendly_full_name}" %>
+		  </a>
+		  <% if faculty_review %>
+		    <d class="btn" onclick="$('#faculty_review_<%= mapping.id %>').slideToggle();">View Faculty Comment</d>
+		    <p id="faculty_review_<%= mapping.id %>" style='display:none'><strong>Faculty/TA Comment:</strong></br><%= faculty_review.content %></p>
+		  
+		  
+		  <% end %>
+		  </td>
 		
 	<% end %>	
 	</tr>

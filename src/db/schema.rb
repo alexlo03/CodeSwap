@@ -96,6 +96,13 @@ ActiveRecord::Schema.define(:version => 20130507221409) do
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
 
+  create_table "faculty_reviews", :force => true do |t|
+    t.integer  "review_mapping_id"
+    t.text     "content"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
   create_table "file_submissions", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
