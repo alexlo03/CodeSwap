@@ -1,10 +1,10 @@
 <!-- TODO: Make a separate TA/Faculty view that shows what students have submitted solutions to this assignment. -->
 <!-- Assignment View || Shows the basic information regarding an assignment; allows for students to upload a submisison. -->
-<% if @ta or @faculty %>
+<% if @assignment.course.is_user_ta(@current_user.id) or @faculty %>
 <p><%= link_to "Home", root_url %> // <%= link_to "Courses", "/courses" %> // <%= link_to @assignment.course.name, "/course/show/"+ @assignment.course.id.to_s %>  // <%= @assignment.name %> </p>
 <% end %>
 
-<% if @student %>
+<% if @assignment.course.is_user_student(@current_user.id) %>
 <p><%= link_to "Home", root_url %> // <%= link_to "Assignments", "/assignment/index" %> // <%= @assignment.name %> </p>
 <% end %>
 
@@ -58,7 +58,7 @@
     </table>
   <% end %>
 
-<% if @faculty or @ta %>
+<% if @faculty or @assignment.course.is_user_ta(@current_user.id) %>
   <h4>Submission Info</h4>
   <% unless @unsubmitted_students.empty? %>
     <p> The following <%= @unsubmitted_students.count %> students haven't submitted anything for this assignment:</br>
@@ -72,9 +72,9 @@
   <% end %>
 <% end %>
 
-<% if @student %>
+<% if @assignment.course.is_user_student(@current_user.id) %>
   <h3>My Previous Submissions</h3>
-<% elsif @ta or @faculty %>
+<% elsif @assignment.course.is_user_ta(@current_user.id) or @faculty %>
   <h3>Student Submissions</h3>
 <% end %>
   <p><strong>Note</strong>: This table is color-coded based on submission time.</br>
@@ -82,7 +82,7 @@
     <strong>Blue</strong> submissions have been submitted within 24 hours after the dealine.</br>
     <strong>Red</strong> submissions have been submitted laster than 24 hours after the deadline.</p>
 
-<% if @student or @ta or @faculty %>
+<% if @assignment.course.is_user_student(@current_user.id) or @assignment.course.is_user_ta(@current_user.id) or @faculty %>
   <table class='table table-hover'>
     <thead>
       <tr>
@@ -98,19 +98,19 @@
       <% end %>
     </tbody>
   </table>
-	<% if (@ta or @faculty) && (@files.length > 0) %>
+	<% if (@assignment.course.is_user_ta(@current_user.id) or @faculty) && (@files.length > 0) %>
 	<a  class='btn' href=<%= "/assignment/downloadAll/" + @id.to_s %>>Download All Submissions</a>
 	<% end %>
 <% end %>	
 
 
 
-<% if @assignment.has_not_started? and @student %>
+<% if @assignment.has_not_started? and @assignment.course.is_user_student(@current_user.id) %>
   <h4> This assignment has not started yet. You cannot submit files before the assignment has been assigned! </h4>
 <% else %>
-  <% if @faculty %>
+  <% if @faculty or @ta %>
     <h3> Upload Assignment Files </h3>
-  <% elsif @student %>
+  <% elsif @assignment.course.is_user_student(@current_user.id) %>
     <h3> Submit Your Work </h3>
       <% if @assignment.is_over? %>
         <h4> Caution: This assignment is past due. Any further submissions you make to this assignment will be counted as late. </h4>
@@ -121,7 +121,7 @@
       <%= f.label :file %>
       <%= f.hidden_field :assignment_id, :value => @assignment.id %>
       <%= f.file_field :file, :multiple => true, :name => "file_submission[file]" %>
-      <% if @student %>
+      <% if @assignment.course.is_user_student(@current_user.id) %>
         <%= f.hidden_field :user_id, :value => current_user.id %>
       <% else %>
         <t class='btn' onclick='$("#upload_as").toggle()'>Upload as another user</t>

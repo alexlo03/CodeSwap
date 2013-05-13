@@ -57,10 +57,12 @@ class FileSubmissionsController < ApplicationController
     user = User.find(user_id)
     
     logger = Logger.new("log/uploads.log")
-    logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has submitted something for user with ID# #{user_id}."
-    
-	  if user.student? 
-	    user_id = current_user.id if current_user.student?
+
+    logger.info "#{assignment.course.id}"
+    logger.info "USER ID: #{user_id} CURRENT USER #{current_user.id}"
+	  if assignment.course.is_user_student(user_id)
+	    user_id = current_user.id if assignment.course.is_user_student(current_user.id)
+        logger.info "#{Time.now}:: #{current_user.friendly_full_name} (ID# #{current_user.id}) has submitted something for user with ID# #{user_id}."
 		  oldSubmission = FileSubmission.where(:assignment_id => assignment.id,
 					  :course_id => assignment.course_id, :user_id => user_id)[0]
 		  unless oldSubmission.nil?
